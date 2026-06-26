@@ -1,10 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
-import ContactForm from '@/components/contact-form';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import ContactInfoCards from '@/components/contact-info-cards';
-import OfficeMap from '@/components/office-map';
+import { EMAIL, EMAIL_HREF, WEBSITE, WEBSITE_DISPLAY } from '@/lib/contact';
 
 export default function ContactPreviewSection() {
   return (
@@ -14,37 +14,40 @@ export default function ContactPreviewSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          className="text-center space-y-4 mb-16"
+          className="text-center space-y-4 mb-12"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-slate-900">
             Get In <span className="text-[#4F9DF8]">Touch</span>
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            We&apos;re here to help. Reach out with questions or visit our Vadodara office during
-            business hours.
+            Reach out to our Vadodara office during business hours or send us a quick enquiry.
           </p>
         </motion.div>
 
-        <div className="mb-12">
-          <ContactInfoCards />
-        </div>
+        <ContactInfoCards />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          className="grid md:grid-cols-2 gap-8"
-        >
-          <ContactForm />
-          <OfficeMap />
-        </motion.div>
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-slate-600">
+          <a href={EMAIL_HREF} className="hover:text-[#4F9DF8] transition-colors">
+            {EMAIL}
+          </a>
+          <span className="hidden sm:inline text-slate-300">|</span>
+          <a
+            href={WEBSITE}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#4F9DF8] transition-colors"
+          >
+            {WEBSITE_DISPLAY}
+          </a>
+        </div>
 
         <div className="text-center mt-10">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-[#4F9DF8] text-[#4F9DF8] font-semibold hover:bg-blue-50 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#1E6FD9] text-white font-semibold hover:bg-[#1a63c4] transition-colors"
           >
-            View Full Contact Page
+            Contact Us
+            <ArrowRight size={18} />
           </Link>
         </div>
       </div>
