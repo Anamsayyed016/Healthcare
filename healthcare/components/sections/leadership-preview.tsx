@@ -7,59 +7,94 @@ import { executiveLeaders } from '@/lib/data/leadership';
 
 type LeadershipPreviewSectionProps = {
   limit?: number;
+  compact?: boolean;
 };
 
-export default function LeadershipPreviewSection({ limit = 4 }: LeadershipPreviewSectionProps) {
+export default function LeadershipPreviewSection({
+  limit = 2,
+  compact = true,
+}: LeadershipPreviewSectionProps) {
   const leaders = executiveLeaders.slice(0, limit);
+  const gridClass =
+    limit <= 2 ? 'sm:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-4';
+  const containerClass = compact ? 'max-w-4xl' : 'max-w-7xl';
 
   return (
-    <section className="py-20 sm:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className={compact ? 'py-12 sm:py-16 bg-white' : 'py-20 sm:py-32 bg-white'}>
+      <div className={`${containerClass} mx-auto px-4 sm:px-6 lg:px-8`}>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          className="text-center space-y-4 mb-16"
+          viewport={{ once: true, margin: '-60px' }}
+          className={`text-center space-y-3 ${compact ? 'mb-10' : 'mb-16'}`}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900">
+          <h2
+            className={`font-bold text-slate-900 ${
+              compact ? 'text-2xl sm:text-3xl' : 'text-4xl sm:text-5xl'
+            }`}
+          >
             Executive <span className="text-[#4F9DF8]">Leadership</span>
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Meet the leadership team driving PharmEFC&apos;s vision for healthcare excellence.
+          <p
+            className={`text-slate-600 max-w-xl mx-auto ${
+              compact ? 'text-sm sm:text-base' : 'text-lg max-w-2xl'
+            }`}
+          >
+            {compact
+              ? 'Experienced leaders guiding PharmEFC\'s pharmaceutical and healthcare vision.'
+              : 'Meet the leadership team driving PharmEFC\'s vision for healthcare excellence.'}
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className={`grid grid-cols-1 ${gridClass} gap-5 ${compact ? 'mb-10' : 'mb-12'}`}>
           {leaders.map((leader, i) => (
             <motion.div
               key={leader.slug}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              whileHover={{ y: -6 }}
-              className="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:shadow-lg transition-all"
+              whileHover={compact ? undefined : { y: -6 }}
+              className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:shadow-lg transition-all"
             >
-              <div className="h-40 bg-[#F8FBFF] flex items-center justify-center border-b border-[#E2E8F0]">
-                <div className="text-4xl font-bold text-[#1E6FD9]/30">{leader.name.charAt(0)}</div>
-              </div>
-              <div className="p-6 space-y-3">
-                <div>
-                  <h3 className="text-lg font-bold text-slate-900">{leader.name}</h3>
-                  <p className="text-sm text-[#4F9DF8] font-semibold">{leader.role}</p>
+              <div
+                className={`bg-[#F8FBFF] flex items-center justify-center border-b border-[#E2E8F0] ${
+                  compact ? 'h-28' : 'h-40'
+                }`}
+              >
+                <div
+                  className={`font-bold text-[#1E6FD9]/30 ${
+                    compact ? 'text-3xl' : 'text-4xl'
+                  }`}
+                >
+                  {leader.name.charAt(0)}
                 </div>
-                <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">{leader.bio}</p>
+              </div>
+              <div className={compact ? 'p-5' : 'p-6 space-y-3'}>
+                <h3 className={`font-bold text-slate-900 ${compact ? '' : 'text-lg'}`}>
+                  {leader.name}
+                </h3>
+                <p className="text-sm text-[#4F9DF8] font-semibold">{leader.role}</p>
+                {!compact && (
+                  <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">
+                    {leader.bio}
+                  </p>
+                )}
               </div>
             </motion.div>
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="text-center">
           <Link
             href="/leadership"
-            className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-linear-to-r from-[#4F9DF8] to-[#4ADE80] text-white font-semibold hover:shadow-lg transition-all"
+            className={
+              compact
+                ? 'inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[#4F9DF8] text-[#4F9DF8] font-semibold hover:bg-blue-50 transition-colors'
+                : 'inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-linear-to-r from-[#4F9DF8] to-[#4ADE80] text-white font-semibold hover:shadow-lg transition-all'
+            }
           >
-            View Full Leadership Team
+            {compact ? 'Meet Our Leadership' : 'View Full Leadership Team'}
             <ArrowRight size={18} />
           </Link>
         </div>

@@ -7,16 +7,16 @@ import { products } from '@/lib/data/products';
 import ProductCard from '@/components/product-card';
 
 export default function ProductsPreviewSection() {
-  const featured = products.slice(0, 4);
+  const featured = products.slice(0, 3);
 
   return (
-    <section className="py-24 sm:py-28 lg:py-32 bg-white" id="products">
+    <section className="py-12 sm:py-16 bg-white" id="products">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.header
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          className="max-w-2xl mb-12 sm:mb-16"
+          className="max-w-2xl mb-8 sm:mb-10"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] mb-4">
             Pharmaceutical Products
@@ -30,7 +30,7 @@ export default function ProductsPreviewSection() {
           </p>
         </motion.header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {featured.map((product, index) => (
             <ProductCard key={product.slug} product={product} index={index} />
           ))}

@@ -140,7 +140,7 @@ export default function AboutPageContent() {
         </div>
       </section>
 
-      <LeadershipPreviewSection limit={4} />
+      <LeadershipPreviewSection limit={4} compact={false} />
     </SiteLayout>
   );
 }
