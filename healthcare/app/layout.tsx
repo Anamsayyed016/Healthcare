@@ -10,9 +10,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: 'PharmEFC Healthcare Private Limited',
+  description:
+    'PharmEFC Healthcare Private Limited — pharmaceutical and healthcare excellence in Vadodara, Gujarat.',
   icons: {
     icon: [
       {

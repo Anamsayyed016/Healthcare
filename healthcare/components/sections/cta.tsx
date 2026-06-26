@@ -1,7 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { CheckCircle2, ArrowRight } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Mail, Globe } from 'lucide-react';
+import Link from 'next/link';
+import { EMAIL, EMAIL_HREF, WEBSITE, WEBSITE_DISPLAY } from '@/lib/contact';
 
 export default function CTASection() {
   const benefits = [
@@ -49,10 +51,34 @@ export default function CTASection() {
             </div>
 
             {/* CTA Button */}
-            <button className="group px-8 py-4 rounded-2xl bg-gradient-to-r from-[#4F9DF8] to-[#4ADE80] text-white font-semibold hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-2 w-full sm:w-fit">
-              Schedule Your Appointment
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </button>
+            <div className="space-y-4">
+              <Link
+                href="/contact"
+                className="group px-8 py-4 rounded-2xl bg-gradient-to-r from-[#4F9DF8] to-[#4ADE80] text-white font-semibold hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-2 w-full sm:w-fit"
+              >
+                Contact Us
+                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+
+              <div className="flex flex-col sm:flex-row gap-4 text-sm text-slate-700">
+                <a
+                  href={EMAIL_HREF}
+                  className="inline-flex items-center gap-2 hover:text-[#4F9DF8] transition-colors"
+                >
+                  <Mail size={16} />
+                  {EMAIL}
+                </a>
+                <a
+                  href={WEBSITE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 hover:text-[#4F9DF8] transition-colors"
+                >
+                  <Globe size={16} />
+                  {WEBSITE_DISPLAY}
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Right Visual */}

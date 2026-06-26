@@ -49,9 +49,9 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#4F9DF8] to-[#4F9DF8]/70 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-              <span className="text-white font-bold text-lg">HC</span>
+              <span className="text-white font-bold text-lg">PE</span>
             </div>
-            <span className="hidden sm:inline font-bold text-lg text-slate-900">HealthCare+</span>
+            <span className="hidden sm:inline font-bold text-lg text-slate-900">PharmEFC</span>
           </Link>
 
           {/* Desktop Navigation */}
