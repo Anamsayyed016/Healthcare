@@ -48,7 +48,7 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#4F9DF8] to-[#4F9DF8]/70 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
+            <div className="w-10 h-10 rounded-lg bg-linear-to-br from-[#4F9DF8] to-[#4F9DF8]/70 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
               <span className="text-white font-bold text-lg">PE</span>
             </div>
             <span className="hidden sm:inline font-bold text-lg text-slate-900">PharmEFC</span>
@@ -89,7 +89,7 @@ export default function Header() {
             <button className="px-4 py-2 rounded-lg text-sm font-medium text-[#4F9DF8] hover:bg-blue-50 transition-colors">
               Sign In
             </button>
-            <button className="px-4 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-[#4F9DF8] to-[#4ADE80] text-white hover:shadow-lg hover:scale-105 transition-all">
+            <button className="px-4 py-2 rounded-lg text-sm font-medium bg-linear-to-r from-[#4F9DF8] to-[#4ADE80] text-white hover:shadow-lg hover:scale-105 transition-all">
               Get Started
             </button>
           </div>
@@ -124,7 +124,7 @@ export default function Header() {
                     {item.submenu && (
                       <ChevronDown
                         size={16}
-                        className={`transform transition-transform ${
+                        className={`transition-transform ${
                           openMenu === item.label ? 'rotate-180' : ''
                         }`}
                       />

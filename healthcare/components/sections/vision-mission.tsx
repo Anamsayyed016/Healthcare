@@ -10,7 +10,7 @@ export default function VisionMissionSection() {
   };
 
   return (
-    <section className="py-20 sm:py-32 bg-gradient-to-b from-white to-blue-50">
+    <section className="py-20 sm:py-32 bg-linear-to-b from-white to-blue-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -38,7 +38,7 @@ export default function VisionMissionSection() {
             className="group"
           >
             <div className="h-full rounded-3xl border border-blue-100 bg-white p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:border-blue-200">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#4F9DF8] to-[#BAE6FD] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#4F9DF8] to-[#BAE6FD] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Lightbulb className="text-white" size={32} />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-4">Vision</h3>
@@ -58,7 +58,7 @@ export default function VisionMissionSection() {
             className="group"
           >
             <div className="h-full rounded-3xl border border-emerald-100 bg-white p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:border-emerald-200">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#4ADE80] to-emerald-300 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#4ADE80] to-emerald-300 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Target className="text-white" size={32} />
               </div>
               <h3 className="text-2xl font-bold text-foreground mb-4">Mission</h3>
@@ -87,7 +87,7 @@ export default function VisionMissionSection() {
               <motion.div
                 key={i}
                 whileHover={{ y: -8 }}
-                className="text-center p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-emerald-50 border border-blue-100/50 hover:border-blue-200 transition-all"
+                className="text-center p-6 rounded-2xl bg-linear-to-br from-blue-50 to-emerald-50 border border-blue-100/50 hover:border-blue-200 transition-all"
               >
                 <h4 className="font-bold text-lg text-foreground mb-2">{value.title}</h4>
                 <p className="text-sm text-muted-foreground">{value.desc}</p>

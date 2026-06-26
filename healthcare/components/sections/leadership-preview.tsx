@@ -77,9 +77,9 @@ export default function LeadershipPreviewSection() {
               whileHover={{ y: -8 }}
               className="group"
             >
-              <div className="h-full rounded-3xl border border-slate-200 bg-gradient-to-br from-white to-blue-50 overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:border-blue-300">
+              <div className="h-full rounded-3xl border border-slate-200 bg-linear-to-br from-white to-blue-50 overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:border-blue-300">
                 {/* Image Placeholder */}
-                <div className="h-48 bg-gradient-to-br from-[#4F9DF8]/20 to-[#4ADE80]/20 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <div className="h-48 bg-linear-to-br from-[#4F9DF8]/20 to-[#4ADE80]/20 flex items-center justify-center group-hover:scale-105 transition-transform">
                   <div className="text-5xl font-bold text-[#4F9DF8]/30">
                     {leader.name.charAt(0)}
                   </div>
@@ -132,7 +132,7 @@ export default function LeadershipPreviewSection() {
           viewport={{ once: true, margin: '-100px' }}
           className="mt-12 text-center"
         >
-          <button className="px-8 py-3 rounded-xl bg-gradient-to-r from-[#4F9DF8] to-[#4ADE80] text-white font-semibold hover:shadow-lg transition-all">
+          <button className="px-8 py-3 rounded-xl bg-linear-to-r from-[#4F9DF8] to-[#4ADE80] text-white font-semibold hover:shadow-lg transition-all">
             View Full Leadership Team
           </button>
         </motion.div>

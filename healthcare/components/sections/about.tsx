@@ -52,7 +52,7 @@ export default function AboutSection() {
                   'Patient-centric care approach',
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-4">
-                    <CheckCircle2 className="text-emerald-500 flex-shrink-0 mt-1" size={20} />
+                    <CheckCircle2 className="text-emerald-500 shrink-0 mt-1" size={20} />
                     <span className="text-slate-700">{item}</span>
                   </div>
                 ))}
@@ -64,14 +64,14 @@ export default function AboutSection() {
               variants={itemVariants}
               className="relative"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DF8]/20 to-[#4ADE80]/20 rounded-3xl blur-2xl"></div>
-              <div className="relative bg-gradient-to-br from-blue-50 to-emerald-50 rounded-3xl p-12 border border-blue-100/50 shadow-xl">
+              <div className="absolute inset-0 bg-linear-to-br from-[#4F9DF8]/20 to-[#4ADE80]/20 rounded-3xl blur-2xl"></div>
+              <div className="relative bg-linear-to-br from-blue-50 to-emerald-50 rounded-3xl p-12 border border-blue-100/50 shadow-xl">
                 <div className="space-y-6">
                   <div className="text-center">
                     <div className="text-5xl font-bold text-[#4F9DF8]">25+</div>
                     <p className="text-muted-foreground mt-2">Years of Excellence</p>
                   </div>
-                  <div className="h-1 bg-gradient-to-r from-[#4F9DF8] to-[#4ADE80] rounded-full"></div>
+                  <div className="h-1 bg-linear-to-r from-[#4F9DF8] to-[#4ADE80] rounded-full"></div>
                   <p className="text-center text-sm text-foreground">
                     Serving millions of patients worldwide with trust and integrity
                   </p>

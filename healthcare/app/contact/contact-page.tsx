@@ -14,7 +14,7 @@ export default function ContactPage() {
     <div className="w-full bg-white text-foreground">
       <Header />
       <main>
-        <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900/50 to-slate-900 py-20 sm:py-28">
+        <section className="relative overflow-hidden bg-linear-to-br from-slate-900 via-blue-900/50 to-slate-900 py-20 sm:py-28">
           <div className="absolute top-20 left-10 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-20" />
           <div className="absolute bottom-10 right-10 w-80 h-80 bg-emerald-500 rounded-full blur-3xl opacity-15" />
 

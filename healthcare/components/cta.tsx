@@ -6,7 +6,7 @@ export default function CTA() {
   return (
     <section className="py-20 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
-        <div className="bg-gradient-to-br from-primary via-primary-light to-accent rounded-2xl p-12 md:p-20 text-white">
+        <div className="bg-linear-to-br from-primary via-primary-light to-accent rounded-2xl p-12 md:p-20 text-white">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Transform Your Health?</h2>

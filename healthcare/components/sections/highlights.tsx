@@ -41,7 +41,7 @@ export default function HighlightsSection() {
             >
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className={`text-4xl sm:text-5xl font-bold bg-gradient-to-r ${highlight.color} bg-clip-text text-transparent mb-3`}
+                className={`text-4xl sm:text-5xl font-bold bg-linear-to-r ${highlight.color} bg-clip-text text-transparent mb-3`}
               >
                 {highlight.number}
               </motion.div>

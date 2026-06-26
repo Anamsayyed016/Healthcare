@@ -101,7 +101,7 @@ export default function ContactInfoCards() {
           >
             <div className="h-full rounded-2xl border border-slate-200 bg-white p-6 shadow-lg hover:shadow-xl transition-all hover:border-slate-300">
               <div
-                className={`w-12 h-12 rounded-xl bg-gradient-to-br ${info.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+                className={`w-12 h-12 rounded-xl bg-linear-to-br ${info.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
               >
                 <Icon className="text-white" size={24} />
               </div>

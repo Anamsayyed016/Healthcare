@@ -47,7 +47,7 @@ export default function About() {
           </div>
 
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl blur-2xl"></div>
+            <div className="absolute inset-0 bg-linear-to-br from-primary/20 to-accent/20 rounded-2xl blur-2xl"></div>
             <div className="relative bg-white rounded-2xl p-12 shadow-lg">
               <div className="space-y-6">
                 <div>

@@ -14,7 +14,7 @@ export default function CTASection() {
   ];
 
   return (
-    <section className="py-20 sm:py-32 bg-gradient-to-r from-[#4F9DF8]/10 to-[#4ADE80]/10">
+    <section className="py-20 sm:py-32 bg-linear-to-r from-[#4F9DF8]/10 to-[#4ADE80]/10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -44,7 +44,7 @@ export default function CTASection() {
                   viewport={{ once: true }}
                   className="flex items-center gap-3"
                 >
-                  <CheckCircle2 className="text-[#4ADE80] flex-shrink-0" size={24} />
+                  <CheckCircle2 className="text-[#4ADE80] shrink-0" size={24} />
                   <span className="text-slate-900 font-semibold">{benefit}</span>
                 </motion.div>
               ))}
@@ -54,7 +54,7 @@ export default function CTASection() {
             <div className="space-y-4">
               <Link
                 href="/contact"
-                className="group px-8 py-4 rounded-2xl bg-gradient-to-r from-[#4F9DF8] to-[#4ADE80] text-white font-semibold hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-2 w-full sm:w-fit"
+                className="group px-8 py-4 rounded-2xl bg-linear-to-r from-[#4F9DF8] to-[#4ADE80] text-white font-semibold hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-2 w-full sm:w-fit"
               >
                 Contact Us
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -88,8 +88,8 @@ export default function CTASection() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DF8]/20 to-[#4ADE80]/20 rounded-3xl blur-2xl"></div>
-            <div className="relative bg-gradient-to-br from-blue-50 to-emerald-50 rounded-3xl p-12 border border-blue-100 shadow-2xl">
+            <div className="absolute inset-0 bg-linear-to-br from-[#4F9DF8]/20 to-[#4ADE80]/20 rounded-3xl blur-2xl"></div>
+            <div className="relative bg-linear-to-br from-blue-50 to-emerald-50 rounded-3xl p-12 border border-blue-100 shadow-2xl">
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold text-slate-900">
                   Why Our Patients Love Us

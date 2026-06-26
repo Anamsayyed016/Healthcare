@@ -43,8 +43,8 @@ export default function Leadership() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {leaders.map((leader, index) => (
             <div key={index} className="group">
-              <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg h-64 mb-4 flex items-center justify-center overflow-hidden relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 group-hover:opacity-0 transition"></div>
+              <div className="bg-linear-to-br from-primary/10 to-accent/10 rounded-lg h-64 mb-4 flex items-center justify-center overflow-hidden relative">
+                <div className="absolute inset-0 bg-linear-to-br from-primary/20 to-accent/20 group-hover:opacity-0 transition"></div>
                 <div className="w-32 h-32 bg-primary/20 rounded-full flex items-center justify-center">
                   <div className="text-5xl font-bold text-primary/40">{leader.name.charAt(0)}</div>
                 </div>

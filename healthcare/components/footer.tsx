@@ -28,7 +28,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gradient-to-b from-slate-900 to-slate-950 text-white">
+    <footer className="bg-linear-to-b from-slate-900 to-slate-950 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <motion.div
           variants={containerVariants}
@@ -39,7 +39,7 @@ export default function Footer() {
         >
           <motion.div variants={itemVariants} className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#4F9DF8] to-[#4ADE80] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-linear-to-br from-[#4F9DF8] to-[#4ADE80] flex items-center justify-center">
                 <span className="text-white font-bold">PE</span>
               </div>
               <span className="font-bold text-lg leading-tight">PharmEFC</span>
@@ -98,7 +98,7 @@ export default function Footer() {
               <p className="font-medium text-white">{COMPANY_NAME}</p>
 
               <div className="flex items-start gap-3">
-                <MapPin size={18} className="text-[#4F9DF8] flex-shrink-0 mt-0.5" />
+                <MapPin size={18} className="text-[#4F9DF8] shrink-0 mt-0.5" />
                 <address className="not-italic leading-relaxed">
                   {OFFICE_ADDRESS.line1}
                   <br />
@@ -128,7 +128,7 @@ export default function Footer() {
               </div>
 
               <div className="flex items-start gap-3">
-                <Clock size={18} className="text-[#4F9DF8] flex-shrink-0 mt-0.5" />
+                <Clock size={18} className="text-[#4F9DF8] shrink-0 mt-0.5" />
                 <div>
                   <p>Business Hours:</p>
                   <p>{BUSINESS_HOURS.days}</p>

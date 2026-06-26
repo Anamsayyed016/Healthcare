@@ -21,7 +21,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900/50 to-slate-900 py-20 sm:py-32">
+    <section className="relative overflow-hidden bg-linear-to-br from-slate-900 via-blue-900/50 to-slate-900 py-20 sm:py-32">
       {/* Decorative Background Elements */}
       <div className="absolute top-20 left-10 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-20"></div>
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500 rounded-full blur-3xl opacity-15"></div>
@@ -48,7 +48,7 @@ export default function HeroSection() {
           {/* Main Heading */}
           <motion.h1 variants={itemVariants} className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight">
             Premium Healthcare
-            <span className="block bg-gradient-to-r from-cyan-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="block bg-linear-to-r from-cyan-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent">
               Excellence Reimagined
             </span>
           </motion.h1>
@@ -60,7 +60,7 @@ export default function HeroSection() {
 
           {/* CTA Buttons */}
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <button className="group px-8 py-4 rounded-2xl bg-gradient-to-r from-[#4F9DF8] to-[#4F9DF8]/80 text-white font-semibold flex items-center justify-center gap-2 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+            <button className="group px-8 py-4 rounded-2xl bg-linear-to-r from-[#4F9DF8] to-[#4F9DF8]/80 text-white font-semibold flex items-center justify-center gap-2 hover:shadow-2xl hover:scale-105 transition-all duration-300">
               Schedule Consultation
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
@@ -90,23 +90,23 @@ export default function HeroSection() {
           className="mt-16 relative"
         >
           <div className="relative max-w-4xl mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#4F9DF8]/10 to-[#4ADE80]/10 rounded-3xl blur-3xl"></div>
-            <div className="relative bg-gradient-to-br from-blue-100 to-emerald-100 rounded-3xl p-12 border border-white/80 shadow-2xl">
+            <div className="absolute inset-0 bg-linear-to-r from-[#4F9DF8]/10 to-[#4ADE80]/10 rounded-3xl blur-3xl"></div>
+            <div className="relative bg-linear-to-br from-blue-100 to-emerald-100 rounded-3xl p-12 border border-white/80 shadow-2xl">
               <div className="grid grid-cols-3 gap-8 text-center">
                 <div className="flex flex-col items-center gap-3">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#4F9DF8] to-[#BAE6FD] flex items-center justify-center shadow-lg">
+                  <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#4F9DF8] to-[#BAE6FD] flex items-center justify-center shadow-lg">
                     <Stethoscope className="text-white" size={32} />
                   </div>
                   <p className="text-sm font-semibold text-white">Advanced Diagnostics</p>
                 </div>
                 <div className="flex flex-col items-center gap-3">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg">
+                  <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg">
                     <Pill className="text-white" size={32} />
                   </div>
                   <p className="text-sm font-semibold text-white">Pharma Solutions</p>
                 </div>
                 <div className="flex flex-col items-center gap-3">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-lg">
+                  <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-lg">
                     <Stethoscope className="text-white" size={32} />
                   </div>
                   <p className="text-sm font-semibold text-white">24/7 Support</p>
