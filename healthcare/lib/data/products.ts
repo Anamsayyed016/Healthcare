@@ -53,12 +53,20 @@ export function getCardHighlights(product: Product): string[] {
   return product.composition.slice(0, 3);
 }
 
+const BONE_EFC_PRIMARY_IMAGE = '/products/bone-efc/tab-box.jpg';
+const BONE_EFC_3D_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805999/Bone_efc_3d_1_sfvvmp.jpg';
+
 export function optimizeProductImageUrl(url: string): string {
   if (!url.includes('res.cloudinary.com')) return url;
   if (url.includes('/upload/')) {
     return url.replace('/upload/', '/upload/f_auto,q_auto/');
   }
   return url;
+}
+
+export function resolveProductImageSrc(url: string): string {
+  return optimizeProductImageUrl(url);
 }
 
 export const MANUFACTURING_STATEMENT =
@@ -76,10 +84,13 @@ export const products: Product[] = [
     category: 'Bone Health Supplement',
     categoryBadge: 'Bone Health',
     icon: 'pill',
-    image:
-      'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805999/Bone_efc_3d_1_sfvvmp.jpg',
+    image: BONE_EFC_PRIMARY_IMAGE,
     gallery: [
-      'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805999/Bone_efc_3d_1_sfvvmp.jpg',
+      BONE_EFC_PRIMARY_IMAGE,
+      BONE_EFC_3D_IMAGE,
+      '/products/bone-efc/tab-front.jpg',
+      '/products/bone-efc/tab-back.jpg',
+      '/products/bone-efc/strip.jpg',
     ],
     cardHighlights: ['Calcium Orotate', 'Vitamin D3', 'Magnesium Orotate'],
     description:

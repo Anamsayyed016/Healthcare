@@ -37,10 +37,10 @@ export default function ProductShowcase({
       <div className="absolute inset-0 bg-linear-to-b from-[#F8FBFF] via-white to-[#F0F7FF]/40" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1)_0%,transparent_65%)]" />
 
-      <div className="relative z-10 h-full w-full">
+      <div className="relative z-10 flex h-full w-full items-center justify-center p-2 sm:p-3">
         {optimizedSrc ? (
           <div
-            className={`absolute inset-2 sm:inset-3 transition-transform duration-300 ease-out ${
+            className={`relative h-[92%] w-[92%] transition-transform duration-300 ease-out ${
               href ? 'group-hover/image:scale-[1.03]' : ''
             }`}
           >
@@ -60,7 +60,7 @@ export default function ProductShowcase({
           </div>
         ) : (
           <div
-            className={`flex flex-col items-center justify-center gap-4 transition-transform duration-300 ease-out ${
+            className={`flex h-full w-full flex-col items-center justify-center gap-4 transition-transform duration-300 ease-out ${
               href ? 'group-hover/image:scale-[1.03]' : ''
             }`}
           >
