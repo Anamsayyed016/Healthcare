@@ -105,11 +105,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Checkout SSH helper
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          sparse-checkout: .github/scripts
-          sparse-checkout-cone-mode: true
 
       - name: Download bundle
         uses: actions/download-artifact@v4
@@ -133,23 +130,25 @@ jobs:
           SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 -o IdentitiesOnly=yes -o BatchMode=yes"
           TIMESTAMP=$(date +%s)
           BUNDLE_NAME="release-${TIMESTAMP}.tar.gz"
-          ssh $SSH_OPTS "$SSH_USER@$HOST" "mkdir -p $STAGING_FOLDER $RELEASES_FOLDER $BACKUP_FOLDER ${DEPLOY_FOLDER}/logs"
+          ssh $SSH_OPTS "$SSH_USER@$HOST" "mkdir -p $STAGING_FOLDER $RELEASES_FOLDER $BACKUP_FOLDER ${DEPLOY_FOLDER}/logs ${DEPLOY_FOLDER}/shared"
           rsync -avz -e "ssh $SSH_OPTS" release.tar.gz "$SSH_USER@$HOST:$STAGING_FOLDER/$BUNDLE_NAME"
           ssh $SSH_OPTS "$SSH_USER@$HOST" "echo '$BUNDLE_NAME' > /tmp/pharmefc_bundle_name.txt"
-          echo "✅ Uploaded $BUNDLE_NAME"
+          chmod +x scripts/deploy-pharmefc-zero-downtime.sh
+          scp -i "$HOME/.ssh/deploy_key" -P "$SSH_PORT" -o StrictHostKeyChecking=accept-new \
+            scripts/deploy-pharmefc-zero-downtime.sh \
+            "$SSH_USER@$HOST:${DEPLOY_FOLDER}/shared/deploy-pharmefc-zero-downtime.sh"
+          echo "✅ Uploaded $BUNDLE_NAME and deploy script"
 
   finalize:
     name: "Zero-downtime deploy swap"
     runs-on: ubuntu-latest
     needs: upload
     steps:
-      - name: Checkout deploy scripts
+      - name: Checkout SSH helper
         uses: actions/checkout@v4
         with:
-          sparse-checkout: |
-            scripts
-            .github/scripts
-          sparse-checkout-cone-mode: false
+          sparse-checkout: .github/scripts
+          sparse-checkout-cone-mode: true
 
       - name: Setup SSH
         env:
@@ -166,14 +165,12 @@ jobs:
           SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
           SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 -o IdentitiesOnly=yes -o BatchMode=yes"
-          chmod +x scripts/deploy-pharmefc-zero-downtime.sh
-          scp $SSH_OPTS scripts/deploy-pharmefc-zero-downtime.sh "$SSH_USER@$HOST:/tmp/deploy-pharmefc-zero-downtime.sh"
           ssh $SSH_OPTS "$SSH_USER@$HOST" \
             "BUNDLE_NAME=\$(cat /tmp/pharmefc_bundle_name.txt) \
              STAGING_FOLDER='$STAGING_FOLDER' \
              RELEASES_FOLDER='$RELEASES_FOLDER' \
              BACKUP_FOLDER='$BACKUP_FOLDER' \
-             bash /tmp/deploy-pharmefc-zero-downtime.sh"
+             bash ${DEPLOY_FOLDER}/shared/deploy-pharmefc-zero-downtime.sh"
 
       - name: Verify live site
         env:
