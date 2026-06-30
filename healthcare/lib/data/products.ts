@@ -58,6 +58,8 @@ const BONE_EFC_PRIMARY_IMAGE =
 const BONE_EFC_3D_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805999/Bone_efc_3d_1_sfvvmp.jpg';
 const BONE_EFC_TAB_FRONT_IMAGE = '/products/bone-efc/tab-front.jpg';
+const BONE_EFC_TAB_FRONT_BOX_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806006/Bone_efc_tab_front_g78qoh.jpg';
 const BONE_EFC_BACK_BOX_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805998/Bone_efc_Tab_back_enopav.jpg';
 const BONE_EFC_STRIP_IMAGE =
@@ -101,6 +103,7 @@ export const products: Product[] = [
       BONE_EFC_TAB_FRONT_IMAGE,
       BONE_EFC_BACK_BOX_IMAGE,
       BONE_EFC_STRIP_IMAGE,
+      BONE_EFC_TAB_FRONT_BOX_IMAGE,
     ],
     cardHighlights: ['Calcium Orotate', 'Vitamin D3', 'Magnesium Orotate'],
     description:
