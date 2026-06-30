@@ -80,6 +80,8 @@ const ITRACIENT_200_STRIP_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806011/ITRACIENT_200_CAP_F_B_wwauvk.jpg';
 const ITRACIENT_200_DETAILS_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806013/ITRACIENT_200_CAP_DETAILS_iy47ta.jpg';
+const ITRACIENT_200_STRIP_FRONT_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806018/ITRACIENT_200_CAP_STRIP_kmcoco.jpg';
 const LEVOCIENT_5_3D_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806012/Levocient_5_Tablets_3d_qbwzdf.jpg';
 const LEVOCIENT_5_BOX_IMAGE =
@@ -231,6 +233,7 @@ export const products: Product[] = [
       ITRACIENT_200_3D_IMAGE,
       ITRACIENT_200_STRIP_IMAGE,
       ITRACIENT_200_DETAILS_IMAGE,
+      ITRACIENT_200_STRIP_FRONT_IMAGE,
     ],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
