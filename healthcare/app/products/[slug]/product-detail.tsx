@@ -47,6 +47,50 @@ export default function ProductDetailContent({ product }: { product: Product }) 
                 <p className="text-[#64748B] leading-relaxed">{product.overview}</p>
               </div>
               <div>
+                <h2 className="text-xl font-bold text-[#0F172A] mb-3">Composition</h2>
+                <ul className="space-y-2">
+                  {product.composition.map((item) => (
+                    <li key={item} className="text-[#64748B] leading-relaxed text-sm">
+                      • {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h2 className="text-xl font-bold text-[#0F172A] mb-3">Key Benefits</h2>
+                <ul className="space-y-2">
+                  {product.benefits.map((item) => (
+                    <li key={item} className="text-[#64748B] leading-relaxed text-sm">
+                      • {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {product.suitableFor && product.suitableFor.length > 0 && (
+                <div>
+                  <h2 className="text-xl font-bold text-[#0F172A] mb-3">Recommended For</h2>
+                  <ul className="space-y-2">
+                    {product.suitableFor.map((item) => (
+                      <li key={item} className="text-[#64748B] leading-relaxed text-sm">
+                        • {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {product.indications && product.indications.length > 0 && (
+                <div>
+                  <h2 className="text-xl font-bold text-[#0F172A] mb-3">Indications</h2>
+                  <ul className="space-y-2">
+                    {product.indications.map((item) => (
+                      <li key={item} className="text-[#64748B] leading-relaxed text-sm">
+                        • {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              <div>
                 <h2 className="text-xl font-bold text-[#0F172A] mb-3">Manufacturing Information</h2>
                 <p className="text-[#64748B] leading-relaxed">{product.manufacturing}</p>
               </div>

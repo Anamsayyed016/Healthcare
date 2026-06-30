@@ -13,7 +13,7 @@ import {
   Award,
   Truck,
 } from 'lucide-react';
-import { products, productCategories } from '@/lib/data/products';
+import { products, productCategories, MANUFACTURING_STATEMENT } from '@/lib/data/products';
 import CatalogueProductCard from '@/components/products/catalogue-product-card';
 
 const whyChooseProducts = [
@@ -39,8 +39,7 @@ const whyChooseProducts = [
   },
 ];
 
-const WHO_GMP_DETAIL =
-  'All pharmaceutical products are manufactured through reputed WHO-GMP manufacturing partners under stringent quality standards.';
+const WHO_GMP_DETAIL = MANUFACTURING_STATEMENT;
 
 function WhoGmpBanner() {
   return (

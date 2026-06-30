@@ -52,9 +52,9 @@ export default function ProductsHero() {
               </span>
             </h1>
             <p className="text-base sm:text-lg text-[#64748B] leading-relaxed mb-8">
-              PharmEFC offers Bone EFC™, Nerve EFC™, Itracient™, Lulicient™, Terbicient™, and
-              Levocient™ — all manufactured through reputed WHO-GMP manufacturing partners under
-              stringent quality standards.
+              PharmEFC offers Bone EFC™ Tablet, Nerve EFC™ Tablet, Itracient™ 100 &amp; 200 Capsule,
+              Lulicient™ Cream, Terbicient™ 250 Tablet, and Levocient™ 5 Tablet — all manufactured
+              through reputed WHO-GMP manufacturing partners under stringent quality standards.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button

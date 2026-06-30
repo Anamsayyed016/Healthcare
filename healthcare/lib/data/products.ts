@@ -7,107 +7,187 @@ export type Product = {
   icon: ProductIcon;
   description: string;
   overview: string;
+  composition: string[];
+  benefits: string[];
+  suitableFor?: string[];
+  indications?: string[];
   manufacturing: string;
   qualityStandards: string;
 };
 
+export const MANUFACTURING_STATEMENT =
+  'All PharmEFC pharmaceutical products are manufactured through reputed WHO-GMP manufacturing partners under stringent quality standards, ensuring quality, safety, and consistency.';
+
 export const PRODUCT_DESCRIPTION =
   'Manufactured through reputed WHO-GMP manufacturing partners under stringent quality standards.';
 
-export const WHO_GMP_MESSAGE =
-  'All pharmaceutical products are manufactured through reputed WHO-GMP manufacturing partners under stringent quality standards.';
+export const WHO_GMP_MESSAGE = MANUFACTURING_STATEMENT;
 
 export const products: Product[] = [
   {
     slug: 'bone-efc-tablet',
-    name: 'Bone EFC™',
-    category: 'Tablet',
+    name: 'Bone EFC™ Tablet',
+    category: 'Bone Health Supplement',
     icon: 'pill',
-    description: PRODUCT_DESCRIPTION,
+    description:
+      'Formulated with Calcium Orotate, Magnesium Orotate, and Vitamin D3 to support bone strength, healthy teeth, and overall musculoskeletal health.',
     overview:
-      'Bone EFC™ is part of PharmEFC\'s pharmaceutical portfolio, offered with a focus on consistent formulation quality and dependable manufacturing standards.',
-    manufacturing:
-      'Manufactured through reputed WHO-GMP manufacturing partners using validated production processes and documented quality controls.',
-    qualityStandards:
-      'Produced under stringent quality assurance protocols with batch documentation and compliance with applicable pharmaceutical regulations.',
+      'Bone EFC™ Tablet is formulated to support bone strength and overall musculoskeletal health through a balanced combination of Calcium Orotate, Magnesium Orotate, and Vitamin D3.',
+    composition: ['Calcium Orotate', 'Magnesium Orotate', 'Vitamin D3'],
+    benefits: [
+      'Supports healthy bone density',
+      'Promotes strong teeth',
+      'Helps reduce calcium deficiency',
+      'Supports overall musculoskeletal health',
+    ],
+    suitableFor: [
+      'Osteoporosis',
+      'Osteopenia',
+      'Post-menopausal women',
+      'Elderly individuals',
+      'Increased calcium requirements',
+    ],
+    manufacturing: MANUFACTURING_STATEMENT,
+    qualityStandards: MANUFACTURING_STATEMENT,
   },
   {
     slug: 'nerve-efc-tablet',
-    name: 'Nerve EFC™',
-    category: 'Tablet',
+    name: 'Nerve EFC™ Tablet',
+    category: 'Neurology',
     icon: 'tablets',
-    description: PRODUCT_DESCRIPTION,
+    description:
+      'Advanced neurotropic formulation with Alpha Lipoic Acid, Methylcobalamin, Benfotiamine, and supporting nutrients for healthy nerve function.',
     overview:
-      'Nerve EFC™ reflects PharmEFC\'s commitment to reliable pharmaceutical supply through disciplined manufacturing partnerships and quality oversight.',
-    manufacturing:
-      'Produced at WHO-GMP compliant facilities with established quality management systems and standardized operating procedures.',
-    qualityStandards:
-      'Subject to rigorous quality checks to ensure consistency, safety, and compliance with pharmaceutical good manufacturing practices.',
+      'Nerve EFC™ Tablet is an advanced neurotropic formulation designed to support healthy nerve function and nutritional balance.',
+    composition: [
+      'Alpha Lipoic Acid',
+      'Methylcobalamin',
+      'Benfotiamine',
+      'Folic Acid',
+      'Chromium',
+      'Inositol',
+      'Pyridoxine',
+    ],
+    benefits: [
+      'Supports nerve regeneration',
+      'Promotes healthy nerve function',
+      'Helps reduce neuropathic discomfort',
+      'Nutritional support for diabetic neuropathy and vitamin deficiencies',
+    ],
+    manufacturing: MANUFACTURING_STATEMENT,
+    qualityStandards: MANUFACTURING_STATEMENT,
   },
   {
     slug: 'itracient-100-capsule',
-    name: 'Itracient™ 100',
-    category: 'Capsule',
+    name: 'Itracient™ 100 Capsule',
+    category: 'Antifungal',
     icon: 'tablets',
-    description: PRODUCT_DESCRIPTION,
+    description:
+      'Itraconazole 100 mg broad-spectrum triazole antifungal capsule for effective management of fungal infections.',
     overview:
-      'Itracient™ 100 is a capsule formulation in PharmEFC\'s pharmaceutical range, supported by WHO-GMP manufacturing partnerships.',
-    manufacturing:
-      'Manufactured through WHO-GMP partners utilizing controlled environments and validated capsule production processes.',
-    qualityStandards:
-      'Quality verified through documented testing, batch release procedures, and adherence to pharmaceutical manufacturing standards.',
+      'Itracient™ 100 Capsule is a broad-spectrum triazole antifungal medicine formulated for effective management of fungal infections.',
+    composition: ['Itraconazole 100 mg'],
+    benefits: [
+      'Broad-spectrum triazole antifungal activity',
+      'Formulated for effective management of fungal infections',
+    ],
+    indications: [
+      'Skin infections',
+      'Nail infections',
+      'Internal fungal infections',
+      'Dermatophytosis',
+      'Candidiasis',
+      'Other susceptible fungal infections',
+    ],
+    manufacturing: MANUFACTURING_STATEMENT,
+    qualityStandards: MANUFACTURING_STATEMENT,
   },
   {
     slug: 'itracient-200-capsule',
-    name: 'Itracient™ 200',
-    category: 'Capsule',
+    name: 'Itracient™ 200 Capsule',
+    category: 'Antifungal',
     icon: 'tablets',
-    description: PRODUCT_DESCRIPTION,
+    description:
+      'Itraconazole 200 mg broad-spectrum antifungal capsule formulated for moderate to severe fungal infections.',
     overview:
-      'Itracient™ 200 extends PharmEFC\'s capsule portfolio with the same commitment to manufacturing quality and product consistency.',
-    manufacturing:
-      'Manufactured at WHO-GMP certified facilities with traceability from raw materials through finished product dispatch.',
-    qualityStandards:
-      'Maintained through systematic quality control and compliance with applicable pharmaceutical standards.',
+      'Itracient™ 200 Capsule is a broad-spectrum antifungal medicine formulated for moderate to severe fungal infections.',
+    composition: ['Itraconazole 200 mg'],
+    benefits: [
+      'Reliable clinical efficacy',
+      'Convenient dosing',
+      'Broad-spectrum antifungal activity',
+    ],
+    manufacturing: MANUFACTURING_STATEMENT,
+    qualityStandards: MANUFACTURING_STATEMENT,
   },
   {
     slug: 'lulicient-cream',
     name: 'Lulicient™ Cream',
-    category: 'Cream',
+    category: 'Dermatology',
     icon: 'flask',
-    description: PRODUCT_DESCRIPTION,
+    description:
+      'Luliconazole 1% topical antifungal cream for common superficial fungal infections including ringworm and athlete\'s foot.',
     overview:
-      'Lulicient™ Cream is a topical formulation in PharmEFC\'s product catalogue, produced with precision and quality at its foundation.',
-    manufacturing:
-      'Produced through WHO-GMP manufacturing partners using validated topical formulation and packaging processes.',
-    qualityStandards:
-      'Quality assured through documented controls, batch consistency checks, and comprehensive manufacturing documentation.',
+      'Lulicient™ Cream is a topical antifungal cream designed to help manage common superficial fungal infections.',
+    composition: ['Luliconazole 1%'],
+    benefits: [
+      'Helps relieve itching',
+      'Reduces redness',
+      'Helps relieve irritation',
+      'Eliminates fungal organisms',
+    ],
+    suitableFor: [
+      'Ringworm',
+      'Athlete\'s Foot',
+      'Jock Itch',
+      'Other superficial fungal infections',
+    ],
+    manufacturing: MANUFACTURING_STATEMENT,
+    qualityStandards: MANUFACTURING_STATEMENT,
   },
   {
     slug: 'terbicient-250-tablet',
-    name: 'Terbicient™ 250',
-    category: 'Tablet',
+    name: 'Terbicient™ 250 Tablet',
+    category: 'Antifungal',
     icon: 'pill',
-    description: PRODUCT_DESCRIPTION,
+    description:
+      'Terbinafine 250 mg oral antifungal tablet for fungal infections affecting skin, hair, and nails.',
     overview:
-      'Terbicient™ 250 is a tablet formulation within PharmEFC\'s pharmaceutical product line, backed by trusted manufacturing partnerships.',
-    manufacturing:
-      'Manufactured under WHO-GMP standards with established quality systems governing every stage of production.',
-    qualityStandards:
-      'Verified through analytical testing and adherence to pharmaceutical manufacturing best practices.',
+      'Terbicient™ 250 Tablet is an oral antifungal medicine formulated for fungal infections affecting skin, hair, and nails.',
+    composition: ['Terbinafine 250 mg'],
+    benefits: [
+      'Excellent cure rates',
+      'Favorable safety profile',
+      'Broad antifungal support',
+    ],
+    manufacturing: MANUFACTURING_STATEMENT,
+    qualityStandards: MANUFACTURING_STATEMENT,
   },
   {
     slug: 'levocient-5-tablet',
-    name: 'Levocient™ 5',
-    category: 'Tablet',
+    name: 'Levocient™ 5 Tablet',
+    category: 'Allergy Care',
     icon: 'pill',
-    description: PRODUCT_DESCRIPTION,
+    description:
+      'Levocetirizine 5 mg second-generation antihistamine for allergic rhinitis, urticaria, and related allergic conditions.',
     overview:
-      'Levocient™ 5 is part of PharmEFC\'s tablet portfolio, reflecting our dedication to quality pharmaceutical products and dependable supply.',
-    manufacturing:
-      'Produced at WHO-GMP compliant facilities with controlled manufacturing environments and validated processes.',
-    qualityStandards:
-      'Ensured through documented quality procedures, batch consistency checks, and regulatory compliance frameworks.',
+      'Levocient™ 5 Tablet is a second-generation antihistamine formulated for allergic conditions.',
+    composition: ['Levocetirizine 5 mg'],
+    benefits: [
+      'Long-lasting relief',
+      'Helps reduce sneezing',
+      'Helps relieve runny nose',
+      'Helps relieve watery eyes',
+      'Helps reduce itching',
+      'Minimal drowsiness',
+    ],
+    indications: [
+      'Allergic rhinitis',
+      'Urticaria',
+      'Other allergic conditions',
+    ],
+    manufacturing: MANUFACTURING_STATEMENT,
+    qualityStandards: MANUFACTURING_STATEMENT,
   },
 ];
 
