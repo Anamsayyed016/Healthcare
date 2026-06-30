@@ -58,13 +58,19 @@ if [ "$HEALTH_OK" != "1" ]; then
 fi
 
 echo "✅ Staging passed — swapping release..."
-mkdir -p "$NEW_RELEASE"
-mv "$TEMP_DEPLOY"/* "$NEW_RELEASE/"
+# Rename entire temp dir (mv /* skips hidden .next — required for standalone)
+mv "$TEMP_DEPLOY" "$NEW_RELEASE"
+[ -f "$NEW_RELEASE/.next/BUILD_ID" ] || { echo "❌ .next/BUILD_ID missing in release"; exit 1; }
 
-if [ -L "$CURRENT_LINK" ] && [ -d "$(readlink -f "$CURRENT_LINK")" ]; then
+PREVIOUS_RELEASE=""
+if [ -L "$CURRENT_LINK" ]; then
+  PREVIOUS_RELEASE="$(readlink -f "$CURRENT_LINK")"
+fi
+
+if [ -n "$PREVIOUS_RELEASE" ] && [ -d "$PREVIOUS_RELEASE" ]; then
   BACKUP_PATH="$BACKUP_FOLDER/backup-$(date +%s)"
   mkdir -p "$BACKUP_PATH"
-  cp -a "$(readlink -f "$CURRENT_LINK")" "$BACKUP_PATH/release" 2>/dev/null || true
+  cp -a "$PREVIOUS_RELEASE" "$BACKUP_PATH/release" 2>/dev/null || true
   echo "💾 Backed up previous release to $BACKUP_PATH"
 fi
 
@@ -74,22 +80,35 @@ export PHARMEFC_RELEASE_DIR="$NEW_RELEASE"
 export PORT="$PROD_PORT"
 
 pm2 delete pharmefc-healthcare 2>/dev/null || true
-pm2 start "$NEW_RELEASE/ecosystem.config.cjs" --only pharmefc-healthcare --env production
+PHARMEFC_RELEASE_DIR="$NEW_RELEASE" PORT="$PROD_PORT" \
+  pm2 start "$NEW_RELEASE/ecosystem.config.cjs" --only pharmefc-healthcare --env production
 pm2 save
 
+sleep 2
+
 PROD_OK=0
-for i in $(seq 1 10); do
+for i in $(seq 1 15); do
   if curl -fsS -o /dev/null "http://127.0.0.1:${PROD_PORT}/"; then
     PROD_OK=1
     break
   fi
-  echo "   Production health attempt ${i}/10..."
+  echo "   Production health attempt ${i}/15..."
   sleep 2
 done
 
 if [ "$PROD_OK" != "1" ]; then
-  echo "❌ Production health failed after swap"
+  echo "❌ Production health failed after swap — rolling back..."
   pm2 logs pharmefc-healthcare --lines 30 --nostream || true
+  if [ -n "$PREVIOUS_RELEASE" ] && [ -d "$PREVIOUS_RELEASE" ]; then
+    ln -sfn "$PREVIOUS_RELEASE" "$CURRENT_LINK"
+    pm2 delete pharmefc-healthcare 2>/dev/null || true
+    PHARMEFC_RELEASE_DIR="$PREVIOUS_RELEASE" PORT="$PROD_PORT" \
+      pm2 start "$PREVIOUS_RELEASE/ecosystem.config.cjs" --only pharmefc-healthcare --env production 2>/dev/null || \
+      PHARMEFC_RELEASE_DIR="$PREVIOUS_RELEASE" PORT="$PROD_PORT" HOSTNAME=0.0.0.0 NODE_ENV=production \
+        pm2 start "$PREVIOUS_RELEASE/server.js" --name pharmefc-healthcare
+    pm2 save
+    echo "↩️  Rolled back to previous release"
+  fi
   exit 1
 fi
 
