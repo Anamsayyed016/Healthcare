@@ -46,15 +46,15 @@ export default function ProductsHero() {
               <span className="text-sm font-semibold text-[#3B82F6]">Pharmaceutical Products</span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#0F172A] leading-[1.12] tracking-tight mb-6">
-              Trusted Medicines Manufactured with{' '}
+              Quality Pharmaceutical Products Through{' '}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#3B82F6] to-[#34D399]">
-                Global Quality Standards
+                WHO-GMP Partners
               </span>
             </h1>
             <p className="text-base sm:text-lg text-[#64748B] leading-relaxed mb-8">
-              PharmEFC products are manufactured through reputed WHO-GMP manufacturing partners
-              and designed to support better healthcare outcomes with safety, consistency, and
-              reliability at every stage.
+              PharmEFC offers Bone EFC™, Nerve EFC™, Itracient™, Lulicient™, Terbicient™, and
+              Levocient™ — all manufactured through reputed WHO-GMP manufacturing partners under
+              stringent quality standards.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button

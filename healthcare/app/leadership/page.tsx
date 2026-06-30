@@ -4,7 +4,7 @@ import LeadershipPageContent from './leadership-page';
 export const metadata: Metadata = {
   title: 'Leadership | PharmEFC Healthcare Private Limited',
   description:
-    'Meet the PharmEFC leadership team and advisory board — experienced professionals in healthcare and pharmaceuticals.',
+    'Meet PharmEFC leadership — Dr. Kunal Basu, Rahul Yadav, Syed Asif Haider, and Kuber Singh Patel guiding pharmaceutical and healthcare direction.',
 };
 
 export default function Page() {

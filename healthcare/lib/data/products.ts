@@ -12,98 +12,98 @@ export type Product = {
 };
 
 export const PRODUCT_DESCRIPTION =
-  'Manufactured under stringent WHO-GMP quality standards to ensure safety, consistency, and reliability.';
+  'Manufactured through reputed WHO-GMP manufacturing partners under stringent quality standards.';
 
 export const WHO_GMP_MESSAGE =
-  'All products are manufactured through reputed WHO-GMP manufacturing partners under stringent quality standards.';
+  'All pharmaceutical products are manufactured through reputed WHO-GMP manufacturing partners under stringent quality standards.';
 
 export const products: Product[] = [
   {
     slug: 'bone-efc-tablet',
-    name: 'Bone EFC Tablet',
-    category: 'Bone Health',
+    name: 'Bone EFC™',
+    category: 'Tablet',
     icon: 'pill',
     description: PRODUCT_DESCRIPTION,
     overview:
-      'Bone EFC Tablet is part of PharmEFC\'s pharmaceutical portfolio, developed with a focus on quality manufacturing and consistent formulation standards.',
+      'Bone EFC™ is part of PharmEFC\'s pharmaceutical portfolio, offered with a focus on consistent formulation quality and dependable manufacturing standards.',
     manufacturing:
-      'Manufactured through reputed WHO-GMP certified manufacturing partners following validated production processes and documented quality controls.',
+      'Manufactured through reputed WHO-GMP manufacturing partners using validated production processes and documented quality controls.',
     qualityStandards:
-      'Produced under stringent quality assurance protocols including batch documentation, stability monitoring, and compliance with applicable pharmaceutical regulations.',
+      'Produced under stringent quality assurance protocols with batch documentation and compliance with applicable pharmaceutical regulations.',
   },
   {
     slug: 'nerve-efc-tablet',
-    name: 'Nerve EFC Tablet',
-    category: 'Neurology',
+    name: 'Nerve EFC™',
+    category: 'Tablet',
     icon: 'tablets',
     description: PRODUCT_DESCRIPTION,
     overview:
-      'Nerve EFC Tablet represents PharmEFC\'s commitment to delivering reliable neurological care solutions through disciplined pharmaceutical manufacturing.',
+      'Nerve EFC™ reflects PharmEFC\'s commitment to reliable pharmaceutical supply through disciplined manufacturing partnerships and quality oversight.',
     manufacturing:
       'Produced at WHO-GMP compliant facilities with established quality management systems and standardized operating procedures.',
     qualityStandards:
-      'Subject to rigorous in-process and finished-product quality checks to ensure consistency, safety, and regulatory compliance.',
+      'Subject to rigorous quality checks to ensure consistency, safety, and compliance with pharmaceutical good manufacturing practices.',
   },
   {
     slug: 'itracient-100-capsule',
-    name: 'Itracient 100 Capsule',
-    category: 'Antifungal',
+    name: 'Itracient™ 100',
+    category: 'Capsule',
     icon: 'tablets',
     description: PRODUCT_DESCRIPTION,
     overview:
-      'Itracient 100 Capsule is a pharmaceutical formulation in PharmEFC\'s antifungal product range, manufactured to enterprise quality benchmarks.',
+      'Itracient™ 100 is a capsule formulation in PharmEFC\'s pharmaceutical range, supported by WHO-GMP manufacturing partnerships.',
     manufacturing:
       'Manufactured through WHO-GMP partners utilizing controlled environments and validated capsule production processes.',
     qualityStandards:
-      'Quality verified through documented testing, batch release procedures, and adherence to pharmaceutical good manufacturing practices.',
+      'Quality verified through documented testing, batch release procedures, and adherence to pharmaceutical manufacturing standards.',
   },
   {
     slug: 'itracient-200-capsule',
-    name: 'Itracient 200 Capsule',
-    category: 'Antifungal',
+    name: 'Itracient™ 200',
+    category: 'Capsule',
     icon: 'tablets',
     description: PRODUCT_DESCRIPTION,
     overview:
-      'Itracient 200 Capsule extends PharmEFC\'s antifungal portfolio with a formulation produced under the same rigorous quality framework.',
+      'Itracient™ 200 extends PharmEFC\'s capsule portfolio with the same commitment to manufacturing quality and product consistency.',
     manufacturing:
-      'Manufactured at WHO-GMP certified facilities with full traceability from raw materials through finished product dispatch.',
+      'Manufactured at WHO-GMP certified facilities with traceability from raw materials through finished product dispatch.',
     qualityStandards:
-      'Maintained through systematic quality control, stability studies, and compliance with applicable pharmaceutical standards.',
+      'Maintained through systematic quality control and compliance with applicable pharmaceutical standards.',
   },
   {
     slug: 'lulicient-cream',
-    name: 'Lulicient Cream',
-    category: 'Dermatology',
+    name: 'Lulicient™ Cream',
+    category: 'Cream',
     icon: 'flask',
     description: PRODUCT_DESCRIPTION,
     overview:
-      'Lulicient Cream is a dermatological formulation in PharmEFC\'s product catalogue, developed with precision and quality at its foundation.',
+      'Lulicient™ Cream is a topical formulation in PharmEFC\'s product catalogue, produced with precision and quality at its foundation.',
     manufacturing:
       'Produced through WHO-GMP manufacturing partners using validated topical formulation and packaging processes.',
     qualityStandards:
-      'Quality assured through microbiological controls, homogeneity testing, and comprehensive batch documentation.',
+      'Quality assured through documented controls, batch consistency checks, and comprehensive manufacturing documentation.',
   },
   {
     slug: 'terbicient-250-tablet',
-    name: 'Terbicient 250 Tablet',
-    category: 'Antifungal',
+    name: 'Terbicient™ 250',
+    category: 'Tablet',
     icon: 'pill',
     description: PRODUCT_DESCRIPTION,
     overview:
-      'Terbicient 250 Tablet is a trusted antifungal offering within PharmEFC\'s pharmaceutical product line.',
+      'Terbicient™ 250 is a tablet formulation within PharmEFC\'s pharmaceutical product line, backed by trusted manufacturing partnerships.',
     manufacturing:
       'Manufactured under WHO-GMP standards with established quality systems governing every stage of production.',
     qualityStandards:
-      'Verified through analytical testing, quality audits, and adherence to pharmaceutical manufacturing best practices.',
+      'Verified through analytical testing and adherence to pharmaceutical manufacturing best practices.',
   },
   {
     slug: 'levocient-5-tablet',
-    name: 'Levocient 5 Tablet',
-    category: 'Allergy Care',
+    name: 'Levocient™ 5',
+    category: 'Tablet',
     icon: 'pill',
     description: PRODUCT_DESCRIPTION,
     overview:
-      'Levocient 5 Tablet is part of PharmEFC\'s allergy care portfolio, reflecting our dedication to quality pharmaceutical solutions.',
+      'Levocient™ 5 is part of PharmEFC\'s tablet portfolio, reflecting our dedication to quality pharmaceutical products and dependable supply.',
     manufacturing:
       'Produced at WHO-GMP compliant facilities with controlled manufacturing environments and validated processes.',
     qualityStandards:

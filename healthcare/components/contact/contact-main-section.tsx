@@ -18,8 +18,9 @@ export default function ContactMainSection() {
               Get in Touch
             </h2>
             <p className="text-[#64748B] mb-8 leading-relaxed">
-              Reach out to PharmEFC for product enquiries, healthcare consulting, partnerships,
-              or general support. We look forward to hearing from you.
+              Contact PharmEFC for pharmaceutical product enquiries, healthcare consultancy,
+              hospital planning, business partnerships, medical tourism, or general support.
+              Call +91 9243018530, email info@pharmefc.com, or use the form.
             </p>
             <ContactInfoPanels />
           </motion.div>

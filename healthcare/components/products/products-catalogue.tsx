@@ -19,28 +19,28 @@ import CatalogueProductCard from '@/components/products/catalogue-product-card';
 const whyChooseProducts = [
   {
     title: 'Quality Assured',
-    desc: 'Rigorous quality benchmarks across every formulation',
+    desc: 'Products manufactured through reputed WHO-GMP partners',
     icon: Award,
   },
   {
     title: 'Trusted Manufacturing',
-    desc: 'WHO-GMP partners with validated production processes',
+    desc: 'Stringent quality standards across the pharmaceutical range',
     icon: Factory,
   },
   {
-    title: 'Healthcare Excellence',
-    desc: 'Committed to patient safety and clinical reliability',
+    title: 'Professional Portfolio',
+    desc: 'Bone EFC™, Nerve EFC™, Itracient™, Lulicient™, Terbicient™, and Levocient™',
     icon: BadgeCheck,
   },
   {
-    title: 'Reliable Distribution',
-    desc: 'Dependable supply chain for healthcare partners',
+    title: 'Product Enquiries',
+    desc: 'Responsive support for hospitals, partners, and clients',
     icon: Truck,
   },
 ];
 
 const WHO_GMP_DETAIL =
-  'Every PharmEFC product is manufactured through reputed WHO-GMP manufacturing partners following stringent quality standards to ensure quality, safety, and consistency.';
+  'All pharmaceutical products are manufactured through reputed WHO-GMP manufacturing partners under stringent quality standards.';
 
 function WhoGmpBanner() {
   return (
@@ -224,7 +224,8 @@ export default function ProductsCatalogue() {
               Why Choose Our Products
             </h2>
             <p className="text-[#64748B]">
-              Every PharmEFC formulation reflects our commitment to pharmaceutical excellence.
+              PharmEFC products are manufactured through reputed WHO-GMP partners under stringent
+              quality standards.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -256,8 +257,8 @@ export default function ProductsCatalogue() {
                 Looking for Pharmaceutical Solutions?
               </h2>
               <p className="text-[#64748B] leading-relaxed">
-                Connect with our team for product enquiries, distribution partnerships, and
-                detailed pharmaceutical information.
+                Contact PharmEFC for product enquiries about Bone EFC™, Nerve EFC™, Itracient™,
+                Lulicient™, Terbicient™, Levocient™, and other pharmaceutical products.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-4 lg:justify-end">

@@ -21,7 +21,7 @@ export default function AboutLeadershipPreview() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] mb-3">Leadership</h2>
           <p className="text-[#64748B] max-w-xl mx-auto">
-            Guided by experienced leaders committed to pharmaceutical and healthcare excellence.
+            Guided by experienced leaders committed to pharmaceutical quality and healthcare services.
           </p>
         </motion.div>
 

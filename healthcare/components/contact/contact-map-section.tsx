@@ -1,12 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { MapPin, Mail, Globe, Clock } from 'lucide-react';
+import { MapPin, Mail, Globe, Clock, Phone } from 'lucide-react';
 import OfficeMap from '@/components/office-map';
 import {
   OFFICE_ADDRESS,
   EMAIL,
   EMAIL_HREF,
+  PHONE,
+  PHONE_HREF,
   WEBSITE,
   WEBSITE_DISPLAY,
   BUSINESS_HOURS,
@@ -89,6 +91,20 @@ export default function ContactMapSection() {
                   <br />
                   {BUSINESS_HOURS.time}
                 </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="shrink-0 w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center">
+                <Phone className="text-[#3B82F6]" size={18} />
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1">
+                  Mobile
+                </p>
+                <a href={PHONE_HREF} className="text-sm text-[#3B82F6] hover:underline font-medium">
+                  {PHONE}
+                </a>
               </div>
             </div>
 

@@ -3,37 +3,37 @@ import type { ServiceIcon } from '@/lib/data/services';
 export const servicesOverview = {
   heading: 'Our Healthcare Expertise',
   paragraph:
-    'PharmEFC delivers integrated healthcare consulting and pharmaceutical support — combining strategic advisory, operational excellence, and quality-driven solutions to help organizations achieve sustainable healthcare outcomes.',
+    'PharmEFC provides professional healthcare consultancy and institutional support — helping hospitals and healthcare organizations with planning, accreditation, quality systems, audits, telemedicine, training, and operational improvement.',
   highlights: [
     {
-      title: 'Healthcare Excellence',
-      desc: 'End-to-end solutions for hospitals and healthcare institutions',
+      title: 'Healthcare Consultancy',
+      desc: 'Strategic advisory for hospitals and healthcare institutions',
       icon: 'award' as const,
     },
     {
       title: 'WHO-GMP Standards',
-      desc: 'Quality frameworks aligned with global manufacturing benchmarks',
+      desc: 'Quality frameworks aligned with pharmaceutical manufacturing partners',
       icon: 'shield' as const,
     },
     {
-      title: 'Patient-Centric Solutions',
-      desc: 'Services designed around safety, access, and better outcomes',
+      title: 'Institutional Support',
+      desc: 'Services designed around compliance, operations, and better delivery',
       icon: 'heart' as const,
     },
   ],
 };
 
 export const serviceKeyBenefits: Record<string, string> = {
-  'medical-tourism': 'Coordinated global care pathways',
-  'healthcare-consultancy': 'Strategic growth and operational advisory',
-  'hospital-planning': 'Infrastructure planning and development',
-  'nabh-accreditation': 'Accreditation readiness and compliance',
-  'quality-management': 'Robust QMS implementation',
-  'healthcare-audits': 'Independent compliance assessments',
-  'clinical-process-optimization': 'Workflow efficiency and outcomes',
+  'healthcare-consultancy': 'Strategic advisory and institutional guidance',
+  'medical-tourism': 'Coordinated medical tourism facilitation',
+  'hospital-planning': 'Infrastructure planning and development support',
+  'nabh-accreditation': 'Accreditation readiness and documentation support',
+  'quality-management': 'Practical quality management system implementation',
+  'healthcare-audits': 'Independent compliance and governance assessments',
   telemedicine: 'Accessible digital healthcare delivery',
-  'training-skill-development': 'Professional upskilling programs',
-  'hospital-operations': 'Resource optimization and excellence',
+  'training-skill-development': 'Professional healthcare training programs',
+  'hospital-operations': 'Operational improvement and service efficiency',
+  'clinical-process-optimization': 'Workflow coordination and process improvement',
 };
 
 export const featuredServices: {
@@ -43,70 +43,70 @@ export const featuredServices: {
   process: string;
 }[] = [
   {
-    slug: 'medical-tourism',
-    detail:
-      'Our medical tourism services connect patients and partners with trusted healthcare destinations, coordinating treatment pathways, logistics, and post-care support for a seamless international healthcare experience.',
-    benefits: [
-      'End-to-end patient facilitation',
-      'Trusted hospital network access',
-      'Coordinated care and follow-up',
-    ],
-    process: 'Assessment → Hospital matching → Care coordination → Follow-up support',
-  },
-  {
     slug: 'healthcare-consultancy',
     detail:
-      'We provide strategic healthcare consultancy for hospitals, clinics, and healthcare enterprises — helping leadership teams navigate growth, compliance, and operational transformation with data-driven insights.',
+      'Our healthcare consultancy supports hospitals, clinics, and healthcare organizations with strategic guidance, operational review, and practical recommendations for improvement. We help leadership teams address compliance, growth, and service delivery with a professional, structured approach.',
     benefits: [
-      'Strategic planning and advisory',
-      'Operational performance review',
-      'Sustainable growth frameworks',
+      'Strategic planning and advisory support',
+      'Operational and institutional review',
+      'Practical improvement frameworks',
     ],
-    process: 'Discovery → Analysis → Strategy formulation → Implementation support',
+    process: 'Consultation → Assessment → Recommendations → Implementation support',
+  },
+  {
+    slug: 'medical-tourism',
+    detail:
+      'PharmEFC\'s medical tourism service supports coordinated enquiries and facilitation, helping patients and partners navigate trusted healthcare pathways with professional assistance and clear communication.',
+    benefits: [
+      'Structured enquiry and facilitation support',
+      'Coordination across healthcare stakeholders',
+      'Professional communication throughout the process',
+    ],
+    process: 'Enquiry → Assessment → Coordination → Follow-up support',
   },
   {
     slug: 'hospital-planning',
     detail:
-      'From greenfield projects to facility expansion, our hospital planning and development services cover feasibility, design advisory, equipment planning, and commissioning support for modern healthcare infrastructure.',
+      'From new projects to facility expansion, our hospital planning and development support covers feasibility, planning advisory, infrastructure considerations, and readiness for operational launch.',
     benefits: [
-      'Comprehensive feasibility studies',
-      'Infrastructure and layout planning',
-      'Commissioning and launch support',
+      'Feasibility and planning support',
+      'Infrastructure and development advisory',
+      'Operational readiness guidance',
     ],
-    process: 'Feasibility → Planning → Development → Operational readiness',
+    process: 'Feasibility → Planning → Development support → Readiness review',
   },
   {
     slug: 'nabh-accreditation',
     detail:
-      'Achieve NABH accreditation with expert guidance on documentation, process alignment, staff training, and mock assessments — ensuring your organization meets national healthcare quality standards.',
+      'We support healthcare institutions preparing for NABH accreditation through documentation guidance, process alignment, training support, and readiness review for national healthcare quality standards.',
     benefits: [
-      'Documentation and gap analysis',
-      'Process standardization support',
-      'Mock audit preparation',
+      'Documentation and gap review support',
+      'Process alignment guidance',
+      'Accreditation readiness preparation',
     ],
-    process: 'Gap assessment → Documentation → Training → Accreditation readiness',
+    process: 'Gap review → Documentation → Training → Readiness support',
   },
 ];
 
 export const processSteps = [
   { step: 1, title: 'Consultation', desc: 'Understanding your organization\'s needs and objectives' },
-  { step: 2, title: 'Assessment', desc: 'Comprehensive evaluation of current operations and gaps' },
-  { step: 3, title: 'Strategy & Implementation', desc: 'Tailored solutions deployed with expert oversight' },
-  { step: 4, title: 'Continuous Support', desc: 'Ongoing monitoring, refinement, and partnership' },
+  { step: 2, title: 'Assessment', desc: 'Reviewing current operations, requirements, and priorities' },
+  { step: 3, title: 'Strategy & Implementation', desc: 'Delivering tailored support with professional oversight' },
+  { step: 4, title: 'Continuous Support', desc: 'Ongoing partnership, refinement, and follow-up' },
 ];
 
 export const whyChooseServices = [
-  { title: 'Experienced Team', desc: 'Seasoned healthcare consultants and industry specialists', icon: 'users' as const },
+  { title: 'Experienced Team', desc: 'Leadership and specialists across pharmaceutical and healthcare services', icon: 'users' as const },
   { title: 'Ethical Healthcare Practices', desc: 'Integrity and transparency in every engagement', icon: 'scale' as const },
-  { title: 'Industry Expertise', desc: 'Deep knowledge across pharmaceutical and hospital sectors', icon: 'briefcase' as const },
+  { title: 'Industry Expertise', desc: 'Knowledge across medicines, hospitals, and institutional support', icon: 'briefcase' as const },
   { title: 'Quality Standards', desc: 'Commitment to WHO-GMP and healthcare compliance frameworks', icon: 'shield' as const },
-  { title: 'Customized Solutions', desc: 'Tailored strategies aligned with your organization\'s goals', icon: 'settings' as const },
-  { title: 'End-to-End Support', desc: 'From consultation through implementation and beyond', icon: 'layers' as const },
+  { title: 'Customized Solutions', desc: 'Support aligned with each organization\'s goals and context', icon: 'settings' as const },
+  { title: 'End-to-End Support', desc: 'From consultation through implementation and follow-up', icon: 'layers' as const },
 ];
 
 export const bentoLayout: Record<string, string> = {
-  'medical-tourism': 'lg:col-span-2 lg:row-span-2',
   'healthcare-consultancy': 'lg:col-span-1',
+  'medical-tourism': 'lg:col-span-2 lg:row-span-2',
   'hospital-planning': 'lg:col-span-1',
   'nabh-accreditation': 'lg:col-span-1',
   'quality-management': 'lg:col-span-1',

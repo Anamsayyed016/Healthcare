@@ -65,9 +65,9 @@ export default function LeadershipHero() {
               </span>
             </h1>
             <p className="text-base sm:text-lg text-[#64748B] leading-relaxed mb-8">
-              PharmEFC&apos;s leadership combines pharmaceutical expertise, strategic vision, and
-              healthcare excellence — guiding the organization with integrity, innovation, and a
-              commitment to advancing global healthcare standards.
+              PharmEFC&apos;s leadership brings together engineering, healthcare entrepreneurship,
+              operations, marketing, and health education to guide the company&apos;s pharmaceutical
+              and healthcare direction.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <button

@@ -1,13 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { Mail, MapPin, Globe, Clock, Share2, MessageCircle, Users } from 'lucide-react';
+import { Mail, MapPin, Globe, Clock, Share2, MessageCircle, Users, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import {
   COMPANY_NAME,
   OFFICE_ADDRESS,
   EMAIL,
   EMAIL_HREF,
+  PHONE,
+  PHONE_HREF,
   WEBSITE,
   WEBSITE_DISPLAY,
   BUSINESS_HOURS,
@@ -128,6 +130,12 @@ export default function Footer() {
                   <br />
                   {OFFICE_ADDRESS.line3}
                 </address>
+              </div>
+              <div className="flex items-center gap-3">
+                <Phone size={18} className="text-[#4F9DF8]" />
+                <a href={PHONE_HREF} className="hover:text-white transition-colors">
+                  {PHONE}
+                </a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={18} className="text-[#4F9DF8]" />

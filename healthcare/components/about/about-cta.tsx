@@ -18,7 +18,8 @@ export default function AboutCta() {
             Partner with PharmEFC for Healthcare Excellence
           </h2>
           <p className="text-[#64748B]">
-            Discover our products, services, and commitment to quality healthcare solutions.
+            Explore our pharmaceutical products and healthcare services, or contact our team in
+            Vadodara for partnerships and enquiries.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

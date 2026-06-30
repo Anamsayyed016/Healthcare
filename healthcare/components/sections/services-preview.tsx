@@ -22,7 +22,8 @@ export default function ServicesPreviewSection() {
             Featured <span className="text-[#4F9DF8]">Services</span>
           </h2>
           <p className="text-slate-600 text-sm sm:text-base">
-            Healthcare consultancy and operational excellence tailored for modern institutions.
+            Healthcare consultancy, hospital planning, accreditation support, and operational
+            services for hospitals and healthcare organizations.
           </p>
         </motion.div>
 

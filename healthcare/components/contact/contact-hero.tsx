@@ -64,9 +64,9 @@ export default function ContactHero() {
               </span>
             </h1>
             <p className="text-base sm:text-lg text-[#64748B] leading-relaxed mb-8">
-              PharmEFC welcomes enquiries related to pharmaceutical products, healthcare
-              consulting, partnerships, hospital projects, and general support. Our team is ready
-              to assist hospitals, healthcare organizations, and pharmaceutical partners.
+              PharmEFC welcomes enquiries for pharmaceutical products, healthcare consultancy,
+              hospital planning, business partnerships, medical tourism, and general support.
+              Reach us by phone, email, or the enquiry form below.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <button

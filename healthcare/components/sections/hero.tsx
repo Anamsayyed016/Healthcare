@@ -11,10 +11,10 @@ import {
 } from 'lucide-react';
 
 const trustHighlights = [
-  'WHO-GMP Manufacturing Standards',
-  'Quality Healthcare Solutions',
+  'WHO-GMP Manufacturing',
+  'Professional Healthcare Services',
   'Ethical Business Practices',
-  'Trusted Healthcare Partner',
+  'Trusted Pharmaceutical Partner',
 ];
 
 const containerVariants = {
@@ -145,7 +145,7 @@ export default function HeroSection() {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F8FBFF] border border-[#E2E8F0]">
                 <Pill size={16} className="text-[#3B82F6]" />
                 <span className="text-sm font-semibold text-[#3B82F6]">
-                  Next Generation Healthcare
+                  PharmEFC Healthcare
                 </span>
               </div>
             </motion.div>
@@ -154,13 +154,13 @@ export default function HeroSection() {
               variants={itemVariants}
               className="text-4xl sm:text-5xl lg:text-[4.25rem] xl:text-[4.5rem] font-bold tracking-tight text-[#0F172A] leading-[1.08] mb-6"
             >
-              Premium Healthcare
+              Quality Medicines.
               <span className="block mt-1">
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-[#3B82F6] to-[#60A5FA]">
-                  Excellence
+                  Trusted Healthcare
                 </span>{' '}
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-[#34D399] to-[#6EE7B7]">
-                  Reimagined
+                  Solutions.
                 </span>
               </span>
             </motion.h1>
@@ -169,8 +169,9 @@ export default function HeroSection() {
               variants={itemVariants}
               className="text-base sm:text-lg text-[#64748B] leading-relaxed mb-8 max-w-lg"
             >
-              Experience world-class medical excellence with cutting-edge technology, compassionate
-              care, and innovative pharmaceutical solutions designed for your wellbeing.
+              PharmEFC Healthcare Private Limited is committed to improving lives through
+              high-quality medicines, innovative healthcare solutions, and professional
+              healthcare services.
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 mb-10">

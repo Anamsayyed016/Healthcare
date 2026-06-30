@@ -20,7 +20,7 @@ export default function LeadershipTeam() {
         >
           <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] mb-3">Leadership Team</h2>
           <p className="text-[#64748B]">
-            Experienced executives driving PharmEFC&apos;s pharmaceutical and healthcare mission.
+            Guided by Dr. Kunal Basu, Rahul Yadav, Syed Asif Haider, and Kuber Singh Patel.
           </p>
         </motion.div>
 

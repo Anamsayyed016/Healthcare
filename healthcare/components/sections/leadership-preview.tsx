@@ -41,8 +41,8 @@ export default function LeadershipPreviewSection({
             }`}
           >
             {compact
-              ? 'Experienced leaders guiding PharmEFC\'s pharmaceutical and healthcare vision.'
-              : 'Meet the leadership team driving PharmEFC\'s vision for healthcare excellence.'}
+              ? 'Led by Dr. Kunal Basu, Rahul Yadav, Syed Asif Haider, and Kuber Singh Patel.'
+              : 'Meet the executive team guiding PharmEFC\'s pharmaceutical and healthcare direction.'}
           </p>
         </motion.div>
 

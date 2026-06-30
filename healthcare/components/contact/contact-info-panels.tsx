@@ -1,12 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, Globe, Clock, Building2 } from 'lucide-react';
+import { Mail, Globe, Clock, Building2, Phone } from 'lucide-react';
 import {
   COMPANY_NAME,
   OFFICE_ADDRESS,
   EMAIL,
   EMAIL_HREF,
+  PHONE,
+  PHONE_HREF,
   WEBSITE,
   WEBSITE_DISPLAY,
   BUSINESS_HOURS,
@@ -27,6 +29,18 @@ const panels = [
           {OFFICE_ADDRESS.line3}
         </address>
       </div>
+    ),
+  },
+  {
+    icon: Phone,
+    title: 'Mobile',
+    content: (
+      <a
+        href={PHONE_HREF}
+        className="text-sm text-[#3B82F6] hover:underline font-medium"
+      >
+        {PHONE}
+      </a>
     ),
   },
   {

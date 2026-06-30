@@ -6,6 +6,8 @@ import { leaderExpertise } from '@/lib/data/leadership-page';
 import LeaderPortrait from '@/components/leadership/leader-portrait';
 
 export default function LeadershipAdvisory() {
+  if (advisoryBoard.length === 0) return null;
+
   return (
     <section className="py-14 sm:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

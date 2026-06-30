@@ -7,7 +7,7 @@ import ProductsCatalogue from '@/components/products/products-catalogue';
 export const metadata: Metadata = {
   title: 'Pharmaceutical Products | PharmEFC Healthcare',
   description:
-    'Browse PharmEFC\'s pharmaceutical product portfolio — WHO-GMP manufactured tablets, capsules, and dermatological formulations.',
+    'PharmEFC pharmaceutical products — Bone EFC™, Nerve EFC™, Itracient™, Lulicient™, Terbicient™, and Levocient™ manufactured through reputed WHO-GMP partners.',
 };
 
 export default function ProductsPage() {

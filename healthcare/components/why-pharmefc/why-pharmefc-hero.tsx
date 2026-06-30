@@ -63,10 +63,9 @@ export default function WhyPharmefcHero() {
               </span>
             </h1>
             <p className="text-base sm:text-lg text-[#64748B] leading-relaxed mb-8">
-              PharmEFC is committed to quality manufacturing, healthcare innovation, ethical
-              practices, and long-term partnerships — delivering trusted pharmaceutical products
-              and comprehensive healthcare solutions for organizations that demand the highest
-              standards.
+              PharmEFC is committed to quality-assured pharmaceutical products, professional
+              healthcare services, ethical practices, and long-term partnerships with hospitals,
+              institutions, and healthcare organizations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <Link

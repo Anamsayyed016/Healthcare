@@ -4,7 +4,7 @@ import ServicesPageContent from './services-page';
 export const metadata: Metadata = {
   title: 'Healthcare Services | PharmEFC Healthcare',
   description:
-    'Healthcare consultancy, hospital planning, NABH accreditation, telemedicine, and operational excellence services by PharmEFC.',
+    'PharmEFC healthcare services — consultancy, medical tourism, hospital planning, NABH accreditation, quality management, audits, telemedicine, and training.',
 };
 
 export default function ServicesPage() {

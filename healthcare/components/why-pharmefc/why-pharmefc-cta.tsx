@@ -18,9 +18,8 @@ export default function WhyPharmefcCta() {
             Ready to Partner with PharmEFC?
           </h2>
           <p className="text-[#64748B] text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            Hospitals, healthcare organizations, and pharmaceutical partners are invited to
-            connect with PharmEFC and discover how our quality standards, expertise, and
-            ethical commitment can elevate your healthcare operations.
+            Connect with PharmEFC for pharmaceutical products, healthcare consultancy, hospital
+            planning, or long-term partnerships with hospitals and healthcare organizations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
             <Link

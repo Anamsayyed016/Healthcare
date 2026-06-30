@@ -25,8 +25,8 @@ export default function ProductsPreviewSection() {
             Featured Products
           </h2>
           <p className="text-base text-[#64748B] leading-relaxed">
-            Explore a selection from our pharmaceutical portfolio — manufactured through reputed
-            WHO-GMP partners under stringent quality standards.
+            A selection from our pharmaceutical range — including Bone EFC™, Nerve EFC™, Itracient™,
+            Lulicient™, Terbicient™, and Levocient™ — manufactured through reputed WHO-GMP partners.
           </p>
         </motion.header>
 

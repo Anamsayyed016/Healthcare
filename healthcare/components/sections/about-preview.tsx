@@ -19,7 +19,7 @@ export default function AboutPreviewSection() {
             About <span className="text-[#4F9DF8]">PharmEFC</span>
           </h2>
           <p className="text-slate-600 leading-relaxed text-base sm:text-lg line-clamp-3">
-            {aboutContent.story}
+            {aboutContent.storyPreview}
           </p>
           <Link
             href="/about"

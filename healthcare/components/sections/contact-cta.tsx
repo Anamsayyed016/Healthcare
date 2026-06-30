@@ -18,7 +18,8 @@ export default function ContactCtaSection() {
             Ready to connect with PharmEFC?
           </h2>
           <p className="text-slate-600 text-sm sm:text-base">
-            Get in touch for product enquiries, partnerships, or healthcare consultancy.
+            Contact us for pharmaceutical products, healthcare consultancy, hospital planning,
+            business partnerships, or general enquiries.
           </p>
           <Link
             href="/contact"

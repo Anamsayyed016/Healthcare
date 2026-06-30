@@ -22,9 +22,9 @@ export default function ContactCta() {
             Ready to Connect with PharmEFC?
           </h2>
           <p className="text-[#64748B] text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            Reach out for pharmaceutical products, healthcare consulting, hospital projects, or
-            partnership opportunities. Our team is here to help you build better healthcare
-            together.
+            Contact PharmEFC for pharmaceutical products, healthcare consultancy, hospital planning,
+            business partnerships, medical tourism, or general enquiries at +91 9243018530 or
+            info@pharmefc.com.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
             <button

@@ -18,6 +18,9 @@ export const OFFICE_ADDRESS_INLINE = [
   OFFICE_ADDRESS.line3,
 ].join(' ');
 
+export const PHONE = '+91 9243018530';
+export const PHONE_HREF = 'tel:+919243018530';
+
 export const EMAIL = 'info@pharmefc.com';
 export const EMAIL_HREF = `mailto:${EMAIL}`;
 

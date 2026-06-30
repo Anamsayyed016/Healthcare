@@ -49,7 +49,7 @@ function AboutHeroIllustration() {
             </motion.div>
           </div>
           <p className="text-center text-sm text-[#64748B] max-w-xs">
-            Advancing pharmaceutical innovation and healthcare excellence across India.
+            Advancing quality medicines and professional healthcare services from Vadodara, India.
           </p>
         </div>
       </motion.div>
@@ -94,9 +94,9 @@ export default function AboutHero() {
               About PharmEFC
             </p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-[#0F172A] leading-[1.12] tracking-tight mb-6">
-              Transforming Healthcare Through{' '}
+              A Progressive Healthcare &amp;{' '}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#3B82F6] to-[#34D399]">
-                Innovation & Trust
+                Pharmaceutical Company
               </span>
             </h1>
             <p className="text-base sm:text-lg text-[#64748B] leading-relaxed mb-8">
