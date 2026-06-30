@@ -86,6 +86,8 @@ const LEVOCIENT_5_BOX_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806015/Levocient_5mg_Tablets_box_fug2v9.jpg';
 const LEVOCIENT_5_MRP_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806017/Levocient_5mg_Tablets_mrp_tsxs9a.jpg';
+const LEVOCIENT_5_STRIP_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806018/Levocient_5mg_Tablets_strip_hljpxg.jpg';
 
 export function optimizeProductImageUrl(url: string): string {
   if (!url.includes('res.cloudinary.com')) return url;
@@ -305,7 +307,12 @@ export const products: Product[] = [
       'Urticaria',
       'Other allergic conditions',
     ],
-    gallery: [LEVOCIENT_5_3D_IMAGE, LEVOCIENT_5_BOX_IMAGE, LEVOCIENT_5_MRP_IMAGE],
+    gallery: [
+      LEVOCIENT_5_3D_IMAGE,
+      LEVOCIENT_5_BOX_IMAGE,
+      LEVOCIENT_5_MRP_IMAGE,
+      LEVOCIENT_5_STRIP_IMAGE,
+    ],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
