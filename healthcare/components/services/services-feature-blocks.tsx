@@ -83,7 +83,7 @@ function FeatureContent({
       <h3 className="text-2xl sm:text-3xl font-bold text-[#0F172A]">{service.title}</h3>
       <p className="text-[#64748B] leading-relaxed">{feature.detail}</p>
       <div>
-        <p className="text-sm font-semibold text-[#0F172A] mb-3">Key Benefits</p>
+        <p className="text-sm font-semibold text-[#0F172A] mb-3">Core Focus Areas</p>
         <ul className="space-y-2">
           {feature.benefits.map((b) => (
             <li key={b} className="flex items-start gap-2.5 text-sm text-[#64748B]">
@@ -95,7 +95,7 @@ function FeatureContent({
       </div>
       <div className="p-4 rounded-xl bg-white border border-[#E2E8F0]">
         <p className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1">
-          Process Overview
+          Value Proposition
         </p>
         <p className="text-sm text-[#0F172A] font-medium">{feature.process}</p>
       </div>

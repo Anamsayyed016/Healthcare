@@ -63,9 +63,10 @@ export default function ServicesHero() {
               </span>
             </h1>
             <p className="text-base sm:text-lg text-[#64748B] leading-relaxed mb-8">
-              PharmEFC delivers healthcare consultancy, medical tourism, hospital planning and
-              development, NABH accreditation support, quality management, healthcare audits,
-              telemedicine, training, and hospital operations improvement.
+              PharmEFC provides healthcare consultancy, medical tourism, hospital planning and
+              development, NABH accreditation support, quality management systems, healthcare audits,
+              telemedicine services, training and skill development, and hospital operations
+              improvement for hospitals, clinics, and healthcare organizations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <button
