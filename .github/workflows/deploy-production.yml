@@ -1,4 +1,4 @@
-name: Deploy PharmEFC to Production
+name: Deploy PharmEFC to Production (Zero-Downtime)
 
 on:
   push:
@@ -12,7 +12,11 @@ env:
   SSH_PORT: ${{ secrets.SSH_PORT }}
   SSH_KEY: ${{ secrets.SSH_KEY }}
   SSH_KEY_B64: ${{ secrets.SSH_KEY_B64 }}
-  DEPLOY_SCRIPT: /var/www/pharmefc-healthcare/current/scripts/deploy-pharmefc.sh
+  PROD_URL: https://aioss.tech
+  DEPLOY_FOLDER: /var/www/pharmefc-healthcare
+  STAGING_FOLDER: /var/www/pharmefc-healthcare/staging
+  BACKUP_FOLDER: /var/www/pharmefc-healthcare/backups
+  RELEASES_FOLDER: /var/www/pharmefc-healthcare/releases
 
 jobs:
   validate_secrets:
@@ -25,56 +29,92 @@ jobs:
           SSH_KEY_B64: ${{ secrets.SSH_KEY_B64 }}
         run: |
           set +e
-          echo "Validating PharmEFC deployment secrets..."
           MISSING=0
-
           [ -z "$HOST" ] && echo "HOST: MISSING" && MISSING=1 || echo "HOST: SET"
           [ -z "$SSH_USER" ] && echo "SSH_USER: MISSING" && MISSING=1 || echo "SSH_USER: SET"
           [ -z "$SSH_PORT" ] && echo "SSH_PORT: MISSING" && MISSING=1 || echo "SSH_PORT: SET"
 
           if [ -z "$SSH_KEY_B64" ] && [ -z "$SSH_KEY" ]; then
-            echo "SSH_KEY_B64 / SSH_KEY: MISSING (set SSH_KEY_B64 — recommended)"
+            echo "SSH_KEY_B64: MISSING"
             MISSING=1
           elif [ -n "$SSH_KEY_B64" ]; then
-            echo "SSH_KEY_B64: SET (recommended)"
             TMP_KEY="$(mktemp)"
             printf '%s' "$SSH_KEY_B64" | tr -d ' \t\r\n' | base64 --decode > "$TMP_KEY"
             chmod 600 "$TMP_KEY"
-            if ! ssh-keygen -y -f "$TMP_KEY" > /dev/null 2>&1; then
-              echo "SSH_KEY_B64: invalid — regenerate base64 from pharmefc_deploy private key"
-              MISSING=1
-            fi
+            ssh-keygen -y -f "$TMP_KEY" > /dev/null 2>&1 || MISSING=1
             rm -f "$TMP_KEY"
+            echo "SSH_KEY_B64: valid"
           else
-            echo "SSH_KEY: SET (legacy PEM — prefer SSH_KEY_B64)"
             TMP_KEY="$(mktemp)"
             printf '%s' "$SSH_KEY" | sed 's/\\n/\n/g' | tr -d '\r' > "$TMP_KEY"
             chmod 600 "$TMP_KEY"
-            if ! ssh-keygen -y -f "$TMP_KEY" > /dev/null 2>&1; then
-              echo "SSH_KEY: libcrypto/parse error — use SSH_KEY_B64 instead (see deploy docs)"
-              MISSING=1
-            fi
+            ssh-keygen -y -f "$TMP_KEY" > /dev/null 2>&1 || MISSING=1
             rm -f "$TMP_KEY"
+            echo "SSH_KEY: valid"
           fi
 
-          if [ "$MISSING" -eq 1 ]; then
-            echo ""
-            echo "Secrets: https://github.com/Anamsayyed016/Healthcare/settings/secrets/actions"
-            exit 1
-          fi
-
+          [ "$MISSING" -eq 1 ] && exit 1
           echo "All secrets validated."
 
-  deploy:
-    name: "Deploy PharmEFC via SSH"
+  build:
+    name: "Build standalone bundle"
     runs-on: ubuntu-latest
     needs: validate_secrets
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Next.js standalone
+        env:
+          NODE_ENV: production
+          NEXT_TELEMETRY_DISABLED: 1
+        run: |
+          pnpm run build
+          [ -d .next/standalone ] || { echo "❌ standalone output missing"; exit 1; }
+          [ -f .next/BUILD_ID ] || { echo "❌ BUILD_ID missing"; exit 1; }
+          echo "✅ Standalone build OK"
+
+      - name: Create deployment bundle
+        run: |
+          chmod +x scripts/prepare-deploy-bundle.sh
+          scripts/prepare-deploy-bundle.sh "$GITHUB_WORKSPACE/release.tar.gz"
+
+      - name: Upload bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: pharmefc-release-bundle
+          path: release.tar.gz
+          retention-days: 1
+
+  upload:
+    name: "Upload bundle to VPS"
+    runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Checkout SSH helper
         uses: actions/checkout@v4
         with:
           sparse-checkout: .github/scripts
           sparse-checkout-cone-mode: true
+
+      - name: Download bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: pharmefc-release-bundle
 
       - name: Setup SSH
         env:
@@ -84,24 +124,56 @@ jobs:
           chmod +x .github/scripts/setup-deploy-ssh.sh
           .github/scripts/setup-deploy-ssh.sh "$HOME/.ssh/deploy_key"
 
-      - name: Test SSH connection
+      - name: Upload to staging folder
         env:
           HOST: ${{ secrets.HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
-        run: |
-          SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 -o IdentitiesOnly=yes"
-          ssh $SSH_OPTS "$SSH_USER@$HOST" "echo 'SSH OK' && pm2 list | grep -E 'naukrimili|pharmefc' || pm2 list"
-
-      - name: Run PharmEFC deploy script
-        env:
-          HOST: ${{ secrets.HOST }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_PORT: ${{ secrets.SSH_PORT }}
-          DEPLOY_SCRIPT: /var/www/pharmefc-healthcare/current/scripts/deploy-pharmefc.sh
         run: |
           SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 -o IdentitiesOnly=yes -o BatchMode=yes"
-          ssh $SSH_OPTS "$SSH_USER@$HOST" "bash $DEPLOY_SCRIPT"
+          TIMESTAMP=$(date +%s)
+          BUNDLE_NAME="release-${TIMESTAMP}.tar.gz"
+          ssh $SSH_OPTS "$SSH_USER@$HOST" "mkdir -p $STAGING_FOLDER $RELEASES_FOLDER $BACKUP_FOLDER ${DEPLOY_FOLDER}/logs"
+          rsync -avz -e "ssh $SSH_OPTS" release.tar.gz "$SSH_USER@$HOST:$STAGING_FOLDER/$BUNDLE_NAME"
+          ssh $SSH_OPTS "$SSH_USER@$HOST" "echo '$BUNDLE_NAME' > /tmp/pharmefc_bundle_name.txt"
+          echo "✅ Uploaded $BUNDLE_NAME"
+
+  finalize:
+    name: "Zero-downtime deploy swap"
+    runs-on: ubuntu-latest
+    needs: upload
+    steps:
+      - name: Checkout deploy scripts
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            scripts
+            .github/scripts
+          sparse-checkout-cone-mode: false
+
+      - name: Setup SSH
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_KEY_B64: ${{ secrets.SSH_KEY_B64 }}
+        run: |
+          chmod +x .github/scripts/setup-deploy-ssh.sh
+          .github/scripts/setup-deploy-ssh.sh "$HOME/.ssh/deploy_key"
+
+      - name: Run zero-downtime deploy on VPS
+        env:
+          HOST: ${{ secrets.HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+        run: |
+          SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 -o IdentitiesOnly=yes -o BatchMode=yes"
+          chmod +x scripts/deploy-pharmefc-zero-downtime.sh
+          scp $SSH_OPTS scripts/deploy-pharmefc-zero-downtime.sh "$SSH_USER@$HOST:/tmp/deploy-pharmefc-zero-downtime.sh"
+          ssh $SSH_OPTS "$SSH_USER@$HOST" \
+            "BUNDLE_NAME=\$(cat /tmp/pharmefc_bundle_name.txt) \
+             STAGING_FOLDER='$STAGING_FOLDER' \
+             RELEASES_FOLDER='$RELEASES_FOLDER' \
+             BACKUP_FOLDER='$BACKUP_FOLDER' \
+             bash /tmp/deploy-pharmefc-zero-downtime.sh"
 
       - name: Verify live site
         env:
@@ -111,3 +183,4 @@ jobs:
         run: |
           SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 -o IdentitiesOnly=yes"
           ssh $SSH_OPTS "$SSH_USER@$HOST" "curl -fsSI -H 'Host: aioss.tech' http://127.0.0.1 | head -5"
+          ssh $SSH_OPTS "$SSH_USER@$HOST" "pm2 list | grep -E 'pharmefc|naukrimili' || pm2 list"
