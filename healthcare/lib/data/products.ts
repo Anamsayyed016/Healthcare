@@ -70,12 +70,16 @@ const ITRACIENT_100_FRONT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806008/Itracient_100_Cap_front_pqwjnj.jpg';
 const ITRACIENT_100_DETAILS_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806011/Itracient_100_Cap_details_riay76.jpg';
+const ITRACIENT_100_STRIP_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806012/Itracient_100_cap_strip_o9kjhd.jpg';
 const ITRACIENT_200_BOX_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806000/Itracient_200_Cap_box_isw1my.jpg';
 const ITRACIENT_200_3D_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806007/ITRACIENT_200_CAP_3D_vxqdfj.jpg';
 const ITRACIENT_200_STRIP_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806011/ITRACIENT_200_CAP_F_B_wwauvk.jpg';
+const ITRACIENT_200_DETAILS_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806013/ITRACIENT_200_CAP_DETAILS_iy47ta.jpg';
 const LEVOCIENT_5_3D_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806012/Levocient_5_Tablets_3d_qbwzdf.jpg';
 
@@ -190,7 +194,12 @@ export const products: Product[] = [
       'Candidiasis',
       'Other susceptible fungal infections',
     ],
-    gallery: [ITRACIENT_100_3D_IMAGE, ITRACIENT_100_FRONT_IMAGE, ITRACIENT_100_DETAILS_IMAGE],
+    gallery: [
+      ITRACIENT_100_3D_IMAGE,
+      ITRACIENT_100_FRONT_IMAGE,
+      ITRACIENT_100_DETAILS_IMAGE,
+      ITRACIENT_100_STRIP_IMAGE,
+    ],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
@@ -211,7 +220,12 @@ export const products: Product[] = [
       'Convenient dosing',
       'Broad-spectrum antifungal activity',
     ],
-    gallery: [ITRACIENT_200_BOX_IMAGE, ITRACIENT_200_3D_IMAGE, ITRACIENT_200_STRIP_IMAGE],
+    gallery: [
+      ITRACIENT_200_BOX_IMAGE,
+      ITRACIENT_200_3D_IMAGE,
+      ITRACIENT_200_STRIP_IMAGE,
+      ITRACIENT_200_DETAILS_IMAGE,
+    ],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
