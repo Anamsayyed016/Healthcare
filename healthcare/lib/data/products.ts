@@ -66,6 +66,8 @@ const BONE_EFC_STRIP_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805999/Bone_efc_strip_ahvvxt.jpg';
 const ITRACIENT_100_3D_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806005/Itracient_100_Cap_3d_rplato.jpg';
+const ITRACIENT_100_FRONT_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806008/Itracient_100_Cap_front_pqwjnj.jpg';
 const ITRACIENT_200_BOX_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806000/Itracient_200_Cap_box_isw1my.jpg';
 const ITRACIENT_200_3D_IMAGE =
@@ -182,7 +184,7 @@ export const products: Product[] = [
       'Candidiasis',
       'Other susceptible fungal infections',
     ],
-    gallery: [ITRACIENT_100_3D_IMAGE],
+    gallery: [ITRACIENT_100_3D_IMAGE, ITRACIENT_100_FRONT_IMAGE],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
