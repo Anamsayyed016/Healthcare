@@ -5,6 +5,7 @@ export type Product = {
   name: string;
   category: string;
   icon: ProductIcon;
+  image?: string;
   description: string;
   overview: string;
   composition: string[];
@@ -29,6 +30,8 @@ export const products: Product[] = [
     name: 'Bone EFC™ Tablet',
     category: 'Bone Health Supplement',
     icon: 'pill',
+    image:
+      'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805999/Bone_efc_3d_1_sfvvmp.jpg',
     description:
       'Formulated with Calcium Orotate, Magnesium Orotate, and Vitamin D3 to support bone strength, healthy teeth, and overall musculoskeletal health.',
     overview:

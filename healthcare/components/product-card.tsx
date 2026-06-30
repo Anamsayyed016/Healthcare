@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import type { Product } from '@/lib/data/products';
-import { productIconMap } from '@/lib/icons';
+import ProductCardVisual from '@/components/products/product-card-visual';
 
 type ProductCardProps = {
   product: Product;
@@ -12,7 +12,6 @@ type ProductCardProps = {
 };
 
 export default function ProductCard({ product, index = 0 }: ProductCardProps) {
-  const Icon = productIconMap[product.icon];
 
   return (
     <motion.article
@@ -24,9 +23,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
       className="group flex flex-col h-full bg-white border border-[#E5E7EB] rounded-[20px] p-7 sm:p-8 shadow-[0_1px_2px_rgba(15,23,42,0.04)] hover:shadow-[0_8px_24px_rgba(15,23,42,0.06)] hover:border-[#CBD5E1] transition-all duration-300"
     >
       <div className="flex items-start justify-between gap-4 mb-8">
-        <div className="w-11 h-11 rounded-full bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center shrink-0">
-          <Icon className="text-[#1E6FD9]" size={20} strokeWidth={1.75} />
-        </div>
+        <ProductCardVisual product={product} variant="compact" />
         <span className="text-[11px] font-medium uppercase tracking-wider text-[#64748B] pt-1">
           {product.category}
         </span>
