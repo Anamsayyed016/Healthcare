@@ -37,7 +37,17 @@ NODE_ENV=production pnpm run build
 pm2 reload "$PM2_APP" --update-env
 pm2 save
 
-if curl -fsS -o /dev/null "http://127.0.0.1:${PORT}/"; then
+HEALTH_OK=0
+for i in 1 2 3 4 5 6 7 8 9 10; do
+  if curl -fsS -o /dev/null "http://127.0.0.1:${PORT}/"; then
+    HEALTH_OK=1
+    break
+  fi
+  echo "   Health check attempt ${i}/10..."
+  sleep 2
+done
+
+if [ "$HEALTH_OK" = "1" ]; then
   echo "✅ Health check passed on port ${PORT}"
 else
   echo "❌ Health check failed on port ${PORT}"
