@@ -9,8 +9,9 @@ on:
 env:
   HOST: ${{ secrets.HOST }}
   SSH_USER: ${{ secrets.SSH_USER }}
-  SSH_KEY: ${{ secrets.SSH_KEY }}
   SSH_PORT: ${{ secrets.SSH_PORT }}
+  SSH_KEY: ${{ secrets.SSH_KEY }}
+  SSH_KEY_B64: ${{ secrets.SSH_KEY_B64 }}
   DEPLOY_SCRIPT: /var/www/pharmefc-healthcare/current/scripts/deploy-pharmefc.sh
 
 jobs:
@@ -19,6 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validate deployment secrets
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_KEY_B64: ${{ secrets.SSH_KEY_B64 }}
         run: |
           set +e
           echo "Validating PharmEFC deployment secrets..."
@@ -28,33 +32,34 @@ jobs:
           [ -z "$SSH_USER" ] && echo "SSH_USER: MISSING" && MISSING=1 || echo "SSH_USER: SET"
           [ -z "$SSH_PORT" ] && echo "SSH_PORT: MISSING" && MISSING=1 || echo "SSH_PORT: SET"
 
-          if [ -z "$SSH_KEY" ]; then
-            echo "SSH_KEY: MISSING"
+          if [ -z "$SSH_KEY_B64" ] && [ -z "$SSH_KEY" ]; then
+            echo "SSH_KEY_B64 / SSH_KEY: MISSING (set SSH_KEY_B64 — recommended)"
             MISSING=1
-          else
-            echo "SSH_KEY: SET"
-            if ! printf '%s' "$SSH_KEY" | sed 's/\\n/\n/g' | tr -d '\r' | grep -qE 'BEGIN (OPENSSH |RSA |EC |DSA )?PRIVATE KEY'; then
-              echo "SSH_KEY: invalid format (paste full private key, not .pub)"
+          elif [ -n "$SSH_KEY_B64" ]; then
+            echo "SSH_KEY_B64: SET (recommended)"
+            TMP_KEY="$(mktemp)"
+            printf '%s' "$SSH_KEY_B64" | tr -d ' \t\r\n' | base64 --decode > "$TMP_KEY"
+            chmod 600 "$TMP_KEY"
+            if ! ssh-keygen -y -f "$TMP_KEY" > /dev/null 2>&1; then
+              echo "SSH_KEY_B64: invalid — regenerate base64 from pharmefc_deploy private key"
               MISSING=1
-            else
-              TMP_KEY="$(mktemp)"
-              printf '%s' "$SSH_KEY" | sed 's/\\n/\n/g' | tr -d '\r' > "$TMP_KEY"
-              chmod 600 "$TMP_KEY"
-              if ! ssh-keygen -y -f "$TMP_KEY" > /dev/null 2>&1; then
-                echo "SSH_KEY: libcrypto/parse error — re-paste private key from pharmefc_deploy file"
-                MISSING=1
-              fi
-              rm -f "$TMP_KEY"
             fi
+            rm -f "$TMP_KEY"
+          else
+            echo "SSH_KEY: SET (legacy PEM — prefer SSH_KEY_B64)"
+            TMP_KEY="$(mktemp)"
+            printf '%s' "$SSH_KEY" | sed 's/\\n/\n/g' | tr -d '\r' > "$TMP_KEY"
+            chmod 600 "$TMP_KEY"
+            if ! ssh-keygen -y -f "$TMP_KEY" > /dev/null 2>&1; then
+              echo "SSH_KEY: libcrypto/parse error — use SSH_KEY_B64 instead (see deploy docs)"
+              MISSING=1
+            fi
+            rm -f "$TMP_KEY"
           fi
 
           if [ "$MISSING" -eq 1 ]; then
             echo ""
-            echo "Add secrets to: https://github.com/Anamsayyed016/Healthcare/settings/secrets/actions"
-            echo "  HOST       = 76.13.155.103"
-            echo "  SSH_USER   = root"
-            echo "  SSH_PORT   = 22"
-            echo "  SSH_KEY    = (same private key as Naukrimili repo is fine)"
+            echo "Secrets: https://github.com/Anamsayyed016/Healthcare/settings/secrets/actions"
             exit 1
           fi
 
@@ -74,6 +79,7 @@ jobs:
       - name: Setup SSH
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_KEY_B64: ${{ secrets.SSH_KEY_B64 }}
         run: |
           chmod +x .github/scripts/setup-deploy-ssh.sh
           .github/scripts/setup-deploy-ssh.sh "$HOME/.ssh/deploy_key"
