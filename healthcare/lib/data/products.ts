@@ -68,6 +68,8 @@ const ITRACIENT_100_3D_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806005/Itracient_100_Cap_3d_rplato.jpg';
 const ITRACIENT_200_BOX_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806000/Itracient_200_Cap_box_isw1my.jpg';
+const ITRACIENT_200_3D_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806007/ITRACIENT_200_CAP_3D_vxqdfj.jpg';
 
 export function optimizeProductImageUrl(url: string): string {
   if (!url.includes('res.cloudinary.com')) return url;
@@ -201,7 +203,7 @@ export const products: Product[] = [
       'Convenient dosing',
       'Broad-spectrum antifungal activity',
     ],
-    gallery: [ITRACIENT_200_BOX_IMAGE],
+    gallery: [ITRACIENT_200_BOX_IMAGE, ITRACIENT_200_3D_IMAGE],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
