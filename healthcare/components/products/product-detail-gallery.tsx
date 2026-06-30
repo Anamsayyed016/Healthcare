@@ -32,7 +32,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
-                className="relative z-10 object-contain drop-shadow-[0_12px_32px_rgba(15,23,42,0.12)]"
+                className="z-10 object-contain drop-shadow-[0_12px_32px_rgba(15,23,42,0.12)]"
               />
             </div>
           ) : (
