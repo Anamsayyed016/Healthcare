@@ -23,14 +23,16 @@ if command -v corepack >/dev/null 2>&1; then
   corepack prepare pnpm@9.15.9 --activate 2>/dev/null || true
 fi
 
-pnpm install --frozen-lockfile
+# Install all deps (incl. dev) — Tailwind/PostCSS are required for next build.
+unset NODE_ENV
+pnpm install --frozen-lockfile --prod=false
 
 set -a
 # shellcheck disable=SC1090
 source "$ENV_FILE"
 set +a
 
-pnpm run build
+NODE_ENV=production pnpm run build
 
 pm2 reload "$PM2_APP" --update-env
 pm2 save
