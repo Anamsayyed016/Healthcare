@@ -94,6 +94,8 @@ const LULICIENT_CREAM_DETAILS_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806022/Lulicient_Cream_details_igtubf.jpg';
 const LULICIENT_CREAM_FRONT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806023/Lulicient_Cream_front_azptuc.jpg';
+const LULICIENT_CREAM_MFD_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806023/LULICIENT_MFD_r4wchy.jpg';
 
 export function optimizeProductImageUrl(url: string): string {
   if (!url.includes('res.cloudinary.com')) return url;
@@ -266,7 +268,7 @@ export const products: Product[] = [
       'Jock Itch',
       'Other superficial fungal infections',
     ],
-    gallery: [LULICIENT_CREAM_DETAILS_IMAGE, LULICIENT_CREAM_FRONT_IMAGE],
+    gallery: [LULICIENT_CREAM_DETAILS_IMAGE, LULICIENT_CREAM_FRONT_IMAGE, LULICIENT_CREAM_MFD_IMAGE],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
