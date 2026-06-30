@@ -33,9 +33,18 @@ jobs:
             MISSING=1
           else
             echo "SSH_KEY: SET"
-            if ! printf '%s' "$SSH_KEY" | sed 's/\\n/\n/g' | grep -qE 'BEGIN (OPENSSH |RSA |EC |DSA )?PRIVATE KEY'; then
+            if ! printf '%s' "$SSH_KEY" | sed 's/\\n/\n/g' | tr -d '\r' | grep -qE 'BEGIN (OPENSSH |RSA |EC |DSA )?PRIVATE KEY'; then
               echo "SSH_KEY: invalid format (paste full private key, not .pub)"
               MISSING=1
+            else
+              TMP_KEY="$(mktemp)"
+              printf '%s' "$SSH_KEY" | sed 's/\\n/\n/g' | tr -d '\r' > "$TMP_KEY"
+              chmod 600 "$TMP_KEY"
+              if ! ssh-keygen -y -f "$TMP_KEY" > /dev/null 2>&1; then
+                echo "SSH_KEY: libcrypto/parse error — re-paste private key from pharmefc_deploy file"
+                MISSING=1
+              fi
+              rm -f "$TMP_KEY"
             fi
           fi
 
@@ -63,21 +72,36 @@ jobs:
           sparse-checkout-cone-mode: true
 
       - name: Setup SSH
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
         run: |
           chmod +x .github/scripts/setup-deploy-ssh.sh
           .github/scripts/setup-deploy-ssh.sh "$HOME/.ssh/deploy_key"
 
       - name: Test SSH connection
+        env:
+          HOST: ${{ secrets.HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
           SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 -o IdentitiesOnly=yes"
           ssh $SSH_OPTS "$SSH_USER@$HOST" "echo 'SSH OK' && pm2 list | grep -E 'naukrimili|pharmefc' || pm2 list"
 
       - name: Run PharmEFC deploy script
+        env:
+          HOST: ${{ secrets.HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          DEPLOY_SCRIPT: /var/www/pharmefc-healthcare/current/scripts/deploy-pharmefc.sh
         run: |
           SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 -o IdentitiesOnly=yes -o BatchMode=yes"
           ssh $SSH_OPTS "$SSH_USER@$HOST" "bash $DEPLOY_SCRIPT"
 
       - name: Verify live site
+        env:
+          HOST: ${{ secrets.HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
           SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 -o IdentitiesOnly=yes"
           ssh $SSH_OPTS "$SSH_USER@$HOST" "curl -fsSI -H 'Host: aioss.tech' http://127.0.0.1 | head -5"
