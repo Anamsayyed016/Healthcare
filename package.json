@@ -2,10 +2,11 @@
   "name": "my-project",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.14.0",
   "scripts": {
-    "dev": "next dev --webpack",
-    "build": "next build",
-    "start": "next start",
+    "dev": "node healthcare/node_modules/next/dist/bin/next dev",
+    "build": "node healthcare/node_modules/next/dist/bin/next build",
+    "start": "node healthcare/node_modules/next/dist/bin/next start",
     "lint": "eslint ."
   },
   "dependencies": {
