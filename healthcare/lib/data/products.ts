@@ -4,17 +4,40 @@ export type Product = {
   slug: string;
   name: string;
   category: string;
+  categoryBadge?: string;
   icon: ProductIcon;
   image?: string;
+  imageUrl?: string;
+  thumbnail?: string;
   description: string;
   overview: string;
   composition: string[];
   benefits: string[];
+  cardHighlights?: string[];
   suitableFor?: string[];
   indications?: string[];
   manufacturing: string;
   qualityStandards: string;
 };
+
+export const DEFAULT_QUALITY_BADGES = [
+  'WHO-GMP Manufactured',
+  'Quality Assured',
+  'Trusted Formulation',
+];
+
+export function getProductImage(product: Product): string | undefined {
+  return product.image ?? product.imageUrl ?? product.thumbnail;
+}
+
+export function getCategoryBadge(product: Product): string {
+  return product.categoryBadge ?? product.category;
+}
+
+export function getCardHighlights(product: Product): string[] {
+  if (product.cardHighlights?.length) return product.cardHighlights;
+  return product.composition.slice(0, 3);
+}
 
 export const MANUFACTURING_STATEMENT =
   'All PharmEFC pharmaceutical products are manufactured through reputed WHO-GMP manufacturing partners under stringent quality standards, ensuring quality, safety, and consistency.';
@@ -29,9 +52,11 @@ export const products: Product[] = [
     slug: 'bone-efc-tablet',
     name: 'Bone EFC™ Tablet',
     category: 'Bone Health Supplement',
+    categoryBadge: 'Bone Health',
     icon: 'pill',
     image:
       'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805999/Bone_efc_3d_1_sfvvmp.jpg',
+    cardHighlights: ['Calcium Orotate', 'Vitamin D3', 'Magnesium Orotate'],
     description:
       'Formulated with Calcium Orotate, Magnesium Orotate, and Vitamin D3 to support bone strength, healthy teeth, and overall musculoskeletal health.',
     overview:
@@ -57,7 +82,9 @@ export const products: Product[] = [
     slug: 'nerve-efc-tablet',
     name: 'Nerve EFC™ Tablet',
     category: 'Neurology',
+    categoryBadge: 'Neurology',
     icon: 'tablets',
+    cardHighlights: ['Alpha Lipoic Acid', 'Methylcobalamin', 'Benfotiamine', 'Neurotropic Support'],
     description:
       'Advanced neurotropic formulation with Alpha Lipoic Acid, Methylcobalamin, Benfotiamine, and supporting nutrients for healthy nerve function.',
     overview:
@@ -84,7 +111,9 @@ export const products: Product[] = [
     slug: 'itracient-100-capsule',
     name: 'Itracient™ 100 Capsule',
     category: 'Antifungal',
+    categoryBadge: 'Antifungal',
     icon: 'tablets',
+    cardHighlights: ['Itraconazole 100 mg', 'Broad Spectrum', 'Oral Capsule'],
     description:
       'Itraconazole 100 mg broad-spectrum triazole antifungal capsule for effective management of fungal infections.',
     overview:
@@ -109,7 +138,9 @@ export const products: Product[] = [
     slug: 'itracient-200-capsule',
     name: 'Itracient™ 200 Capsule',
     category: 'Antifungal',
+    categoryBadge: 'Antifungal',
     icon: 'tablets',
+    cardHighlights: ['Itraconazole 200 mg', 'Broad Spectrum', 'Oral Capsule'],
     description:
       'Itraconazole 200 mg broad-spectrum antifungal capsule formulated for moderate to severe fungal infections.',
     overview:
@@ -127,7 +158,9 @@ export const products: Product[] = [
     slug: 'lulicient-cream',
     name: 'Lulicient™ Cream',
     category: 'Dermatology',
+    categoryBadge: 'Dermatology',
     icon: 'flask',
+    cardHighlights: ['Luliconazole 1%', 'Topical Cream', 'Superficial Infections'],
     description:
       'Luliconazole 1% topical antifungal cream for common superficial fungal infections including ringworm and athlete\'s foot.',
     overview:
@@ -152,7 +185,9 @@ export const products: Product[] = [
     slug: 'terbicient-250-tablet',
     name: 'Terbicient™ 250 Tablet',
     category: 'Antifungal',
+    categoryBadge: 'Antifungal',
     icon: 'pill',
+    cardHighlights: ['Terbinafine 250 mg', 'Oral Tablet', 'Broad Antifungal'],
     description:
       'Terbinafine 250 mg oral antifungal tablet for fungal infections affecting skin, hair, and nails.',
     overview:
@@ -170,7 +205,9 @@ export const products: Product[] = [
     slug: 'levocient-5-tablet',
     name: 'Levocient™ 5 Tablet',
     category: 'Allergy Care',
+    categoryBadge: 'Allergy Care',
     icon: 'pill',
+    cardHighlights: ['Levocetirizine 5 mg', 'Long Lasting', 'Minimal Drowsiness'],
     description:
       'Levocetirizine 5 mg second-generation antihistamine for allergic rhinitis, urticaria, and related allergic conditions.',
     overview:
