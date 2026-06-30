@@ -53,10 +53,11 @@ export function getCardHighlights(product: Product): string[] {
   return product.composition.slice(0, 3);
 }
 
+const BONE_EFC_PRIMARY_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805999/Bone_efc_tab_box_ar1zfx.jpg';
 const BONE_EFC_3D_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805999/Bone_efc_3d_1_sfvvmp.jpg';
-const BONE_EFC_FRONT_BOX_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805999/Bone_efc_tab_box_ar1zfx.jpg';
+const BONE_EFC_TAB_FRONT_IMAGE = '/products/bone-efc/tab-front.jpg';
 const BONE_EFC_BACK_BOX_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805998/Bone_efc_Tab_back_enopav.jpg';
 const BONE_EFC_STRIP_IMAGE =
@@ -89,10 +90,11 @@ export const products: Product[] = [
     category: 'Bone Health Supplement',
     categoryBadge: 'Bone Health',
     icon: 'pill',
-    image: BONE_EFC_3D_IMAGE,
+    image: BONE_EFC_PRIMARY_IMAGE,
     gallery: [
+      BONE_EFC_PRIMARY_IMAGE,
       BONE_EFC_3D_IMAGE,
-      BONE_EFC_FRONT_BOX_IMAGE,
+      BONE_EFC_TAB_FRONT_IMAGE,
       BONE_EFC_BACK_BOX_IMAGE,
       BONE_EFC_STRIP_IMAGE,
     ],
