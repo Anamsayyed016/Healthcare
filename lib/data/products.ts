@@ -72,6 +72,8 @@ const NERVE_EFC_TABLETS_BOX_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806026/Nerve_EFC_Tablets_box_lm2hxp.jpg';
 const NERVE_EFC_TABLETS_STRIP_BACK_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806031/Nerve_EFC_Tablets_strip_back_sq8m1t.jpg';
+const NERVE_EFC_TABLETS_STRIP_FRONT_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806031/Nerve_EFC_Tablets_strip_front_uvzegr.jpg';
 const ITRACIENT_100_3D_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806005/Itracient_100_Cap_3d_rplato.jpg';
 const ITRACIENT_100_FRONT_IMAGE =
@@ -196,6 +198,7 @@ export const products: Product[] = [
       NERVE_EFC_TABLETS_STRIP_3D_IMAGE,
       NERVE_EFC_TABLETS_BOX_IMAGE,
       NERVE_EFC_TABLETS_STRIP_BACK_IMAGE,
+      NERVE_EFC_TABLETS_STRIP_FRONT_IMAGE,
     ],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
