@@ -2,15 +2,11 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Check, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import type { Product } from '@/lib/data/products';
-import {
-  DEFAULT_QUALITY_BADGES,
-  getCardHighlights,
-  getCategoryBadge,
-  getProductImage,
-} from '@/lib/data/products';
-import { productIconMap } from '@/lib/icons';
+import { getCardHighlights, getCategoryBadge } from '@/lib/data/products';
+import ProductShowcase from '@/components/products/product-showcase';
+import QualityBadges from '@/components/products/quality-badges';
 
 type PremiumProductCardProps = {
   product: Product;
@@ -24,7 +20,7 @@ const variantConfig = {
     delayFactor: (index: number) => (index % 3) * 0.06,
     article:
       'rounded-[22px] border border-[#E2E8F0] shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_32px_rgba(15,23,42,0.08)] hover:border-[#93C5FD]/60',
-    imageHeight: 'h-[220px] sm:h-[230px]',
+    imageSection: 'h-[250px] sm:h-[270px]',
     content: 'px-6 pb-7 pt-5',
     title: 'text-xl font-bold',
     learnMore:
@@ -37,7 +33,7 @@ const variantConfig = {
     delayFactor: (index: number) => index * 0.05,
     article:
       'rounded-[20px] border border-[#E5E7EB] shadow-[0_1px_2px_rgba(15,23,42,0.04)] hover:shadow-[0_8px_24px_rgba(15,23,42,0.06)] hover:border-[#CBD5E1]',
-    imageHeight: 'h-[200px] sm:h-[210px]',
+    imageSection: 'h-[230px] sm:h-[250px]',
     content: 'px-5 sm:px-6 pb-6 sm:pb-7 pt-4',
     title: 'text-xl font-semibold',
     learnMore:
@@ -52,10 +48,9 @@ export default function PremiumProductCard({
   variant = 'catalogue',
 }: PremiumProductCardProps) {
   const config = variantConfig[variant];
-  const Icon = productIconMap[product.icon];
-  const imageSrc = getProductImage(product);
   const categoryBadge = getCategoryBadge(product);
   const highlights = getCardHighlights(product).slice(0, 4);
+  const productHref = `/products/${product.slug}`;
 
   return (
     <motion.article
@@ -64,33 +59,14 @@ export default function PremiumProductCard({
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.45, delay: config.delayFactor(index) }}
       whileHover={{ y: config.hoverY }}
-      className={`group flex flex-col h-full min-h-[480px] bg-white overflow-hidden transition-all duration-300 ${config.article}`}
+      className={`group flex flex-col h-full min-h-[520px] bg-white overflow-hidden transition-all duration-300 ${config.article}`}
     >
-      <div
-        className={`relative ${config.imageHeight} bg-linear-to-b from-[#F8FBFF] to-white flex items-center justify-center overflow-hidden`}
-      >
-        <span className="absolute top-3 right-3 z-10 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider text-[#64748B] bg-white/90 border border-[#E2E8F0] backdrop-blur-sm transition-colors duration-300 group-hover:bg-[#EFF6FF] group-hover:border-[#93C5FD]/50 group-hover:text-[#3B82F6]">
+      <div className={`relative ${config.imageSection} shrink-0`}>
+        <span className="absolute top-3 right-3 z-20 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider text-[#64748B] bg-white/90 border border-[#E2E8F0] backdrop-blur-sm transition-colors duration-300 group-hover:bg-[#EFF6FF] group-hover:border-[#93C5FD]/50 group-hover:text-[#3B82F6]">
           {categoryBadge}
         </span>
 
-        {imageSrc ? (
-          <img
-            src={imageSrc}
-            alt={product.name}
-            loading="lazy"
-            decoding="async"
-            className="max-h-[88%] max-w-[88%] w-auto h-auto object-contain transition-transform duration-300 ease-out group-hover:scale-[1.03]"
-          />
-        ) : (
-          <div className="flex flex-col items-center justify-center gap-3 transition-transform duration-300 ease-out group-hover:scale-[1.03]">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center">
-              <Icon className="text-[#3B82F6]" size={40} strokeWidth={1.5} />
-            </div>
-            <p className="text-[10px] font-medium uppercase tracking-wider text-[#94A3B8]">
-              {product.category}
-            </p>
-          </div>
-        )}
+        <ProductShowcase product={product} variant="card" href={productHref} className="h-full" />
       </div>
 
       <div className={`flex flex-col flex-1 ${config.content}`}>
@@ -99,17 +75,7 @@ export default function PremiumProductCard({
           {product.description}
         </p>
 
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {DEFAULT_QUALITY_BADGES.map((badge) => (
-            <span
-              key={badge}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#F0FDF4] border border-[#BBF7D0]/60 text-[10px] font-semibold text-[#059669]"
-            >
-              <ShieldCheck size={11} className="shrink-0" />
-              {badge}
-            </span>
-          ))}
-        </div>
+        <QualityBadges className="mb-4" />
 
         <div className="mb-5">
           <p className="text-[10px] font-semibold uppercase tracking-wider text-[#94A3B8] mb-2">
@@ -130,7 +96,7 @@ export default function PremiumProductCard({
 
         <div className="mt-auto pt-5 border-t border-[#E2E8F0] flex flex-col sm:flex-row gap-3">
           <Link
-            href={`/products/${product.slug}`}
+            href={productHref}
             className={`flex-1 px-4 py-3 transition-colors text-center ${config.learnMore}`}
           >
             Learn More

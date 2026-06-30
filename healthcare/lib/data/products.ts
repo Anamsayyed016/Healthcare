@@ -9,6 +9,9 @@ export type Product = {
   image?: string;
   imageUrl?: string;
   thumbnail?: string;
+  gallery?: string[];
+  brochure?: string;
+  pdf?: string;
   description: string;
   overview: string;
   composition: string[];
@@ -16,6 +19,7 @@ export type Product = {
   cardHighlights?: string[];
   suitableFor?: string[];
   indications?: string[];
+  relatedProducts?: string[];
   manufacturing: string;
   qualityStandards: string;
 };
@@ -27,7 +31,17 @@ export const DEFAULT_QUALITY_BADGES = [
 ];
 
 export function getProductImage(product: Product): string | undefined {
-  return product.image ?? product.imageUrl ?? product.thumbnail;
+  return product.image ?? product.imageUrl ?? product.thumbnail ?? product.gallery?.[0];
+}
+
+export function getProductGallery(product: Product): string[] {
+  if (product.gallery?.length) return product.gallery;
+  const main = getProductImage(product);
+  return main ? [main] : [];
+}
+
+export function getProductBrochure(product: Product): string | undefined {
+  return product.brochure ?? product.pdf;
 }
 
 export function getCategoryBadge(product: Product): string {
@@ -37,6 +51,14 @@ export function getCategoryBadge(product: Product): string {
 export function getCardHighlights(product: Product): string[] {
   if (product.cardHighlights?.length) return product.cardHighlights;
   return product.composition.slice(0, 3);
+}
+
+export function optimizeProductImageUrl(url: string): string {
+  if (!url.includes('res.cloudinary.com')) return url;
+  if (url.includes('/upload/')) {
+    return url.replace('/upload/', '/upload/f_auto,q_auto/');
+  }
+  return url;
 }
 
 export const MANUFACTURING_STATEMENT =
@@ -56,6 +78,9 @@ export const products: Product[] = [
     icon: 'pill',
     image:
       'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805999/Bone_efc_3d_1_sfvvmp.jpg',
+    gallery: [
+      'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805999/Bone_efc_3d_1_sfvvmp.jpg',
+    ],
     cardHighlights: ['Calcium Orotate', 'Vitamin D3', 'Magnesium Orotate'],
     description:
       'Formulated with Calcium Orotate, Magnesium Orotate, and Vitamin D3 to support bone strength, healthy teeth, and overall musculoskeletal health.',
@@ -240,8 +265,24 @@ export function getProductBySlug(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);
 }
 
-export function getRelatedProducts(slug: string, limit = 3): Product[] {
+export function getRelatedProducts(slug: string, limit = 4): Product[] {
   const current = getProductBySlug(slug);
   if (!current) return products.slice(0, limit);
-  return products.filter((p) => p.slug !== slug && p.category === current.category).slice(0, limit);
+
+  if (current.relatedProducts?.length) {
+    const explicit = current.relatedProducts
+      .map((relatedSlug) => getProductBySlug(relatedSlug))
+      .filter((product): product is Product => !!product);
+    if (explicit.length > 0) return explicit.slice(0, limit);
+  }
+
+  const sameCategory = products.filter(
+    (product) => product.slug !== slug && product.category === current.category,
+  );
+  if (sameCategory.length >= limit) return sameCategory.slice(0, limit);
+
+  const others = products.filter(
+    (product) => product.slug !== slug && product.category !== current.category,
+  );
+  return [...sameCategory, ...others].slice(0, limit);
 }
