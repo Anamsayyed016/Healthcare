@@ -37,7 +37,7 @@ export default function LeadershipSpotlight() {
             viewport={{ once: true }}
             className="max-w-sm mx-auto lg:mx-0 w-full"
           >
-            <LeaderPortrait name={md.name} large />
+            <LeaderPortrait name={md.name} large src={md.image} />
             <div className="mt-6 text-center lg:text-left">
               <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A]">{md.name}</h3>
               <p className="text-[#3B82F6] font-semibold mt-1">{md.role}</p>

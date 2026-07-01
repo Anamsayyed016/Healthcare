@@ -6,6 +6,7 @@ export type Leader = {
   education: string;
   experience: string;
   group: 'executive' | 'advisory';
+  image?: string;
 };
 
 export const leaders: Leader[] = [
@@ -17,6 +18,8 @@ export const leaders: Leader[] = [
     education: 'Focuses on research-led development, innovation, and long-term organizational vision.',
     experience: 'Provides strategic direction and leadership for PharmEFC\'s medicines portfolio and healthcare services.',
     group: 'executive',
+    image:
+      'https://res.cloudinary.com/wslwkiwr/image/upload/v1782903072/lead4_ngzhgw.jpg',
   },
   {
     slug: 'director',
