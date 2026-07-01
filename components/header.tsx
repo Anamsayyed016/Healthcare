@@ -31,12 +31,10 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex shrink-0 items-center">
-            <span className="inline-flex h-12 items-center md:h-14 lg:h-16">
-              <Logo
-                priority
-                className="block h-full w-auto max-w-none object-contain"
-              />
-            </span>
+            <Logo
+              priority
+              className="h-12 w-auto object-contain md:h-14 lg:h-16"
+            />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
