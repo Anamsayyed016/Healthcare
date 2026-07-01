@@ -28,7 +28,9 @@ export default function ProductShowcase({
 }: ProductShowcaseProps) {
   const Icon = productIconMap[product.icon];
   const imageSrc = getProductImage(product);
-  const optimizedSrc = imageSrc ? optimizeProductImageUrl(imageSrc) : undefined;
+  const optimizedSrc = imageSrc
+    ? optimizeProductImageUrl(imageSrc, variant === 'detail' ? 960 : 640)
+    : undefined;
 
   const showcase = (
     <div

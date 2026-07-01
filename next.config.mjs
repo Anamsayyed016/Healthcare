@@ -5,6 +5,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
+    // Standalone deploy — delivery optimization via Cloudinary transforms in lib/images.ts
     unoptimized: true,
     remotePatterns: [
       {

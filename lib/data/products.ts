@@ -1,3 +1,5 @@
+import { cloudinaryUrl } from '@/lib/images';
+
 export type ProductIcon = 'pill' | 'tablets' | 'flask';
 
 export type Product = {
@@ -123,16 +125,12 @@ const TERBICIENT_250_TAB_STRIP_1_IMAGE =
 const TERBICIENT_250_TAB_STRIP_2_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806043/Terbicient_250_Tab_strip_chcged.jpg';
 
-export function optimizeProductImageUrl(url: string): string {
-  if (!url.includes('res.cloudinary.com')) return url;
-  if (url.includes('/upload/')) {
-    return url.replace('/upload/', '/upload/f_auto,q_auto/');
-  }
-  return url;
+export function optimizeProductImageUrl(url: string, width = 640): string {
+  return cloudinaryUrl(url, width);
 }
 
-export function resolveProductImageSrc(url: string): string {
-  return optimizeProductImageUrl(url);
+export function resolveProductImageSrc(url: string, width = 640): string {
+  return optimizeProductImageUrl(url, width);
 }
 
 export const MANUFACTURING_STATEMENT =

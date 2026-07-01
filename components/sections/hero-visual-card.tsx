@@ -1,7 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { cloudinaryUrl } from '@/lib/images';
+import { motion, useReducedMotion } from 'framer-motion';
 import { HeartPulse } from 'lucide-react';
 import {
   heartbeatAnimation,
@@ -29,7 +30,7 @@ export function HeroVisualCard({
             alt=""
             fill
             priority
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, 512px"
             className="object-cover"
           />
         </div>
@@ -54,14 +55,20 @@ export function HeroVisualCard({
 
 /** Premium heartbeat focal card — brand red heart on blue gradient */
 export function HeroHeartCard() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <motion.div
       className="relative z-10 flex h-24 w-24 items-center justify-center rounded-2xl bg-linear-to-br from-[#2563EB] via-[#3B82F6] to-[#60A5FA] transition-shadow duration-500"
-      animate={{
-        scale: heartbeatAnimation.scale,
-        boxShadow: heartbeatGlowAnimation.boxShadow,
-      }}
-      transition={heartbeatAnimation.transition}
+      animate={
+        prefersReducedMotion
+          ? undefined
+          : {
+              scale: heartbeatAnimation.scale,
+              boxShadow: heartbeatGlowAnimation.boxShadow,
+            }
+      }
+      transition={prefersReducedMotion ? undefined : heartbeatAnimation.transition}
       whileHover={{
         boxShadow:
           '0 18px 44px -8px rgba(27,90,174,0.45), 0 0 32px -4px rgba(220,38,38,0.14)',
@@ -102,8 +109,12 @@ export function FloatingHeroIcon({
   );
 }
 
-export const HOME_HERO_DECOR_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782895230/gem2_jiorf5.png';
+export const HOME_HERO_DECOR_IMAGE = cloudinaryUrl(
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782895230/gem2_jiorf5.png',
+  960,
+);
 
-export const ABOUT_HERO_DECOR_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782898756/gem3_b55iat.png';
+export const ABOUT_HERO_DECOR_IMAGE = cloudinaryUrl(
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782898756/gem3_b55iat.png',
+  960,
+);

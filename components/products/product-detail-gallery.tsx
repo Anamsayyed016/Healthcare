@@ -59,7 +59,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
                   className="relative h-full w-full"
                 >
                   <Image
-                    src={resolveProductImageSrc(activeSrc)}
+                    src={resolveProductImageSrc(activeSrc, 960)}
                     alt={product.name}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -105,7 +105,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
               aria-current={selected === index ? 'true' : undefined}
             >
               <Image
-                src={resolveProductImageSrc(src)}
+                src={resolveProductImageSrc(src, 160)}
                 alt={`${product.name} view ${index + 1}`}
                 fill
                 sizes="80px"
@@ -146,7 +146,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
               onClick={(event) => event.stopPropagation()}
             >
               <Image
-                src={resolveProductImageSrc(activeSrc)}
+                src={resolveProductImageSrc(activeSrc, 1200)}
                 alt={product.name}
                 fill
                 sizes="100vw"
