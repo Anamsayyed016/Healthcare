@@ -18,7 +18,7 @@ export default function PageHero({
   const alignClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
 
   return (
-    <section className="relative overflow-hidden bg-linear-to-br from-slate-900 via-blue-900/50 to-slate-900 py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-linear-to-br from-slate-900 via-blue-900/50 to-slate-900 py-14 sm:py-16 lg:py-20">
       <div className="absolute top-20 left-10 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-20 pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-80 h-80 bg-emerald-500 rounded-full blur-3xl opacity-15 pointer-events-none" />
 
@@ -27,16 +27,14 @@ export default function PageHero({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className={`space-y-6 max-w-3xl ${align === 'center' ? 'mx-auto' : ''}`}
+          className={`space-y-4 max-w-3xl ${align === 'center' ? 'mx-auto' : ''}`}
         >
           {eyebrow && (
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#D62839]">
-              {eyebrow}
-            </p>
+            <p className="section-label text-[#D62839]">{eyebrow}</p>
           )}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">{title}</h1>
+          <h1 className="page-hero-title">{title}</h1>
           {description && (
-            <p className="text-lg text-slate-300 leading-relaxed">{description}</p>
+            <p className="text-base leading-relaxed text-slate-300">{description}</p>
           )}
         </motion.div>
       </div>

@@ -197,9 +197,25 @@
 }
 
 @layer components {
-  /* Section shells — alternate backgrounds for depth */
+  /* Section shells — tiered vertical rhythm */
   .section-shell {
-    @apply py-14 sm:py-20 lg:py-24;
+    @apply py-12 sm:py-16 lg:py-20;
+  }
+
+  .section-shell-hero {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .section-shell-featured {
+    @apply py-14 sm:py-16 lg:py-20;
+  }
+
+  .section-shell-standard {
+    @apply py-10 sm:py-14 lg:py-16;
+  }
+
+  .section-shell-compact {
+    @apply py-8 sm:py-12 lg:py-14;
   }
 
   .section-bg-white {
@@ -231,11 +247,28 @@
   }
 
   .section-eyebrow {
-    @apply inline-flex items-center gap-2 rounded-full border border-[#d6e4f5] bg-[#f0f7ff] px-4 py-2 text-sm font-semibold text-[#1b5aae];
+    @apply inline-flex items-center gap-2 rounded-full border border-[#d6e4f5] bg-[#f0f7ff] px-3.5 py-1.5 text-sm font-medium text-[#1b5aae];
+  }
+
+  /* Typography scale */
+  .hero-title {
+    @apply text-[2.75rem] font-bold leading-[1.1] tracking-tight text-[#0f172a] sm:text-[3rem] lg:text-[3.5rem];
+  }
+
+  .page-hero-title {
+    @apply text-[2.5rem] font-bold leading-[1.12] text-white sm:text-[3rem] lg:text-[3.5rem];
   }
 
   .section-title {
-    @apply text-3xl font-bold tracking-tight text-[#0f172a] sm:text-4xl lg:text-[2.75rem] lg:leading-tight;
+    @apply text-[1.75rem] font-semibold tracking-tight text-[#0f172a] sm:text-[2rem] lg:text-[2.375rem];
+  }
+
+  .section-title-sm {
+    @apply text-xl font-semibold tracking-tight text-[#0f172a] sm:text-[1.375rem] lg:text-2xl;
+  }
+
+  .card-title {
+    @apply text-lg font-medium leading-snug text-[#0f172a];
   }
 
   .section-title-accent {
@@ -243,7 +276,15 @@
   }
 
   .section-desc {
-    @apply text-base leading-relaxed text-[#475569] sm:text-lg;
+    @apply max-w-2xl text-base font-normal leading-relaxed text-[#475569];
+  }
+
+  .section-label {
+    @apply text-sm font-medium uppercase tracking-[0.14em] text-[#64748b];
+  }
+
+  .body-sm {
+    @apply text-sm font-normal leading-relaxed text-[#64748b];
   }
 
   /* Premium cards */
@@ -278,7 +319,7 @@
 
   /* Buttons */
   .btn-pharm-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-[#1b5aae] to-[#3b82f6] px-6 py-3 text-sm font-semibold text-white shadow-[0_4px_16px_-4px_rgba(27,90,174,0.4)] transition-all duration-300 hover:from-[#144785] hover:to-[#2563eb] hover:shadow-[0_8px_24px_-6px_rgba(27,90,174,0.45)] active:translate-y-px;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-[#1b5aae] to-[#3b82f6] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_4px_16px_-4px_rgba(27,90,174,0.35)] transition-all duration-300 hover:from-[#144785] hover:to-[#2563eb] active:translate-y-px;
   }
 
   .btn-pharm-primary-sm {
@@ -286,7 +327,11 @@
   }
 
   .btn-pharm-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-[#1b5aae]/35 bg-white px-6 py-3 text-sm font-semibold text-[#1b5aae] transition-all duration-300 hover:border-[#1b5aae]/60 hover:bg-[#f0f7ff] hover:shadow-[0_4px_16px_-6px_rgba(27,90,174,0.12)];
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-[#1b5aae]/35 bg-white px-5 py-2.5 text-sm font-medium text-[#1b5aae] transition-all duration-300 hover:border-[#1b5aae]/60 hover:bg-[#f0f7ff];
+  }
+
+  .btn-pharm-link {
+    @apply inline-flex items-center gap-1.5 text-sm font-medium text-[#1b5aae] transition-colors hover:text-[#144785];
   }
 
   .btn-pharm-accent {

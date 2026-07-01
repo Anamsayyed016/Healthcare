@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Building2, FlaskConical, Microscope, ShieldCheck } from 'lucide-react';
-import { aboutContent } from '@/lib/data/about';
 
 function AboutHeroIllustration() {
   return (
@@ -93,27 +92,21 @@ export default function AboutHero() {
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#3B82F6] mb-5">
               About PharmEFC
             </p>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-[#0F172A] leading-[1.12] tracking-tight mb-6">
+            <h1 className="hero-title mb-5">
               A Progressive Healthcare &amp;{' '}
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#3B82F6] to-[#34D399]">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#1B5AAE] to-[#3B82F6]">
                 Pharmaceutical Company
               </span>
             </h1>
-            <p className="text-base sm:text-lg text-[#64748B] leading-relaxed mb-8">
-              {aboutContent.heroIntro}
+            <p className="section-desc mb-8 max-w-md">
+              Quality medicines and professional healthcare services from Vadodara, India.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/products"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-[14px] bg-[#3B82F6] text-white font-semibold shadow-[0_4px_14px_rgba(27,90,174,0.25)] hover:bg-[#2563EB] transition-colors"
-              >
+            <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
+              <Link href="/products" className="btn-pharm-primary px-6 py-3">
                 Explore Products
                 <ArrowRight size={18} />
               </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-[14px] bg-white border border-[#3B82F6]/30 text-[#3B82F6] font-semibold hover:bg-[#F8FBFF] transition-colors"
-              >
+              <Link href="/contact" className="btn-pharm-secondary px-6 py-3">
                 Contact Us
               </Link>
             </div>

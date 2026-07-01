@@ -10,34 +10,30 @@ export default function ProductsPreviewSection() {
   const featured = products.slice(0, 3);
 
   return (
-    <section className="section-shell section-bg-white relative overflow-hidden" id="products">
-      <div className="pharm-glow-blue right-0 top-0 h-80 w-80" />
+    <section className="section-shell-featured section-bg-white relative overflow-hidden" id="products">
       <div className="section-container relative">
         <motion.header
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          className="mb-10 max-w-2xl sm:mb-12"
+          className="mb-8 max-w-xl sm:mb-10"
         >
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#64748b]">
-            Pharmaceutical Products
-          </p>
-          <h2 className="section-title mb-4">Featured Products</h2>
+          <p className="section-label mb-3">Pharmaceutical Products</p>
+          <h2 className="section-title mb-3">Featured Products</h2>
           <p className="section-desc">
-            A selection from our pharmaceutical range — including Bone EFC™, Nerve EFC™, Itracient™,
-            Lulicient™, Terbicient™, and Levocient™ — manufactured through reputed WHO-GMP partners.
+            WHO-GMP medicines including Bone EFC™, Nerve EFC™, Itracient™, and our specialty range.
           </p>
         </motion.header>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {featured.map((product, index) => (
             <ProductCard key={product.slug} product={product} index={index} />
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <Link href="/products" className="btn-pharm-secondary">
-            View All Products
+        <div className="mt-10 text-center">
+          <Link href="/products" className="btn-pharm-primary">
+            Explore Products
             <ArrowRight size={18} />
           </Link>
         </div>

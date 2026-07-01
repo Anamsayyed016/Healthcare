@@ -6,23 +6,21 @@ import { ArrowRight } from 'lucide-react';
 
 export default function ContactCtaSection() {
   return (
-    <section className="section-shell section-bg-tint-red pharm-divider relative overflow-hidden">
-      <div className="pharm-glow-blue left-1/4 top-0 h-64 w-64 -translate-x-1/2" />
-      <div className="relative mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+    <section className="section-shell-compact section-bg-tint-red pharm-divider relative overflow-hidden">
+      <div className="relative mx-auto max-w-xl px-4 text-center sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          className="space-y-6"
+          className="space-y-4"
         >
-          <h2 className="section-title">Ready to connect with PharmEFC?</h2>
-          <p className="section-desc">
-            Contact us for pharmaceutical products, healthcare consultancy, hospital planning,
-            business partnerships, or general enquiries.
+          <h2 className="section-title-sm">Ready to connect?</h2>
+          <p className="section-desc mx-auto">
+            Reach out for products, consultancy, or partnership enquiries.
           </p>
           <Link href="/contact" className="btn-pharm-accent">
             Contact Us
-            <ArrowRight size={18} />
+            <ArrowRight size={16} />
           </Link>
         </motion.div>
       </div>

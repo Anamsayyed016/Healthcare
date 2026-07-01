@@ -133,7 +133,7 @@ export default function HeroSection() {
         <path d="M50 10v80M10 50h80" stroke="#3B82F6" strokeWidth="8" strokeLinecap="round" />
       </svg>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-shell-hero">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div
             variants={containerVariants}
@@ -148,13 +148,10 @@ export default function HeroSection() {
               </div>
             </motion.div>
 
-            <motion.h1
-              variants={itemVariants}
-              className="text-4xl sm:text-5xl lg:text-[4.25rem] xl:text-[4.5rem] font-bold tracking-tight text-[#0F172A] leading-[1.08] mb-6"
-            >
+            <motion.h1 variants={itemVariants} className="hero-title mb-5">
               Quality Medicines.
               <span className="block mt-1">
-                <span className="text-transparent bg-clip-text bg-linear-to-r from-[#3B82F6] to-[#60A5FA]">
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-[#1B5AAE] to-[#3B82F6]">
                   Trusted Healthcare
                 </span>{' '}
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-[#1B5AAE] to-[#60A5FA]">
@@ -165,31 +162,30 @@ export default function HeroSection() {
 
             <motion.p
               variants={itemVariants}
-              className="text-base sm:text-lg text-[#64748B] leading-relaxed mb-8 max-w-lg"
+              className="section-desc mb-8 max-w-md"
             >
-              PharmEFC Healthcare Private Limited is committed to improving lives through
-              high-quality medicines, innovative healthcare solutions, and professional
-              healthcare services.
+              WHO-GMP pharmaceutical products and professional healthcare services from Vadodara,
+              India.
             </motion.p>
 
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 mb-10">
-              <button type="button" className="btn-pharm-primary group px-7 py-3.5">
+            <motion.div variants={itemVariants} className="mb-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
+              <button type="button" className="btn-pharm-primary group px-6 py-3">
                 Schedule Consultation
                 <ArrowRight
                   size={18}
                   className="group-hover:translate-x-0.5 transition-transform duration-200"
                 />
               </button>
-              <button type="button" className="btn-pharm-secondary px-7 py-3.5">
+              <button type="button" className="btn-pharm-secondary px-6 py-3">
                 Explore Services
               </button>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {trustHighlights.map((item) => (
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-x-6 gap-y-2">
+              {trustHighlights.slice(0, 3).map((item) => (
                 <div
                   key={item}
-                  className="flex items-center gap-2.5 text-sm text-[#64748B]"
+                  className="flex items-center gap-2 body-sm"
                 >
                   <span className="accent-dot-red" />
                   <span>{item}</span>

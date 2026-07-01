@@ -53,41 +53,32 @@ export default function ContactHero() {
             transition={{ duration: 0.6 }}
             className="max-w-xl"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#EFF6FF] border border-[#E2E8F0] mb-6">
-              <Mail size={16} className="text-[#3B82F6]" />
-              <span className="text-sm font-semibold text-[#1E40AF]">Contact PharmEFC</span>
+            <div className="section-eyebrow mb-5">
+              <Mail size={16} className="text-[#1B5AAE]" />
+              <span>Contact PharmEFC</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-[#0F172A] leading-[1.12] tracking-tight mb-6">
+            <h1 className="hero-title mb-5">
               Let&apos;s Build Better{' '}
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#3B82F6] to-[#34D399]">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#1B5AAE] to-[#3B82F6]">
                 Healthcare Together
               </span>
             </h1>
-            <p className="text-base sm:text-lg text-[#64748B] leading-relaxed mb-8">
-              PharmEFC welcomes enquiries for pharmaceutical products, healthcare consultancy,
-              hospital planning, business partnerships, medical tourism, and general support.
-              Reach us by phone, email, or the enquiry form below.
+            <p className="section-desc mb-8 max-w-md">
+              Enquiries for products, consultancy, partnerships, and general support.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <button
-                type="button"
-                onClick={scrollToForm}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-[14px] bg-[#3B82F6] text-white font-semibold shadow-[0_4px_14px_rgba(27,90,174,0.25)] hover:bg-[#2563EB] transition-colors"
-              >
+            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:gap-4">
+              <button type="button" onClick={scrollToForm} className="btn-pharm-primary px-6 py-3">
                 Contact Our Team
                 <ArrowRight size={18} />
               </button>
-              <Link
-                href="/services"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-[14px] bg-white border border-[#3B82F6]/30 text-[#3B82F6] font-semibold hover:bg-[#F8FBFF] transition-colors"
-              >
+              <Link href="/services" className="btn-pharm-secondary px-6 py-3">
                 View Services
               </Link>
             </div>
-            <ul className="space-y-2.5">
-              {trustBadges.map((item) => (
-                <li key={item} className="flex items-center gap-2.5 text-sm text-[#64748B]">
-                  <CheckCircle2 className="text-[#D62839] shrink-0" size={18} />
+            <ul className="space-y-2">
+              {trustBadges.slice(0, 3).map((item) => (
+                <li key={item} className="flex items-center gap-2 body-sm">
+                  <CheckCircle2 className="shrink-0 text-[#D62839]" size={16} />
                   {item}
                 </li>
               ))}

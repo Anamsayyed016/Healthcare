@@ -12,7 +12,7 @@ import ContactCtaSection from '@/components/sections/contact-cta';
 export default function HomePage() {
   return (
     <SiteLayout>
-      <div className="flex flex-col gap-y-4 sm:gap-y-6 lg:gap-y-8">
+      <div className="flex flex-col">
         <HeroSection />
         <AboutPreviewSection />
         <ProductsPreviewSection />
