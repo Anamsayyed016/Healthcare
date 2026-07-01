@@ -19,12 +19,14 @@ type HeroVisualCardProps = {
   backgroundImage: string;
   patternId: string;
   children: React.ReactNode;
+  imageQuality?: number;
 };
 
 export function HeroVisualCard({
   backgroundImage,
   patternId,
   children,
+  imageQuality,
 }: HeroVisualCardProps) {
   return (
     <div className="relative overflow-hidden rounded-[28px] border border-[#E2E8F0] bg-white/80 p-8 shadow-[0_28px_72px_-28px_rgba(27,90,174,0.22)] backdrop-blur-sm transition-shadow duration-500 hover:shadow-[0_32px_80px_-28px_rgba(27,90,174,0.26)] sm:p-10">
@@ -36,6 +38,7 @@ export function HeroVisualCard({
             fill
             priority
             sizes="(max-width: 768px) 100vw, 512px"
+            quality={imageQuality}
             className="object-cover"
           />
         </div>
@@ -189,5 +192,10 @@ export const HOME_HERO_DECOR_IMAGE = cloudinaryUrl(
 
 export const ABOUT_HERO_DECOR_IMAGE = cloudinaryUrl(
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782898756/gem3_b55iat.png',
+  960,
+);
+
+export const PRODUCTS_HERO_DECOR_IMAGE = cloudinaryUrl(
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782907470/gem4_hbmle5.png',
   960,
 );

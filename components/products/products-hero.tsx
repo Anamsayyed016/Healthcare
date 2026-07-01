@@ -3,7 +3,69 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Pill, FlaskConical, ShieldCheck, Package } from 'lucide-react';
-import { iconColor, ICON_GLASS_LG, ICON_GLASS_SM, ICON_GLASS_PILL } from '@/lib/icons';
+import {
+  HeroVisualCard,
+  FloatingHeroIcon,
+  PRODUCTS_HERO_DECOR_IMAGE,
+} from '@/components/sections/hero-visual-card';
+import { iconColor, ICON_GLASS_LG, ICON_GLASS_PILL } from '@/lib/icons';
+import { heroCardFloat } from '@/lib/motion';
+
+function ProductsHeroIllustration() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 16 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, delay: 0.1 }}
+      className="relative mx-auto w-full max-w-sm lg:ml-auto"
+    >
+      <motion.div
+        animate={{ y: heroCardFloat.y }}
+        transition={heroCardFloat.transition}
+        className="relative"
+      >
+        <div className="absolute -inset-4 rounded-[32px] bg-linear-to-br from-[#EFF6FF]/80 to-[#F0FDF4]/80 blur-sm" />
+        <HeroVisualCard
+          backgroundImage={PRODUCTS_HERO_DECOR_IMAGE}
+          patternId="products-hero-grid"
+          imageQuality={90}
+        >
+          <div className="relative flex aspect-[4/3] w-full max-h-64 items-center justify-center">
+            <div className={ICON_GLASS_LG}>
+              <Package className={iconColor('pharmaceutical')} size={44} strokeWidth={1.5} />
+            </div>
+            <FloatingHeroIcon
+              amplitude={6}
+              duration={4.2}
+              delay={0.5}
+              className="absolute top-3 left-5"
+            >
+              <Pill className={iconColor('pharmaceutical')} size={22} />
+            </FloatingHeroIcon>
+            <FloatingHeroIcon
+              amplitude={7}
+              duration={4.5}
+              delay={1}
+              direction="down"
+              className="absolute bottom-4 right-5"
+            >
+              <FlaskConical className={iconColor('research')} size={22} />
+            </FloatingHeroIcon>
+            <FloatingHeroIcon
+              amplitude={5}
+              duration={3.8}
+              delay={0.2}
+              glassClass={ICON_GLASS_PILL}
+              className="absolute top-5 right-7 rounded-full"
+            >
+              <ShieldCheck className={iconColor('quality')} size={18} />
+            </FloatingHeroIcon>
+          </div>
+        </HeroVisualCard>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function ProductsHero() {
   const scrollToCatalogue = () => {
@@ -56,29 +118,7 @@ export default function ProductsHero() {
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative mx-auto w-full max-w-sm lg:ml-auto"
-          >
-            <div className="rounded-[28px] border border-[#E2E8F0] bg-white/90 p-6 shadow-[0_16px_48px_-20px_rgba(27,90,174,0.18)]">
-              <div className="relative flex h-40 items-center justify-center">
-                <div className={ICON_GLASS_LG}>
-                  <Package className={iconColor('pharmaceutical')} size={44} strokeWidth={1.5} />
-                </div>
-                <div className={`absolute top-3 left-5 ${ICON_GLASS_SM}`}>
-                  <Pill className={iconColor('pharmaceutical')} size={22} />
-                </div>
-                <div className={`absolute bottom-4 right-5 ${ICON_GLASS_SM}`}>
-                  <FlaskConical className={iconColor('research')} size={22} />
-                </div>
-                <div className={`absolute top-5 right-7 ${ICON_GLASS_PILL} rounded-full`}>
-                  <ShieldCheck className={iconColor('quality')} size={18} />
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          <ProductsHeroIllustration />
         </div>
       </div>
     </section>
