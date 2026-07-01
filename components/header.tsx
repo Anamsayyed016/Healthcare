@@ -30,13 +30,11 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex shrink-0 items-center group">
-            <div className="shrink-0 shadow-lg transition-shadow group-hover:shadow-xl">
-              <Logo
-                priority
-                className="h-11 w-auto max-h-11 object-contain md:h-12 md:max-h-12 lg:h-14 lg:max-h-14"
-              />
-            </div>
+          <Link href="/" className="flex shrink-0 items-center">
+            <Logo
+              priority
+              className="h-12 w-auto max-w-none object-contain md:h-14 lg:h-[62px]"
+            />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
