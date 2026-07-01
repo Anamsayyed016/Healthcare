@@ -63,38 +63,40 @@ function HeroIllustration() {
 
           <div className="relative flex flex-col items-center gap-8">
             <div className="relative w-full aspect-[4/3] max-h-64 flex items-center justify-center">
-              <div className="pointer-events-none absolute inset-0 z-[1] flex items-center justify-center">
-                <Image
-                  src={HERO_DECOR_IMAGE}
-                  alt=""
-                  width={512}
-                  height={512}
-                  priority
-                  sizes="(max-width: 640px) 208px, (max-width: 1024px) 240px, 320px"
-                  className="h-[70%] w-[70%] max-h-52 max-w-52 object-contain sm:max-h-60 sm:max-w-60 lg:max-h-[300px] lg:max-w-[320px]"
-                />
+              <div className="absolute inset-[3%] overflow-hidden rounded-xl">
+                <div className="relative h-full w-full">
+                  <Image
+                    src={HERO_DECOR_IMAGE}
+                    alt=""
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 100vw, 480px"
+                    className="object-cover"
+                  />
+                </div>
               </div>
+              <div className="pointer-events-none absolute inset-[3%] z-[1] rounded-xl bg-linear-to-b from-white/20 via-white/10 to-transparent" />
               <div className="relative z-10 w-24 h-24 rounded-2xl bg-linear-to-br from-[#3B82F6] to-[#60A5FA] flex items-center justify-center shadow-lg shadow-blue-200/50">
                 <HeartPulse className="text-white" size={44} strokeWidth={1.5} />
               </div>
               <motion.div
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                className="absolute top-4 left-4 w-14 h-14 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
+                className="absolute top-4 left-4 z-20 w-14 h-14 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
               >
                 <Pill className="text-[#3B82F6]" size={26} />
               </motion.div>
               <motion.div
                 animate={{ y: [0, 6, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                className="absolute bottom-6 right-6 w-14 h-14 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
+                className="absolute bottom-6 right-6 z-20 w-14 h-14 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
               >
                 <Microscope className="text-[#D62839]" size={26} />
               </motion.div>
               <motion.div
                 animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
-                className="absolute top-8 right-8 w-12 h-12 rounded-full bg-[#F0FDF4] border border-[#E2E8F0] flex items-center justify-center"
+                className="absolute top-8 right-8 z-20 w-12 h-12 rounded-full bg-[#F0FDF4] border border-[#E2E8F0] flex items-center justify-center"
               >
                 <ShieldCheck className="text-[#D62839]" size={22} />
               </motion.div>
