@@ -33,7 +33,7 @@ export default function Header() {
           <Link href="/" className="flex shrink-0 items-center">
             <Logo
               priority
-              className="h-auto w-[110px] object-contain md:w-[135px] lg:w-[160px] xl:w-[170px]"
+              className="h-auto w-[100px] object-contain md:w-[125px] lg:w-[140px] xl:w-[145px]"
             />
           </Link>
 
