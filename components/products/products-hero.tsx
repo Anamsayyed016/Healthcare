@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Pill, FlaskConical, ShieldCheck, Package } from 'lucide-react';
+import { iconColor, ICON_GLASS_LG, ICON_GLASS_SM, ICON_GLASS_PILL } from '@/lib/icons';
 
 export default function ProductsHero() {
   const scrollToCatalogue = () => {
@@ -63,17 +64,17 @@ export default function ProductsHero() {
           >
             <div className="rounded-[28px] border border-[#E2E8F0] bg-white/90 p-6 shadow-[0_16px_48px_-20px_rgba(27,90,174,0.18)]">
               <div className="relative flex h-40 items-center justify-center">
-                <div className="flex h-24 w-24 items-center justify-center rounded-2xl bg-linear-to-br from-[#3B82F6] to-[#60A5FA] shadow-lg">
-                  <Package className="text-white" size={44} strokeWidth={1.5} />
+                <div className={ICON_GLASS_LG}>
+                  <Package className={iconColor('pharmaceutical')} size={44} strokeWidth={1.5} />
                 </div>
-                <div className="absolute top-3 left-5 flex h-12 w-12 items-center justify-center rounded-xl border border-[#E2E8F0] bg-white shadow-sm">
-                  <Pill className="text-pharm-blue-light" size={22} />
+                <div className={`absolute top-3 left-5 ${ICON_GLASS_SM}`}>
+                  <Pill className={iconColor('pharmaceutical')} size={22} />
                 </div>
-                <div className="absolute bottom-4 right-5 flex h-12 w-12 items-center justify-center rounded-xl border border-[#E2E8F0] bg-white shadow-sm">
-                  <FlaskConical className="text-pharm-blue-light" size={22} />
+                <div className={`absolute bottom-4 right-5 ${ICON_GLASS_SM}`}>
+                  <FlaskConical className={iconColor('research')} size={22} />
                 </div>
-                <div className="absolute top-5 right-7 flex h-10 w-10 items-center justify-center rounded-full border border-[#E2E8F0] bg-[#F0FDF4]">
-                  <ShieldCheck className="text-pharm-blue-light" size={18} />
+                <div className={`absolute top-5 right-7 ${ICON_GLASS_PILL} rounded-full`}>
+                  <ShieldCheck className={iconColor('quality')} size={18} />
                 </div>
               </div>
             </div>

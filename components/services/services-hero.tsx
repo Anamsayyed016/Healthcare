@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   Activity,
 } from 'lucide-react';
+import { iconColor, ICON_GLASS_XL, ICON_GLASS_SM, ICON_GLASS_PILL } from '@/lib/icons';
 
 const trustHighlights = [
   'Healthcare Consultancy',
@@ -96,37 +97,37 @@ export default function ServicesHero() {
               transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
               className="relative rounded-[28px] border border-[#E2E8F0] bg-white/90 backdrop-blur-sm shadow-[0_20px_60px_-24px_rgba(52,211,153,0.15)] p-8 overflow-hidden"
             >
-              <div className="relative h-56 flex items-center justify-center">
-                <div className="w-28 h-28 rounded-2xl bg-linear-to-br from-[#1B5AAE] to-[#60A5FA] flex items-center justify-center shadow-lg">
-                  <Building2 className="text-white" size={48} strokeWidth={1.5} />
+              <div className="relative flex h-56 items-center justify-center">
+                <div className={ICON_GLASS_XL}>
+                  <Building2 className={iconColor('healthcare')} size={48} strokeWidth={1.5} />
                 </div>
                 <motion.div
                   animate={{ y: [0, -6, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                  className="absolute top-2 left-4 w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
+                  className={`absolute top-2 left-4 ${ICON_GLASS_SM}`}
                 >
-                  <Stethoscope className="text-pharm-red-accent" size={22} />
+                  <Stethoscope className={iconColor('healthcare')} size={22} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, 6, 0] }}
                   transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                  className="absolute bottom-4 right-4 w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
+                  className={`absolute bottom-4 right-4 ${ICON_GLASS_SM}`}
                 >
-                  <Microscope className="text-pharm-blue-light" size={22} />
+                  <Microscope className={iconColor('research')} size={22} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, -5, 0] }}
                   transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                  className="absolute top-6 right-8 w-11 h-11 rounded-full bg-[#EFF6FF] border border-[#E2E8F0] flex items-center justify-center"
+                  className={`absolute top-6 right-8 ${ICON_GLASS_PILL} rounded-full`}
                 >
-                  <Users className="text-pharm-blue-light" size={18} />
+                  <Users className={iconColor('support')} size={18} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, 5, 0] }}
                   transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
-                  className="absolute bottom-10 left-8 w-11 h-11 rounded-full bg-[#F0FDF4] border border-[#E2E8F0] flex items-center justify-center"
+                  className={`absolute bottom-10 left-8 ${ICON_GLASS_PILL} rounded-full`}
                 >
-                  <Video className="text-[#059669]" size={18} />
+                  <Video className={iconColor('healthcare')} size={18} />
                 </motion.div>
               </div>
               <p className="text-center text-sm text-[#64748B] mt-2">

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { services } from '@/lib/data/services';
-import { serviceIconMap } from '@/lib/icons';
+import { serviceIconMap, getServiceIconColor, ICON_GLASS_LG } from '@/lib/icons';
 import { featuredServices } from '@/lib/data/services-page';
 
 function FeatureVisual({ slug, reversed }: { slug: string; reversed?: boolean }) {
@@ -25,8 +25,8 @@ function FeatureVisual({ slug, reversed }: { slug: string; reversed?: boolean })
           backgroundSize: '24px 24px',
         }}
       />
-      <div className="relative w-24 h-24 rounded-2xl bg-[#3B82F6] flex items-center justify-center shadow-lg shadow-blue-200/30">
-        <Icon className="text-white" size={44} strokeWidth={1.5} />
+      <div className={ICON_GLASS_LG}>
+        <Icon className={getServiceIconColor(service.icon)} size={44} strokeWidth={1.5} />
       </div>
     </motion.div>
   );

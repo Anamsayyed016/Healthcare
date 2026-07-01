@@ -13,11 +13,13 @@ import {
   WEBSITE_DISPLAY,
   BUSINESS_HOURS,
 } from '@/lib/contact';
+import { iconColor, ICON_GLASS_SM } from '@/lib/icons';
 
 const panels = [
   {
     icon: Building2,
     title: 'Office',
+    semantic: 'healthcare' as const,
     content: (
       <div className="space-y-1">
         <p className="font-semibold text-[#0F172A]">{COMPANY_NAME}</p>
@@ -34,6 +36,7 @@ const panels = [
   {
     icon: Phone,
     title: 'Mobile',
+    semantic: 'support' as const,
     content: (
       <a
         href={PHONE_HREF}
@@ -46,6 +49,7 @@ const panels = [
   {
     icon: Mail,
     title: 'Email',
+    semantic: 'support' as const,
     content: (
       <a
         href={EMAIL_HREF}
@@ -58,6 +62,7 @@ const panels = [
   {
     icon: Globe,
     title: 'Website',
+    semantic: 'healthcare' as const,
     content: (
       <a
         href={WEBSITE}
@@ -72,6 +77,7 @@ const panels = [
   {
     icon: Clock,
     title: 'Business Hours',
+    semantic: 'support' as const,
     content: (
       <p className="text-sm text-[#64748B] leading-relaxed">
         {BUSINESS_HOURS.days}
@@ -97,8 +103,8 @@ export default function ContactInfoPanels() {
             className="rounded-[20px] bg-white border border-[#E2E8F0] p-5 sm:p-6 shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-md transition-shadow"
           >
             <div className="flex gap-4">
-              <div className="shrink-0 w-11 h-11 rounded-xl bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center">
-                <Icon className="text-pharm-blue-light" size={20} strokeWidth={1.75} />
+              <div className={`shrink-0 ${ICON_GLASS_SM}`}>
+                <Icon className={iconColor(panel.semantic)} size={20} strokeWidth={1.75} />
               </div>
               <div>
                 <h3 className="font-bold text-[#0F172A] text-sm mb-2">{panel.title}</h3>

@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { Factory, Stethoscope, Handshake } from 'lucide-react';
 import { whyPharmefcIntro } from '@/lib/data/why-pharmefc-page';
-import { iconColor } from '@/lib/icons';
+import { iconColor, ICON_GLASS_SM } from '@/lib/icons';
 
 const iconMap = {
   factory: Factory,
@@ -48,7 +48,7 @@ export default function WhyPharmefcIntro() {
                   whileHover={{ y: -3 }}
                   className="rounded-[20px] bg-white border border-[#E2E8F0] p-5 hover:shadow-md transition-all"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center mb-3">
+                  <div className={`mb-3 ${ICON_GLASS_SM}`}>
                     <Icon className={iconColorMap[item.icon]} size={20} strokeWidth={1.75} />
                   </div>
                   <h3 className="font-bold text-[#0F172A] text-sm mb-1">{item.title}</h3>

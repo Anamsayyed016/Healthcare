@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Scale, Handshake, Users, Settings2 } from 'lucide-react';
 import { trustCredibility } from '@/lib/data/why-pharmefc-page';
+import { iconColor, ICON_GLASS_SM } from '@/lib/icons';
 
 const iconMap = {
   scale: Scale,
@@ -10,6 +11,13 @@ const iconMap = {
   users: Users,
   settings: Settings2,
 };
+
+const trustIconColors = {
+  scale: iconColor('support'),
+  handshake: iconColor('support'),
+  users: iconColor('support'),
+  settings: iconColor('support'),
+} as const;
 
 export default function WhyPharmefcTrust() {
   return (
@@ -42,8 +50,8 @@ export default function WhyPharmefcTrust() {
                 whileHover={{ y: -3 }}
                 className="rounded-[24px] bg-white border border-[#E2E8F0] p-6 sm:p-8 hover:shadow-md transition-all flex gap-5"
               >
-                <div className="shrink-0 w-12 h-12 rounded-xl bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center">
-                  <Icon className="text-pharm-blue-light" size={22} strokeWidth={1.75} />
+                <div className={`shrink-0 ${ICON_GLASS_SM}`}>
+                  <Icon className={trustIconColors[item.icon]} size={22} strokeWidth={1.75} />
                 </div>
                 <div>
                   <h3 className="font-bold text-[#0F172A] mb-2">{item.title}</h3>

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Lightbulb, Target } from 'lucide-react';
+import { iconColor, ICON_GLASS_MD } from '@/lib/icons';
 
 export default function VisionMissionSection() {
   const cardVariants = {
@@ -38,8 +39,8 @@ export default function VisionMissionSection() {
             className="group"
           >
             <div className="h-full rounded-3xl border border-blue-100 bg-white p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:border-blue-200">
-              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#1B5AAE] to-[#BAE6FD] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Lightbulb className="text-white" size={32} />
+              <div className={`mb-6 ${ICON_GLASS_MD} group-hover:-translate-y-0.5 transition-transform duration-300`}>
+                <Lightbulb className={iconColor('innovation')} size={32} />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-4">Vision</h3>
               <p className="text-slate-700 leading-relaxed">
@@ -58,8 +59,8 @@ export default function VisionMissionSection() {
             className="group"
           >
             <div className="h-full rounded-3xl border border-emerald-100 bg-white p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:border-emerald-200">
-              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#4ADE80] to-emerald-300 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Target className="text-white" size={32} />
+              <div className={`mb-6 ${ICON_GLASS_MD} group-hover:-translate-y-0.5 transition-transform duration-300`}>
+                <Target className={iconColor('heart')} size={32} />
               </div>
               <h3 className="text-2xl font-bold text-foreground mb-4">Mission</h3>
               <p className="text-muted-foreground leading-relaxed">

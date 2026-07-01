@@ -23,6 +23,7 @@ import {
   getRelatedProducts,
   MANUFACTURING_STATEMENT,
 } from '@/lib/data/products';
+import { iconColor, ICON_GLASS_MD } from '@/lib/icons';
 
 export default function ProductDetailContent({ product }: { product: Product }) {
   const related = getRelatedProducts(product.slug, 4);
@@ -218,8 +219,8 @@ export default function ProductDetailContent({ product }: { product: Product }) 
       <section className="py-12 sm:py-16 bg-[#F8FBFF] border-y border-[#E2E8F0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-start gap-5 rounded-[20px] border border-[#E2E8F0] bg-white p-8 sm:p-10">
-            <div className="shrink-0 w-14 h-14 rounded-2xl bg-[#EFF6FF] border border-[#BFDBFE]/40 flex items-center justify-center">
-              <ShieldCheck className="text-pharm-blue-light" size={28} />
+            <div className={`shrink-0 ${ICON_GLASS_MD}`}>
+              <ShieldCheck className={iconColor('quality')} size={28} />
             </div>
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-[#0F172A] mb-3">

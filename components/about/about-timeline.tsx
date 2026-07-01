@@ -10,6 +10,7 @@ import {
   Globe2,
 } from 'lucide-react';
 import { aboutContent } from '@/lib/data/about';
+import { iconColor, ICON_GLASS_MD, type IconSemantic } from '@/lib/icons';
 
 const iconMap = {
   flag: Flag,
@@ -18,6 +19,15 @@ const iconMap = {
   pill: Pill,
   stethoscope: Stethoscope,
   globe: Globe2,
+};
+
+const timelineIconColors: Record<keyof typeof iconMap, IconSemantic> = {
+  flag: 'innovation',
+  trending: 'innovation',
+  building: 'healthcare',
+  pill: 'pharmaceutical',
+  stethoscope: 'healthcare',
+  globe: 'healthcare',
 };
 
 export default function AboutTimeline() {
@@ -51,8 +61,8 @@ export default function AboutTimeline() {
                   transition={{ delay: index * 0.08 }}
                   className="flex lg:flex-col items-center lg:text-center gap-4 lg:gap-0 shrink-0 lg:flex-1 min-w-[200px] lg:min-w-0"
                 >
-                  <div className="relative z-10 w-14 h-14 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center lg:mb-5">
-                    <Icon className="text-pharm-blue-light" size={24} strokeWidth={1.75} />
+                  <div className={`relative z-10 lg:mb-5 ${ICON_GLASS_MD}`}>
+                    <Icon className={iconColor(timelineIconColors[item.icon])} size={24} strokeWidth={1.75} />
                   </div>
                   {index < aboutContent.timeline.length - 1 && (
                     <div className="lg:hidden text-[#CBD5E1] text-2xl font-light">↓</div>

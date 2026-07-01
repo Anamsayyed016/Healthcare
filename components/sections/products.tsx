@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Pill, Tablets, FlaskConical, ShieldCheck } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { iconColor, ICON_GLASS_SM, ICON_GLASS_MD } from '@/lib/icons';
 
 const PRODUCT_DESCRIPTION =
   'Manufactured under stringent WHO-GMP quality standards to ensure safety, consistency, and reliability.';
@@ -81,8 +82,8 @@ export default function ProductsSection() {
                 className="group flex flex-col h-full bg-white border border-[#E5E7EB] rounded-[20px] p-7 sm:p-8 shadow-[0_1px_2px_rgba(15,23,42,0.04)] hover:shadow-[0_8px_24px_rgba(15,23,42,0.06)] hover:border-[#CBD5E1] transition-all duration-300"
               >
                 <div className="flex items-start justify-between gap-4 mb-8">
-                  <div className="w-11 h-11 rounded-full bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center shrink-0">
-                    <Icon className="text-[#1B5AAE]" size={20} strokeWidth={1.75} />
+                  <div className={`shrink-0 ${ICON_GLASS_SM} rounded-full`}>
+                    <Icon className={iconColor('pharmaceutical')} size={20} strokeWidth={1.75} />
                   </div>
                   <span className="text-[11px] font-medium uppercase tracking-wider text-[#64748B] pt-1">
                     {product.category}
@@ -129,8 +130,8 @@ export default function ProductsSection() {
           className="mt-16 sm:mt-20 lg:mt-24"
         >
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 rounded-[20px] border border-[#E2E8F0] bg-[#F8FBFF] px-7 py-8 sm:px-10 sm:py-9">
-            <div className="shrink-0 w-12 h-12 rounded-full bg-white border border-[#E2E8F0] flex items-center justify-center">
-              <ShieldCheck className="text-[#1B5AAE]" size={22} strokeWidth={1.75} />
+            <div className={`shrink-0 ${ICON_GLASS_MD} rounded-full`}>
+              <ShieldCheck className={iconColor('quality')} size={22} strokeWidth={1.75} />
             </div>
             <div>
               <h3 className="text-lg sm:text-xl font-semibold text-[#0F172A] mb-2">

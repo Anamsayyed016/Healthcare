@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { Award, CheckCircle2, ShieldCheck, Settings2 } from 'lucide-react';
 import { qualityStandards } from '@/lib/data/why-pharmefc-page';
-import { iconColor } from '@/lib/icons';
+import { iconColor, ICON_GLASS_SM } from '@/lib/icons';
 
 const iconMap = {
   certificate: Award,
@@ -48,7 +48,7 @@ export default function WhyPharmefcQuality() {
                 whileHover={{ y: -4 }}
                 className="rounded-[24px] bg-[#F8FBFF] border border-[#E2E8F0] p-6 hover:shadow-md transition-all text-center"
               >
-                <div className="w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center mx-auto mb-4">
+                <div className={`mx-auto mb-4 ${ICON_GLASS_SM}`}>
                   <Icon className={iconColorMap[item.icon]} size={22} strokeWidth={1.75} />
                 </div>
                 <h3 className="font-bold text-[#0F172A] text-sm mb-2">{item.title}</h3>

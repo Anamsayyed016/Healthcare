@@ -65,8 +65,10 @@
   --pharm-blue-50: #f0f7ff;
   --pharm-blue-100: #e0effe;
   --pharm-red: #d62839;
-  --pharm-red-accent: #dc2626;
-  --pharm-red-soft: #e57373;
+  --pharm-red-accent: #e53935;
+  --pharm-red-soft: #ef9a9a;
+  --pharm-blue-brand: #2563eb;
+  --pharm-green: #16a34a;
   --pharm-red-dark: #b91c2c;
   --pharm-red-50: #fff5f6;
   --pharm-gray: #64748b;
@@ -304,6 +306,84 @@
     color: var(--pharm-red-soft);
   }
 
+  .text-pharm-blue-brand {
+    color: var(--pharm-blue-brand);
+  }
+
+  .text-pharm-green {
+    color: var(--pharm-green);
+  }
+
+  /* Glassmorphism icon containers */
+  .icon-glass {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(59, 130, 246, 0.12);
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(12px);
+    transition:
+      transform 0.3s ease-out,
+      box-shadow 0.3s ease-out,
+      border-color 0.3s ease-out;
+  }
+
+  .icon-glass:hover {
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.12);
+    border-color: rgba(59, 130, 246, 0.2);
+  }
+
+  .icon-glass-sm {
+    @apply flex items-center justify-center rounded-2xl;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .icon-glass-md {
+    @apply flex items-center justify-center rounded-[22px];
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .icon-glass-lg {
+    @apply flex items-center justify-center rounded-[22px];
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .icon-glass-xl {
+    @apply flex items-center justify-center rounded-[22px];
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .icon-glass-heart {
+    @apply flex items-center justify-center rounded-[22px];
+    width: 6rem;
+    height: 6rem;
+    border-color: rgba(229, 57, 53, 0.14);
+    box-shadow:
+      0 20px 60px rgba(15, 23, 42, 0.08),
+      0 0 0 0 rgba(229, 57, 53, 0);
+  }
+
+  .icon-glass-float {
+    @apply relative;
+  }
+
+  .icon-glass-float::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .icon-glass-pill {
+    @apply flex items-center justify-center rounded-xl;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
   .icon-hover {
     @apply transition-transform duration-300 ease-out group-hover:scale-[1.06];
   }
@@ -329,17 +409,41 @@
     @apply -translate-y-[3px] border-[#d6e4f5] shadow-[0_24px_56px_-16px_rgba(27,90,174,0.19)];
   }
 
-  /* Icon badges */
+  /* Icon badges — glass style */
   .icon-badge {
-    @apply flex items-center justify-center rounded-xl border border-[#d6e4f5] bg-[#f0f7ff] text-[#1b5aae] transition-all duration-300;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(59, 130, 246, 0.12);
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(12px);
+    color: var(--pharm-blue-brand);
+    @apply flex items-center justify-center rounded-[22px];
+    width: 3.5rem;
+    height: 3.5rem;
+    transition:
+      transform 0.3s ease-out,
+      box-shadow 0.3s ease-out,
+      border-color 0.3s ease-out;
   }
 
   .icon-badge:hover {
-    @apply border-[#1b5aae]/30 bg-[#e0effe] shadow-[0_4px_16px_-4px_rgba(27,90,174,0.2)];
+    @apply -translate-y-0.5;
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.12);
+    border-color: rgba(59, 130, 246, 0.2);
   }
 
   .icon-badge-red {
-    @apply flex items-center justify-center rounded-xl border border-[#f5d0d4] bg-[#fff5f6] text-[#d62839];
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(229, 57, 53, 0.14);
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(12px);
+    color: var(--pharm-red-accent);
+    @apply flex items-center justify-center rounded-[22px];
+    width: 3.5rem;
+    height: 3.5rem;
+    transition:
+      transform 0.3s ease-out,
+      box-shadow 0.3s ease-out,
+      border-color 0.3s ease-out;
   }
 
   /* Buttons */

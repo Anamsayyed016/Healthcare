@@ -14,7 +14,7 @@ import {
   FloatingHeroIcon,
   HOME_HERO_DECOR_IMAGE,
 } from '@/components/sections/hero-visual-card';
-import { iconColor } from '@/lib/icons';
+import { iconColor, ICON_GLASS_PILL } from '@/lib/icons';
 import { heroCardFloat } from '@/lib/motion';
 
 const trustHighlights = [
@@ -58,7 +58,7 @@ function HeroIllustration() {
               amplitude={6}
               duration={4.2}
               delay={0.5}
-              className="absolute top-4 left-4 z-20 flex h-14 w-14 items-center justify-center rounded-xl border border-[#E2E8F0] bg-white shadow-sm"
+              className="absolute top-4 left-4 h-14 w-14"
             >
               <Pill className={iconColor('pharmaceutical')} size={26} />
             </FloatingHeroIcon>
@@ -67,7 +67,7 @@ function HeroIllustration() {
               duration={4.8}
               delay={1}
               direction="down"
-              className="absolute bottom-6 right-6 z-20 flex h-14 w-14 items-center justify-center rounded-xl border border-[#E2E8F0] bg-white shadow-sm"
+              className="absolute bottom-6 right-6 h-14 w-14"
             >
               <Microscope className={iconColor('research')} size={26} />
             </FloatingHeroIcon>
@@ -75,7 +75,8 @@ function HeroIllustration() {
               amplitude={5}
               duration={3.6}
               delay={0.2}
-              className="absolute top-8 right-8 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-[#E2E8F0] bg-[#F0FDF4]"
+              glassClass={ICON_GLASS_PILL}
+              className="absolute top-8 right-8 rounded-full"
             >
               <ShieldCheck className={iconColor('security')} size={22} />
             </FloatingHeroIcon>
@@ -89,7 +90,7 @@ function HeroIllustration() {
             ].map((item) => (
               <div
                 key={item.label}
-                className="rounded-xl border border-[#E2E8F0] bg-[#F8FBFF] p-3 text-center transition-shadow duration-300 hover:shadow-[0_4px_16px_-6px_rgba(27,90,174,0.1)]"
+                className="icon-glass rounded-xl p-3 text-center transition-all duration-300 hover:-translate-y-0.5"
               >
                 <item.icon className={`${item.color} mx-auto mb-1.5`} size={20} />
                 <p className="text-[11px] font-medium leading-tight text-[#64748B]">{item.label}</p>

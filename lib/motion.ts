@@ -24,15 +24,15 @@ export const heartbeatAnimation = {
   },
 };
 
-/** Synchronized subtle red glow pulse on the heart card */
+/** Synchronized subtle red glow pulse on the glass heart card */
 export const heartbeatGlowAnimation = {
   boxShadow: [
-    '0 12px 32px -8px rgba(27,90,174,0.38), 0 0 0 0 rgba(220,38,38,0)',
-    '0 14px 36px -8px rgba(27,90,174,0.4), 0 0 18px -4px rgba(220,38,38,0.1)',
-    '0 12px 32px -8px rgba(27,90,174,0.38), 0 0 0 0 rgba(220,38,38,0)',
-    '0 16px 40px -6px rgba(27,90,174,0.42), 0 0 26px -2px rgba(220,38,38,0.16)',
-    '0 12px 32px -8px rgba(27,90,174,0.38), 0 0 8px -4px rgba(220,38,38,0.06)',
-    '0 12px 32px -8px rgba(27,90,174,0.38), 0 0 0 0 rgba(220,38,38,0)',
+    '0 20px 60px rgba(15,23,42,0.08), 0 0 0 0 rgba(229,57,53,0)',
+    '0 22px 64px rgba(15,23,42,0.1), 0 0 20px -4px rgba(229,57,53,0.12)',
+    '0 20px 60px rgba(15,23,42,0.08), 0 0 0 0 rgba(229,57,53,0)',
+    '0 24px 68px rgba(15,23,42,0.11), 0 0 28px -2px rgba(229,57,53,0.18)',
+    '0 20px 60px rgba(15,23,42,0.08), 0 0 10px -4px rgba(229,57,53,0.08)',
+    '0 20px 60px rgba(15,23,42,0.08), 0 0 0 0 rgba(229,57,53,0)',
   ] as string[],
   transition: {
     duration: 2,
@@ -50,7 +50,10 @@ export function floatingIconMotion(
 ) {
   const peak = direction === 'up' ? -amplitude : amplitude;
   return {
-    animate: { y: [0, peak, 0] as number[] },
+    animate: {
+      y: [0, peak, 0] as number[],
+      rotate: [0, 1.2, 0, -1.2, 0] as number[],
+    },
     transition: {
       duration,
       repeat: Infinity,

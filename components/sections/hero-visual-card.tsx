@@ -2,8 +2,10 @@
 
 import Image from 'next/image';
 import { cloudinaryUrl } from '@/lib/images';
+import { cn } from '@/lib/utils';
 import { motion, useReducedMotion } from 'framer-motion';
 import { HeartPulse } from 'lucide-react';
+import { ICON_GLASS_HEART, ICON_GLASS_SM } from '@/lib/icons';
 import {
   heartbeatAnimation,
   heartbeatGlowAnimation,
@@ -53,13 +55,13 @@ export function HeroVisualCard({
   );
 }
 
-/** Premium heartbeat focal card — brand red heart on blue gradient */
+/** Premium heartbeat focal card — brand red heart on glass */
 export function HeroHeartCard() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
     <motion.div
-      className="relative z-10 flex h-24 w-24 items-center justify-center rounded-2xl bg-linear-to-br from-[#2563EB] via-[#3B82F6] to-[#60A5FA] transition-shadow duration-500"
+      className={cn('relative z-10', ICON_GLASS_HEART)}
       animate={
         prefersReducedMotion
           ? undefined
@@ -70,18 +72,24 @@ export function HeroHeartCard() {
       }
       transition={prefersReducedMotion ? undefined : heartbeatAnimation.transition}
       whileHover={{
+        y: -2,
         boxShadow:
-          '0 18px 44px -8px rgba(27,90,174,0.45), 0 0 32px -4px rgba(220,38,38,0.14)',
+          '0 24px 68px rgba(15,23,42,0.12), 0 0 32px -4px rgba(229,57,53,0.16)',
       }}
     >
-      <HeartPulse className="text-pharm-red-accent" size={44} strokeWidth={1.5} />
+      <HeartPulse
+        className="text-pharm-red-accent drop-shadow-[0_2px_8px_rgba(229,57,53,0.25)]"
+        size={44}
+        strokeWidth={1.5}
+      />
     </motion.div>
   );
 }
 
 type FloatingHeroIconProps = {
   children: React.ReactNode;
-  className: string;
+  className?: string;
+  glassClass?: string;
   amplitude?: number;
   duration?: number;
   delay?: number;
@@ -90,7 +98,8 @@ type FloatingHeroIconProps = {
 
 export function FloatingHeroIcon({
   children,
-  className,
+  className = '',
+  glassClass = ICON_GLASS_SM,
   amplitude = 6,
   duration = 4,
   delay = 0,
@@ -101,8 +110,13 @@ export function FloatingHeroIcon({
     <motion.div
       animate={floatMotion.animate}
       transition={floatMotion.transition}
-      whileHover={{ scale: 1.06, transition: { duration: 0.25 } }}
-      className={className}
+      whileHover={{
+        y: -2,
+        scale: 1.04,
+        boxShadow: '0 24px 64px rgba(15,23,42,0.12)',
+        transition: { duration: 0.3 },
+      }}
+      className={cn('z-20', glassClass, className)}
     >
       {children}
     </motion.div>

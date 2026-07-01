@@ -15,6 +15,7 @@ import {
   ArrowUpRight,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { iconColor, ICON_GLASS_MD, type IconSemantic } from '@/lib/icons';
 
 type Service = {
   title: string;
@@ -22,7 +23,7 @@ type Service = {
   icon: LucideIcon;
   span: string;
   accent: string;
-  iconBg: string;
+  iconSemantic: IconSemantic;
 };
 
 const services: Service[] = [
@@ -33,7 +34,7 @@ const services: Service[] = [
     icon: Globe2,
     span: 'lg:col-span-2 lg:row-span-2',
     accent: 'from-sky-50/90 via-white to-emerald-50/80',
-    iconBg: 'from-[#1B5AAE] to-[#3B82F6]',
+    iconSemantic: 'healthcare',
   },
   {
     title: 'Healthcare Consultancy',
@@ -42,7 +43,7 @@ const services: Service[] = [
     icon: Briefcase,
     span: 'lg:col-span-1',
     accent: 'from-white via-[#F8FBFF] to-sky-50/70',
-    iconBg: 'from-[#6366F1] to-[#1B5AAE]',
+    iconSemantic: 'support',
   },
   {
     title: 'Hospital Planning & Development',
@@ -51,7 +52,7 @@ const services: Service[] = [
     icon: Building2,
     span: 'lg:col-span-1',
     accent: 'from-[#F4FFF7]/80 via-white to-sky-50/60',
-    iconBg: 'from-[#34D399] to-[#3B82F6]',
+    iconSemantic: 'healthcare',
   },
   {
     title: 'NABH Accreditation Support',
@@ -60,7 +61,7 @@ const services: Service[] = [
     icon: BadgeCheck,
     span: 'lg:col-span-1',
     accent: 'from-white via-[#F8FBFF] to-emerald-50/50',
-    iconBg: 'from-[#2DD4BF] to-[#3B82F6]',
+    iconSemantic: 'quality',
   },
   {
     title: 'Quality Management Systems',
@@ -69,7 +70,7 @@ const services: Service[] = [
     icon: ClipboardCheck,
     span: 'lg:col-span-1',
     accent: 'from-sky-50/70 via-white to-[#F4FFF7]/60',
-    iconBg: 'from-[#1B5AAE] to-[#7DD3FC]',
+    iconSemantic: 'quality',
   },
   {
     title: 'Healthcare Audits',
@@ -78,7 +79,7 @@ const services: Service[] = [
     icon: SearchCheck,
     span: 'lg:col-span-1',
     accent: 'from-white to-[#F8FBFF]',
-    iconBg: 'from-[#818CF8] to-[#1B5AAE]',
+    iconSemantic: 'research',
   },
   {
     title: 'Clinical Process Optimization',
@@ -87,7 +88,7 @@ const services: Service[] = [
     icon: Workflow,
     span: 'lg:col-span-1',
     accent: 'from-[#F4FFF7]/70 via-white to-sky-50/50',
-    iconBg: 'from-[#22D3EE] to-[#1B5AAE]',
+    iconSemantic: 'support',
   },
   {
     title: 'Telemedicine Services',
@@ -96,7 +97,7 @@ const services: Service[] = [
     icon: Video,
     span: 'lg:col-span-1',
     accent: 'from-sky-50/80 via-white to-emerald-50/60',
-    iconBg: 'from-[#4ADE80] to-[#34D399]',
+    iconSemantic: 'healthcare',
   },
   {
     title: 'Training & Skill Development',
@@ -105,7 +106,7 @@ const services: Service[] = [
     icon: GraduationCap,
     span: 'lg:col-span-1',
     accent: 'from-white via-[#F8FBFF] to-sky-50/70',
-    iconBg: 'from-[#F472B6] to-[#1B5AAE]',
+    iconSemantic: 'support',
   },
   {
     title: 'Hospital Operations Improvement',
@@ -114,7 +115,7 @@ const services: Service[] = [
     icon: Settings2,
     span: 'lg:col-span-2',
     accent: 'from-[#F8FBFF] via-white to-[#F4FFF7]/90',
-    iconBg: 'from-[#1B5AAE] to-[#3B82F6]',
+    iconSemantic: 'support',
   },
 ];
 
@@ -194,9 +195,13 @@ export default function ServicesSection() {
                     <motion.div
                       animate={isFeatured ? { y: [0, -4, 0] } : undefined}
                       transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-                      className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-linear-to-br ${service.iconBg} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                      className={`${ICON_GLASS_MD} group-hover:-translate-y-0.5 transition-transform duration-300`}
                     >
-                      <Icon className="text-white" size={isFeatured ? 30 : 26} strokeWidth={1.75} />
+                      <Icon
+                        className={iconColor(service.iconSemantic)}
+                        size={isFeatured ? 30 : 26}
+                        strokeWidth={1.75}
+                      />
                     </motion.div>
                     <span className="w-9 h-9 rounded-xl bg-white/70 border border-sky-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0 translate-x-2">
                       <ArrowUpRight size={18} className="text-[#1B5AAE]" />

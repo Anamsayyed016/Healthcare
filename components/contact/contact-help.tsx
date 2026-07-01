@@ -10,6 +10,7 @@ import {
   Headphones,
 } from 'lucide-react';
 import { contactHelpTopics } from '@/lib/data/contact-page';
+import { iconColor, ICON_GLASS_SM, type IconSemantic } from '@/lib/icons';
 
 const iconMap = {
   pill: Pill,
@@ -18,6 +19,15 @@ const iconMap = {
   globe: Globe2,
   handshake: Handshake,
   support: Headphones,
+};
+
+const topicIconColors: Record<keyof typeof iconMap, IconSemantic> = {
+  pill: 'pharmaceutical',
+  briefcase: 'support',
+  building: 'healthcare',
+  globe: 'healthcare',
+  handshake: 'support',
+  support: 'support',
 };
 
 export default function ContactHelp() {
@@ -51,8 +61,8 @@ export default function ContactHelp() {
                 whileHover={{ y: -4 }}
                 className="rounded-[24px] bg-white border border-[#E2E8F0] p-6 hover:shadow-md transition-all"
               >
-                <div className="w-11 h-11 rounded-xl bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center mb-4">
-                  <Icon className="text-pharm-blue-light" size={20} strokeWidth={1.75} />
+                <div className={`mb-4 ${ICON_GLASS_SM}`}>
+                  <Icon className={iconColor(topicIconColors[topic.icon])} size={20} strokeWidth={1.75} />
                 </div>
                 <h3 className="font-bold text-[#0F172A] mb-2 text-sm sm:text-base">{topic.title}</h3>
                 <p className="text-sm text-[#64748B] leading-relaxed">{topic.desc}</p>

@@ -12,6 +12,7 @@ import {
   Building2,
   Mail,
 } from 'lucide-react';
+import { iconColor, ICON_GLASS_LG, ICON_GLASS_SM, ICON_GLASS_PILL } from '@/lib/icons';
 
 const trustBadges = [
   'Fast Response',
@@ -96,37 +97,37 @@ export default function ContactHero() {
               transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
               className="relative rounded-[28px] border border-[#E2E8F0] bg-white/90 backdrop-blur-sm shadow-[0_20px_60px_-24px_rgba(27,90,174,0.12)] p-8 overflow-hidden"
             >
-              <div className="relative h-56 flex items-center justify-center">
-                <div className="w-24 h-24 rounded-2xl bg-linear-to-br from-[#3B82F6] to-[#60A5FA] flex items-center justify-center shadow-lg">
-                  <Headphones className="text-white" size={42} strokeWidth={1.5} />
+              <div className="relative flex h-56 items-center justify-center">
+                <div className={ICON_GLASS_LG}>
+                  <Headphones className={iconColor('support')} size={42} strokeWidth={1.5} />
                 </div>
                 <motion.div
                   animate={{ y: [0, -5, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                  className="absolute top-3 left-6 w-11 h-11 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
+                  className={`absolute top-3 left-6 ${ICON_GLASS_SM}`}
                 >
-                  <Users className="text-pharm-blue-light" size={20} />
+                  <Users className={iconColor('support')} size={20} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, 6, 0] }}
                   transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                  className="absolute bottom-5 right-5 w-11 h-11 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
+                  className={`absolute bottom-5 right-5 ${ICON_GLASS_SM}`}
                 >
-                  <MessageSquare className="text-pharm-blue-light" size={20} />
+                  <MessageSquare className={iconColor('support')} size={20} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, -4, 0] }}
                   transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                  className="absolute top-7 right-9 w-10 h-10 rounded-full bg-[#F0FDF4] border border-[#E2E8F0] flex items-center justify-center"
+                  className={`absolute top-7 right-9 ${ICON_GLASS_PILL} rounded-full`}
                 >
-                  <Handshake className="text-[#059669]" size={18} />
+                  <Handshake className={iconColor('medical-highlight')} size={18} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, 5, 0] }}
                   transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
-                  className="absolute bottom-11 left-9 w-10 h-10 rounded-full bg-[#EFF6FF] border border-[#E2E8F0] flex items-center justify-center"
+                  className={`absolute bottom-11 left-9 ${ICON_GLASS_PILL} rounded-full`}
                 >
-                  <Building2 className="text-pharm-blue-light" size={18} />
+                  <Building2 className={iconColor('healthcare')} size={18} />
                 </motion.div>
               </div>
               <p className="text-center text-sm text-[#64748B] mt-2">

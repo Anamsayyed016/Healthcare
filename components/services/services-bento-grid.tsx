@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { services } from '@/lib/data/services';
-import { serviceIconMap } from '@/lib/icons';
+import { serviceIconMap, getServiceIconColor, ICON_GLASS_MD, ICON_GLASS_SM } from '@/lib/icons';
 import { bentoLayout, serviceKeyBenefits } from '@/lib/data/services-page';
 
 export default function ServicesBentoGrid() {
@@ -46,12 +46,12 @@ export default function ServicesBentoGrid() {
                     isLarge ? 'lg:p-8' : ''
                   }`}
                 >
-                  <div
-                    className={`rounded-xl bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center mb-5 ${
-                      isLarge ? 'w-14 h-14' : 'w-12 h-12'
-                    }`}
-                  >
-                    <Icon className="text-pharm-blue-light" size={isLarge ? 26 : 22} strokeWidth={1.75} />
+                  <div className={`mb-5 ${isLarge ? ICON_GLASS_MD : ICON_GLASS_SM}`}>
+                    <Icon
+                      className={getServiceIconColor(service.icon)}
+                      size={isLarge ? 26 : 22}
+                      strokeWidth={1.75}
+                    />
                   </div>
                   <h3
                     className={`font-bold text-[#0F172A] mb-2 leading-snug ${

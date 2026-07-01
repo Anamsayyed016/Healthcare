@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion';
 import { Send, Search, Phone, CheckCircle2 } from 'lucide-react';
 import { responseProcessSteps } from '@/lib/data/contact-page';
+import { iconColor, ICON_GLASS_MD, type IconSemantic } from '@/lib/icons';
 
 const stepIcons = [Send, Search, Phone, CheckCircle2];
+const stepIconColors: IconSemantic[] = ['support', 'research', 'support', 'medical-highlight'];
 
 export default function ContactProcess() {
   return (
@@ -37,8 +39,8 @@ export default function ContactProcess() {
                   transition={{ delay: index * 0.1 }}
                   className="text-center"
                 >
-                  <div className="relative z-10 w-16 h-16 rounded-2xl bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center mx-auto mb-5 shadow-sm">
-                    <Icon className="text-pharm-blue-light" size={26} strokeWidth={1.75} />
+                  <div className={`relative z-10 mx-auto mb-5 ${ICON_GLASS_MD}`}>
+                    <Icon className={iconColor(stepIconColors[index])} size={26} strokeWidth={1.75} />
                   </div>
                   <span className="text-xs font-bold text-[#3B82F6] uppercase tracking-wider">
                     Step {step.step}

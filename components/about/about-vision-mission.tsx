@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Lightbulb, Target } from 'lucide-react';
 import { aboutContent } from '@/lib/data/about';
+import { iconColor, ICON_GLASS_MD } from '@/lib/icons';
 
 export default function AboutVisionMission() {
   return (
@@ -28,8 +29,8 @@ export default function AboutVisionMission() {
           >
             <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#3B82F6]/[0.05] -translate-y-1/2 translate-x-1/2" />
             <div className="relative">
-              <div className="w-16 h-16 rounded-2xl bg-[#3B82F6] flex items-center justify-center mb-6 shadow-lg shadow-blue-200/40">
-                <Lightbulb className="text-white" size={32} strokeWidth={1.5} />
+              <div className={`mb-6 ${ICON_GLASS_MD}`}>
+                <Lightbulb className={iconColor('innovation')} size={32} strokeWidth={1.5} />
               </div>
               <h3 className="text-2xl font-bold text-[#0F172A] mb-4">Our Vision</h3>
               <p className="text-[#64748B] leading-relaxed">{aboutContent.vision}</p>
@@ -46,8 +47,8 @@ export default function AboutVisionMission() {
           >
             <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#D62839]/[0.06] -translate-y-1/2 translate-x-1/2" />
             <div className="relative">
-              <div className="w-16 h-16 rounded-2xl bg-[#D62839] flex items-center justify-center mb-6 shadow-lg shadow-emerald-200/40">
-                <Target className="text-white" size={32} strokeWidth={1.5} />
+              <div className={`mb-6 ${ICON_GLASS_MD}`}>
+                <Target className={iconColor('heart')} size={32} strokeWidth={1.5} />
               </div>
               <h3 className="text-2xl font-bold text-[#0F172A] mb-4">Our Mission</h3>
               <p className="text-[#64748B] leading-relaxed">{aboutContent.mission}</p>

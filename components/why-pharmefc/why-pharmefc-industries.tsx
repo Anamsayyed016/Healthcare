@@ -10,7 +10,7 @@ import {
   Users,
 } from 'lucide-react';
 import { industriesServed } from '@/lib/data/why-pharmefc-page';
-import { iconColor } from '@/lib/icons';
+import { iconColor, ICON_GLASS_SM } from '@/lib/icons';
 
 const iconMap = {
   building: Building2,
@@ -59,7 +59,7 @@ export default function WhyPharmefcIndustries() {
                 whileHover={{ y: -4 }}
                 className="rounded-[24px] bg-white border border-[#E2E8F0] p-6 hover:shadow-md transition-all"
               >
-                <div className="w-11 h-11 rounded-xl bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center mb-4">
+                <div className={`mb-4 ${ICON_GLASS_SM}`}>
                   <Icon className={iconColorMap[industry.icon]} size={20} strokeWidth={1.75} />
                 </div>
                 <h3 className="font-bold text-[#0F172A] mb-2">{industry.title}</h3>

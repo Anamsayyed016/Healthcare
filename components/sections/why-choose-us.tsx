@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { whyChooseReasons } from '@/lib/data/why-choose-us';
-import { whyChooseIconMap } from '@/lib/icons';
+import { whyChooseIconMap, getWhyChooseIconColor, ICON_GLASS_MD } from '@/lib/icons';
 
 type WhyChooseUsSectionProps = {
   preview?: boolean;
@@ -62,8 +62,8 @@ export default function WhyChooseUsSection({ preview = false }: WhyChooseUsSecti
               >
                 <div className="relative h-full rounded-[28px] bg-white/80 backdrop-blur-sm border border-white shadow-[0_12px_48px_-16px_rgba(52,211,153,0.12)] group-hover:shadow-[0_24px_64px_-20px_rgba(27,90,174,0.15)] transition-all duration-500 p-8">
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-[#1B5AAE] to-[#3B82F6] flex items-center justify-center mb-5">
-                      <Icon className="text-white" size={26} strokeWidth={1.75} />
+                    <div className={`mb-5 ${ICON_GLASS_MD}`}>
+                      <Icon className={getWhyChooseIconColor(reason.icon)} size={26} strokeWidth={1.75} />
                     </div>
                     <h3 className="text-lg font-bold text-slate-900 mb-3">{reason.title}</h3>
                     <p className="text-slate-600 leading-relaxed text-sm">{reason.description}</p>

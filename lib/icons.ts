@@ -64,16 +64,24 @@ export type IconSemantic =
   | 'medical-highlight';
 
 export const iconSemanticClass: Record<IconSemantic, string> = {
-  healthcare: 'text-pharm-red-accent',
+  healthcare: 'text-pharm-blue-brand',
   heart: 'text-pharm-red-accent',
-  security: 'text-pharm-red-soft',
+  security: 'text-pharm-blue-brand',
   innovation: 'text-pharm-red-accent',
-  pharmaceutical: 'text-pharm-blue-light',
-  research: 'text-pharm-blue-light',
-  quality: 'text-pharm-blue-light',
-  support: 'text-pharm-blue-light',
-  'medical-highlight': 'text-pharm-red-soft',
+  pharmaceutical: 'text-pharm-blue-brand',
+  research: 'text-pharm-blue-brand',
+  quality: 'text-pharm-blue-brand',
+  support: 'text-pharm-blue-brand',
+  'medical-highlight': 'text-pharm-green',
 };
+
+/** Shared glassmorphism icon container classes */
+export const ICON_GLASS_SM = 'icon-glass icon-glass-sm icon-glass-float';
+export const ICON_GLASS_MD = 'icon-glass icon-glass-md';
+export const ICON_GLASS_LG = 'icon-glass icon-glass-lg';
+export const ICON_GLASS_XL = 'icon-glass icon-glass-xl';
+export const ICON_GLASS_HEART = 'icon-glass icon-glass-heart icon-glass-float';
+export const ICON_GLASS_PILL = 'icon-glass icon-glass-pill icon-glass-float';
 
 export function iconColor(semantic: IconSemantic): string {
   return iconSemanticClass[semantic];
@@ -81,12 +89,28 @@ export function iconColor(semantic: IconSemantic): string {
 
 export function getWhyChooseIconColor(icon: WhyChooseIcon): string {
   const map: Record<WhyChooseIcon, string> = {
-    shield: iconSemanticClass.security,
+    shield: iconSemanticClass.quality,
     users: iconSemanticClass.support,
-    globe: iconSemanticClass.support,
+    globe: iconSemanticClass.healthcare,
     heart: iconSemanticClass.heart,
     scale: iconSemanticClass.support,
-    layers: iconSemanticClass.support,
+    layers: iconSemanticClass.innovation,
+  };
+  return map[icon];
+}
+
+export function getServiceIconColor(icon: ServiceIcon): string {
+  const map: Record<ServiceIcon, string> = {
+    globe: iconSemanticClass.healthcare,
+    briefcase: iconSemanticClass.support,
+    building: iconSemanticClass.healthcare,
+    badge: iconSemanticClass.quality,
+    clipboard: iconSemanticClass.quality,
+    search: iconSemanticClass.research,
+    workflow: iconSemanticClass.support,
+    video: iconSemanticClass.healthcare,
+    graduation: iconSemanticClass.support,
+    settings: iconSemanticClass.support,
   };
   return map[icon];
 }

@@ -9,7 +9,7 @@ import {
   Settings2,
   Layers,
 } from 'lucide-react';
-import { iconSemanticClass } from '@/lib/icons';
+import { iconSemanticClass, ICON_GLASS_SM } from '@/lib/icons';
 import { whyChooseServices } from '@/lib/data/services-page';
 
 const iconMap = {
@@ -27,7 +27,7 @@ const iconColorMap = {
   briefcase: iconSemanticClass.support,
   shield: iconSemanticClass.security,
   settings: iconSemanticClass.support,
-  layers: iconSemanticClass.support,
+  layers: iconSemanticClass.innovation,
 } as const;
 
 export default function ServicesWhyChoose() {
@@ -61,7 +61,7 @@ export default function ServicesWhyChoose() {
                 whileHover={{ y: -4 }}
                 className="rounded-[20px] bg-white border border-[#E2E8F0] p-6 hover:shadow-md transition-all"
               >
-                <div className="w-11 h-11 rounded-xl bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center mb-4">
+                <div className={`mb-4 ${ICON_GLASS_SM}`}>
                   <Icon className={iconColorMap[item.icon]} size={20} strokeWidth={1.75} />
                 </div>
                 <h3 className="font-bold text-[#0F172A] mb-2">{item.title}</h3>

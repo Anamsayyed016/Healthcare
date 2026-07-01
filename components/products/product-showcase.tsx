@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Product } from '@/lib/data/products';
 import { getProductImage, optimizeProductImageUrl } from '@/lib/data/products';
-import { productIconMap } from '@/lib/icons';
+import { productIconMap, iconColor, ICON_GLASS_LG } from '@/lib/icons';
 
 type ProductShowcaseProps = {
   product: Product;
@@ -66,12 +66,9 @@ export default function ProductShowcase({
               href ? 'group-hover/image:scale-[1.03]' : ''
             }`}
           >
-            <div className="relative">
-              <div className="absolute inset-0 rounded-3xl bg-[#3B82F6]/10 blur-xl scale-110" />
-              <div className="relative flex h-24 w-24 sm:h-28 sm:w-28 items-center justify-center rounded-3xl border border-[#E2E8F0] bg-white shadow-[0_8px_32px_rgba(27,90,174,0.12)]">
-                <Icon className="text-pharm-blue-light" size={44} strokeWidth={1.5} />
+            <div className={ICON_GLASS_LG}>
+                <Icon className={iconColor('pharmaceutical')} size={44} strokeWidth={1.5} />
               </div>
-            </div>
             <p className="text-[10px] font-semibold uppercase tracking-wider text-[#94A3B8]">
               {product.category}
             </p>

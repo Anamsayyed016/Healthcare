@@ -10,7 +10,7 @@ import {
   Handshake,
 } from 'lucide-react';
 import { aboutContent } from '@/lib/data/about';
-import { getAboutValueIconColor } from '@/lib/icons';
+import { getAboutValueIconColor, ICON_GLASS_SM } from '@/lib/icons';
 
 const valueIcons = {
   lightbulb: Lightbulb,
@@ -48,7 +48,7 @@ export default function AboutCoreValues() {
                 whileHover={{ y: -3 }}
                 className="group rounded-2xl border border-[#E2E8F0] bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-[0_12px_32px_-10px_rgba(27,90,174,0.12)]"
               >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-[#E2E8F0] bg-[#F8FBFF] transition-colors duration-300 group-hover:border-[#c5d9f0]">
+                <div className={`mb-4 ${ICON_GLASS_SM} transition-transform duration-300 group-hover:-translate-y-0.5`}>
                   <Icon className={getAboutValueIconColor(value.icon)} size={22} strokeWidth={1.75} />
                 </div>
                 <h3 className="font-bold text-[#0F172A] mb-2">{value.title}</h3>

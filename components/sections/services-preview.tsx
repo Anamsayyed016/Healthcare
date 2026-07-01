@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { services } from '@/lib/data/services';
-import { serviceIconMap } from '@/lib/icons';
+import { serviceIconMap, getServiceIconColor, ICON_GLASS_MD } from '@/lib/icons';
 
 export default function ServicesPreviewSection() {
   const featured = services.slice(0, 3);
@@ -39,10 +39,8 @@ export default function ServicesPreviewSection() {
                 transition={{ delay: index * 0.06 }}
                 className="premium-card-gradient flex flex-col p-6"
               >
-                <div
-                  className={`mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-linear-to-br shadow-[0_4px_12px_-4px_rgba(27,90,174,0.25)] ${service.iconBg ?? 'from-[#1B5AAE] to-[#3B82F6]'} text-white`}
-                >
-                  <Icon size={20} strokeWidth={1.75} />
+                <div className={`mb-4 ${ICON_GLASS_MD}`}>
+                  <Icon className={getServiceIconColor(service.icon)} size={20} strokeWidth={1.75} />
                 </div>
                 <h3 className="card-title mb-1">{service.shortTitle}</h3>
                 <p className="body-sm line-clamp-2">{service.description}</p>

@@ -10,11 +10,13 @@ import {
   WEBSITE_DISPLAY,
   BUSINESS_HOURS,
 } from '@/lib/contact';
+import { iconColor, ICON_GLASS_MD } from '@/lib/icons';
 
 const contactInfo = [
   {
     icon: MapPin,
     title: 'Office Address',
+    semantic: 'healthcare' as const,
     content: (
       <address className="not-italic text-sm text-slate-700 leading-relaxed">
         {OFFICE_ADDRESS.line1}
@@ -24,11 +26,11 @@ const contactInfo = [
         {OFFICE_ADDRESS.line3}
       </address>
     ),
-    color: 'from-blue-500 to-cyan-500',
   },
   {
     icon: Mail,
     title: 'Email',
+    semantic: 'support' as const,
     content: (
       <a
         href={EMAIL_HREF}
@@ -37,11 +39,11 @@ const contactInfo = [
         {EMAIL}
       </a>
     ),
-    color: 'from-emerald-500 to-teal-500',
   },
   {
     icon: Globe,
     title: 'Website',
+    semantic: 'healthcare' as const,
     content: (
       <a
         href={WEBSITE}
@@ -52,11 +54,11 @@ const contactInfo = [
         {WEBSITE_DISPLAY}
       </a>
     ),
-    color: 'from-purple-500 to-pink-500',
   },
   {
     icon: Clock,
     title: 'Business Hours',
+    semantic: 'support' as const,
     content: (
       <p className="text-sm text-slate-700 leading-relaxed">
         {BUSINESS_HOURS.days}
@@ -64,7 +66,6 @@ const contactInfo = [
         {BUSINESS_HOURS.time}
       </p>
     ),
-    color: 'from-orange-500 to-amber-500',
   },
 ];
 
@@ -100,10 +101,8 @@ export default function ContactInfoCards() {
             className="group"
           >
             <div className="h-full rounded-2xl border border-slate-200 bg-white p-6 shadow-lg hover:shadow-xl transition-all hover:border-slate-300">
-              <div
-                className={`w-12 h-12 rounded-xl bg-linear-to-br ${info.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
-              >
-                <Icon className="text-white" size={24} />
+              <div className={`mb-4 ${ICON_GLASS_MD} group-hover:-translate-y-0.5 transition-transform duration-300`}>
+                <Icon className={iconColor(info.semantic)} size={24} />
               </div>
               <h3 className="font-bold text-slate-900 mb-2">{info.title}</h3>
               {info.content}

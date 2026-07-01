@@ -9,7 +9,7 @@ import {
   Handshake,
 } from 'lucide-react';
 import { philosophyPillars } from '@/lib/data/leadership-page';
-import { iconColor } from '@/lib/icons';
+import { iconColor, ICON_GLASS_MD } from '@/lib/icons';
 
 const pillarIcons = [Target, Sparkles, ShieldCheck, TrendingUp, Handshake];
 
@@ -54,7 +54,7 @@ export default function LeadershipPhilosophy() {
                   transition={{ delay: index * 0.1 }}
                   className="relative text-center lg:text-center"
                 >
-                  <div className="relative z-10 w-14 h-14 rounded-2xl bg-white border border-[#E2E8F0] flex items-center justify-center mx-auto mb-4 shadow-sm">
+                  <div className={`relative z-10 mx-auto mb-4 ${ICON_GLASS_MD}`}>
                     <Icon className={pillarIconColors[index]} size={24} strokeWidth={1.75} />
                   </div>
                   <h3 className="font-bold text-[#0F172A] text-sm sm:text-base mb-2">

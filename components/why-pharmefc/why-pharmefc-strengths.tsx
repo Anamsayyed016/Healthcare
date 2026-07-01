@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { whyChooseReasons } from '@/lib/data/why-choose-us';
-import { whyChooseIconMap, getWhyChooseIconColor } from '@/lib/icons';
+import { whyChooseIconMap, getWhyChooseIconColor, ICON_GLASS_MD, ICON_GLASS_SM } from '@/lib/icons';
 import { bentoLayout, reasonKeyBenefits } from '@/lib/data/why-pharmefc-page';
 
 export default function WhyPharmefcStrengths() {
@@ -43,11 +43,7 @@ export default function WhyPharmefcStrengths() {
                     isLarge ? 'lg:p-8' : ''
                   }`}
                 >
-                  <div
-                    className={`rounded-xl bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center mb-5 ${
-                      isLarge ? 'w-14 h-14' : 'w-12 h-12'
-                    }`}
-                  >
+                  <div className={`mb-5 ${isLarge ? ICON_GLASS_MD : ICON_GLASS_SM}`}>
                     <Icon className={getWhyChooseIconColor(reason.icon)} size={isLarge ? 26 : 22} strokeWidth={1.75} />
                   </div>
                   <h3

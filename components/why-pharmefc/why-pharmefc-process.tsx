@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion';
 import { MessageSquare, ClipboardList, Rocket, HeadphonesIcon } from 'lucide-react';
 import { partnershipSteps } from '@/lib/data/why-pharmefc-page';
+import { iconColor, ICON_GLASS_MD, type IconSemantic } from '@/lib/icons';
 
 const stepIcons = [MessageSquare, ClipboardList, Rocket, HeadphonesIcon];
+const stepIconColors: IconSemantic[] = ['support', 'quality', 'innovation', 'support'];
 
 export default function WhyPharmefcProcess() {
   return (
@@ -37,8 +39,8 @@ export default function WhyPharmefcProcess() {
                   transition={{ delay: index * 0.1 }}
                   className="text-center"
                 >
-                  <div className="relative z-10 w-16 h-16 rounded-2xl bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center mx-auto mb-5 shadow-sm">
-                    <Icon className="text-pharm-blue-light" size={26} strokeWidth={1.75} />
+                  <div className={`relative z-10 mx-auto mb-5 ${ICON_GLASS_MD}`}>
+                    <Icon className={iconColor(stepIconColors[index])} size={26} strokeWidth={1.75} />
                   </div>
                   <span className="text-xs font-bold text-[#3B82F6] uppercase tracking-wider">
                     Step {step.step}

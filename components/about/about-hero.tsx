@@ -8,7 +8,7 @@ import {
   FloatingHeroIcon,
   HeroVisualCard,
 } from '@/components/sections/hero-visual-card';
-import { iconColor } from '@/lib/icons';
+import { iconColor, ICON_GLASS_XL, ICON_GLASS_PILL } from '@/lib/icons';
 import { heroCardFloat } from '@/lib/motion';
 
 function AboutHeroIllustration() {
@@ -27,13 +27,13 @@ function AboutHeroIllustration() {
         <div className="absolute -inset-4 rounded-[32px] bg-linear-to-br from-[#EFF6FF]/80 to-[#F0FDF4]/80 blur-sm" />
         <HeroVisualCard backgroundImage={ABOUT_HERO_DECOR_IMAGE} patternId="about-hero-grid">
           <div className="relative flex h-48 w-full items-center justify-center">
-            <div className="relative z-10 flex h-28 w-28 items-center justify-center rounded-2xl bg-linear-to-br from-[#2563EB] via-[#3B82F6] to-[#60A5FA] shadow-[0_12px_32px_-8px_rgba(27,90,174,0.38)] transition-shadow duration-500 hover:shadow-[0_16px_40px_-6px_rgba(27,90,174,0.42)]">
-              <Building2 className="text-white" size={48} strokeWidth={1.5} />
+            <div className={`relative z-10 ${ICON_GLASS_XL}`}>
+              <Building2 className={iconColor('healthcare')} size={48} strokeWidth={1.5} />
             </div>
             <FloatingHeroIcon
               amplitude={6}
               duration={4}
-              className="absolute top-2 left-4 z-20 flex h-12 w-12 items-center justify-center rounded-xl border border-[#E2E8F0] bg-white shadow-sm"
+              className="absolute top-2 left-4"
             >
               <FlaskConical className={iconColor('research')} size={22} />
             </FloatingHeroIcon>
@@ -42,7 +42,7 @@ function AboutHeroIllustration() {
               duration={4.5}
               delay={0.5}
               direction="down"
-              className="absolute bottom-4 right-4 z-20 flex h-12 w-12 items-center justify-center rounded-xl border border-[#E2E8F0] bg-white shadow-sm"
+              className="absolute bottom-4 right-4"
             >
               <Microscope className={iconColor('research')} size={22} />
             </FloatingHeroIcon>
@@ -50,7 +50,8 @@ function AboutHeroIllustration() {
               amplitude={5}
               duration={3.8}
               delay={1}
-              className="absolute top-6 right-8 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-[#E2E8F0] bg-[#F0FDF4]"
+              glassClass={ICON_GLASS_PILL}
+              className="absolute top-6 right-8 rounded-full"
             >
               <ShieldCheck className={iconColor('security')} size={18} />
             </FloatingHeroIcon>
