@@ -12,13 +12,87 @@ import {
   Microscope,
   Crown,
 } from 'lucide-react';
-import { iconColor, ICON_GLASS_LG, ICON_GLASS_SM, ICON_GLASS_PILL } from '@/lib/icons';
+import {
+  HeroVisualCard,
+  FloatingHeroIcon,
+  LEADERSHIP_HERO_DECOR_IMAGE,
+} from '@/components/sections/hero-visual-card';
+import { iconColor, ICON_GLASS_LG, ICON_GLASS_PILL } from '@/lib/icons';
+import { heroCardFloat } from '@/lib/motion';
 
 const trustHighlights = [
   'Experienced Leadership',
   'Ethical Governance',
   'Healthcare Excellence',
 ];
+
+function LeadershipHeroIllustration() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 24 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.7, delay: 0.15 }}
+      className="relative mx-auto w-full max-w-md lg:ml-auto"
+    >
+      <motion.div
+        animate={{ y: heroCardFloat.y }}
+        transition={heroCardFloat.transition}
+        className="relative"
+      >
+        <div className="absolute -inset-4 rounded-[32px] bg-linear-to-br from-[#EFF6FF]/80 to-[#F0FDF4]/80 blur-sm" />
+        <HeroVisualCard
+          backgroundImage={LEADERSHIP_HERO_DECOR_IMAGE}
+          patternId="leadership-hero-grid"
+          imageQuality={90}
+        >
+          <div className="relative flex aspect-[4/3] w-full max-h-64 items-center justify-center">
+            <div className={ICON_GLASS_LG}>
+              <Users className={iconColor('support')} size={42} strokeWidth={1.5} />
+            </div>
+            <FloatingHeroIcon
+              amplitude={5}
+              duration={4}
+              className="absolute top-3 left-6"
+            >
+              <Briefcase className={iconColor('support')} size={20} />
+            </FloatingHeroIcon>
+            <FloatingHeroIcon
+              amplitude={6}
+              duration={4.5}
+              delay={0.5}
+              direction="down"
+              className="absolute bottom-6 right-6"
+            >
+              <TrendingUp className={iconColor('innovation')} size={20} />
+            </FloatingHeroIcon>
+            <FloatingHeroIcon
+              amplitude={4}
+              duration={3.8}
+              delay={1}
+              glassClass={ICON_GLASS_PILL}
+              className="absolute top-8 right-10 rounded-full"
+            >
+              <Building2 className={iconColor('healthcare')} size={18} />
+            </FloatingHeroIcon>
+            <FloatingHeroIcon
+              amplitude={5}
+              duration={4.2}
+              delay={0.3}
+              direction="down"
+              glassClass={ICON_GLASS_PILL}
+              className="absolute bottom-12 left-10 rounded-full"
+            >
+              <Microscope className={iconColor('research')} size={18} />
+            </FloatingHeroIcon>
+          </div>
+          <p className="max-w-xs text-center text-sm leading-relaxed text-[#64748B]">
+            Visionary leadership for pharmaceutical and healthcare excellence.
+          </p>
+        </HeroVisualCard>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function LeadershipHero() {
   const scrollToTeam = () => {
@@ -87,55 +161,7 @@ export default function LeadershipHero() {
             </ul>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="relative max-w-md mx-auto lg:ml-auto w-full"
-          >
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative rounded-[28px] border border-[#E2E8F0] bg-white/90 backdrop-blur-sm shadow-[0_20px_60px_-24px_rgba(27,90,174,0.12)] p-8 overflow-hidden"
-            >
-              <div className="relative flex h-56 items-center justify-center">
-                <div className={ICON_GLASS_LG}>
-                  <Users className={iconColor('support')} size={42} strokeWidth={1.5} />
-                </div>
-                <motion.div
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                  className={`absolute top-3 left-6 ${ICON_GLASS_SM}`}
-                >
-                  <Briefcase className={iconColor('support')} size={20} />
-                </motion.div>
-                <motion.div
-                  animate={{ y: [0, 6, 0] }}
-                  transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                  className={`absolute bottom-6 right-6 ${ICON_GLASS_SM}`}
-                >
-                  <TrendingUp className={iconColor('innovation')} size={20} />
-                </motion.div>
-                <motion.div
-                  animate={{ y: [0, -4, 0] }}
-                  transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                  className={`absolute top-8 right-10 ${ICON_GLASS_PILL} rounded-full`}
-                >
-                  <Building2 className={iconColor('healthcare')} size={18} />
-                </motion.div>
-                <motion.div
-                  animate={{ y: [0, 5, 0] }}
-                  transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
-                  className={`absolute bottom-12 left-10 ${ICON_GLASS_PILL} rounded-full`}
-                >
-                  <Microscope className={iconColor('research')} size={18} />
-                </motion.div>
-              </div>
-              <p className="text-center text-sm text-[#64748B] mt-2">
-                Visionary leadership for pharmaceutical and healthcare excellence.
-              </p>
-            </motion.div>
-          </motion.div>
+          <LeadershipHeroIllustration />
         </div>
       </div>
     </section>

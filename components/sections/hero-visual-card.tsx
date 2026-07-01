@@ -204,3 +204,8 @@ export const SERVICES_HERO_DECOR_IMAGE = cloudinaryUrl(
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782908598/gem5_d5ix5g.png',
   960,
 );
+
+export const LEADERSHIP_HERO_DECOR_IMAGE = cloudinaryUrl(
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782910040/gem6_fqaom7.png',
+  960,
+);
