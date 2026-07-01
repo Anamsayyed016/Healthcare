@@ -16,8 +16,8 @@ export default function Logo({
     <Image
       src={PHARMEFC_LOGO_URL}
       alt="PharmEFC"
-      width={272}
-      height={64}
+      width={544}
+      height={128}
       className={className}
       priority={priority}
       style={{ width: 'auto', maxWidth: 'none' }}
