@@ -46,7 +46,7 @@ export default function Header() {
                   href={item.href}
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     active
-                      ? 'bg-blue-50 text-[#1E6FD9]'
+                      ? 'bg-[#F0F7FF] text-[#1B5AAE]'
                       : 'text-slate-900 hover:bg-slate-100'
                   }`}
                 >
@@ -59,7 +59,7 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-3">
             <Link
               href="/contact"
-              className="px-4 py-2 rounded-lg text-sm font-medium bg-linear-to-r from-[#4F9DF8] to-[#4ADE80] text-white hover:shadow-lg transition-all"
+              className="btn-pharm-primary-sm"
             >
               Get Started
             </Link>
@@ -92,7 +92,7 @@ export default function Header() {
                     onClick={() => setIsOpen(false)}
                     className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                       active
-                        ? 'bg-blue-50 text-[#1E6FD9]'
+                        ? 'bg-[#F0F7FF] text-[#1B5AAE]'
                         : 'text-slate-900 hover:bg-slate-100'
                     }`}
                   >

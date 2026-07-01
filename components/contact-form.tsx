@@ -16,7 +16,7 @@ export default function ContactForm({ className = '' }: { className?: string }) 
             type="text"
             required
             placeholder="Enter your full name"
-            className="w-full px-4 py-3 rounded-lg bg-white border border-blue-200 focus:outline-none focus:border-[#4F9DF8] transition-colors"
+            className="w-full px-4 py-3 rounded-lg bg-white border border-blue-200 focus:outline-none focus:border-[#1B5AAE] transition-colors"
           />
         </div>
 
@@ -30,7 +30,7 @@ export default function ContactForm({ className = '' }: { className?: string }) 
             type="email"
             required
             placeholder="Enter your email address"
-            className="w-full px-4 py-3 rounded-lg bg-white border border-blue-200 focus:outline-none focus:border-[#4F9DF8] transition-colors"
+            className="w-full px-4 py-3 rounded-lg bg-white border border-blue-200 focus:outline-none focus:border-[#1B5AAE] transition-colors"
           />
         </div>
 
@@ -43,7 +43,7 @@ export default function ContactForm({ className = '' }: { className?: string }) 
             name="phone"
             type="tel"
             placeholder="Enter your phone number"
-            className="w-full px-4 py-3 rounded-lg bg-white border border-blue-200 focus:outline-none focus:border-[#4F9DF8] transition-colors"
+            className="w-full px-4 py-3 rounded-lg bg-white border border-blue-200 focus:outline-none focus:border-[#1B5AAE] transition-colors"
           />
         </div>
 
@@ -57,7 +57,7 @@ export default function ContactForm({ className = '' }: { className?: string }) 
             type="text"
             required
             placeholder="Enter the subject"
-            className="w-full px-4 py-3 rounded-lg bg-white border border-blue-200 focus:outline-none focus:border-[#4F9DF8] transition-colors"
+            className="w-full px-4 py-3 rounded-lg bg-white border border-blue-200 focus:outline-none focus:border-[#1B5AAE] transition-colors"
           />
         </div>
 
@@ -71,13 +71,13 @@ export default function ContactForm({ className = '' }: { className?: string }) 
             rows={4}
             required
             placeholder="How can we help you?"
-            className="w-full px-4 py-3 rounded-lg bg-white border border-blue-200 focus:outline-none focus:border-[#4F9DF8] transition-colors resize-none"
+            className="w-full px-4 py-3 rounded-lg bg-white border border-blue-200 focus:outline-none focus:border-[#1B5AAE] transition-colors resize-none"
           />
         </div>
 
         <button
           type="submit"
-          className="w-full px-6 py-3 rounded-lg bg-linear-to-r from-[#4F9DF8] to-[#4ADE80] text-white font-semibold hover:shadow-lg transition-all"
+          className="w-full px-6 py-3 rounded-lg bg-linear-to-r from-[#1B5AAE] to-[#3B82F6] text-white font-semibold hover:shadow-lg transition-all"
         >
           Send Message
         </button>

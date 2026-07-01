@@ -12,7 +12,7 @@ export default function WhatsAppButton() {
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
-      className="fixed bottom-8 left-8 z-40 p-4 rounded-full bg-linear-to-br from-[#4F9DF8] to-[#4ADE80] text-white shadow-lg hover:shadow-xl transition-shadow"
+      className="fixed bottom-8 left-8 z-40 p-4 rounded-full bg-linear-to-br from-[#1B5AAE] to-[#3B82F6] text-white shadow-lg hover:shadow-xl transition-shadow"
       title="Email PharmEFC Healthcare"
       aria-label="Email PharmEFC Healthcare"
     >

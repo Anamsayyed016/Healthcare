@@ -34,7 +34,7 @@ export default function ContactHero() {
         }}
       />
       <div className="absolute top-14 left-1/4 w-80 h-80 rounded-full bg-[#3B82F6]/[0.04] blur-3xl pointer-events-none" />
-      <div className="absolute bottom-4 right-1/3 w-72 h-72 rounded-full bg-[#34D399]/[0.05] blur-3xl pointer-events-none" />
+      <div className="absolute bottom-4 right-1/3 w-72 h-72 rounded-full bg-[#D62839]/[0.05] blur-3xl pointer-events-none" />
 
       <svg
         className="absolute right-[8%] top-[32%] w-28 h-28 opacity-[0.03] pointer-events-none hidden lg:block"
@@ -72,7 +72,7 @@ export default function ContactHero() {
               <button
                 type="button"
                 onClick={scrollToForm}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-[14px] bg-[#3B82F6] text-white font-semibold shadow-[0_4px_14px_rgba(59,130,246,0.25)] hover:bg-[#2563EB] transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-[14px] bg-[#3B82F6] text-white font-semibold shadow-[0_4px_14px_rgba(27,90,174,0.25)] hover:bg-[#2563EB] transition-colors"
               >
                 Contact Our Team
                 <ArrowRight size={18} />
@@ -87,7 +87,7 @@ export default function ContactHero() {
             <ul className="space-y-2.5">
               {trustBadges.map((item) => (
                 <li key={item} className="flex items-center gap-2.5 text-sm text-[#64748B]">
-                  <CheckCircle2 className="text-[#34D399] shrink-0" size={18} />
+                  <CheckCircle2 className="text-[#D62839] shrink-0" size={18} />
                   {item}
                 </li>
               ))}
@@ -103,7 +103,7 @@ export default function ContactHero() {
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative rounded-[28px] border border-[#E2E8F0] bg-white/90 backdrop-blur-sm shadow-[0_20px_60px_-24px_rgba(59,130,246,0.12)] p-8 overflow-hidden"
+              className="relative rounded-[28px] border border-[#E2E8F0] bg-white/90 backdrop-blur-sm shadow-[0_20px_60px_-24px_rgba(27,90,174,0.12)] p-8 overflow-hidden"
             >
               <div className="relative h-56 flex items-center justify-center">
                 <div className="w-24 h-24 rounded-2xl bg-linear-to-br from-[#3B82F6] to-[#60A5FA] flex items-center justify-center shadow-lg">
@@ -121,7 +121,7 @@ export default function ContactHero() {
                   transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
                   className="absolute bottom-5 right-5 w-11 h-11 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
                 >
-                  <MessageSquare className="text-[#34D399]" size={20} />
+                  <MessageSquare className="text-[#D62839]" size={20} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, -4, 0] }}

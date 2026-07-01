@@ -38,7 +38,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
     <div className="space-y-4">
       <div className="group relative overflow-hidden rounded-[24px] border border-[#E2E8F0] bg-white shadow-[0_8px_32px_rgba(15,23,42,0.06)]">
         <div className="absolute inset-0 bg-linear-to-b from-[#F8FBFF] via-white to-[#F0F7FF]/50" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.12)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(27,90,174,0.12)_0%,transparent_70%)]" />
 
         <div className="relative flex min-h-[420px] items-center justify-center p-4 sm:min-h-[500px] lg:min-h-[600px] sm:p-6">
           {activeSrc ? (
@@ -48,7 +48,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
               className="relative h-[380px] w-full cursor-zoom-in transition-transform duration-500 ease-out group-hover:scale-[1.02] sm:h-[460px] lg:h-[540px]"
               aria-label={`View full size ${product.name} image`}
             >
-              <div className="absolute inset-[10%] rounded-3xl bg-white/50 shadow-[0_16px_48px_rgba(59,130,246,0.1)] blur-sm" />
+              <div className="absolute inset-[10%] rounded-3xl bg-white/50 shadow-[0_16px_48px_rgba(27,90,174,0.1)] blur-sm" />
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeSrc}
@@ -98,7 +98,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
               onClick={() => setSelected(index)}
               className={`relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 transition-all ${
                 selected === index
-                  ? 'border-[#3B82F6] shadow-[0_4px_12px_rgba(59,130,246,0.2)]'
+                  ? 'border-[#3B82F6] shadow-[0_4px_12px_rgba(27,90,174,0.2)]'
                   : 'border-[#E2E8F0] hover:border-[#93C5FD]'
               }`}
               aria-label={`View image ${index + 1}`}

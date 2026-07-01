@@ -147,7 +147,7 @@ export default function ProductsCatalogue() {
                     onClick={() => setCategory(cat)}
                     className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 ${
                       category === cat
-                        ? 'bg-[#3B82F6] text-white border-[#3B82F6] shadow-[0_2px_8px_rgba(59,130,246,0.3)]'
+                        ? 'bg-[#3B82F6] text-white border-[#3B82F6] shadow-[0_2px_8px_rgba(27,90,174,0.3)]'
                         : 'bg-white text-[#64748B] border-[#E2E8F0] hover:border-[#CBD5E1]'
                     }`}
                   >
@@ -263,7 +263,7 @@ export default function ProductsCatalogue() {
             <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-4 lg:justify-end">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-[14px] bg-[#3B82F6] text-white font-semibold hover:bg-[#2563EB] transition-colors shadow-[0_4px_14px_rgba(59,130,246,0.25)]"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-[14px] bg-[#3B82F6] text-white font-semibold hover:bg-[#2563EB] transition-colors shadow-[0_4px_14px_rgba(27,90,174,0.25)]"
               >
                 Contact Sales
                 <ArrowRight size={18} />

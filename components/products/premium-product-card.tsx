@@ -19,7 +19,7 @@ const variantConfig = {
     hoverY: -4,
     delayFactor: (index: number) => (index % 3) * 0.06,
     article:
-      'rounded-[22px] border border-[#E2E8F0] shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_32px_rgba(15,23,42,0.08)] hover:border-[#93C5FD]/60',
+      'rounded-[22px] border border-[#e2eaf3] shadow-[0_4px_20px_-8px_rgba(27,90,174,0.1)] hover:shadow-[0_16px_40px_-12px_rgba(27,90,174,0.16)] hover:border-[#c5d9f0]',
     imageSection: 'h-[250px] sm:h-[270px]',
     content: 'px-6 pb-7 pt-5',
     title: 'text-xl font-bold',
@@ -32,13 +32,13 @@ const variantConfig = {
     hoverY: -3,
     delayFactor: (index: number) => index * 0.05,
     article:
-      'rounded-[20px] border border-[#E5E7EB] shadow-[0_1px_2px_rgba(15,23,42,0.04)] hover:shadow-[0_8px_24px_rgba(15,23,42,0.06)] hover:border-[#CBD5E1]',
+      'rounded-[20px] border border-[#e2eaf3] shadow-[0_4px_16px_-8px_rgba(27,90,174,0.08)] hover:shadow-[0_12px_32px_-10px_rgba(27,90,174,0.14)] hover:border-[#c5d9f0]',
     imageSection: 'h-[230px] sm:h-[250px]',
     content: 'px-5 sm:px-6 pb-6 sm:pb-7 pt-4',
     title: 'text-xl font-semibold',
     learnMore:
       'rounded-lg bg-white text-[#0F172A] text-sm font-medium border border-[#E2E8F0] hover:border-[#CBD5E1] hover:bg-[#F8FBFF]',
-    enquiry: 'rounded-lg bg-[#1E6FD9] text-white text-sm font-medium hover:bg-[#1a63c4]',
+    enquiry: 'rounded-lg bg-[#1B5AAE] text-white text-sm font-medium hover:bg-[#144785]',
   },
 };
 
@@ -87,7 +87,7 @@ export default function PremiumProductCard({
                 key={item}
                 className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#F8FBFF] border border-[#E2E8F0] text-[11px] font-medium text-[#475569]"
               >
-                <Check size={11} className="text-[#34D399] shrink-0" />
+                <Check size={11} className="text-[#D62839] shrink-0" />
                 {item}
               </span>
             ))}

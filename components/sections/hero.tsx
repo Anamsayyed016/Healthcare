@@ -44,7 +44,7 @@ function HeroIllustration() {
         className="relative"
       >
         <div className="absolute -inset-4 rounded-[32px] bg-linear-to-br from-[#EFF6FF]/80 to-[#F0FDF4]/80 blur-sm" />
-        <div className="relative rounded-[28px] border border-[#E2E8F0] bg-white/80 backdrop-blur-sm shadow-[0_24px_64px_-24px_rgba(59,130,246,0.18)] p-8 sm:p-10 overflow-hidden">
+        <div className="relative rounded-[28px] border border-[#E2E8F0] bg-white/80 backdrop-blur-sm shadow-[0_24px_64px_-24px_rgba(27,90,174,0.18)] p-8 sm:p-10 overflow-hidden">
           <svg
             className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none"
             xmlns="http://www.w3.org/2000/svg"
@@ -76,21 +76,21 @@ function HeroIllustration() {
                 transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
                 className="absolute bottom-6 right-6 w-14 h-14 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
               >
-                <Microscope className="text-[#34D399]" size={26} />
+                <Microscope className="text-[#D62839]" size={26} />
               </motion.div>
               <motion.div
                 animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
                 className="absolute top-8 right-8 w-12 h-12 rounded-full bg-[#F0FDF4] border border-[#E2E8F0] flex items-center justify-center"
               >
-                <ShieldCheck className="text-[#34D399]" size={22} />
+                <ShieldCheck className="text-[#D62839]" size={22} />
               </motion.div>
             </div>
 
             <div className="grid grid-cols-3 gap-3 w-full">
               {[
                 { label: 'Pharmaceuticals', icon: Pill, color: 'text-[#3B82F6]' },
-                { label: 'Innovation', icon: Sparkles, color: 'text-[#34D399]' },
+                { label: 'Innovation', icon: Sparkles, color: 'text-[#D62839]' },
                 { label: 'Quality Care', icon: ShieldCheck, color: 'text-[#3B82F6]' },
               ].map((item) => (
                 <div
@@ -120,7 +120,7 @@ export default function HeroSection() {
         }}
       />
       <div className="absolute top-0 right-0 w-[32rem] h-[32rem] rounded-full bg-[#3B82F6]/[0.06] blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-[#34D399]/[0.08] blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-[#D62839]/[0.08] blur-3xl pointer-events-none" />
       <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-[#EFF6FF] blur-2xl opacity-60 pointer-events-none" />
 
       <svg
@@ -142,11 +142,9 @@ export default function HeroSection() {
             className="max-w-xl text-left"
           >
             <motion.div variants={itemVariants} className="mb-6">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F8FBFF] border border-[#E2E8F0]">
-                <Pill size={16} className="text-[#3B82F6]" />
-                <span className="text-sm font-semibold text-[#3B82F6]">
-                  PharmEFC Healthcare
-                </span>
+              <div className="section-eyebrow">
+                <Pill size={16} className="text-[#1B5AAE]" />
+                <span>PharmEFC Healthcare</span>
               </div>
             </motion.div>
 
@@ -159,7 +157,7 @@ export default function HeroSection() {
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-[#3B82F6] to-[#60A5FA]">
                   Trusted Healthcare
                 </span>{' '}
-                <span className="text-transparent bg-clip-text bg-linear-to-r from-[#34D399] to-[#6EE7B7]">
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-[#1B5AAE] to-[#60A5FA]">
                   Solutions.
                 </span>
               </span>
@@ -175,20 +173,14 @@ export default function HeroSection() {
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 mb-10">
-              <button
-                type="button"
-                className="group px-7 py-3.5 rounded-[14px] bg-[#3B82F6] text-white font-semibold flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(59,130,246,0.25)] hover:bg-[#2563EB] transition-colors duration-200"
-              >
+              <button type="button" className="btn-pharm-primary group px-7 py-3.5">
                 Schedule Consultation
                 <ArrowRight
                   size={18}
                   className="group-hover:translate-x-0.5 transition-transform duration-200"
                 />
               </button>
-              <button
-                type="button"
-                className="px-7 py-3.5 rounded-[14px] bg-white border border-[#3B82F6]/30 text-[#3B82F6] font-semibold hover:bg-[#F8FBFF] hover:border-[#3B82F6]/50 transition-colors duration-200"
-              >
+              <button type="button" className="btn-pharm-secondary px-7 py-3.5">
                 Explore Services
               </button>
             </motion.div>
@@ -199,7 +191,7 @@ export default function HeroSection() {
                   key={item}
                   className="flex items-center gap-2.5 text-sm text-[#64748B]"
                 >
-                  <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-[#34D399]" />
+                  <span className="accent-dot-red" />
                   <span>{item}</span>
                 </div>
               ))}

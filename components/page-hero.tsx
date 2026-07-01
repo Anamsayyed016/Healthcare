@@ -30,7 +30,7 @@ export default function PageHero({
           className={`space-y-6 max-w-3xl ${align === 'center' ? 'mx-auto' : ''}`}
         >
           {eyebrow && (
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#4ADE80]">
+            <p className="text-sm font-semibold uppercase tracking-widest text-[#D62839]">
               {eyebrow}
             </p>
           )}

@@ -59,9 +59,9 @@ export default function WhyPharmefcComparison() {
                 <div className="w-px h-full bg-[#E2E8F0]" />
               </div>
 
-              <div className="rounded-[20px] bg-white border border-[#93C5FD]/40 p-5 flex gap-3 shadow-[0_2px_8px_rgba(59,130,246,0.06)]">
+              <div className="rounded-[20px] bg-white border border-[#93C5FD]/40 p-5 flex gap-3 shadow-[0_2px_8px_rgba(27,90,174,0.06)]">
                 <div className="shrink-0 w-8 h-8 rounded-lg bg-[#F0FDF4] flex items-center justify-center">
-                  <Check className="text-[#34D399]" size={16} />
+                  <Check className="text-[#D62839]" size={16} />
                 </div>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider text-[#3B82F6] mb-1 lg:hidden">

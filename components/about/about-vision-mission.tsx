@@ -24,7 +24,7 @@ export default function AboutVisionMission() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             whileHover={{ y: -4 }}
-            className="relative overflow-hidden rounded-[24px] border-l-4 border-l-[#3B82F6] border border-[#E2E8F0] bg-linear-to-br from-[#F8FBFF] to-white p-8 sm:p-10 shadow-[0_8px_30px_-12px_rgba(59,130,246,0.15)]"
+            className="relative overflow-hidden rounded-[24px] border-l-4 border-l-[#3B82F6] border border-[#E2E8F0] bg-linear-to-br from-[#F8FBFF] to-white p-8 sm:p-10 shadow-[0_8px_30px_-12px_rgba(27,90,174,0.15)]"
           >
             <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#3B82F6]/[0.05] -translate-y-1/2 translate-x-1/2" />
             <div className="relative">
@@ -44,9 +44,9 @@ export default function AboutVisionMission() {
             whileHover={{ y: -4 }}
             className="relative overflow-hidden rounded-[24px] border-l-4 border-l-[#34D399] border border-[#E2E8F0] bg-linear-to-br from-[#F0FDF4]/50 to-white p-8 sm:p-10 shadow-[0_8px_30px_-12px_rgba(52,211,153,0.12)]"
           >
-            <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#34D399]/[0.06] -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#D62839]/[0.06] -translate-y-1/2 translate-x-1/2" />
             <div className="relative">
-              <div className="w-16 h-16 rounded-2xl bg-[#34D399] flex items-center justify-center mb-6 shadow-lg shadow-emerald-200/40">
+              <div className="w-16 h-16 rounded-2xl bg-[#D62839] flex items-center justify-center mb-6 shadow-lg shadow-emerald-200/40">
                 <Target className="text-white" size={32} strokeWidth={1.5} />
               </div>
               <h3 className="text-2xl font-bold text-[#0F172A] mb-4">Our Mission</h3>

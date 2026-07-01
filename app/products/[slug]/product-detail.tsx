@@ -93,7 +93,7 @@ export default function ProductDetailContent({ product }: { product: Product }) 
                   <ul className="space-y-2">
                     {product.benefits.slice(0, 4).map((item) => (
                       <li key={item} className="flex items-start gap-2 text-sm text-[#64748B]">
-                        <CheckCircle2 size={15} className="text-[#34D399] shrink-0 mt-0.5" />
+                        <CheckCircle2 size={15} className="text-[#D62839] shrink-0 mt-0.5" />
                         {item}
                       </li>
                     ))}
@@ -120,7 +120,7 @@ export default function ProductDetailContent({ product }: { product: Product }) 
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-[12px] bg-[#3B82F6] text-white font-semibold hover:bg-[#2563EB] transition-colors shadow-[0_4px_14px_rgba(59,130,246,0.25)]"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-[12px] bg-[#3B82F6] text-white font-semibold hover:bg-[#2563EB] transition-colors shadow-[0_4px_14px_rgba(27,90,174,0.25)]"
                 >
                   Product Enquiry
                   <ArrowRight size={18} />
@@ -188,7 +188,7 @@ export default function ProductDetailContent({ product }: { product: Product }) 
                 className="flex items-start gap-4 rounded-[16px] border border-[#E2E8F0] bg-white p-5"
               >
                 <div className="shrink-0 w-10 h-10 rounded-xl bg-[#F0FDF4] border border-[#BBF7D0]/60 flex items-center justify-center">
-                  <CheckCircle2 className="text-[#34D399]" size={20} />
+                  <CheckCircle2 className="text-[#D62839]" size={20} />
                 </div>
                 <p className="text-[#64748B] leading-relaxed pt-1.5">{benefit}</p>
               </motion.div>

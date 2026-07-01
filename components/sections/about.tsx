@@ -30,7 +30,7 @@ export default function AboutSection() {
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center space-y-4">
             <h2 className="text-4xl sm:text-5xl font-bold text-slate-900">
-              About <span className="text-[#4F9DF8]">HealthCare+</span>
+              About <span className="text-[#1B5AAE]">HealthCare+</span>
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               Leading innovation in healthcare and pharmaceutical excellence
@@ -64,14 +64,14 @@ export default function AboutSection() {
               variants={itemVariants}
               className="relative"
             >
-              <div className="absolute inset-0 bg-linear-to-br from-[#4F9DF8]/20 to-[#4ADE80]/20 rounded-3xl blur-2xl"></div>
+              <div className="absolute inset-0 bg-linear-to-br from-[#1B5AAE]/20 to-[#3B82F6]/20 rounded-3xl blur-2xl"></div>
               <div className="relative bg-linear-to-br from-blue-50 to-emerald-50 rounded-3xl p-12 border border-blue-100/50 shadow-xl">
                 <div className="space-y-6">
                   <div className="text-center">
-                    <div className="text-5xl font-bold text-[#4F9DF8]">25+</div>
+                    <div className="text-5xl font-bold text-[#1B5AAE]">25+</div>
                     <p className="text-muted-foreground mt-2">Years of Excellence</p>
                   </div>
-                  <div className="h-1 bg-linear-to-r from-[#4F9DF8] to-[#4ADE80] rounded-full"></div>
+                  <div className="h-1 bg-linear-to-r from-[#1B5AAE] to-[#3B82F6] rounded-full"></div>
                   <p className="text-center text-sm text-foreground">
                     Serving millions of patients worldwide with trust and integrity
                   </p>

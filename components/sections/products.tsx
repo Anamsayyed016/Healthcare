@@ -82,7 +82,7 @@ export default function ProductsSection() {
               >
                 <div className="flex items-start justify-between gap-4 mb-8">
                   <div className="w-11 h-11 rounded-full bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center shrink-0">
-                    <Icon className="text-[#1E6FD9]" size={20} strokeWidth={1.75} />
+                    <Icon className="text-[#1B5AAE]" size={20} strokeWidth={1.75} />
                   </div>
                   <span className="text-[11px] font-medium uppercase tracking-wider text-[#64748B] pt-1">
                     {product.category}
@@ -107,7 +107,7 @@ export default function ProductsSection() {
                   </button>
                   <Link
                     href="/contact"
-                    className="flex-1 px-4 py-2.5 rounded-lg bg-[#1E6FD9] text-white text-sm font-medium flex items-center justify-center gap-2 hover:bg-[#1a63c4] transition-colors duration-200 group/btn"
+                    className="flex-1 px-4 py-2.5 rounded-lg bg-[#1B5AAE] text-white text-sm font-medium flex items-center justify-center gap-2 hover:bg-[#144785] transition-colors duration-200 group/btn"
                   >
                     Enquiry
                     <ArrowRight
@@ -130,7 +130,7 @@ export default function ProductsSection() {
         >
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 rounded-[20px] border border-[#E2E8F0] bg-[#F8FBFF] px-7 py-8 sm:px-10 sm:py-9">
             <div className="shrink-0 w-12 h-12 rounded-full bg-white border border-[#E2E8F0] flex items-center justify-center">
-              <ShieldCheck className="text-[#1E6FD9]" size={22} strokeWidth={1.75} />
+              <ShieldCheck className="text-[#1B5AAE]" size={22} strokeWidth={1.75} />
             </div>
             <div>
               <h3 className="text-lg sm:text-xl font-semibold text-[#0F172A] mb-2">

@@ -144,7 +144,7 @@ export default function ContactEnquiryForm() {
       <div className="flex flex-col sm:flex-row gap-3 pt-2">
         <button
           type="submit"
-          className="flex-1 px-6 py-3.5 rounded-[14px] bg-[#3B82F6] text-white font-semibold hover:bg-[#2563EB] shadow-[0_4px_14px_rgba(59,130,246,0.2)] transition-colors"
+          className="flex-1 px-6 py-3.5 rounded-[14px] bg-[#3B82F6] text-white font-semibold hover:bg-[#2563EB] shadow-[0_4px_14px_rgba(27,90,174,0.2)] transition-colors"
         >
           Submit Enquiry
         </button>

@@ -8,11 +8,12 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground [a]:hover:bg-primary/80',
+        default:
+          'bg-linear-to-r from-[#1B5AAE] to-[#3B82F6] text-white shadow-[0_2px_12px_-2px_rgba(27,90,174,0.35)] hover:from-[#144785] hover:to-[#2563EB] hover:shadow-[0_6px_20px_-4px_rgba(27,90,174,0.4)] [a]:hover:from-[#144785]',
         outline:
-          'border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
+          'border-[#1B5AAE]/35 bg-background text-[#1B5AAE] hover:border-[#1B5AAE]/60 hover:bg-[#F0F7FF] hover:text-[#144785] aria-expanded:bg-[#F0F7FF] aria-expanded:text-[#144785] dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
         secondary:
-          'bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground',
+          'bg-[#F0F7FF] text-[#1B5AAE] hover:bg-[#E0EFFE] aria-expanded:bg-[#E0EFFE] aria-expanded:text-[#1B5AAE]',
         ghost:
           'hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50',
         destructive:

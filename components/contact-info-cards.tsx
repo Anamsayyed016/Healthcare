@@ -32,7 +32,7 @@ const contactInfo = [
     content: (
       <a
         href={EMAIL_HREF}
-        className="text-sm text-[#4F9DF8] hover:underline font-medium"
+        className="text-sm text-[#1B5AAE] hover:underline font-medium"
       >
         {EMAIL}
       </a>
@@ -47,7 +47,7 @@ const contactInfo = [
         href={WEBSITE}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-sm text-[#4F9DF8] hover:underline font-medium"
+        className="text-sm text-[#1B5AAE] hover:underline font-medium"
       >
         {WEBSITE_DISPLAY}
       </a>

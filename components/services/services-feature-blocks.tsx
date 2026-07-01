@@ -87,7 +87,7 @@ function FeatureContent({
         <ul className="space-y-2">
           {feature.benefits.map((b) => (
             <li key={b} className="flex items-start gap-2.5 text-sm text-[#64748B]">
-              <CheckCircle2 className="text-[#34D399] shrink-0 mt-0.5" size={16} />
+              <CheckCircle2 className="text-[#D62839] shrink-0 mt-0.5" size={16} />
               {b}
             </li>
           ))}

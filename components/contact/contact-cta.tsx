@@ -30,7 +30,7 @@ export default function ContactCta() {
             <button
               type="button"
               onClick={scrollToForm}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-[14px] bg-[#3B82F6] text-white font-semibold shadow-[0_4px_14px_rgba(59,130,246,0.25)] hover:bg-[#2563EB] transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-[14px] bg-[#3B82F6] text-white font-semibold shadow-[0_4px_14px_rgba(27,90,174,0.25)] hover:bg-[#2563EB] transition-colors"
             >
               Send an Enquiry
               <ArrowRight size={18} />

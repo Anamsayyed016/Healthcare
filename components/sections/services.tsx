@@ -33,7 +33,7 @@ const services: Service[] = [
     icon: Globe2,
     span: 'lg:col-span-2 lg:row-span-2',
     accent: 'from-sky-50/90 via-white to-emerald-50/80',
-    iconBg: 'from-[#4F9DF8] to-[#38BDF8]',
+    iconBg: 'from-[#1B5AAE] to-[#3B82F6]',
   },
   {
     title: 'Healthcare Consultancy',
@@ -42,7 +42,7 @@ const services: Service[] = [
     icon: Briefcase,
     span: 'lg:col-span-1',
     accent: 'from-white via-[#F8FBFF] to-sky-50/70',
-    iconBg: 'from-[#6366F1] to-[#4F9DF8]',
+    iconBg: 'from-[#6366F1] to-[#1B5AAE]',
   },
   {
     title: 'Hospital Planning & Development',
@@ -51,7 +51,7 @@ const services: Service[] = [
     icon: Building2,
     span: 'lg:col-span-1',
     accent: 'from-[#F4FFF7]/80 via-white to-sky-50/60',
-    iconBg: 'from-[#34D399] to-[#4ADE80]',
+    iconBg: 'from-[#34D399] to-[#3B82F6]',
   },
   {
     title: 'NABH Accreditation Support',
@@ -60,7 +60,7 @@ const services: Service[] = [
     icon: BadgeCheck,
     span: 'lg:col-span-1',
     accent: 'from-white via-[#F8FBFF] to-emerald-50/50',
-    iconBg: 'from-[#2DD4BF] to-[#4ADE80]',
+    iconBg: 'from-[#2DD4BF] to-[#3B82F6]',
   },
   {
     title: 'Quality Management Systems',
@@ -69,7 +69,7 @@ const services: Service[] = [
     icon: ClipboardCheck,
     span: 'lg:col-span-1',
     accent: 'from-sky-50/70 via-white to-[#F4FFF7]/60',
-    iconBg: 'from-[#4F9DF8] to-[#7DD3FC]',
+    iconBg: 'from-[#1B5AAE] to-[#7DD3FC]',
   },
   {
     title: 'Healthcare Audits',
@@ -78,7 +78,7 @@ const services: Service[] = [
     icon: SearchCheck,
     span: 'lg:col-span-1',
     accent: 'from-white to-[#F8FBFF]',
-    iconBg: 'from-[#818CF8] to-[#4F9DF8]',
+    iconBg: 'from-[#818CF8] to-[#1B5AAE]',
   },
   {
     title: 'Clinical Process Optimization',
@@ -87,7 +87,7 @@ const services: Service[] = [
     icon: Workflow,
     span: 'lg:col-span-1',
     accent: 'from-[#F4FFF7]/70 via-white to-sky-50/50',
-    iconBg: 'from-[#22D3EE] to-[#4F9DF8]',
+    iconBg: 'from-[#22D3EE] to-[#1B5AAE]',
   },
   {
     title: 'Telemedicine Services',
@@ -105,7 +105,7 @@ const services: Service[] = [
     icon: GraduationCap,
     span: 'lg:col-span-1',
     accent: 'from-white via-[#F8FBFF] to-sky-50/70',
-    iconBg: 'from-[#F472B6] to-[#4F9DF8]',
+    iconBg: 'from-[#F472B6] to-[#1B5AAE]',
   },
   {
     title: 'Hospital Operations Improvement',
@@ -114,7 +114,7 @@ const services: Service[] = [
     icon: Settings2,
     span: 'lg:col-span-2',
     accent: 'from-[#F8FBFF] via-white to-[#F4FFF7]/90',
-    iconBg: 'from-[#4F9DF8] to-[#4ADE80]',
+    iconBg: 'from-[#1B5AAE] to-[#3B82F6]',
   },
 ];
 
@@ -151,13 +151,13 @@ export default function ServicesSection() {
           transition={{ duration: 0.7 }}
           className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 lg:mb-24"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-sky-100 text-sm font-semibold text-[#4F9DF8] mb-6 shadow-sm">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-sky-100 text-sm font-semibold text-[#1B5AAE] mb-6 shadow-sm">
             <Settings2 size={16} />
             Expert Solutions
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight mb-6">
             Healthcare{' '}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4F9DF8] to-[#4ADE80]">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#1B5AAE] to-[#3B82F6]">
               Services
             </span>
           </h2>
@@ -188,7 +188,7 @@ export default function ServicesSection() {
               >
                 <div className="absolute -inset-px rounded-[28px] bg-linear-to-br from-sky-300/40 to-emerald-300/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div
-                  className={`relative h-full min-h-[220px] rounded-[28px] bg-linear-to-br ${service.accent} border border-white/90 backdrop-blur-md shadow-[0_10px_40px_-16px_rgba(79,157,248,0.15)] group-hover:shadow-[0_24px_56px_-20px_rgba(79,157,248,0.25)] transition-all duration-500 p-7 sm:p-8 flex flex-col`}
+                  className={`relative h-full min-h-[220px] rounded-[28px] bg-linear-to-br ${service.accent} border border-white/90 backdrop-blur-md shadow-[0_10px_40px_-16px_rgba(27,90,174,0.15)] group-hover:shadow-[0_24px_56px_-20px_rgba(27,90,174,0.25)] transition-all duration-500 p-7 sm:p-8 flex flex-col`}
                 >
                   <div className="flex items-start justify-between mb-6">
                     <motion.div
@@ -199,7 +199,7 @@ export default function ServicesSection() {
                       <Icon className="text-white" size={isFeatured ? 30 : 26} strokeWidth={1.75} />
                     </motion.div>
                     <span className="w-9 h-9 rounded-xl bg-white/70 border border-sky-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0 translate-x-2">
-                      <ArrowUpRight size={18} className="text-[#4F9DF8]" />
+                      <ArrowUpRight size={18} className="text-[#1B5AAE]" />
                     </span>
                   </div>
 
@@ -218,7 +218,7 @@ export default function ServicesSection() {
                     {service.description}
                   </p>
 
-                  <div className="mt-6 h-1 w-12 rounded-full bg-linear-to-r from-[#4F9DF8] to-[#4ADE80] opacity-60 group-hover:w-20 group-hover:opacity-100 transition-all duration-500" />
+                  <div className="mt-6 h-1 w-12 rounded-full bg-linear-to-r from-[#1B5AAE] to-[#3B82F6] opacity-60 group-hover:w-20 group-hover:opacity-100 transition-all duration-500" />
                 </div>
               </motion.article>
             );

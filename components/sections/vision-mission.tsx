@@ -20,7 +20,7 @@ export default function VisionMissionSection() {
           className="text-center space-y-4 mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-slate-900">
-            Vision & <span className="text-[#4F9DF8]">Mission</span>
+            Vision & <span className="text-[#1B5AAE]">Mission</span>
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             Our commitment to excellence and patient care
@@ -38,7 +38,7 @@ export default function VisionMissionSection() {
             className="group"
           >
             <div className="h-full rounded-3xl border border-blue-100 bg-white p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:border-blue-200">
-              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#4F9DF8] to-[#BAE6FD] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#1B5AAE] to-[#BAE6FD] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Lightbulb className="text-white" size={32} />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-4">Vision</h3>

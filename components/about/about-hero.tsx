@@ -16,7 +16,7 @@ function AboutHeroIllustration() {
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-        className="relative rounded-[28px] border border-[#E2E8F0] bg-white/90 backdrop-blur-sm shadow-[0_20px_60px_-24px_rgba(59,130,246,0.2)] p-8 overflow-hidden"
+        className="relative rounded-[28px] border border-[#E2E8F0] bg-white/90 backdrop-blur-sm shadow-[0_20px_60px_-24px_rgba(27,90,174,0.2)] p-8 overflow-hidden"
       >
         <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-[#F0FDF4] opacity-80" />
         <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#EFF6FF] opacity-80" />
@@ -31,7 +31,7 @@ function AboutHeroIllustration() {
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               className="absolute top-2 left-4 w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
             >
-              <FlaskConical className="text-[#34D399]" size={22} />
+              <FlaskConical className="text-[#D62839]" size={22} />
             </motion.div>
             <motion.div
               animate={{ y: [0, 6, 0] }}
@@ -45,7 +45,7 @@ function AboutHeroIllustration() {
               transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
               className="absolute top-6 right-8 w-10 h-10 rounded-full bg-[#F0FDF4] border border-[#E2E8F0] flex items-center justify-center"
             >
-              <ShieldCheck className="text-[#34D399]" size={18} />
+              <ShieldCheck className="text-[#D62839]" size={18} />
             </motion.div>
           </div>
           <p className="text-center text-sm text-[#64748B] max-w-xs">
@@ -68,7 +68,7 @@ export default function AboutHero() {
         }}
       />
       <div className="absolute top-10 right-1/4 w-72 h-72 rounded-full bg-[#3B82F6]/[0.05] blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-[#34D399]/[0.06] blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-[#D62839]/[0.06] blur-3xl pointer-events-none" />
 
       <svg
         className="absolute left-[5%] top-[20%] w-32 h-32 opacity-[0.04] pointer-events-none"
@@ -105,7 +105,7 @@ export default function AboutHero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/products"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-[14px] bg-[#3B82F6] text-white font-semibold shadow-[0_4px_14px_rgba(59,130,246,0.25)] hover:bg-[#2563EB] transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-[14px] bg-[#3B82F6] text-white font-semibold shadow-[0_4px_14px_rgba(27,90,174,0.25)] hover:bg-[#2563EB] transition-colors"
               >
                 Explore Products
                 <ArrowRight size={18} />

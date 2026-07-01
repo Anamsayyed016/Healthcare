@@ -28,7 +28,7 @@ export default function AboutStory() {
             <ul className="space-y-3">
               {aboutContent.highlights.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-[#0F172A]">
-                  <CheckCircle2 className="text-[#34D399] shrink-0 mt-0.5" size={20} />
+                  <CheckCircle2 className="text-[#D62839] shrink-0 mt-0.5" size={20} />
                   <span>{item}</span>
                 </li>
               ))}
@@ -46,7 +46,7 @@ export default function AboutStory() {
               </div>
               <div className="p-5 rounded-2xl bg-[#F0FDF4]/60 border border-[#E2E8F0]">
                 <div className="flex items-center gap-2 mb-2">
-                  <Target className="text-[#34D399]" size={20} />
+                  <Target className="text-[#D62839]" size={20} />
                   <h3 className="font-semibold text-[#0F172A]">Mission</h3>
                 </div>
                 <p className="text-sm text-[#64748B] leading-relaxed line-clamp-4">

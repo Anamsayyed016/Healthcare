@@ -14,7 +14,7 @@ export default function WhyChooseUsSection({ preview = false }: WhyChooseUsSecti
   const items = preview ? whyChooseReasons.slice(0, 3) : whyChooseReasons;
 
   return (
-    <section className="relative py-24 sm:py-32 lg:py-40 bg-[#F4FFF7] overflow-hidden">
+    <section className="relative py-24 sm:py-32 lg:py-40 bg-[#fafcff] overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-40">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(90vw,56rem)] h-[min(90vw,56rem)] rounded-full border border-emerald-200/40" />
       </div>
@@ -28,7 +28,7 @@ export default function WhyChooseUsSection({ preview = false }: WhyChooseUsSecti
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 tracking-tight mb-6">
             Why Choose{' '}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4F9DF8] to-[#4ADE80]">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#1B5AAE] to-[#3B82F6]">
               PharmEFC
             </span>
           </h2>
@@ -60,9 +60,9 @@ export default function WhyChooseUsSection({ preview = false }: WhyChooseUsSecti
                 whileHover={{ y: -6 }}
                 className={`group relative ${preview ? '' : reason.position}`}
               >
-                <div className="relative h-full rounded-[28px] bg-white/80 backdrop-blur-sm border border-white shadow-[0_12px_48px_-16px_rgba(52,211,153,0.12)] group-hover:shadow-[0_24px_64px_-20px_rgba(79,157,248,0.15)] transition-all duration-500 p-8">
+                <div className="relative h-full rounded-[28px] bg-white/80 backdrop-blur-sm border border-white shadow-[0_12px_48px_-16px_rgba(52,211,153,0.12)] group-hover:shadow-[0_24px_64px_-20px_rgba(27,90,174,0.15)] transition-all duration-500 p-8">
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-[#4F9DF8] to-[#4ADE80] flex items-center justify-center mb-5">
+                    <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-[#1B5AAE] to-[#3B82F6] flex items-center justify-center mb-5">
                       <Icon className="text-white" size={26} strokeWidth={1.75} />
                     </div>
                     <h3 className="text-lg font-bold text-slate-900 mb-3">{reason.title}</h3>
@@ -77,7 +77,7 @@ export default function WhyChooseUsSection({ preview = false }: WhyChooseUsSecti
         <div className="text-center mt-12 sm:mt-16">
           <Link
             href={preview ? '/why-pharmefc' : '/contact'}
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-[24px] bg-linear-to-r from-[#4F9DF8] to-[#4ADE80] text-white font-semibold hover:shadow-lg transition-all group"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-[24px] bg-linear-to-r from-[#1B5AAE] to-[#3B82F6] text-white font-semibold hover:shadow-lg transition-all group"
           >
             {preview ? 'Discover Why PharmEFC' : 'Experience the Difference'}
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />

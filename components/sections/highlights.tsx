@@ -7,29 +7,30 @@ export default function HighlightsSection() {
     {
       number: '25+',
       label: 'Years of Excellence',
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-[#1B5AAE] to-[#3B82F6]',
     },
     {
       number: '500K+',
       label: 'Lives Impacted',
-      color: 'from-emerald-500 to-teal-500',
+      color: 'from-[#2563EB] to-[#60A5FA]',
     },
     {
       number: '50+',
       label: 'Healthcare Products',
-      color: 'from-purple-500 to-pink-500',
+      color: 'from-[#144785] to-[#1B5AAE]',
     },
     {
       number: '98%',
       label: 'Patient Satisfaction',
-      color: 'from-orange-500 to-red-500',
+      color: 'from-[#D62839] to-[#EF4444]',
     },
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <section className="section-shell section-bg-muted-blue relative overflow-hidden">
+      <div className="pharm-glow-blue left-1/2 top-0 h-48 w-96 -translate-x-1/2" />
+      <div className="section-container relative">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {highlights.map((highlight, i) => (
             <motion.div
               key={i}
@@ -37,15 +38,15 @@ export default function HighlightsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="text-center"
+              className="premium-card p-6 text-center"
             >
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                className={`text-4xl sm:text-5xl font-bold bg-linear-to-r ${highlight.color} bg-clip-text text-transparent mb-3`}
+                whileHover={{ scale: 1.03 }}
+                className={`mb-3 text-4xl font-bold sm:text-5xl bg-linear-to-r ${highlight.color} bg-clip-text text-transparent`}
               >
                 {highlight.number}
               </motion.div>
-              <p className="text-sm sm:text-base font-semibold text-slate-700">
+              <p className="text-sm font-semibold text-[#475569] sm:text-base">
                 {highlight.label}
               </p>
             </motion.div>

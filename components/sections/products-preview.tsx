@@ -10,37 +10,33 @@ export default function ProductsPreviewSection() {
   const featured = products.slice(0, 3);
 
   return (
-    <section className="py-12 sm:py-16 bg-white" id="products">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section-shell section-bg-white relative overflow-hidden" id="products">
+      <div className="pharm-glow-blue right-0 top-0 h-80 w-80" />
+      <div className="section-container relative">
         <motion.header
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          className="max-w-2xl mb-8 sm:mb-10"
+          className="mb-10 max-w-2xl sm:mb-12"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] mb-4">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#64748b]">
             Pharmaceutical Products
           </p>
-          <h2 className="text-3xl sm:text-4xl font-semibold text-[#0F172A] tracking-tight mb-4">
-            Featured Products
-          </h2>
-          <p className="text-base text-[#64748B] leading-relaxed">
+          <h2 className="section-title mb-4">Featured Products</h2>
+          <p className="section-desc">
             A selection from our pharmaceutical range — including Bone EFC™, Nerve EFC™, Itracient™,
             Lulicient™, Terbicient™, and Levocient™ — manufactured through reputed WHO-GMP partners.
           </p>
         </motion.header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
           {featured.map((product, index) => (
             <ProductCard key={product.slug} product={product} index={index} />
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[#1E6FD9] text-[#1E6FD9] font-semibold hover:bg-[#F8FBFF] transition-colors"
-          >
+        <div className="mt-12 text-center">
+          <Link href="/products" className="btn-pharm-secondary">
             View All Products
             <ArrowRight size={18} />
           </Link>

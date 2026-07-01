@@ -68,7 +68,7 @@ export default function ContactMapSection() {
 
             <div className="flex gap-4">
               <div className="shrink-0 w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center">
-                <MapPin className="text-[#34D399]" size={18} />
+                <MapPin className="text-[#D62839]" size={18} />
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1">

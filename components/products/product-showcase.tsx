@@ -35,7 +35,7 @@ export default function ProductShowcase({
       className={`relative w-full overflow-hidden ${variantHeights[variant]} ${className}`}
     >
       <div className="absolute inset-0 bg-linear-to-b from-[#F8FBFF] via-white to-[#F0F7FF]/40" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1)_0%,transparent_65%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(27,90,174,0.1)_0%,transparent_65%)]" />
 
       <div className="relative z-10 flex h-full w-full items-center justify-center p-2 sm:p-3">
         {optimizedSrc ? (
@@ -44,7 +44,7 @@ export default function ProductShowcase({
               href ? 'group-hover/image:scale-[1.03]' : ''
             }`}
           >
-            <div className="absolute inset-[8%] rounded-2xl bg-white/60 shadow-[0_12px_40px_rgba(59,130,246,0.08)] blur-sm" />
+            <div className="absolute inset-[8%] rounded-2xl bg-white/60 shadow-[0_12px_40px_rgba(27,90,174,0.08)] blur-sm" />
             <Image
               src={optimizedSrc}
               alt={product.name}
@@ -66,7 +66,7 @@ export default function ProductShowcase({
           >
             <div className="relative">
               <div className="absolute inset-0 rounded-3xl bg-[#3B82F6]/10 blur-xl scale-110" />
-              <div className="relative flex h-24 w-24 sm:h-28 sm:w-28 items-center justify-center rounded-3xl border border-[#E2E8F0] bg-white shadow-[0_8px_32px_rgba(59,130,246,0.12)]">
+              <div className="relative flex h-24 w-24 sm:h-28 sm:w-28 items-center justify-center rounded-3xl border border-[#E2E8F0] bg-white shadow-[0_8px_32px_rgba(27,90,174,0.12)]">
                 <Icon className="text-[#3B82F6]" size={44} strokeWidth={1.5} />
               </div>
             </div>

@@ -29,7 +29,7 @@ export default function WhyPharmefcHero() {
             'radial-gradient(ellipse 80% 60% at 25% 0%, #F0FDF4 0%, #F8FBFF 45%, #FFFFFF 75%)',
         }}
       />
-      <div className="absolute top-10 right-1/3 w-96 h-96 rounded-full bg-[#34D399]/[0.05] blur-3xl pointer-events-none" />
+      <div className="absolute top-10 right-1/3 w-96 h-96 rounded-full bg-[#D62839]/[0.05] blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-80 h-80 rounded-full bg-[#3B82F6]/[0.04] blur-3xl pointer-events-none" />
 
       <svg
@@ -70,7 +70,7 @@ export default function WhyPharmefcHero() {
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <Link
                 href="/services"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-[14px] bg-[#3B82F6] text-white font-semibold shadow-[0_4px_14px_rgba(59,130,246,0.25)] hover:bg-[#2563EB] transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-[14px] bg-[#3B82F6] text-white font-semibold shadow-[0_4px_14px_rgba(27,90,174,0.25)] hover:bg-[#2563EB] transition-colors"
               >
                 Explore Our Services
                 <ArrowRight size={18} />
@@ -85,7 +85,7 @@ export default function WhyPharmefcHero() {
             <ul className="space-y-2.5">
               {trustBadges.map((item) => (
                 <li key={item} className="flex items-center gap-2.5 text-sm text-[#64748B]">
-                  <CheckCircle2 className="text-[#34D399] shrink-0" size={18} />
+                  <CheckCircle2 className="text-[#D62839] shrink-0" size={18} />
                   {item}
                 </li>
               ))}
@@ -101,7 +101,7 @@ export default function WhyPharmefcHero() {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative rounded-[28px] border border-[#E2E8F0] bg-white/90 backdrop-blur-sm shadow-[0_20px_60px_-24px_rgba(59,130,246,0.12)] p-8 overflow-hidden"
+              className="relative rounded-[28px] border border-[#E2E8F0] bg-white/90 backdrop-blur-sm shadow-[0_20px_60px_-24px_rgba(27,90,174,0.12)] p-8 overflow-hidden"
             >
               <div className="relative h-56 flex items-center justify-center">
                 <div className="w-28 h-28 rounded-2xl bg-linear-to-br from-[#3B82F6] to-[#60A5FA] flex items-center justify-center shadow-lg">
@@ -119,7 +119,7 @@ export default function WhyPharmefcHero() {
                   transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
                   className="absolute bottom-4 right-4 w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
                 >
-                  <Factory className="text-[#34D399]" size={22} />
+                  <Factory className="text-[#D62839]" size={22} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, -5, 0] }}

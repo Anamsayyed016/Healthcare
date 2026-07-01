@@ -33,7 +33,7 @@ export default function ServicesHero() {
             'radial-gradient(ellipse 80% 60% at 20% 0%, #F0FDF4 0%, #F8FBFF 45%, #FFFFFF 75%)',
         }}
       />
-      <div className="absolute top-12 left-1/3 w-96 h-96 rounded-full bg-[#34D399]/[0.05] blur-3xl pointer-events-none" />
+      <div className="absolute top-12 left-1/3 w-96 h-96 rounded-full bg-[#D62839]/[0.05] blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-[#3B82F6]/[0.05] blur-3xl pointer-events-none" />
 
       <svg
@@ -53,7 +53,7 @@ export default function ServicesHero() {
             className="max-w-xl"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F0FDF4] border border-[#E2E8F0] mb-6">
-              <Activity size={16} className="text-[#34D399]" />
+              <Activity size={16} className="text-[#D62839]" />
               <span className="text-sm font-semibold text-[#059669]">Healthcare Services</span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-[#0F172A] leading-[1.12] tracking-tight mb-6">
@@ -72,7 +72,7 @@ export default function ServicesHero() {
               <button
                 type="button"
                 onClick={scrollToServices}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-[14px] bg-[#3B82F6] text-white font-semibold shadow-[0_4px_14px_rgba(59,130,246,0.25)] hover:bg-[#2563EB] transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-[14px] bg-[#3B82F6] text-white font-semibold shadow-[0_4px_14px_rgba(27,90,174,0.25)] hover:bg-[#2563EB] transition-colors"
               >
                 Explore Our Services
                 <ArrowRight size={18} />
@@ -87,7 +87,7 @@ export default function ServicesHero() {
             <ul className="space-y-2.5">
               {trustHighlights.map((item) => (
                 <li key={item} className="flex items-center gap-2.5 text-sm text-[#64748B]">
-                  <CheckCircle2 className="text-[#34D399] shrink-0" size={18} />
+                  <CheckCircle2 className="text-[#D62839] shrink-0" size={18} />
                   {item}
                 </li>
               ))}
@@ -106,7 +106,7 @@ export default function ServicesHero() {
               className="relative rounded-[28px] border border-[#E2E8F0] bg-white/90 backdrop-blur-sm shadow-[0_20px_60px_-24px_rgba(52,211,153,0.15)] p-8 overflow-hidden"
             >
               <div className="relative h-56 flex items-center justify-center">
-                <div className="w-28 h-28 rounded-2xl bg-linear-to-br from-[#34D399] to-[#6EE7B7] flex items-center justify-center shadow-lg">
+                <div className="w-28 h-28 rounded-2xl bg-linear-to-br from-[#1B5AAE] to-[#60A5FA] flex items-center justify-center shadow-lg">
                   <Building2 className="text-white" size={48} strokeWidth={1.5} />
                 </div>
                 <motion.div
@@ -121,7 +121,7 @@ export default function ServicesHero() {
                   transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
                   className="absolute bottom-4 right-4 w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
                 >
-                  <Microscope className="text-[#34D399]" size={22} />
+                  <Microscope className="text-[#D62839]" size={22} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, -5, 0] }}
