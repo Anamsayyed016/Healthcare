@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Logo from '@/components/logo';
 
 const navItems = [
   { label: 'Home', href: '/' },
@@ -30,8 +31,8 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-lg bg-linear-to-br from-[#4F9DF8] to-[#4F9DF8]/70 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-              <span className="text-white font-bold text-lg">PE</span>
+            <div className="shrink-0 shadow-lg transition-shadow group-hover:shadow-xl">
+              <Logo priority className="h-8 w-auto max-h-10 object-contain sm:h-10" />
             </div>
             <span className="hidden sm:inline font-bold text-lg text-slate-900">PharmEFC</span>
           </Link>

@@ -16,6 +16,7 @@ import {
 } from '@/lib/contact';
 import { products } from '@/lib/data/products';
 import { services } from '@/lib/data/services';
+import Logo from '@/components/logo';
 
 const socialLinks = [
   { Icon: Users, href: '#', label: 'LinkedIn' },
@@ -41,9 +42,7 @@ export default function Footer() {
         >
           <motion.div variants={itemVariants} className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-linear-to-br from-[#4F9DF8] to-[#4ADE80] flex items-center justify-center">
-                <span className="text-white font-bold">PE</span>
-              </div>
+              <Logo className="h-8 w-auto max-h-10 object-contain shrink-0 sm:h-10" />
               <span className="font-bold text-lg leading-tight">PharmEFC</span>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed mb-4">{COMPANY_NAME}</p>
