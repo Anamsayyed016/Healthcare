@@ -51,6 +51,8 @@ export const leaders: Leader[] = [
     education: 'Focuses on accessible health education and clear, professional communication.',
     experience: 'Develops content that promotes healthcare awareness and supports PharmEFC\'s educational outreach.',
     group: 'executive',
+    image:
+      'https://res.cloudinary.com/wslwkiwr/image/upload/v1782903071/lead3_suryji.jpg',
   },
 ];
 
