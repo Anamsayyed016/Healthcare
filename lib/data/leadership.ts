@@ -40,6 +40,8 @@ export const leaders: Leader[] = [
     education: 'Focuses on brand positioning, market outreach, and stakeholder communication.',
     experience: 'Directs marketing initiatives that strengthen PharmEFC\'s presence across pharmaceutical and healthcare markets.',
     group: 'executive',
+    image:
+      'https://res.cloudinary.com/wslwkiwr/image/upload/v1782903071/lead2_umz0ih.jpg',
   },
   {
     slug: 'content-creator-educator',
