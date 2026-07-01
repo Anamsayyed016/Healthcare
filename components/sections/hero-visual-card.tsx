@@ -4,11 +4,14 @@ import Image from 'next/image';
 import { cloudinaryUrl } from '@/lib/images';
 import { cn } from '@/lib/utils';
 import { motion, useReducedMotion } from 'framer-motion';
-import { HeartPulse } from 'lucide-react';
-import { ICON_GLASS_HEART, ICON_GLASS_SM } from '@/lib/icons';
+import { ICON_GLASS_SM } from '@/lib/icons';
 import {
-  heartbeatAnimation,
-  heartbeatGlowAnimation,
+  heroHeartbeatBadge,
+  heroHeartbeatBadgeHoverShadow,
+  heroHeartbeatBadgeShadow,
+  heroHeartbeatEcg,
+  heroHeartbeatIcon,
+  heroHeartbeatRadialGlow,
   floatingIconMotion,
 } from '@/lib/motion';
 
@@ -55,33 +58,89 @@ export function HeroVisualCard({
   );
 }
 
-/** Premium heartbeat focal card — brand red heart on glass */
+const HEART_PATH =
+  'M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z';
+
+const ECG_PATH = 'M3.5 12h2l2 3 2-6 2 3h7';
+
+function PremiumHeartbeatIcon({ static: isStatic }: { static: boolean }) {
+  return (
+    <svg
+      width={44}
+      height={44}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden
+      className="relative z-10"
+    >
+      <motion.g
+        style={{ transformOrigin: '12px 13px' }}
+        animate={isStatic ? undefined : { scale: heroHeartbeatIcon.scale }}
+        transition={isStatic ? undefined : heroHeartbeatIcon.transition}
+      >
+        <path d={HEART_PATH} fill="white" />
+      </motion.g>
+      <motion.path
+        d={ECG_PATH}
+        fill="none"
+        stroke="white"
+        strokeWidth={2.25}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        animate={
+          isStatic
+            ? undefined
+            : {
+                pathLength: heroHeartbeatEcg.pathLength,
+                opacity: heroHeartbeatEcg.opacity,
+              }
+        }
+        transition={isStatic ? undefined : heroHeartbeatEcg.transition}
+      />
+    </svg>
+  );
+}
+
+/** Premium red medical badge — homepage hero focal point */
 export function HeroHeartCard() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
     <motion.div
-      className={cn('relative z-10', ICON_GLASS_HEART)}
+      className={cn('hero-heart-badge relative z-10')}
       animate={
         prefersReducedMotion
           ? undefined
           : {
-              scale: heartbeatAnimation.scale,
-              boxShadow: heartbeatGlowAnimation.boxShadow,
+              scale: heroHeartbeatBadge.scale,
+              boxShadow: heroHeartbeatBadgeShadow.boxShadow,
             }
       }
-      transition={prefersReducedMotion ? undefined : heartbeatAnimation.transition}
-      whileHover={{
-        y: -2,
-        boxShadow:
-          '0 24px 68px rgba(15,23,42,0.12), 0 0 32px -4px rgba(229,57,53,0.16)',
-      }}
+      transition={prefersReducedMotion ? undefined : heroHeartbeatBadge.transition}
+      whileHover={
+        prefersReducedMotion
+          ? { y: -2, transition: { duration: 0.3 } }
+          : {
+              y: -3,
+              boxShadow: heroHeartbeatBadgeHoverShadow,
+              transition: { duration: 0.3 },
+            }
+      }
     >
-      <HeartPulse
-        className="text-pharm-red-accent drop-shadow-[0_2px_8px_rgba(229,57,53,0.25)]"
-        size={44}
-        strokeWidth={1.5}
+      <motion.div
+        className="hero-heart-badge-glow"
+        aria-hidden
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : {
+                opacity: heroHeartbeatRadialGlow.opacity,
+                scale: heroHeartbeatRadialGlow.scale,
+              }
+        }
+        transition={prefersReducedMotion ? undefined : heroHeartbeatRadialGlow.transition}
       />
+      <PremiumHeartbeatIcon static={!!prefersReducedMotion} />
     </motion.div>
   );
 }

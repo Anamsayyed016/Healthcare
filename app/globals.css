@@ -365,6 +365,47 @@
       0 0 0 0 rgba(229, 57, 53, 0);
   }
 
+  /* Homepage hero — premium red medical heartbeat badge */
+  .hero-heart-badge {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 26px;
+    background: linear-gradient(150deg, #ff5a5f 0%, #e53935 48%, #d32f2f 100%);
+    box-shadow:
+      0 20px 45px rgba(229, 57, 53, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.38),
+      inset 0 -3px 10px rgba(139, 0, 0, 0.15);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .hero-heart-badge::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.42) 0%,
+      rgba(255, 255, 255, 0.1) 36%,
+      transparent 58%
+    );
+    pointer-events: none;
+  }
+
+  .hero-heart-badge-glow {
+    position: absolute;
+    inset: -18%;
+    border-radius: inherit;
+    background: radial-gradient(circle, rgba(239, 68, 68, 0.25) 0%, transparent 68%);
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
   .icon-glass-float {
     @apply relative;
   }

@@ -13,34 +13,61 @@ export const heroCardFloat = {
   },
 };
 
-/** Heartbeat: soft expansion → contraction → stronger beat → tiny recoil → pause (~2s) */
-export const heartbeatAnimation = {
-  scale: [1, 1.035, 0.985, 1.055, 1.012, 1] as number[],
+const heroHeartbeatTiming = {
+  duration: 2,
+  repeat: Infinity,
+  ease: premiumEase,
+  times: [0, 0.14, 0.34, 0.48, 1],
+} as const;
+
+const heroBadgeShadowRest =
+  '0 20px 45px rgba(229,57,53,0.18), inset 0 1px 0 rgba(255,255,255,0.38), inset 0 -3px 10px rgba(139,0,0,0.15)';
+
+/** Hero centerpiece — lub-dub card scale (~2s ECG cycle) */
+export const heroHeartbeatBadge = {
+  scale: [1, 1.03, 1, 1.06, 1] as number[],
+  transition: heroHeartbeatTiming,
+};
+
+/** Hero badge ambient shadow pulse */
+export const heroHeartbeatBadgeShadow = {
+  boxShadow: [
+    heroBadgeShadowRest,
+    '0 22px 50px rgba(229,57,53,0.22), inset 0 1px 0 rgba(255,255,255,0.42), inset 0 -3px 10px rgba(139,0,0,0.14)',
+    heroBadgeShadowRest,
+    '0 28px 60px rgba(229,57,53,0.30), inset 0 1px 0 rgba(255,255,255,0.48), inset 0 -3px 10px rgba(139,0,0,0.12)',
+    heroBadgeShadowRest,
+  ] as string[],
+  transition: heroHeartbeatTiming,
+};
+
+/** Hero heart glyph — subtle expansion synced to badge */
+export const heroHeartbeatIcon = {
+  scale: [1, 1.04, 1, 1.07, 1] as number[],
+  transition: heroHeartbeatTiming,
+};
+
+/** Hero radial glow — expand and fade each beat */
+export const heroHeartbeatRadialGlow = {
+  opacity: [0, 0.22, 0.04, 0.28, 0] as number[],
+  scale: [0.92, 1.08, 0.96, 1.12, 0.92] as number[],
+  transition: heroHeartbeatTiming,
+};
+
+/** Hero ECG trace — pulse travels along the line */
+export const heroHeartbeatEcg = {
+  pathLength: [0.12, 0.55, 1, 0.2] as number[],
+  opacity: [0.5, 0.85, 1, 0.5] as number[],
   transition: {
     duration: 2,
     repeat: Infinity,
     ease: premiumEase,
-    times: [0, 0.12, 0.28, 0.42, 0.52, 1],
+    times: [0, 0.28, 0.46, 1],
   },
 };
 
-/** Synchronized subtle red glow pulse on the glass heart card */
-export const heartbeatGlowAnimation = {
-  boxShadow: [
-    '0 20px 60px rgba(15,23,42,0.08), 0 0 0 0 rgba(229,57,53,0)',
-    '0 22px 64px rgba(15,23,42,0.1), 0 0 20px -4px rgba(229,57,53,0.12)',
-    '0 20px 60px rgba(15,23,42,0.08), 0 0 0 0 rgba(229,57,53,0)',
-    '0 24px 68px rgba(15,23,42,0.11), 0 0 28px -2px rgba(229,57,53,0.18)',
-    '0 20px 60px rgba(15,23,42,0.08), 0 0 10px -4px rgba(229,57,53,0.08)',
-    '0 20px 60px rgba(15,23,42,0.08), 0 0 0 0 rgba(229,57,53,0)',
-  ] as string[],
-  transition: {
-    duration: 2,
-    repeat: Infinity,
-    ease: premiumEase,
-    times: [0, 0.12, 0.28, 0.42, 0.52, 1],
-  },
-};
+export const heroHeartbeatBadgeHoverShadow =
+  '0 30px 64px rgba(229,57,53,0.34), inset 0 1px 0 rgba(255,255,255,0.52), inset 0 -3px 10px rgba(139,0,0,0.1)';
 
 export function floatingIconMotion(
   amplitude: number,
