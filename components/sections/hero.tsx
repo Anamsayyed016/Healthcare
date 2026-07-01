@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -10,9 +9,10 @@ import {
   Microscope,
   HeartPulse,
 } from 'lucide-react';
-
-const HERO_DECOR_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782895230/gem2_jiorf5.png';
+import {
+  HeroVisualCard,
+  HOME_HERO_DECOR_IMAGE,
+} from '@/components/sections/hero-visual-card';
 
 const trustHighlights = [
   'WHO-GMP Manufacturing',
@@ -48,77 +48,50 @@ function HeroIllustration() {
         className="relative"
       >
         <div className="absolute -inset-4 rounded-[32px] bg-linear-to-br from-[#EFF6FF]/80 to-[#F0FDF4]/80 blur-sm" />
-        <div className="relative overflow-hidden rounded-[28px] border border-[#E2E8F0] bg-white/80 p-8 shadow-[0_24px_64px_-24px_rgba(27,90,174,0.18)] backdrop-blur-sm sm:p-10">
-          <div className="absolute inset-5 z-0 overflow-hidden rounded-2xl">
-            <div className="relative h-full w-full">
-              <Image
-                src={HERO_DECOR_IMAGE}
-                alt=""
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover"
-              />
+        <HeroVisualCard backgroundImage={HOME_HERO_DECOR_IMAGE} patternId="hero-grid">
+          <div className="relative flex w-full max-h-64 items-center justify-center aspect-[4/3]">
+            <div className="relative z-10 flex h-24 w-24 items-center justify-center rounded-2xl bg-linear-to-br from-[#3B82F6] to-[#60A5FA] shadow-lg shadow-blue-200/50">
+              <HeartPulse className="text-white" size={44} strokeWidth={1.5} />
             </div>
+            <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+              className="absolute top-4 left-4 z-20 w-14 h-14 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
+            >
+              <Pill className="text-[#3B82F6]" size={26} />
+            </motion.div>
+            <motion.div
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+              className="absolute bottom-6 right-6 z-20 w-14 h-14 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
+            >
+              <Microscope className="text-[#D62839]" size={26} />
+            </motion.div>
+            <motion.div
+              animate={{ y: [0, -5, 0] }}
+              transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+              className="absolute top-8 right-8 z-20 w-12 h-12 rounded-full bg-[#F0FDF4] border border-[#E2E8F0] flex items-center justify-center"
+            >
+              <ShieldCheck className="text-[#D62839]" size={22} />
+            </motion.div>
           </div>
-          <div className="pointer-events-none absolute inset-5 z-[1] rounded-2xl bg-linear-to-b from-white/10 via-white/5 to-transparent" />
-          <svg
-            className="pointer-events-none absolute inset-0 z-[2] h-full w-full opacity-[0.04]"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <pattern id="hero-grid" width="32" height="32" patternUnits="userSpaceOnUse">
-                <path d="M32 0H0V32" fill="none" stroke="#3B82F6" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#hero-grid)" />
-          </svg>
 
-          <div className="relative z-10 flex flex-col items-center gap-8">
-            <div className="relative flex w-full max-h-64 items-center justify-center aspect-[4/3]">
-              <div className="relative z-10 flex h-24 w-24 items-center justify-center rounded-2xl bg-linear-to-br from-[#3B82F6] to-[#60A5FA] shadow-lg shadow-blue-200/50">
-                <HeartPulse className="text-white" size={44} strokeWidth={1.5} />
+          <div className="grid grid-cols-3 gap-3 w-full">
+            {[
+              { label: 'Pharmaceuticals', icon: Pill, color: 'text-[#3B82F6]' },
+              { label: 'Innovation', icon: Sparkles, color: 'text-[#D62839]' },
+              { label: 'Quality Care', icon: ShieldCheck, color: 'text-[#3B82F6]' },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="text-center p-3 rounded-xl bg-[#F8FBFF] border border-[#E2E8F0]"
+              >
+                <item.icon className={`${item.color} mx-auto mb-1.5`} size={20} />
+                <p className="text-[11px] font-medium text-[#64748B] leading-tight">{item.label}</p>
               </div>
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                className="absolute top-4 left-4 z-20 w-14 h-14 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
-              >
-                <Pill className="text-[#3B82F6]" size={26} />
-              </motion.div>
-              <motion.div
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                className="absolute bottom-6 right-6 z-20 w-14 h-14 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
-              >
-                <Microscope className="text-[#D62839]" size={26} />
-              </motion.div>
-              <motion.div
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
-                className="absolute top-8 right-8 z-20 w-12 h-12 rounded-full bg-[#F0FDF4] border border-[#E2E8F0] flex items-center justify-center"
-              >
-                <ShieldCheck className="text-[#D62839]" size={22} />
-              </motion.div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-3 w-full">
-              {[
-                { label: 'Pharmaceuticals', icon: Pill, color: 'text-[#3B82F6]' },
-                { label: 'Innovation', icon: Sparkles, color: 'text-[#D62839]' },
-                { label: 'Quality Care', icon: ShieldCheck, color: 'text-[#3B82F6]' },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="text-center p-3 rounded-xl bg-[#F8FBFF] border border-[#E2E8F0]"
-                >
-                  <item.icon className={`${item.color} mx-auto mb-1.5`} size={20} />
-                  <p className="text-[11px] font-medium text-[#64748B] leading-tight">{item.label}</p>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
-        </div>
+        </HeroVisualCard>
       </motion.div>
     </motion.div>
   );
