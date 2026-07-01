@@ -214,3 +214,8 @@ export const WHY_PHARMEFC_HERO_DECOR_IMAGE = cloudinaryUrl(
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782911204/gem7_zm7jef.png',
   960,
 );
+
+export const CONTACT_HERO_DECOR_IMAGE = cloudinaryUrl(
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782913336/gem8_ttkakt.png',
+  960,
+);

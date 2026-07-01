@@ -314,8 +314,9 @@
     color: var(--pharm-green);
   }
 
-  /* Why PharmEFC hero — full image visible; object-cover crops left-side copy */
-  .why-pharmefc-hero-visual > div > div:first-child {
+  /* Hero visuals with wide marketing art — show full composition, not object-cover crop */
+  .why-pharmefc-hero-visual > div > div:first-child,
+  .contact-hero-visual > div > div:first-child {
     background: linear-gradient(
       145deg,
       rgba(248, 251, 255, 0.98) 0%,
@@ -324,7 +325,8 @@
     );
   }
 
-  .why-pharmefc-hero-visual img {
+  .why-pharmefc-hero-visual img,
+  .contact-hero-visual img {
     object-fit: contain !important;
     object-position: center !important;
   }
