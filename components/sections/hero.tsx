@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -9,6 +10,9 @@ import {
   Microscope,
   HeartPulse,
 } from 'lucide-react';
+
+const HERO_DECOR_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782895230/gem2_jiorf5.png';
 
 const trustHighlights = [
   'WHO-GMP Manufacturing',
@@ -59,8 +63,17 @@ function HeroIllustration() {
 
           <div className="relative flex flex-col items-center gap-8">
             <div className="relative w-full aspect-[4/3] max-h-64 flex items-center justify-center">
-              <div className="absolute w-40 h-40 rounded-full bg-[#EFF6FF] border border-[#E2E8F0]" />
-              <div className="absolute w-28 h-28 rounded-full bg-[#F0FDF4] border border-[#E2E8F0] translate-x-16 -translate-y-4" />
+              <div className="pointer-events-none absolute inset-0 z-[1] flex items-center justify-center">
+                <Image
+                  src={HERO_DECOR_IMAGE}
+                  alt=""
+                  width={512}
+                  height={512}
+                  priority
+                  sizes="(max-width: 640px) 208px, (max-width: 1024px) 240px, 320px"
+                  className="h-[70%] w-[70%] max-h-52 max-w-52 object-contain sm:max-h-60 sm:max-w-60 lg:max-h-[300px] lg:max-w-[320px]"
+                />
+              </div>
               <div className="relative z-10 w-24 h-24 rounded-2xl bg-linear-to-br from-[#3B82F6] to-[#60A5FA] flex items-center justify-center shadow-lg shadow-blue-200/50">
                 <HeartPulse className="text-white" size={44} strokeWidth={1.5} />
               </div>
