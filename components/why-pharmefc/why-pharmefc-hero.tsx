@@ -40,8 +40,7 @@ function WhyPharmefcHeroIllustration() {
         className="relative"
       >
         <div className="absolute -inset-4 rounded-[32px] bg-linear-to-br from-[#EFF6FF]/80 to-[#F0FDF4]/80 blur-sm" />
-        {/* Anchor crop toward top so "Choose Us" and upper scene stay visible */}
-        <div className="[&_img]:object-[center_12%] sm:[&_img]:object-[center_15%]">
+        <div className="why-pharmefc-hero-visual">
           <HeroVisualCard
             backgroundImage={WHY_PHARMEFC_HERO_DECOR_IMAGE}
             patternId="why-pharmefc-hero-grid"
