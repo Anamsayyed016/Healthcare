@@ -16,10 +16,10 @@ type PremiumProductCardProps = {
 
 const variantConfig = {
   catalogue: {
-    hoverY: -4,
+    hoverY: -3,
     delayFactor: (index: number) => (index % 3) * 0.06,
     article:
-      'rounded-[22px] border border-[#e2eaf3] shadow-[0_4px_20px_-8px_rgba(27,90,174,0.1)] hover:shadow-[0_16px_40px_-12px_rgba(27,90,174,0.16)] hover:border-[#c5d9f0]',
+      'rounded-[22px] border border-[#e2eaf3] shadow-[0_4px_20px_-8px_rgba(27,90,174,0.1)] transition-all duration-300 hover:-translate-y-[3px] hover:shadow-[0_20px_52px_-14px_rgba(27,90,174,0.17)] hover:border-[#c5d9f0]',
     imageSection: 'h-[250px] sm:h-[270px]',
     content: 'px-6 pb-7 pt-5',
     title: 'text-lg font-medium',
@@ -32,7 +32,7 @@ const variantConfig = {
     hoverY: -3,
     delayFactor: (index: number) => index * 0.05,
     article:
-      'rounded-[20px] border border-[#e2eaf3] shadow-[0_4px_16px_-8px_rgba(27,90,174,0.08)] hover:shadow-[0_12px_32px_-10px_rgba(27,90,174,0.14)] hover:border-[#c5d9f0]',
+      'rounded-[20px] border border-[#e2eaf3] shadow-[0_4px_16px_-8px_rgba(27,90,174,0.08)] transition-all duration-300 hover:-translate-y-[3px] hover:shadow-[0_16px_40px_-12px_rgba(27,90,174,0.15)] hover:border-[#c5d9f0]',
     imageSection: 'h-[230px] sm:h-[250px]',
     content: 'px-5 sm:px-6 pb-6 sm:pb-7 pt-4',
     title: 'text-lg font-medium',
@@ -87,7 +87,7 @@ export default function PremiumProductCard({
                 key={item}
                 className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#F8FBFF] border border-[#E2E8F0] text-[11px] font-medium text-[#475569]"
               >
-                <Check size={11} className="text-[#D62839] shrink-0" />
+                <Check size={11} className="text-pharm-red-soft shrink-0" />
                 {item}
               </span>
             ))}

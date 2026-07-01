@@ -70,7 +70,7 @@ function WhoGmpBanner() {
                 key={badge.label}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-[#E2E8F0] text-sm font-medium text-[#0F172A]"
               >
-                <badge.icon className="text-[#3B82F6]" size={16} />
+                <badge.icon className="text-pharm-blue-light" size={16} />
                 {badge.label}
               </div>
             ))}
@@ -238,7 +238,7 @@ export default function ProductsCatalogue() {
                 className="rounded-2xl bg-white border border-[#E2E8F0] p-6 text-center hover:shadow-md transition-shadow"
               >
                 <div className="w-12 h-12 rounded-xl bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="text-[#3B82F6]" size={22} />
+                  <item.icon className="text-pharm-blue-light" size={22} />
                 </div>
                 <h3 className="font-bold text-[#0F172A] mb-2">{item.title}</h3>
                 <p className="text-sm text-[#64748B] leading-relaxed">{item.desc}</p>

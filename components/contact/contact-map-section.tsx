@@ -50,7 +50,7 @@ export default function ContactMapSection() {
           >
             <div className="flex gap-4">
               <div className="shrink-0 w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center">
-                <MapPin className="text-[#3B82F6]" size={18} />
+                <MapPin className="text-pharm-blue-light" size={18} />
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1">
@@ -68,7 +68,7 @@ export default function ContactMapSection() {
 
             <div className="flex gap-4">
               <div className="shrink-0 w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center">
-                <MapPin className="text-[#D62839]" size={18} />
+                <MapPin className="text-pharm-blue-light" size={18} />
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1">
@@ -80,7 +80,7 @@ export default function ContactMapSection() {
 
             <div className="flex gap-4">
               <div className="shrink-0 w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center">
-                <Clock className="text-[#3B82F6]" size={18} />
+                <Clock className="text-pharm-blue-light" size={18} />
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1">
@@ -96,7 +96,7 @@ export default function ContactMapSection() {
 
             <div className="flex gap-4">
               <div className="shrink-0 w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center">
-                <Phone className="text-[#3B82F6]" size={18} />
+                <Phone className="text-pharm-blue-light" size={18} />
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1">
@@ -110,7 +110,7 @@ export default function ContactMapSection() {
 
             <div className="flex gap-4">
               <div className="shrink-0 w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center">
-                <Mail className="text-[#3B82F6]" size={18} />
+                <Mail className="text-pharm-blue-light" size={18} />
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1">
@@ -124,7 +124,7 @@ export default function ContactMapSection() {
 
             <div className="flex gap-4">
               <div className="shrink-0 w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center">
-                <Globe className="text-[#3B82F6]" size={18} />
+                <Globe className="text-pharm-blue-light" size={18} />
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1">

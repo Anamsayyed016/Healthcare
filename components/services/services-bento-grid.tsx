@@ -51,7 +51,7 @@ export default function ServicesBentoGrid() {
                       isLarge ? 'w-14 h-14' : 'w-12 h-12'
                     }`}
                   >
-                    <Icon className="text-[#3B82F6]" size={isLarge ? 26 : 22} strokeWidth={1.75} />
+                    <Icon className="text-pharm-blue-light" size={isLarge ? 26 : 22} strokeWidth={1.75} />
                   </div>
                   <h3
                     className={`font-bold text-[#0F172A] mb-2 leading-snug ${

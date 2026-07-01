@@ -78,7 +78,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
               <div className="relative">
                 <div className="absolute inset-0 scale-125 rounded-full bg-[#3B82F6]/10 blur-2xl" />
                 <div className="relative flex h-32 w-32 items-center justify-center rounded-3xl border border-[#E2E8F0] bg-white shadow-lg">
-                  <Icon className="text-[#3B82F6]" size={56} strokeWidth={1.5} />
+                  <Icon className="text-pharm-blue-light" size={56} strokeWidth={1.5} />
                 </div>
               </div>
               <p className="text-sm font-medium uppercase tracking-wider text-[#94A3B8]">

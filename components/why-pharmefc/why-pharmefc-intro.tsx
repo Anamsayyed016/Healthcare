@@ -3,12 +3,19 @@
 import { motion } from 'framer-motion';
 import { Factory, Stethoscope, Handshake } from 'lucide-react';
 import { whyPharmefcIntro } from '@/lib/data/why-pharmefc-page';
+import { iconColor } from '@/lib/icons';
 
 const iconMap = {
   factory: Factory,
   stethoscope: Stethoscope,
   handshake: Handshake,
 };
+
+const iconColorMap = {
+  factory: iconColor('pharmaceutical'),
+  stethoscope: iconColor('healthcare'),
+  handshake: iconColor('support'),
+} as const;
 
 export default function WhyPharmefcIntro() {
   return (
@@ -42,7 +49,7 @@ export default function WhyPharmefcIntro() {
                   className="rounded-[20px] bg-white border border-[#E2E8F0] p-5 hover:shadow-md transition-all"
                 >
                   <div className="w-10 h-10 rounded-xl bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center mb-3">
-                    <Icon className="text-[#3B82F6]" size={20} strokeWidth={1.75} />
+                    <Icon className={iconColorMap[item.icon]} size={20} strokeWidth={1.75} />
                   </div>
                   <h3 className="font-bold text-[#0F172A] text-sm mb-1">{item.title}</h3>
                   <p className="text-xs text-[#64748B] leading-relaxed">{item.desc}</p>

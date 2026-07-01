@@ -1,6 +1,13 @@
 'use client';
 
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { HeartPulse } from 'lucide-react';
+import {
+  heartbeatAnimation,
+  heartbeatGlowAnimation,
+  floatingIconMotion,
+} from '@/lib/motion';
 
 type HeroVisualCardProps = {
   backgroundImage: string;
@@ -14,7 +21,7 @@ export function HeroVisualCard({
   children,
 }: HeroVisualCardProps) {
   return (
-    <div className="relative overflow-hidden rounded-[28px] border border-[#E2E8F0] bg-white/80 p-8 shadow-[0_24px_64px_-24px_rgba(27,90,174,0.18)] backdrop-blur-sm sm:p-10">
+    <div className="relative overflow-hidden rounded-[28px] border border-[#E2E8F0] bg-white/80 p-8 shadow-[0_28px_72px_-28px_rgba(27,90,174,0.22)] backdrop-blur-sm transition-shadow duration-500 hover:shadow-[0_32px_80px_-28px_rgba(27,90,174,0.26)] sm:p-10">
       <div className="absolute inset-5 z-0 overflow-hidden rounded-2xl">
         <div className="relative h-full w-full">
           <Image
@@ -42,6 +49,56 @@ export function HeroVisualCard({
 
       <div className="relative z-10 flex flex-col items-center gap-8">{children}</div>
     </div>
+  );
+}
+
+/** Premium heartbeat focal card — brand red heart on blue gradient */
+export function HeroHeartCard() {
+  return (
+    <motion.div
+      className="relative z-10 flex h-24 w-24 items-center justify-center rounded-2xl bg-linear-to-br from-[#2563EB] via-[#3B82F6] to-[#60A5FA] transition-shadow duration-500"
+      animate={{
+        scale: heartbeatAnimation.scale,
+        boxShadow: heartbeatGlowAnimation.boxShadow,
+      }}
+      transition={heartbeatAnimation.transition}
+      whileHover={{
+        boxShadow:
+          '0 18px 44px -8px rgba(27,90,174,0.45), 0 0 32px -4px rgba(220,38,38,0.14)',
+      }}
+    >
+      <HeartPulse className="text-pharm-red-accent" size={44} strokeWidth={1.5} />
+    </motion.div>
+  );
+}
+
+type FloatingHeroIconProps = {
+  children: React.ReactNode;
+  className: string;
+  amplitude?: number;
+  duration?: number;
+  delay?: number;
+  direction?: 'up' | 'down';
+};
+
+export function FloatingHeroIcon({
+  children,
+  className,
+  amplitude = 6,
+  duration = 4,
+  delay = 0,
+  direction = 'up',
+}: FloatingHeroIconProps) {
+  const floatMotion = floatingIconMotion(amplitude, duration, delay, direction);
+  return (
+    <motion.div
+      animate={floatMotion.animate}
+      transition={floatMotion.transition}
+      whileHover={{ scale: 1.06, transition: { duration: 0.25 } }}
+      className={className}
+    >
+      {children}
+    </motion.div>
   );
 }
 

@@ -52,7 +52,7 @@ export default function AboutTimeline() {
                   className="flex lg:flex-col items-center lg:text-center gap-4 lg:gap-0 shrink-0 lg:flex-1 min-w-[200px] lg:min-w-0"
                 >
                   <div className="relative z-10 w-14 h-14 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center lg:mb-5">
-                    <Icon className="text-[#3B82F6]" size={24} strokeWidth={1.75} />
+                    <Icon className="text-pharm-blue-light" size={24} strokeWidth={1.75} />
                   </div>
                   {index < aboutContent.timeline.length - 1 && (
                     <div className="lg:hidden text-[#CBD5E1] text-2xl font-light">↓</div>

@@ -10,6 +10,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { leadershipValues } from '@/lib/data/leadership-page';
+import { iconSemanticClass } from '@/lib/icons';
 
 const iconMap = {
   scale: Scale,
@@ -19,6 +20,15 @@ const iconMap = {
   award: Award,
   shield: ShieldCheck,
 };
+
+const iconColorMap = {
+  scale: iconSemanticClass.support,
+  lightbulb: iconSemanticClass.innovation,
+  users: iconSemanticClass.support,
+  heart: iconSemanticClass.heart,
+  award: iconSemanticClass.quality,
+  shield: iconSemanticClass.quality,
+} as const;
 
 export default function LeadershipValues() {
   return (
@@ -52,7 +62,7 @@ export default function LeadershipValues() {
                 className="rounded-[20px] bg-[#F8FBFF] border border-[#E2E8F0] p-6 hover:shadow-md transition-all"
               >
                 <div className="w-11 h-11 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center mb-4">
-                  <Icon className="text-[#3B82F6]" size={20} strokeWidth={1.75} />
+                  <Icon className={iconColorMap[value.icon]} size={20} strokeWidth={1.75} />
                 </div>
                 <h3 className="font-bold text-[#0F172A] mb-2">{value.title}</h3>
                 <p className="text-sm text-[#64748B] leading-relaxed">{value.desc}</p>

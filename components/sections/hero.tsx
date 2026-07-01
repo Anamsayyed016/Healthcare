@@ -7,12 +7,15 @@ import {
   ShieldCheck,
   Sparkles,
   Microscope,
-  HeartPulse,
 } from 'lucide-react';
 import {
   HeroVisualCard,
+  HeroHeartCard,
+  FloatingHeroIcon,
   HOME_HERO_DECOR_IMAGE,
 } from '@/components/sections/hero-visual-card';
+import { iconColor } from '@/lib/icons';
+import { heroCardFloat } from '@/lib/motion';
 
 const trustHighlights = [
   'WHO-GMP Manufacturing',
@@ -40,54 +43,56 @@ function HeroIllustration() {
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.25 }}
-      className="relative w-full max-w-lg mx-auto lg:mx-0 lg:ml-auto"
+      className="relative mx-auto w-full max-w-lg lg:mx-0 lg:ml-auto"
     >
       <motion.div
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ y: heroCardFloat.y }}
+        transition={heroCardFloat.transition}
         className="relative"
       >
         <div className="absolute -inset-4 rounded-[32px] bg-linear-to-br from-[#EFF6FF]/80 to-[#F0FDF4]/80 blur-sm" />
         <HeroVisualCard backgroundImage={HOME_HERO_DECOR_IMAGE} patternId="hero-grid">
-          <div className="relative flex w-full max-h-64 items-center justify-center aspect-[4/3]">
-            <div className="relative z-10 flex h-24 w-24 items-center justify-center rounded-2xl bg-linear-to-br from-[#3B82F6] to-[#60A5FA] shadow-lg shadow-blue-200/50">
-              <HeartPulse className="text-white" size={44} strokeWidth={1.5} />
-            </div>
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-              className="absolute top-4 left-4 z-20 w-14 h-14 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
+          <div className="relative flex aspect-[4/3] w-full max-h-64 items-center justify-center">
+            <HeroHeartCard />
+            <FloatingHeroIcon
+              amplitude={6}
+              duration={4.2}
+              delay={0.5}
+              className="absolute top-4 left-4 z-20 flex h-14 w-14 items-center justify-center rounded-xl border border-[#E2E8F0] bg-white shadow-sm"
             >
-              <Pill className="text-[#3B82F6]" size={26} />
-            </motion.div>
-            <motion.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-              className="absolute bottom-6 right-6 z-20 w-14 h-14 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
+              <Pill className={iconColor('pharmaceutical')} size={26} />
+            </FloatingHeroIcon>
+            <FloatingHeroIcon
+              amplitude={7}
+              duration={4.8}
+              delay={1}
+              direction="down"
+              className="absolute bottom-6 right-6 z-20 flex h-14 w-14 items-center justify-center rounded-xl border border-[#E2E8F0] bg-white shadow-sm"
             >
-              <Microscope className="text-[#D62839]" size={26} />
-            </motion.div>
-            <motion.div
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
-              className="absolute top-8 right-8 z-20 w-12 h-12 rounded-full bg-[#F0FDF4] border border-[#E2E8F0] flex items-center justify-center"
+              <Microscope className={iconColor('research')} size={26} />
+            </FloatingHeroIcon>
+            <FloatingHeroIcon
+              amplitude={5}
+              duration={3.6}
+              delay={0.2}
+              className="absolute top-8 right-8 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-[#E2E8F0] bg-[#F0FDF4]"
             >
-              <ShieldCheck className="text-[#D62839]" size={22} />
-            </motion.div>
+              <ShieldCheck className={iconColor('security')} size={22} />
+            </FloatingHeroIcon>
           </div>
 
-          <div className="grid grid-cols-3 gap-3 w-full">
+          <div className="grid w-full grid-cols-3 gap-3">
             {[
-              { label: 'Pharmaceuticals', icon: Pill, color: 'text-[#3B82F6]' },
-              { label: 'Innovation', icon: Sparkles, color: 'text-[#D62839]' },
-              { label: 'Quality Care', icon: ShieldCheck, color: 'text-[#3B82F6]' },
+              { label: 'Pharmaceuticals', icon: Pill, color: iconColor('pharmaceutical') },
+              { label: 'Innovation', icon: Sparkles, color: iconColor('innovation') },
+              { label: 'Quality Care', icon: ShieldCheck, color: iconColor('quality') },
             ].map((item) => (
               <div
                 key={item.label}
-                className="text-center p-3 rounded-xl bg-[#F8FBFF] border border-[#E2E8F0]"
+                className="rounded-xl border border-[#E2E8F0] bg-[#F8FBFF] p-3 text-center transition-shadow duration-300 hover:shadow-[0_4px_16px_-6px_rgba(27,90,174,0.1)]"
               >
                 <item.icon className={`${item.color} mx-auto mb-1.5`} size={20} />
-                <p className="text-[11px] font-medium text-[#64748B] leading-tight">{item.label}</p>
+                <p className="text-[11px] font-medium leading-tight text-[#64748B]">{item.label}</p>
               </div>
             ))}
           </div>
@@ -131,7 +136,7 @@ export default function HeroSection() {
           >
             <motion.div variants={itemVariants} className="mb-6">
               <div className="section-eyebrow">
-                <Pill size={16} className="text-[#1B5AAE]" />
+                <Pill size={16} className="text-pharm-blue-light" />
                 <span>PharmEFC Healthcare</span>
               </div>
             </motion.div>
@@ -161,7 +166,7 @@ export default function HeroSection() {
                 Schedule Consultation
                 <ArrowRight
                   size={18}
-                  className="group-hover:translate-x-0.5 transition-transform duration-200"
+                  className="transition-transform duration-300 group-hover:translate-x-0.5"
                 />
               </button>
               <button type="button" className="btn-pharm-secondary px-6 py-3">

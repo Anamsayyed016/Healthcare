@@ -79,11 +79,11 @@ export default function LeadershipSpotlight() {
               <p className="text-sm font-semibold text-[#0F172A] mb-3">Experience Highlights</p>
               <ul className="space-y-2">
                 <li className="flex items-start gap-2.5 text-sm text-[#64748B]">
-                  <CheckCircle2 className="text-[#D62839] shrink-0 mt-0.5" size={16} />
+                  <CheckCircle2 className="text-pharm-red-soft shrink-0 mt-0.5" size={16} />
                   {md.experience}
                 </li>
                 <li className="flex items-start gap-2.5 text-sm text-[#64748B]">
-                  <CheckCircle2 className="text-[#D62839] shrink-0 mt-0.5" size={16} />
+                  <CheckCircle2 className="text-pharm-red-soft shrink-0 mt-0.5" size={16} />
                   {md.education}
                 </li>
               </ul>

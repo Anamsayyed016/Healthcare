@@ -43,7 +43,7 @@ export default function WhyPharmefcTrust() {
                 className="rounded-[24px] bg-white border border-[#E2E8F0] p-6 sm:p-8 hover:shadow-md transition-all flex gap-5"
               >
                 <div className="shrink-0 w-12 h-12 rounded-xl bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center">
-                  <Icon className="text-[#3B82F6]" size={22} strokeWidth={1.75} />
+                  <Icon className="text-pharm-blue-light" size={22} strokeWidth={1.75} />
                 </div>
                 <div>
                   <h3 className="font-bold text-[#0F172A] mb-2">{item.title}</h3>

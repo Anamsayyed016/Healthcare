@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { whyChooseReasons } from '@/lib/data/why-choose-us';
-import { whyChooseIconMap } from '@/lib/icons';
+import { whyChooseIconMap, getWhyChooseIconColor } from '@/lib/icons';
 import { bentoLayout, reasonKeyBenefits } from '@/lib/data/why-pharmefc-page';
 
 export default function WhyPharmefcStrengths() {
@@ -48,7 +48,7 @@ export default function WhyPharmefcStrengths() {
                       isLarge ? 'w-14 h-14' : 'w-12 h-12'
                     }`}
                   >
-                    <Icon className="text-[#3B82F6]" size={isLarge ? 26 : 22} strokeWidth={1.75} />
+                    <Icon className={getWhyChooseIconColor(reason.icon)} size={isLarge ? 26 : 22} strokeWidth={1.75} />
                   </div>
                   <h3
                     className={`font-bold text-[#0F172A] mb-2 leading-snug ${

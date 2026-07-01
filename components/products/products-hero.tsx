@@ -42,7 +42,7 @@ export default function ProductsHero() {
             className="max-w-xl"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F8FBFF] border border-[#E2E8F0] mb-6">
-              <Pill size={16} className="text-[#3B82F6]" />
+              <Pill size={16} className="text-pharm-blue-light" />
               <span className="text-sm font-semibold text-[#3B82F6]">Pharmaceutical Products</span>
             </div>
             <h1 className="hero-title mb-5">
@@ -92,21 +92,21 @@ export default function ProductsHero() {
                   transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
                   className="absolute top-4 left-6 w-14 h-14 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
                 >
-                  <Pill className="text-[#3B82F6]" size={26} />
+                  <Pill className="text-pharm-blue-light" size={26} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, 6, 0] }}
                   transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
                   className="absolute bottom-6 right-6 w-14 h-14 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
                 >
-                  <FlaskConical className="text-[#D62839]" size={26} />
+                  <FlaskConical className="text-pharm-blue-light" size={26} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, -5, 0] }}
                   transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
                   className="absolute top-8 right-10 w-11 h-11 rounded-full bg-[#F0FDF4] border border-[#E2E8F0] flex items-center justify-center"
                 >
-                  <ShieldCheck className="text-[#D62839]" size={20} />
+                  <ShieldCheck className="text-pharm-blue-light" size={20} />
                 </motion.div>
               </div>
               <p className="text-center text-sm text-[#64748B] mt-4">

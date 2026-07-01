@@ -105,21 +105,21 @@ export default function ServicesHero() {
                   transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
                   className="absolute top-2 left-4 w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
                 >
-                  <Stethoscope className="text-[#3B82F6]" size={22} />
+                  <Stethoscope className="text-pharm-red-accent" size={22} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, 6, 0] }}
                   transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
                   className="absolute bottom-4 right-4 w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
                 >
-                  <Microscope className="text-[#D62839]" size={22} />
+                  <Microscope className="text-pharm-blue-light" size={22} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, -5, 0] }}
                   transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
                   className="absolute top-6 right-8 w-11 h-11 rounded-full bg-[#EFF6FF] border border-[#E2E8F0] flex items-center justify-center"
                 >
-                  <Users className="text-[#3B82F6]" size={18} />
+                  <Users className="text-pharm-blue-light" size={18} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, 5, 0] }}

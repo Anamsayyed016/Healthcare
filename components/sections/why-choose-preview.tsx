@@ -27,7 +27,7 @@ export default function WhyChoosePreviewSection() {
                 key={item.title}
                 className="flex items-center gap-3 rounded-xl border border-[#e2eaf3] bg-white/80 px-4 py-3"
               >
-                <CheckCircle2 className="shrink-0 text-[#D62839]" size={17} />
+                <CheckCircle2 className="shrink-0 text-pharm-red-soft" size={17} />
                 <span className="text-sm font-medium text-[#334155]">{item.title}</span>
               </li>
             ))}

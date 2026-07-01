@@ -39,7 +39,7 @@ export default function AboutHighlights() {
                 className="text-center rounded-2xl border border-[#E2E8F0] bg-[#F8FBFF] p-8 hover:shadow-md transition-all"
               >
                 <div className="w-14 h-14 rounded-2xl bg-white border border-[#E2E8F0] flex items-center justify-center mx-auto mb-5">
-                  <Icon className="text-[#3B82F6]" size={26} strokeWidth={1.75} />
+                  <Icon className="text-pharm-blue-light" size={26} strokeWidth={1.75} />
                 </div>
                 <h3 className="font-bold text-[#0F172A] mb-2">{item.title}</h3>
                 <p className="text-sm text-[#64748B] leading-relaxed">{item.desc}</p>

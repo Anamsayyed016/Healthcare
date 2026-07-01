@@ -79,7 +79,7 @@ export default function ProductDetailContent({ product }: { product: Product }) 
                         key={item}
                         className="flex items-center gap-2 text-sm text-[#475569] font-medium"
                       >
-                        <FlaskConical size={14} className="text-[#3B82F6] shrink-0" />
+                        <FlaskConical size={14} className="text-pharm-blue-light shrink-0" />
                         {item}
                       </li>
                     ))}
@@ -93,7 +93,7 @@ export default function ProductDetailContent({ product }: { product: Product }) 
                   <ul className="space-y-2">
                     {product.benefits.slice(0, 4).map((item) => (
                       <li key={item} className="flex items-start gap-2 text-sm text-[#64748B]">
-                        <CheckCircle2 size={15} className="text-[#D62839] shrink-0 mt-0.5" />
+                        <CheckCircle2 size={15} className="text-pharm-red-soft shrink-0 mt-0.5" />
                         {item}
                       </li>
                     ))}
@@ -108,7 +108,7 @@ export default function ProductDetailContent({ product }: { product: Product }) 
                     <ul className="space-y-2">
                       {product.indications.map((item) => (
                         <li key={item} className="flex items-start gap-2 text-sm text-[#64748B]">
-                          <Sparkles size={14} className="text-[#3B82F6] shrink-0 mt-0.5" />
+                          <Sparkles size={14} className="text-pharm-red-accent shrink-0 mt-0.5" />
                           {item}
                         </li>
                       ))}
@@ -165,7 +165,7 @@ export default function ProductDetailContent({ product }: { product: Product }) 
                 className="rounded-[16px] border border-[#E2E8F0] bg-[#F8FBFF] p-5 hover:border-[#93C5FD]/50 hover:shadow-sm transition-all"
               >
                 <div className="w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center mb-3">
-                  <FlaskConical className="text-[#3B82F6]" size={18} />
+                  <FlaskConical className="text-pharm-blue-light" size={18} />
                 </div>
                 <p className="font-semibold text-[#0F172A]">{item}</p>
               </motion.div>
@@ -188,7 +188,7 @@ export default function ProductDetailContent({ product }: { product: Product }) 
                 className="flex items-start gap-4 rounded-[16px] border border-[#E2E8F0] bg-white p-5"
               >
                 <div className="shrink-0 w-10 h-10 rounded-xl bg-[#F0FDF4] border border-[#BBF7D0]/60 flex items-center justify-center">
-                  <CheckCircle2 className="text-[#D62839]" size={20} />
+                  <CheckCircle2 className="text-pharm-red-soft" size={20} />
                 </div>
                 <p className="text-[#64748B] leading-relaxed pt-1.5">{benefit}</p>
               </motion.div>
@@ -219,7 +219,7 @@ export default function ProductDetailContent({ product }: { product: Product }) 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-start gap-5 rounded-[20px] border border-[#E2E8F0] bg-white p-8 sm:p-10">
             <div className="shrink-0 w-14 h-14 rounded-2xl bg-[#EFF6FF] border border-[#BFDBFE]/40 flex items-center justify-center">
-              <ShieldCheck className="text-[#3B82F6]" size={28} />
+              <ShieldCheck className="text-pharm-blue-light" size={28} />
             </div>
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-[#0F172A] mb-3">

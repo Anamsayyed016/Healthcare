@@ -9,8 +9,17 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { commitmentPillars } from '@/lib/data/why-pharmefc-page';
+import { iconColor } from '@/lib/icons';
 
 const pillarIcons = [HeartHandshake, Scale, Sparkles, Handshake, TrendingUp];
+
+const pillarIconColors = [
+  iconColor('heart'),
+  iconColor('support'),
+  iconColor('innovation'),
+  iconColor('support'),
+  iconColor('innovation'),
+];
 
 export default function WhyPharmefcCommitment() {
   return (
@@ -44,7 +53,7 @@ export default function WhyPharmefcCommitment() {
                   className="text-center"
                 >
                   <div className="relative z-10 w-14 h-14 rounded-2xl bg-white border border-[#E2E8F0] flex items-center justify-center mx-auto mb-4 shadow-sm">
-                    <Icon className="text-[#3B82F6]" size={24} strokeWidth={1.75} />
+                    <Icon className={pillarIconColors[index]} size={24} strokeWidth={1.75} />
                   </div>
                   <h3 className="font-bold text-[#0F172A] text-sm sm:text-base mb-2">
                     {pillar.title}

@@ -79,7 +79,7 @@ export default function LeadershipHero() {
             <ul className="space-y-2">
               {trustHighlights.slice(0, 3).map((item) => (
                 <li key={item} className="flex items-center gap-2 body-sm">
-                  <CheckCircle2 className="shrink-0 text-[#D62839]" size={16} />
+                  <CheckCircle2 className="shrink-0 text-pharm-red-soft" size={16} />
                   {item}
                 </li>
               ))}
@@ -106,14 +106,14 @@ export default function LeadershipHero() {
                   transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
                   className="absolute top-3 left-6 w-11 h-11 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
                 >
-                  <Briefcase className="text-[#3B82F6]" size={20} />
+                  <Briefcase className="text-pharm-blue-light" size={20} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, 6, 0] }}
                   transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
                   className="absolute bottom-6 right-6 w-11 h-11 rounded-xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center"
                 >
-                  <TrendingUp className="text-[#D62839]" size={20} />
+                  <TrendingUp className="text-pharm-red-accent" size={20} />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, -4, 0] }}
@@ -127,7 +127,7 @@ export default function LeadershipHero() {
                   transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
                   className="absolute bottom-12 left-10 w-10 h-10 rounded-full bg-[#EFF6FF] border border-[#E2E8F0] flex items-center justify-center"
                 >
-                  <Microscope className="text-[#3B82F6]" size={18} />
+                  <Microscope className="text-pharm-blue-light" size={18} />
                 </motion.div>
               </div>
               <p className="text-center text-sm text-[#64748B] mt-2">

@@ -38,7 +38,7 @@ export default function WhyPharmefcProcess() {
                   className="text-center"
                 >
                   <div className="relative z-10 w-16 h-16 rounded-2xl bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center mx-auto mb-5 shadow-sm">
-                    <Icon className="text-[#3B82F6]" size={26} strokeWidth={1.75} />
+                    <Icon className="text-pharm-blue-light" size={26} strokeWidth={1.75} />
                   </div>
                   <span className="text-xs font-bold text-[#3B82F6] uppercase tracking-wider">
                     Step {step.step}

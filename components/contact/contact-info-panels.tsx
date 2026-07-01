@@ -98,7 +98,7 @@ export default function ContactInfoPanels() {
           >
             <div className="flex gap-4">
               <div className="shrink-0 w-11 h-11 rounded-xl bg-[#F8FBFF] border border-[#E2E8F0] flex items-center justify-center">
-                <Icon className="text-[#3B82F6]" size={20} strokeWidth={1.75} />
+                <Icon className="text-pharm-blue-light" size={20} strokeWidth={1.75} />
               </div>
               <div>
                 <h3 className="font-bold text-[#0F172A] text-sm mb-2">{panel.title}</h3>
