@@ -30,11 +30,13 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center gap-2 group">
+          <Link href="/" className="flex shrink-0 items-center group">
             <div className="shrink-0 shadow-lg transition-shadow group-hover:shadow-xl">
-              <Logo priority className="h-8 w-auto max-h-10 object-contain sm:h-10" />
+              <Logo
+                priority
+                className="h-11 w-auto max-h-11 object-contain md:h-12 md:max-h-12 lg:h-14 lg:max-h-14"
+              />
             </div>
-            <span className="hidden sm:inline font-bold text-lg text-slate-900">PharmEFC</span>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
