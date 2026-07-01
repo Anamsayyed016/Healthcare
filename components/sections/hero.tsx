@@ -48,9 +48,22 @@ function HeroIllustration() {
         className="relative"
       >
         <div className="absolute -inset-4 rounded-[32px] bg-linear-to-br from-[#EFF6FF]/80 to-[#F0FDF4]/80 blur-sm" />
-        <div className="relative rounded-[28px] border border-[#E2E8F0] bg-white/80 backdrop-blur-sm shadow-[0_24px_64px_-24px_rgba(27,90,174,0.18)] p-8 sm:p-10 overflow-hidden">
+        <div className="relative overflow-hidden rounded-[28px] border border-[#E2E8F0] bg-white/80 p-8 shadow-[0_24px_64px_-24px_rgba(27,90,174,0.18)] backdrop-blur-sm sm:p-10">
+          <div className="absolute inset-5 z-0 overflow-hidden rounded-2xl">
+            <div className="relative h-full w-full">
+              <Image
+                src={HERO_DECOR_IMAGE}
+                alt=""
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
+          <div className="pointer-events-none absolute inset-5 z-[1] rounded-2xl bg-linear-to-b from-white/10 via-white/5 to-transparent" />
           <svg
-            className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none"
+            className="pointer-events-none absolute inset-0 z-[2] h-full w-full opacity-[0.04]"
             xmlns="http://www.w3.org/2000/svg"
           >
             <defs>
@@ -61,22 +74,9 @@ function HeroIllustration() {
             <rect width="100%" height="100%" fill="url(#hero-grid)" />
           </svg>
 
-          <div className="relative flex flex-col items-center gap-8">
-            <div className="relative w-full aspect-[4/3] max-h-64 flex items-center justify-center">
-              <div className="absolute inset-[3%] overflow-hidden rounded-xl">
-                <div className="relative h-full w-full">
-                  <Image
-                    src={HERO_DECOR_IMAGE}
-                    alt=""
-                    fill
-                    priority
-                    sizes="(max-width: 640px) 100vw, 480px"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-              <div className="pointer-events-none absolute inset-[3%] z-[1] rounded-xl bg-linear-to-b from-white/20 via-white/10 to-transparent" />
-              <div className="relative z-10 w-24 h-24 rounded-2xl bg-linear-to-br from-[#3B82F6] to-[#60A5FA] flex items-center justify-center shadow-lg shadow-blue-200/50">
+          <div className="relative z-10 flex flex-col items-center gap-8">
+            <div className="relative flex w-full max-h-64 items-center justify-center aspect-[4/3]">
+              <div className="relative z-10 flex h-24 w-24 items-center justify-center rounded-2xl bg-linear-to-br from-[#3B82F6] to-[#60A5FA] shadow-lg shadow-blue-200/50">
                 <HeartPulse className="text-white" size={44} strokeWidth={1.5} />
               </div>
               <motion.div
