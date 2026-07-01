@@ -40,55 +40,58 @@ function WhyPharmefcHeroIllustration() {
         className="relative"
       >
         <div className="absolute -inset-4 rounded-[32px] bg-linear-to-br from-[#EFF6FF]/80 to-[#F0FDF4]/80 blur-sm" />
-        <HeroVisualCard
-          backgroundImage={WHY_PHARMEFC_HERO_DECOR_IMAGE}
-          patternId="why-pharmefc-hero-grid"
-          imageQuality={90}
-        >
-          <div className="relative flex aspect-[4/3] w-full max-h-64 items-center justify-center">
-            <div className={ICON_GLASS_HEART}>
-              <HeartPulse className="text-pharm-red-accent" size={48} strokeWidth={1.5} />
+        {/* Anchor crop toward top so "Choose Us" and upper scene stay visible */}
+        <div className="[&_img]:object-[center_12%] sm:[&_img]:object-[center_15%]">
+          <HeroVisualCard
+            backgroundImage={WHY_PHARMEFC_HERO_DECOR_IMAGE}
+            patternId="why-pharmefc-hero-grid"
+            imageQuality={90}
+          >
+            <div className="relative flex aspect-[4/3] w-full max-h-64 items-center justify-center">
+              <div className={ICON_GLASS_HEART}>
+                <HeartPulse className="text-pharm-red-accent" size={48} strokeWidth={1.5} />
+              </div>
+              <FloatingHeroIcon
+                amplitude={6}
+                duration={4}
+                className="absolute top-2 left-4"
+              >
+                <Users className={iconColor('support')} size={22} />
+              </FloatingHeroIcon>
+              <FloatingHeroIcon
+                amplitude={6}
+                duration={4.5}
+                delay={0.5}
+                direction="down"
+                className="absolute bottom-4 right-4"
+              >
+                <Factory className={iconColor('pharmaceutical')} size={22} />
+              </FloatingHeroIcon>
+              <FloatingHeroIcon
+                amplitude={5}
+                duration={3.8}
+                delay={1}
+                glassClass={ICON_GLASS_PILL}
+                className="absolute top-6 right-8 rounded-full"
+              >
+                <Microscope className={iconColor('research')} size={18} />
+              </FloatingHeroIcon>
+              <FloatingHeroIcon
+                amplitude={5}
+                duration={4.2}
+                delay={0.3}
+                direction="down"
+                glassClass={ICON_GLASS_PILL}
+                className="absolute bottom-10 left-8 rounded-full"
+              >
+                <Globe2 className={iconColor('healthcare')} size={18} />
+              </FloatingHeroIcon>
             </div>
-            <FloatingHeroIcon
-              amplitude={6}
-              duration={4}
-              className="absolute top-2 left-4"
-            >
-              <Users className={iconColor('support')} size={22} />
-            </FloatingHeroIcon>
-            <FloatingHeroIcon
-              amplitude={6}
-              duration={4.5}
-              delay={0.5}
-              direction="down"
-              className="absolute bottom-4 right-4"
-            >
-              <Factory className={iconColor('pharmaceutical')} size={22} />
-            </FloatingHeroIcon>
-            <FloatingHeroIcon
-              amplitude={5}
-              duration={3.8}
-              delay={1}
-              glassClass={ICON_GLASS_PILL}
-              className="absolute top-6 right-8 rounded-full"
-            >
-              <Microscope className={iconColor('research')} size={18} />
-            </FloatingHeroIcon>
-            <FloatingHeroIcon
-              amplitude={5}
-              duration={4.2}
-              delay={0.3}
-              direction="down"
-              glassClass={ICON_GLASS_PILL}
-              className="absolute bottom-10 left-8 rounded-full"
-            >
-              <Globe2 className={iconColor('healthcare')} size={18} />
-            </FloatingHeroIcon>
-          </div>
-          <p className="max-w-xs text-center text-sm leading-relaxed text-[#64748B]">
-            Global healthcare network built on quality and trust.
-          </p>
-        </HeroVisualCard>
+            <p className="max-w-xs text-center text-sm leading-relaxed text-[#64748B]">
+              Global healthcare network built on quality and trust.
+            </p>
+          </HeroVisualCard>
+        </div>
       </motion.div>
     </motion.div>
   );
