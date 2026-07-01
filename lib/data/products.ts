@@ -118,6 +118,8 @@ const TERBICIENT_250_TAB_3D_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806035/TERBICIENT_250_TAB_3D_uezxed.jpg';
 const TERBICIENT_250_TAB_FRONT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806043/TERBICIENT_250_TAB_FRONT_ijozqa.jpg';
+const TERBICIENT_250_TAB_STRIP_1_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806043/TERBICIENT_250_TAB_STRIP_1_sh7jdl.jpg';
 
 export function optimizeProductImageUrl(url: string): string {
   if (!url.includes('res.cloudinary.com')) return url;
@@ -326,7 +328,11 @@ export const products: Product[] = [
       'Favorable safety profile',
       'Broad antifungal support',
     ],
-    gallery: [TERBICIENT_250_TAB_3D_IMAGE, TERBICIENT_250_TAB_FRONT_IMAGE],
+    gallery: [
+      TERBICIENT_250_TAB_3D_IMAGE,
+      TERBICIENT_250_TAB_FRONT_IMAGE,
+      TERBICIENT_250_TAB_STRIP_1_IMAGE,
+    ],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
