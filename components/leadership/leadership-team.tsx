@@ -39,7 +39,7 @@ export default function LeadershipTeam() {
                 className="group rounded-[22px] bg-white border border-[#E2E8F0] overflow-hidden shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_32px_rgba(15,23,42,0.08)] hover:border-[#93C5FD]/50 transition-all duration-300"
               >
                 <div className="p-5 pb-0">
-                  <LeaderPortrait name={leader.name} className="w-full" />
+                  <LeaderPortrait name={leader.name} className="w-full" src={leader.image} />
                 </div>
                 <div className="p-6 pt-5 space-y-3">
                   <div className="flex items-start justify-between gap-3">

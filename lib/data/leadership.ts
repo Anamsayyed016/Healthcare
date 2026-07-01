@@ -29,6 +29,8 @@ export const leaders: Leader[] = [
     education: 'Focuses on operational execution, commercial development, and sustainable business expansion.',
     experience: 'Oversees day-to-day operations, partner engagement, and organizational growth initiatives.',
     group: 'executive',
+    image:
+      'https://res.cloudinary.com/wslwkiwr/image/upload/v1782903060/lead1_lnvrlt.jpg',
   },
   {
     slug: 'chief-marketing-officer',
