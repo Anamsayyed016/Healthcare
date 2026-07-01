@@ -12,13 +12,87 @@ import {
   HeartPulse,
   ShieldCheck,
 } from 'lucide-react';
-import { iconColor, ICON_GLASS_HEART, ICON_GLASS_SM, ICON_GLASS_PILL } from '@/lib/icons';
+import {
+  HeroVisualCard,
+  FloatingHeroIcon,
+  WHY_PHARMEFC_HERO_DECOR_IMAGE,
+} from '@/components/sections/hero-visual-card';
+import { iconColor, ICON_GLASS_HEART, ICON_GLASS_PILL } from '@/lib/icons';
+import { heroCardFloat } from '@/lib/motion';
 
 const trustBadges = [
   'WHO-GMP Manufacturing',
   'Ethical Healthcare',
   'End-to-End Solutions',
 ];
+
+function WhyPharmefcHeroIllustration() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 24 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.7, delay: 0.15 }}
+      className="relative mx-auto w-full max-w-md lg:ml-auto"
+    >
+      <motion.div
+        animate={{ y: heroCardFloat.y }}
+        transition={heroCardFloat.transition}
+        className="relative"
+      >
+        <div className="absolute -inset-4 rounded-[32px] bg-linear-to-br from-[#EFF6FF]/80 to-[#F0FDF4]/80 blur-sm" />
+        <HeroVisualCard
+          backgroundImage={WHY_PHARMEFC_HERO_DECOR_IMAGE}
+          patternId="why-pharmefc-hero-grid"
+          imageQuality={90}
+        >
+          <div className="relative flex aspect-[4/3] w-full max-h-64 items-center justify-center">
+            <div className={ICON_GLASS_HEART}>
+              <HeartPulse className="text-pharm-red-accent" size={48} strokeWidth={1.5} />
+            </div>
+            <FloatingHeroIcon
+              amplitude={6}
+              duration={4}
+              className="absolute top-2 left-4"
+            >
+              <Users className={iconColor('support')} size={22} />
+            </FloatingHeroIcon>
+            <FloatingHeroIcon
+              amplitude={6}
+              duration={4.5}
+              delay={0.5}
+              direction="down"
+              className="absolute bottom-4 right-4"
+            >
+              <Factory className={iconColor('pharmaceutical')} size={22} />
+            </FloatingHeroIcon>
+            <FloatingHeroIcon
+              amplitude={5}
+              duration={3.8}
+              delay={1}
+              glassClass={ICON_GLASS_PILL}
+              className="absolute top-6 right-8 rounded-full"
+            >
+              <Microscope className={iconColor('research')} size={18} />
+            </FloatingHeroIcon>
+            <FloatingHeroIcon
+              amplitude={5}
+              duration={4.2}
+              delay={0.3}
+              direction="down"
+              glassClass={ICON_GLASS_PILL}
+              className="absolute bottom-10 left-8 rounded-full"
+            >
+              <Globe2 className={iconColor('healthcare')} size={18} />
+            </FloatingHeroIcon>
+          </div>
+          <p className="max-w-xs text-center text-sm leading-relaxed text-[#64748B]">
+            Global healthcare network built on quality and trust.
+          </p>
+        </HeroVisualCard>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function WhyPharmefcHero() {
   return (
@@ -85,55 +159,7 @@ export default function WhyPharmefcHero() {
             </ul>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="relative max-w-md mx-auto lg:ml-auto w-full"
-          >
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative rounded-[28px] border border-[#E2E8F0] bg-white/90 backdrop-blur-sm shadow-[0_20px_60px_-24px_rgba(27,90,174,0.12)] p-8 overflow-hidden"
-            >
-              <div className="relative flex h-56 items-center justify-center">
-                <div className={ICON_GLASS_HEART}>
-                  <HeartPulse className="text-pharm-red-accent" size={48} strokeWidth={1.5} />
-                </div>
-                <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                  className={`absolute top-2 left-4 ${ICON_GLASS_SM}`}
-                >
-                  <Users className={iconColor('support')} size={22} />
-                </motion.div>
-                <motion.div
-                  animate={{ y: [0, 6, 0] }}
-                  transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                  className={`absolute bottom-4 right-4 ${ICON_GLASS_SM}`}
-                >
-                  <Factory className={iconColor('pharmaceutical')} size={22} />
-                </motion.div>
-                <motion.div
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                  className={`absolute top-6 right-8 ${ICON_GLASS_PILL} rounded-full`}
-                >
-                  <Microscope className={iconColor('research')} size={18} />
-                </motion.div>
-                <motion.div
-                  animate={{ y: [0, 5, 0] }}
-                  transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
-                  className={`absolute bottom-10 left-8 ${ICON_GLASS_PILL} rounded-full`}
-                >
-                  <Globe2 className={iconColor('healthcare')} size={18} />
-                </motion.div>
-              </div>
-              <p className="text-center text-sm text-[#64748B] mt-2">
-                Global healthcare network built on quality and trust.
-              </p>
-            </motion.div>
-          </motion.div>
+          <WhyPharmefcHeroIllustration />
         </div>
       </div>
     </section>
