@@ -41,7 +41,7 @@ export const leaders: Leader[] = [
     experience: 'Directs marketing initiatives that strengthen PharmEFC\'s presence across pharmaceutical and healthcare markets.',
     group: 'executive',
     image:
-      'https://res.cloudinary.com/wslwkiwr/image/upload/v1782903071/lead2_umz0ih.jpg',
+      'https://res.cloudinary.com/wslwkiwr/image/upload/v1783373796/chat2_tluf18.png',
   },
   {
     slug: 'content-creator-educator',
