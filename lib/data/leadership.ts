@@ -24,13 +24,13 @@ export const leaders: Leader[] = [
   {
     slug: 'director',
     name: 'Rahul Yadav',
-    role: 'Director',
+    role: 'Chief Distribution Officer',
     bio: 'Healthcare entrepreneur leading business development, operations, and strategic growth for PharmEFC.',
     education: 'Focuses on operational execution, commercial development, and sustainable business expansion.',
     experience: 'Oversees day-to-day operations, partner engagement, and organizational growth initiatives.',
     group: 'executive',
     image:
-      'https://res.cloudinary.com/wslwkiwr/image/upload/v1782903060/lead1_lnvrlt.jpg',
+      'https://res.cloudinary.com/wslwkiwr/image/upload/v1783373795/chat1_kqfxe1.png',
   },
   {
     slug: 'chief-marketing-officer',
