@@ -46,13 +46,13 @@ export const leaders: Leader[] = [
   {
     slug: 'content-creator-educator',
     name: 'Kuber Singh Patel',
-    role: 'Content Creator & Educator',
+    role: 'Product Manager',
     bio: 'Creates educational content and healthcare awareness initiatives that support informed engagement with pharmaceutical and health topics.',
     education: 'Focuses on accessible health education and clear, professional communication.',
     experience: 'Develops content that promotes healthcare awareness and supports PharmEFC\'s educational outreach.',
     group: 'executive',
     image:
-      'https://res.cloudinary.com/wslwkiwr/image/upload/v1782903071/lead3_suryji.jpg',
+      'https://res.cloudinary.com/wslwkiwr/image/upload/v1783373794/chat3_vhbuet.png',
   },
 ];
 
