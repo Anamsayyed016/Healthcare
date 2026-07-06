@@ -13,13 +13,13 @@ export const leaders: Leader[] = [
   {
     slug: 'managing-director',
     name: 'Dr. Kunal Basu',
-    role: 'Managing Director',
+    role: 'Chief Executive Officer (CEO)',
     bio: 'Distinguished engineer, academician, researcher, and healthcare entrepreneur providing strategic leadership across PharmEFC\'s pharmaceutical and healthcare initiatives.',
     education: 'Focuses on research-led development, innovation, and long-term organizational vision.',
     experience: 'Provides strategic direction and leadership for PharmEFC\'s medicines portfolio and healthcare services.',
     group: 'executive',
     image:
-      'https://res.cloudinary.com/wslwkiwr/image/upload/v1782903072/lead4_ngzhgw.jpg',
+      'https://res.cloudinary.com/wslwkiwr/image/upload/v1783373795/chat4_vdd5v2.png',
   },
   {
     slug: 'director',
