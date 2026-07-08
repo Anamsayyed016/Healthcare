@@ -57,9 +57,9 @@ export function getCardHighlights(product: Product): string[] {
 }
 
 const BONE_EFC_PRIMARY_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500103/5_fnp2fn.png';
-const BONE_EFC_PACKAGING_VARIANT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500104/4_iqfzpd.png';
+const BONE_EFC_PACKAGING_VARIANT_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500103/5_fnp2fn.png';
 const ITRACIENT_100_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500104/6_s6bqqi.png';
 
