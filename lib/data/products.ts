@@ -64,6 +64,8 @@ const BONE_EFC_GALLERY_VARIANT_2_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500106/1_oz3p2z.png';
 const ITRACIENT_100_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500104/6_s6bqqi.png';
+const ITRACIENT_100_GALLERY_VARIANT_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500111/7_fbervx.png';
 
 export function optimizeProductImageUrl(url: string, width = 640): string {
   return cloudinaryUrl(url, width);
@@ -172,7 +174,7 @@ export const products: Product[] = [
       'Other susceptible fungal infections',
     ],
     image: ITRACIENT_100_PRIMARY_IMAGE,
-    gallery: [ITRACIENT_100_PRIMARY_IMAGE],
+    gallery: [ITRACIENT_100_PRIMARY_IMAGE, ITRACIENT_100_GALLERY_VARIANT_IMAGE],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
