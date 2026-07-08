@@ -76,6 +76,8 @@ const LEVOCIENT_5_GALLERY_VARIANT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500118/17_o6b7pb.png';
 const LEVOCIENT_5_GALLERY_VARIANT_2_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500120/15_bozvam.png';
+const LULICIENT_CREAM_PRIMARY_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500126/21_h7sps4.png';
 
 /** Delivery URL with whitespace trim so packages fill the preview evenly. */
 export function optimizeProductImageUrl(url: string, width = 640): string {
@@ -243,7 +245,8 @@ export const products: Product[] = [
       'Jock Itch',
       'Other superficial fungal infections',
     ],
-    gallery: [],
+    image: LULICIENT_CREAM_PRIMARY_IMAGE,
+    gallery: [LULICIENT_CREAM_PRIMARY_IMAGE],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
