@@ -37,14 +37,13 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
   return (
     <div className="space-y-4">
       <div className="group relative overflow-hidden rounded-[24px] border border-[#E2E8F0] bg-white shadow-[0_8px_32px_rgba(15,23,42,0.06)]">
-        <div className="absolute inset-0 bg-white" />
-
-        <div className="relative flex min-h-[420px] items-center justify-center p-4 sm:min-h-[500px] lg:min-h-[600px] sm:p-6">
+        {/* Fixed preview frame so the image can fill the usable area consistently */}
+        <div className="relative h-[420px] bg-white sm:h-[500px] lg:h-[600px]">
           {activeSrc ? (
             <button
               type="button"
               onClick={() => setFullscreen(true)}
-              className="relative h-[380px] w-full cursor-zoom-in p-0 transition-transform duration-500 ease-out group-hover:scale-[1.02] sm:h-[460px] lg:h-[540px]"
+              className="absolute inset-4 sm:inset-5 lg:inset-6 cursor-zoom-in p-0 transition-transform duration-500 ease-out group-hover:scale-[1.01]"
               aria-label={`View full size ${product.name} image`}
             >
               <AnimatePresence mode="wait">
@@ -62,17 +61,17 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     priority={selected === 0}
-                    className="object-contain object-center scale-[1.03] sm:scale-[1.05] z-10"
+                    className="object-contain object-center"
                   />
                 </motion.div>
               </AnimatePresence>
-              <span className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1.5 rounded-full border border-[#E2E8F0] bg-white/95 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#64748B] opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+              <span className="absolute bottom-2 right-2 z-20 inline-flex items-center gap-1.5 rounded-full border border-[#E2E8F0] bg-white/95 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#64748B] opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                 <ZoomIn size={12} />
                 Full Screen
               </span>
             </button>
           ) : (
-            <div className="flex flex-col items-center justify-center gap-5 py-16">
+            <div className="flex h-full w-full flex-col items-center justify-center gap-5">
               <div className="relative">
                 <div className="absolute inset-0 scale-125 rounded-full bg-[#3B82F6]/10 blur-2xl" />
                 <div className="relative flex h-32 w-32 items-center justify-center rounded-3xl border border-[#E2E8F0] bg-white shadow-lg">
