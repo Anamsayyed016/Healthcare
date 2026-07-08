@@ -15,7 +15,7 @@ type ProductShowcaseProps = {
 };
 
 const variantHeights = {
-  card: 'h-full min-h-[250px] sm:min-h-[270px]',
+  card: 'h-full w-full',
   detail: 'h-full min-h-[420px] sm:min-h-[500px] lg:min-h-[600px]',
 };
 
@@ -48,14 +48,14 @@ export default function ProductShowcase({
 
       <div
         className={`relative z-10 flex h-full w-full items-center justify-center ${
-          isCard ? 'p-1 sm:p-1.5' : 'p-2 sm:p-3'
+          isCard ? 'p-0' : 'p-2 sm:p-3'
         }`}
       >
         {optimizedSrc ? (
           <div
             className={`relative transition-transform duration-300 ease-out ${
-              isCard ? 'h-[96%] w-[96%]' : 'h-[92%] w-[92%]'
-            } ${href ? 'group-hover/image:scale-[1.03]' : ''}`}
+              isCard ? 'h-full w-full' : 'h-[92%] w-[92%]'
+            } ${href ? 'group-hover/image:scale-[1.02]' : ''}`}
           >
             {!isCard && (
               <div className="absolute inset-[8%] rounded-2xl bg-white/60 shadow-[0_12px_40px_rgba(27,90,174,0.08)] blur-sm" />
@@ -71,9 +71,7 @@ export default function ProductShowcase({
               }
               priority={priority}
               className={`z-10 object-contain object-center ${
-                isCard
-                  ? 'drop-shadow-[0_4px_16px_rgba(15,23,42,0.06)]'
-                  : 'drop-shadow-[0_8px_24px_rgba(15,23,42,0.1)]'
+                isCard ? '' : 'drop-shadow-[0_8px_24px_rgba(15,23,42,0.1)]'
               }`}
             />
           </div>
