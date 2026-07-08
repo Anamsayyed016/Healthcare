@@ -60,6 +60,8 @@ const BONE_EFC_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500104/4_iqfzpd.png';
 const BONE_EFC_PACKAGING_VARIANT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500103/5_fnp2fn.png';
+const BONE_EFC_GALLERY_VARIANT_2_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500106/1_oz3p2z.png';
 const ITRACIENT_100_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500104/6_s6bqqi.png';
 
@@ -87,7 +89,11 @@ export const products: Product[] = [
     categoryBadge: 'Bone Health',
     icon: 'pill',
     image: BONE_EFC_PRIMARY_IMAGE,
-    gallery: [BONE_EFC_PRIMARY_IMAGE, BONE_EFC_PACKAGING_VARIANT_IMAGE],
+    gallery: [
+      BONE_EFC_PRIMARY_IMAGE,
+      BONE_EFC_PACKAGING_VARIANT_IMAGE,
+      BONE_EFC_GALLERY_VARIANT_2_IMAGE,
+    ],
     cardHighlights: ['Calcium Orotate', 'Magnesium Orotate', 'Vitamin D3'],
     description:
       'Formulated with Calcium Orotate, Magnesium Orotate, and Vitamin D3 to support bone strength, healthy teeth, and overall musculoskeletal health.',
