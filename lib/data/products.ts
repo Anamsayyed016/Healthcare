@@ -78,6 +78,8 @@ const LEVOCIENT_5_GALLERY_VARIANT_2_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500120/15_bozvam.png';
 const LULICIENT_CREAM_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500126/21_h7sps4.png';
+const LULICIENT_CREAM_GALLERY_VARIANT_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500142/22_ky3a7t.png';
 const NERVE_EFC_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500133/25_bbudb8.png';
 const NERVE_EFC_GALLERY_VARIANT_IMAGE =
@@ -261,7 +263,7 @@ export const products: Product[] = [
       'Other superficial fungal infections',
     ],
     image: LULICIENT_CREAM_PRIMARY_IMAGE,
-    gallery: [LULICIENT_CREAM_PRIMARY_IMAGE],
+    gallery: [LULICIENT_CREAM_PRIMARY_IMAGE, LULICIENT_CREAM_GALLERY_VARIANT_IMAGE],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
