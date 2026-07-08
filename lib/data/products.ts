@@ -80,6 +80,8 @@ const LULICIENT_CREAM_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500126/21_h7sps4.png';
 const NERVE_EFC_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500133/25_bbudb8.png';
+const NERVE_EFC_GALLERY_VARIANT_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500134/24_u4cblr.png';
 
 /** Delivery URL: trim near-white canvas so packages fill the preview evenly. */
 export function optimizeProductImageUrl(url: string, width = 640): string {
@@ -167,7 +169,7 @@ export const products: Product[] = [
       'Nutritional support for diabetic neuropathy and vitamin deficiencies',
     ],
     image: NERVE_EFC_PRIMARY_IMAGE,
-    gallery: [NERVE_EFC_PRIMARY_IMAGE],
+    gallery: [NERVE_EFC_PRIMARY_IMAGE, NERVE_EFC_GALLERY_VARIANT_IMAGE],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
