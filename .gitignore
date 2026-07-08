@@ -14,3 +14,4 @@ node_modules
 .next/
 .tmp/
 .DS_Store
+debug.log

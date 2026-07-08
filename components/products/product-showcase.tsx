@@ -27,6 +27,7 @@ export default function ProductShowcase({
   priority = false,
 }: ProductShowcaseProps) {
   const Icon = productIconMap[product.icon];
+  const isCard = variant === 'card';
   const imageSrc = getProductImage(product);
   const optimizedSrc = imageSrc
     ? optimizeProductImageUrl(imageSrc, variant === 'detail' ? 960 : 640)
@@ -36,17 +37,29 @@ export default function ProductShowcase({
     <div
       className={`relative w-full overflow-hidden ${variantHeights[variant]} ${className}`}
     >
-      <div className="absolute inset-0 bg-linear-to-b from-[#F8FBFF] via-white to-[#F0F7FF]/40" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(27,90,174,0.1)_0%,transparent_65%)]" />
+      {isCard ? (
+        <div className="absolute inset-0 bg-white" />
+      ) : (
+        <>
+          <div className="absolute inset-0 bg-linear-to-b from-[#F8FBFF] via-white to-[#F0F7FF]/40" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(27,90,174,0.1)_0%,transparent_65%)]" />
+        </>
+      )}
 
-      <div className="relative z-10 flex h-full w-full items-center justify-center p-2 sm:p-3">
+      <div
+        className={`relative z-10 flex h-full w-full items-center justify-center ${
+          isCard ? 'p-1 sm:p-1.5' : 'p-2 sm:p-3'
+        }`}
+      >
         {optimizedSrc ? (
           <div
-            className={`relative h-[92%] w-[92%] transition-transform duration-300 ease-out ${
-              href ? 'group-hover/image:scale-[1.03]' : ''
-            }`}
+            className={`relative transition-transform duration-300 ease-out ${
+              isCard ? 'h-[96%] w-[96%]' : 'h-[92%] w-[92%]'
+            } ${href ? 'group-hover/image:scale-[1.03]' : ''}`}
           >
-            <div className="absolute inset-[8%] rounded-2xl bg-white/60 shadow-[0_12px_40px_rgba(27,90,174,0.08)] blur-sm" />
+            {!isCard && (
+              <div className="absolute inset-[8%] rounded-2xl bg-white/60 shadow-[0_12px_40px_rgba(27,90,174,0.08)] blur-sm" />
+            )}
             <Image
               src={optimizedSrc}
               alt={product.name}
@@ -57,7 +70,11 @@ export default function ProductShowcase({
                   : '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
               }
               priority={priority}
-              className="z-10 object-contain drop-shadow-[0_8px_24px_rgba(15,23,42,0.1)]"
+              className={`z-10 object-contain object-center ${
+                isCard
+                  ? 'drop-shadow-[0_4px_16px_rgba(15,23,42,0.06)]'
+                  : 'drop-shadow-[0_8px_24px_rgba(15,23,42,0.1)]'
+              }`}
             />
           </div>
         ) : (
@@ -67,8 +84,8 @@ export default function ProductShowcase({
             }`}
           >
             <div className={ICON_GLASS_LG}>
-                <Icon className={iconColor('pharmaceutical')} size={44} strokeWidth={1.5} />
-              </div>
+              <Icon className={iconColor('pharmaceutical')} size={44} strokeWidth={1.5} />
+            </div>
             <p className="text-[10px] font-semibold uppercase tracking-wider text-[#94A3B8]">
               {product.category}
             </p>
