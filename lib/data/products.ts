@@ -90,6 +90,8 @@ const NERVE_EFC_GALLERY_VARIANT_3_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500139/28_vpgom2.png';
 const NERVE_EFC_GALLERY_VARIANT_4_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500145/30_xvpvta.png';
+const TERBICIENT_250_PRIMARY_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500146/32_fohwww.png';
 
 /** Delivery URL: trim near-white canvas so packages fill the preview evenly. */
 export function optimizeProductImageUrl(url: string, width = 640): string {
@@ -287,7 +289,8 @@ export const products: Product[] = [
       'Favorable safety profile',
       'Broad antifungal support',
     ],
-    gallery: [],
+    image: TERBICIENT_250_PRIMARY_IMAGE,
+    gallery: [TERBICIENT_250_PRIMARY_IMAGE],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
