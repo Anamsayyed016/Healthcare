@@ -70,6 +70,8 @@ const ITRACIENT_200_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500111/10_nwhhbq.png';
 const ITRACIENT_200_GALLERY_VARIANT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500116/11_dqwjs9.png';
+const LEVOCIENT_5_PRIMARY_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500118/17_o6b7pb.png';
 
 /** Delivery URL with whitespace trim so packages fill the preview evenly. */
 export function optimizeProductImageUrl(url: string, width = 640): string {
@@ -287,7 +289,8 @@ export const products: Product[] = [
       'Urticaria',
       'Other allergic conditions',
     ],
-    gallery: [],
+    image: LEVOCIENT_5_PRIMARY_IMAGE,
+    gallery: [LEVOCIENT_5_PRIMARY_IMAGE],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
