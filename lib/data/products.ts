@@ -66,6 +66,8 @@ const ITRACIENT_100_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500104/6_s6bqqi.png';
 const ITRACIENT_100_GALLERY_VARIANT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500111/7_fbervx.png';
+const ITRACIENT_200_PRIMARY_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500111/10_nwhhbq.png';
 
 export function optimizeProductImageUrl(url: string, width = 640): string {
   return cloudinaryUrl(url, width);
@@ -195,7 +197,8 @@ export const products: Product[] = [
       'Convenient dosing',
       'Broad-spectrum antifungal activity',
     ],
-    gallery: [],
+    image: ITRACIENT_200_PRIMARY_IMAGE,
+    gallery: [ITRACIENT_200_PRIMARY_IMAGE],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
