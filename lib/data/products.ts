@@ -78,6 +78,8 @@ const LEVOCIENT_5_GALLERY_VARIANT_2_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500120/15_bozvam.png';
 const LULICIENT_CREAM_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500126/21_h7sps4.png';
+const NERVE_EFC_PRIMARY_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500133/25_bbudb8.png';
 
 /** Delivery URL: trim near-white canvas so packages fill the preview evenly. */
 export function optimizeProductImageUrl(url: string, width = 640): string {
@@ -164,7 +166,8 @@ export const products: Product[] = [
       'Helps reduce neuropathic discomfort',
       'Nutritional support for diabetic neuropathy and vitamin deficiencies',
     ],
-    gallery: [],
+    image: NERVE_EFC_PRIMARY_IMAGE,
+    gallery: [NERVE_EFC_PRIMARY_IMAGE],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
