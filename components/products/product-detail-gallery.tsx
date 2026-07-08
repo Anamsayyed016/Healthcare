@@ -39,12 +39,12 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
       <div className="group relative overflow-hidden rounded-[24px] border border-[#E2E8F0] bg-white shadow-[0_8px_32px_rgba(15,23,42,0.06)]">
         <div className="absolute inset-0 bg-white" />
 
-        <div className="relative flex aspect-[5/4] w-full items-center justify-center sm:aspect-[4/3] lg:min-h-[560px] lg:aspect-auto">
+        <div className="relative flex min-h-[420px] items-center justify-center p-4 sm:min-h-[500px] lg:min-h-[600px] sm:p-6">
           {activeSrc ? (
             <button
               type="button"
               onClick={() => setFullscreen(true)}
-              className="relative h-full w-full cursor-zoom-in p-2 sm:p-3"
+              className="relative h-[380px] w-full cursor-zoom-in p-0 transition-transform duration-500 ease-out group-hover:scale-[1.02] sm:h-[460px] lg:h-[540px]"
               aria-label={`View full size ${product.name} image`}
             >
               <AnimatePresence mode="wait">
@@ -62,7 +62,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     priority={selected === 0}
-                    className="object-contain object-center scale-[1.04] sm:scale-[1.06] transition-transform duration-500 ease-out group-hover:scale-[1.07]"
+                    className="object-contain object-center scale-[1.03] sm:scale-[1.05] z-10"
                   />
                 </motion.div>
               </AnimatePresence>
