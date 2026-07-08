@@ -87,6 +87,15 @@ export default function ProductDetailContent({ product }: { product: Product }) 
                   </ul>
                 </div>
 
+                {product.packSize && (
+                  <div>
+                    <h3 className="text-sm font-semibold uppercase tracking-wider text-[#94A3B8] mb-3">
+                      Pack Size
+                    </h3>
+                    <p className="text-sm text-[#475569] font-medium">{product.packSize}</p>
+                  </div>
+                )}
+
                 <div>
                   <h3 className="text-sm font-semibold uppercase tracking-wider text-[#94A3B8] mb-3">
                     Key Benefits

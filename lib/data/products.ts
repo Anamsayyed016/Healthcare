@@ -21,6 +21,7 @@ export type Product = {
   cardHighlights?: string[];
   suitableFor?: string[];
   indications?: string[];
+  packSize?: string;
   relatedProducts?: string[];
   manufacturing: string;
   qualityStandards: string;
@@ -56,16 +57,9 @@ export function getCardHighlights(product: Product): string[] {
 }
 
 const BONE_EFC_PRIMARY_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805999/Bone_efc_tab_box_ar1zfx.jpg';
-const BONE_EFC_3D_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805999/Bone_efc_3d_1_sfvvmp.jpg';
-const BONE_EFC_TAB_FRONT_IMAGE = '/products/bone-efc/tab-front.jpg';
-const BONE_EFC_TAB_FRONT_BOX_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806006/Bone_efc_tab_front_g78qoh.jpg';
-const BONE_EFC_BACK_BOX_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805998/Bone_efc_Tab_back_enopav.jpg';
-const BONE_EFC_STRIP_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782805999/Bone_efc_strip_ahvvxt.jpg';
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500104/4_iqfzpd.png';
+const BONE_EFC_VARIANT_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500103/5_fnp2fn.png';
 const NERVE_EFC_TABLETS_3D_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806023/Nerve_EFC_Tablets_3d_n2bzpe.jpg';
 const NERVE_EFC_TABLETS_STRIP_3D_IMAGE =
@@ -144,25 +138,19 @@ export const WHO_GMP_MESSAGE = MANUFACTURING_STATEMENT;
 export const products: Product[] = [
   {
     slug: 'bone-efc-tablet',
-    name: 'Bone EFC™ Tablet',
+    name: 'Bone EFC™ Tablets',
     category: 'Bone Health Supplement',
     categoryBadge: 'Bone Health',
     icon: 'pill',
     image: BONE_EFC_PRIMARY_IMAGE,
-    gallery: [
-      BONE_EFC_PRIMARY_IMAGE,
-      BONE_EFC_3D_IMAGE,
-      BONE_EFC_TAB_FRONT_IMAGE,
-      BONE_EFC_BACK_BOX_IMAGE,
-      BONE_EFC_STRIP_IMAGE,
-      BONE_EFC_TAB_FRONT_BOX_IMAGE,
-    ],
-    cardHighlights: ['Calcium Orotate', 'Vitamin D3', 'Magnesium Orotate'],
+    gallery: [BONE_EFC_PRIMARY_IMAGE, BONE_EFC_VARIANT_IMAGE],
+    cardHighlights: ['Calcium Orotate', 'Magnesium Orotate', 'Vitamin D3'],
     description:
       'Formulated with Calcium Orotate, Magnesium Orotate, and Vitamin D3 to support bone strength, healthy teeth, and overall musculoskeletal health.',
     overview:
-      'Bone EFC™ Tablet is formulated to support bone strength and overall musculoskeletal health through a balanced combination of Calcium Orotate, Magnesium Orotate, and Vitamin D3.',
+      'Bone EFC™ Tablets are formulated to support bone strength and overall musculoskeletal health through a balanced combination of Calcium Orotate, Magnesium Orotate, and Vitamin D3.',
     composition: ['Calcium Orotate', 'Magnesium Orotate', 'Vitamin D3'],
+    packSize: '10 × 1 × 10 Tablets',
     benefits: [
       'Supports healthy bone density',
       'Promotes strong teeth',
