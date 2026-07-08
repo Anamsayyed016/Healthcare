@@ -92,6 +92,8 @@ const NERVE_EFC_GALLERY_VARIANT_4_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500145/30_xvpvta.png';
 const TERBICIENT_250_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500146/32_fohwww.png';
+const TERBICIENT_250_GALLERY_VARIANT_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500148/33_kxk1yt.png';
 
 /** Delivery URL: trim near-white canvas so packages fill the preview evenly. */
 export function optimizeProductImageUrl(url: string, width = 640): string {
@@ -290,7 +292,7 @@ export const products: Product[] = [
       'Broad antifungal support',
     ],
     image: TERBICIENT_250_PRIMARY_IMAGE,
-    gallery: [TERBICIENT_250_PRIMARY_IMAGE],
+    gallery: [TERBICIENT_250_PRIMARY_IMAGE, TERBICIENT_250_GALLERY_VARIANT_IMAGE],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
