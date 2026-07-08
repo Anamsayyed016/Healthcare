@@ -1,5 +1,3 @@
-import { cloudinaryUrl } from '@/lib/images';
-
 export type ProductIcon = 'pill' | 'tablets' | 'flask';
 
 export type Product = {
@@ -73,8 +71,14 @@ const ITRACIENT_200_PRIMARY_IMAGE =
 const ITRACIENT_200_GALLERY_VARIANT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500116/11_dqwjs9.png';
 
+/** Delivery URL with whitespace trim so packages fill the preview evenly. */
 export function optimizeProductImageUrl(url: string, width = 640): string {
-  return cloudinaryUrl(url, width);
+  if (!url.includes('res.cloudinary.com') || !url.includes('/upload/')) {
+    return url;
+  }
+
+  const transform = `e_trim/f_auto,q_auto,w_${width}`;
+  return url.replace('/upload/', `/upload/${transform}/`);
 }
 
 export function resolveProductImageSrc(url: string, width = 640): string {

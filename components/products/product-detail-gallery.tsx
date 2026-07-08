@@ -43,7 +43,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
             <button
               type="button"
               onClick={() => setFullscreen(true)}
-              className="absolute inset-4 sm:inset-5 lg:inset-6 cursor-zoom-in p-0 transition-transform duration-500 ease-out group-hover:scale-[1.01]"
+              className="absolute inset-3 sm:inset-4 lg:inset-5 cursor-zoom-in overflow-hidden p-0 transition-transform duration-500 ease-out group-hover:scale-[1.01]"
               aria-label={`View full size ${product.name} image`}
             >
               <AnimatePresence mode="wait">
@@ -106,7 +106,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
                 alt={`${product.name} view ${index + 1}`}
                 fill
                 sizes="80px"
-                className="object-contain object-center scale-[1.08] p-0.5"
+                className="object-contain object-center"
               />
             </button>
           ))}
