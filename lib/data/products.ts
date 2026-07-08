@@ -57,69 +57,9 @@ export function getCardHighlights(product: Product): string[] {
 }
 
 const BONE_EFC_PRIMARY_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500104/4_iqfzpd.png';
-const BONE_EFC_PACKAGING_VARIANT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500103/5_fnp2fn.png';
-const NERVE_EFC_TABLETS_3D_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806023/Nerve_EFC_Tablets_3d_n2bzpe.jpg';
-const NERVE_EFC_TABLETS_STRIP_3D_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806026/Nerve_EFC_Tablets_strip_3d_cwmkqc.jpg';
-const NERVE_EFC_TABLETS_BOX_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806026/Nerve_EFC_Tablets_box_lm2hxp.jpg';
-const NERVE_EFC_TABLETS_STRIP_BACK_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806031/Nerve_EFC_Tablets_strip_back_sq8m1t.jpg';
-const NERVE_EFC_TABLETS_STRIP_FRONT_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806031/Nerve_EFC_Tablets_strip_front_uvzegr.jpg';
-const NERVE_EFC_TABLETS_MRP_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806033/Nerve_EFC_Tablets_mrp_mtpn9l.jpg';
-const NERVE_EFC_TABLETS_STRIP_COMPOSITION_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806034/Nerve_EFC_Tablets_strip_e0s5vl.jpg';
-const NERVE_EFC_TABLETS_DETAILS_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806036/Nerve_EFC_Tablets_details_rv1wft.jpg';
-const ITRACIENT_100_3D_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806005/Itracient_100_Cap_3d_rplato.jpg';
-const ITRACIENT_100_FRONT_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806008/Itracient_100_Cap_front_pqwjnj.jpg';
-const ITRACIENT_100_DETAILS_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806011/Itracient_100_Cap_details_riay76.jpg';
-const ITRACIENT_100_STRIP_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806012/Itracient_100_cap_strip_o9kjhd.jpg';
-const ITRACIENT_100_NEW_VARIANT_IMAGE =
+const ITRACIENT_100_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500104/6_s6bqqi.png';
-const ITRACIENT_200_BOX_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806000/Itracient_200_Cap_box_isw1my.jpg';
-const ITRACIENT_200_3D_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806007/ITRACIENT_200_CAP_3D_vxqdfj.jpg';
-const ITRACIENT_200_STRIP_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806011/ITRACIENT_200_CAP_F_B_wwauvk.jpg';
-const ITRACIENT_200_DETAILS_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806013/ITRACIENT_200_CAP_DETAILS_iy47ta.jpg';
-const ITRACIENT_200_STRIP_FRONT_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806018/ITRACIENT_200_CAP_STRIP_kmcoco.jpg';
-const LEVOCIENT_5_3D_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806012/Levocient_5_Tablets_3d_qbwzdf.jpg';
-const LEVOCIENT_5_BOX_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806015/Levocient_5mg_Tablets_box_fug2v9.jpg';
-const LEVOCIENT_5_MRP_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806017/Levocient_5mg_Tablets_mrp_tsxs9a.jpg';
-const LEVOCIENT_5_STRIP_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806018/Levocient_5mg_Tablets_strip_hljpxg.jpg';
-const LULICIENT_CREAM_DETAILS_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806022/Lulicient_Cream_details_igtubf.jpg';
-const LULICIENT_CREAM_FRONT_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806023/Lulicient_Cream_front_azptuc.jpg';
-const LULICIENT_CREAM_MFD_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806023/LULICIENT_MFD_r4wchy.jpg';
-const LULICIENT_CREAM_TUBE_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806026/Lulicient_Cream_tube_dok5b6.jpg';
-const TERBICIENT_250_TAB_3D_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806035/TERBICIENT_250_TAB_3D_uezxed.jpg';
-const TERBICIENT_250_TAB_FRONT_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806043/TERBICIENT_250_TAB_FRONT_ijozqa.jpg';
-const TERBICIENT_250_TAB_STRIP_1_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806043/TERBICIENT_250_TAB_STRIP_1_sh7jdl.jpg';
-const TERBICIENT_250_TAB_STRIP_2_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806043/Terbicient_250_Tab_strip_chcged.jpg';
 
 export function optimizeProductImageUrl(url: string, width = 640): string {
   return cloudinaryUrl(url, width);
@@ -145,7 +85,7 @@ export const products: Product[] = [
     categoryBadge: 'Bone Health',
     icon: 'pill',
     image: BONE_EFC_PRIMARY_IMAGE,
-    gallery: [BONE_EFC_PRIMARY_IMAGE, BONE_EFC_PACKAGING_VARIANT_IMAGE],
+    gallery: [BONE_EFC_PRIMARY_IMAGE],
     cardHighlights: ['Calcium Orotate', 'Magnesium Orotate', 'Vitamin D3'],
     description:
       'Formulated with Calcium Orotate, Magnesium Orotate, and Vitamin D3 to support bone strength, healthy teeth, and overall musculoskeletal health.',
@@ -195,16 +135,7 @@ export const products: Product[] = [
       'Helps reduce neuropathic discomfort',
       'Nutritional support for diabetic neuropathy and vitamin deficiencies',
     ],
-    gallery: [
-      NERVE_EFC_TABLETS_3D_IMAGE,
-      NERVE_EFC_TABLETS_STRIP_3D_IMAGE,
-      NERVE_EFC_TABLETS_BOX_IMAGE,
-      NERVE_EFC_TABLETS_STRIP_BACK_IMAGE,
-      NERVE_EFC_TABLETS_STRIP_FRONT_IMAGE,
-      NERVE_EFC_TABLETS_MRP_IMAGE,
-      NERVE_EFC_TABLETS_STRIP_COMPOSITION_IMAGE,
-      NERVE_EFC_TABLETS_DETAILS_IMAGE,
-    ],
+    gallery: [],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
@@ -232,13 +163,8 @@ export const products: Product[] = [
       'Candidiasis',
       'Other susceptible fungal infections',
     ],
-    gallery: [
-      ITRACIENT_100_3D_IMAGE,
-      ITRACIENT_100_FRONT_IMAGE,
-      ITRACIENT_100_DETAILS_IMAGE,
-      ITRACIENT_100_STRIP_IMAGE,
-      ITRACIENT_100_NEW_VARIANT_IMAGE,
-    ],
+    image: ITRACIENT_100_PRIMARY_IMAGE,
+    gallery: [ITRACIENT_100_PRIMARY_IMAGE],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
@@ -259,13 +185,7 @@ export const products: Product[] = [
       'Convenient dosing',
       'Broad-spectrum antifungal activity',
     ],
-    gallery: [
-      ITRACIENT_200_BOX_IMAGE,
-      ITRACIENT_200_3D_IMAGE,
-      ITRACIENT_200_STRIP_IMAGE,
-      ITRACIENT_200_DETAILS_IMAGE,
-      ITRACIENT_200_STRIP_FRONT_IMAGE,
-    ],
+    gallery: [],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
@@ -293,12 +213,7 @@ export const products: Product[] = [
       'Jock Itch',
       'Other superficial fungal infections',
     ],
-    gallery: [
-      LULICIENT_CREAM_DETAILS_IMAGE,
-      LULICIENT_CREAM_FRONT_IMAGE,
-      LULICIENT_CREAM_MFD_IMAGE,
-      LULICIENT_CREAM_TUBE_IMAGE,
-    ],
+    gallery: [],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
@@ -319,12 +234,7 @@ export const products: Product[] = [
       'Favorable safety profile',
       'Broad antifungal support',
     ],
-    gallery: [
-      TERBICIENT_250_TAB_3D_IMAGE,
-      TERBICIENT_250_TAB_FRONT_IMAGE,
-      TERBICIENT_250_TAB_STRIP_1_IMAGE,
-      TERBICIENT_250_TAB_STRIP_2_IMAGE,
-    ],
+    gallery: [],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
@@ -353,12 +263,7 @@ export const products: Product[] = [
       'Urticaria',
       'Other allergic conditions',
     ],
-    gallery: [
-      LEVOCIENT_5_3D_IMAGE,
-      LEVOCIENT_5_BOX_IMAGE,
-      LEVOCIENT_5_MRP_IMAGE,
-      LEVOCIENT_5_STRIP_IMAGE,
-    ],
+    gallery: [],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
