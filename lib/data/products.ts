@@ -84,6 +84,8 @@ const ITRACIENT_100_DETAILS_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806011/Itracient_100_Cap_details_riay76.jpg';
 const ITRACIENT_100_STRIP_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806012/Itracient_100_cap_strip_o9kjhd.jpg';
+const ITRACIENT_100_NEW_VARIANT_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500104/6_s6bqqi.png';
 const ITRACIENT_200_BOX_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806000/Itracient_200_Cap_box_isw1my.jpg';
 const ITRACIENT_200_3D_IMAGE =
@@ -235,6 +237,7 @@ export const products: Product[] = [
       ITRACIENT_100_FRONT_IMAGE,
       ITRACIENT_100_DETAILS_IMAGE,
       ITRACIENT_100_STRIP_IMAGE,
+      ITRACIENT_100_NEW_VARIANT_IMAGE,
     ],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
