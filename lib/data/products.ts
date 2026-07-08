@@ -90,6 +90,8 @@ const NERVE_EFC_GALLERY_VARIANT_3_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500139/28_vpgom2.png';
 const NERVE_EFC_GALLERY_VARIANT_4_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500145/30_xvpvta.png';
+const NERVE_EFC_GALLERY_VARIANT_5_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500149/29_kldjbl.png';
 const TERBICIENT_250_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500146/32_fohwww.png';
 const TERBICIENT_250_GALLERY_VARIANT_IMAGE =
@@ -187,6 +189,7 @@ export const products: Product[] = [
       NERVE_EFC_GALLERY_VARIANT_2_IMAGE,
       NERVE_EFC_GALLERY_VARIANT_3_IMAGE,
       NERVE_EFC_GALLERY_VARIANT_4_IMAGE,
+      NERVE_EFC_GALLERY_VARIANT_5_IMAGE,
     ],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
