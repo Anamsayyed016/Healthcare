@@ -57,9 +57,9 @@ export function getCardHighlights(product: Product): string[] {
 }
 
 const BONE_EFC_PRIMARY_IMAGE =
-  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500103/5_fnp2fn.png';
-const BONE_EFC_VARIANT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500104/4_iqfzpd.png';
+const BONE_EFC_PACKAGING_VARIANT_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500103/5_fnp2fn.png';
 const NERVE_EFC_TABLETS_3D_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1782806023/Nerve_EFC_Tablets_3d_n2bzpe.jpg';
 const NERVE_EFC_TABLETS_STRIP_3D_IMAGE =
@@ -143,7 +143,7 @@ export const products: Product[] = [
     categoryBadge: 'Bone Health',
     icon: 'pill',
     image: BONE_EFC_PRIMARY_IMAGE,
-    gallery: [BONE_EFC_PRIMARY_IMAGE, BONE_EFC_VARIANT_IMAGE],
+    gallery: [BONE_EFC_PRIMARY_IMAGE, BONE_EFC_PACKAGING_VARIANT_IMAGE],
     cardHighlights: ['Calcium Orotate', 'Magnesium Orotate', 'Vitamin D3'],
     description:
       'Formulated with Calcium Orotate, Magnesium Orotate, and Vitamin D3 to support bone strength, healthy teeth, and overall musculoskeletal health.',
