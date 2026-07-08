@@ -88,6 +88,8 @@ const NERVE_EFC_GALLERY_VARIANT_2_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500138/26_p5imaq.png';
 const NERVE_EFC_GALLERY_VARIANT_3_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500139/28_vpgom2.png';
+const NERVE_EFC_GALLERY_VARIANT_4_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500145/30_xvpvta.png';
 
 /** Delivery URL: trim near-white canvas so packages fill the preview evenly. */
 export function optimizeProductImageUrl(url: string, width = 640): string {
@@ -180,6 +182,7 @@ export const products: Product[] = [
       NERVE_EFC_GALLERY_VARIANT_IMAGE,
       NERVE_EFC_GALLERY_VARIANT_2_IMAGE,
       NERVE_EFC_GALLERY_VARIANT_3_IMAGE,
+      NERVE_EFC_GALLERY_VARIANT_4_IMAGE,
     ],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
