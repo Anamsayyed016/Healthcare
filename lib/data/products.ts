@@ -79,13 +79,14 @@ const LEVOCIENT_5_GALLERY_VARIANT_2_IMAGE =
 const LULICIENT_CREAM_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500126/21_h7sps4.png';
 
-/** Delivery URL with whitespace trim so packages fill the preview evenly. */
+/** Delivery URL: trim near-white canvas so packages fill the preview evenly. */
 export function optimizeProductImageUrl(url: string, width = 640): string {
   if (!url.includes('res.cloudinary.com') || !url.includes('/upload/')) {
     return url;
   }
 
-  const transform = `e_trim/f_auto,q_auto,w_${width}`;
+  // e_trim:10:white removes excess white margins without cropping packaging artwork
+  const transform = `e_trim:10:white/f_auto,q_auto,w_${width}`;
   return url.replace('/upload/', `/upload/${transform}/`);
 }
 

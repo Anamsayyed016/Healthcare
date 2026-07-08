@@ -36,14 +36,14 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
 
   return (
     <div className="space-y-4">
-      <div className="group relative overflow-hidden rounded-[24px] border border-[#E2E8F0] bg-white shadow-[0_8px_32px_rgba(15,23,42,0.06)]">
-        {/* Fixed preview frame so the image can fill the usable area consistently */}
-        <div className="relative h-[420px] bg-white sm:h-[500px] lg:h-[600px]">
+      <div className="group relative overflow-hidden rounded-[24px] border border-[#E2E8F0] bg-[#FFFFFF] shadow-[0_8px_32px_rgba(15,23,42,0.06)]">
+        {/* Fixed preview frame — pure white so package art blends into the card */}
+        <div className="relative h-[420px] bg-[#FFFFFF] sm:h-[500px] lg:h-[600px]">
           {activeSrc ? (
             <button
               type="button"
               onClick={() => setFullscreen(true)}
-              className="absolute inset-3 sm:inset-4 lg:inset-5 cursor-zoom-in overflow-hidden p-0 transition-transform duration-500 ease-out group-hover:scale-[1.01]"
+              className="absolute inset-4 sm:inset-5 cursor-zoom-in overflow-hidden bg-[#FFFFFF] p-0 transition-transform duration-500 ease-out group-hover:scale-[1.01]"
               aria-label={`View full size ${product.name} image`}
             >
               <AnimatePresence mode="wait">
