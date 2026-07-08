@@ -37,18 +37,16 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
   return (
     <div className="space-y-4">
       <div className="group relative overflow-hidden rounded-[24px] border border-[#E2E8F0] bg-white shadow-[0_8px_32px_rgba(15,23,42,0.06)]">
-        <div className="absolute inset-0 bg-linear-to-b from-[#F8FBFF] via-white to-[#F0F7FF]/50" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(27,90,174,0.12)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-white" />
 
-        <div className="relative flex min-h-[420px] items-center justify-center p-4 sm:min-h-[500px] lg:min-h-[600px] sm:p-6">
+        <div className="relative flex aspect-[5/4] w-full items-center justify-center sm:aspect-[4/3] lg:min-h-[560px] lg:aspect-auto">
           {activeSrc ? (
             <button
               type="button"
               onClick={() => setFullscreen(true)}
-              className="relative h-[380px] w-full cursor-zoom-in transition-transform duration-500 ease-out group-hover:scale-[1.02] sm:h-[460px] lg:h-[540px]"
+              className="relative h-full w-full cursor-zoom-in p-2 sm:p-3"
               aria-label={`View full size ${product.name} image`}
             >
-              <div className="absolute inset-[10%] rounded-3xl bg-white/50 shadow-[0_16px_48px_rgba(27,90,174,0.1)] blur-sm" />
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeSrc}
@@ -64,11 +62,11 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     priority={selected === 0}
-                    className="z-10 object-contain drop-shadow-[0_12px_32px_rgba(15,23,42,0.12)]"
+                    className="object-contain object-center scale-[1.04] sm:scale-[1.06] transition-transform duration-500 ease-out group-hover:scale-[1.07]"
                   />
                 </motion.div>
               </AnimatePresence>
-              <span className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1.5 rounded-full border border-[#E2E8F0] bg-white/90 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#64748B] opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+              <span className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1.5 rounded-full border border-[#E2E8F0] bg-white/95 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#64748B] opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                 <ZoomIn size={12} />
                 Full Screen
               </span>
@@ -96,7 +94,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
               key={`${src}-${index}`}
               type="button"
               onClick={() => setSelected(index)}
-              className={`relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 transition-all ${
+              className={`relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 bg-white transition-all ${
                 selected === index
                   ? 'border-[#3B82F6] shadow-[0_4px_12px_rgba(27,90,174,0.2)]'
                   : 'border-[#E2E8F0] hover:border-[#93C5FD]'
@@ -109,7 +107,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
                 alt={`${product.name} view ${index + 1}`}
                 fill
                 sizes="80px"
-                className="object-contain bg-[#F8FBFF] p-1"
+                className="object-contain object-center scale-[1.08] p-0.5"
               />
             </button>
           ))}
@@ -150,7 +148,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
                 alt={product.name}
                 fill
                 sizes="100vw"
-                className="object-contain"
+                className="object-contain object-center"
               />
             </motion.div>
           </motion.div>
