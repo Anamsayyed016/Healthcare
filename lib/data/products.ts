@@ -70,6 +70,8 @@ const ITRACIENT_100_GALLERY_VARIANT_2_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500114/12_gayhtj.png';
 const ITRACIENT_200_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500111/10_nwhhbq.png';
+const ITRACIENT_200_GALLERY_VARIANT_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500116/11_dqwjs9.png';
 
 export function optimizeProductImageUrl(url: string, width = 640): string {
   return cloudinaryUrl(url, width);
@@ -204,13 +206,12 @@ export const products: Product[] = [
       'Broad-spectrum antifungal activity',
     ],
     image: ITRACIENT_200_PRIMARY_IMAGE,
-    gallery: [ITRACIENT_200_PRIMARY_IMAGE],
+    gallery: [ITRACIENT_200_PRIMARY_IMAGE, ITRACIENT_200_GALLERY_VARIANT_IMAGE],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
   {
-    slug: 'lulicient-cream',
-    name: 'Lulicient™ Cream',
+    slug: 'lulicient-cream',    name: 'Lulicient™ Cream',
     category: 'Dermatology',
     categoryBadge: 'Dermatology',
     icon: 'flask',
