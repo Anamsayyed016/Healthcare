@@ -47,14 +47,14 @@ export default function ProductShowcase({
       )}
 
       <div
-        className={`relative z-10 flex h-full w-full items-center justify-center ${
-          isCard ? 'p-0' : 'p-2 sm:p-3'
+        className={`relative z-10 h-full w-full ${
+          isCard ? '' : 'flex items-center justify-center p-2 sm:p-3'
         }`}
       >
         {optimizedSrc ? (
           <div
-            className={`relative transition-transform duration-300 ease-out ${
-              isCard ? 'h-full w-full' : 'h-[92%] w-[92%]'
+            className={`relative h-full w-full transition-transform duration-300 ease-out ${
+              isCard ? '' : 'h-[92%] w-[92%]'
             } ${href ? 'group-hover/image:scale-[1.02]' : ''}`}
           >
             {!isCard && (
@@ -67,12 +67,14 @@ export default function ProductShowcase({
               sizes={
                 variant === 'detail'
                   ? '(max-width: 1024px) 100vw, 50vw'
-                  : '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+                  : '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
               }
               priority={priority}
-              className={`z-10 object-contain object-center ${
-                isCard ? '' : 'drop-shadow-[0_8px_24px_rgba(15,23,42,0.1)]'
-              }`}
+              className={
+                isCard
+                  ? 'object-contain object-center scale-[1.08] sm:scale-[1.1] md:scale-[1.12]'
+                  : 'z-10 object-contain object-center drop-shadow-[0_8px_24px_rgba(15,23,42,0.1)]'
+              }
             />
           </div>
         ) : (

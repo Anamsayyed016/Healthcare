@@ -20,7 +20,7 @@ const variantConfig = {
     delayFactor: (index: number) => (index % 3) * 0.06,
     article:
       'rounded-[22px] border border-[#e2eaf3] shadow-[0_4px_20px_-8px_rgba(27,90,174,0.1)] transition-all duration-300 hover:-translate-y-[3px] hover:shadow-[0_20px_52px_-14px_rgba(27,90,174,0.17)] hover:border-[#c5d9f0]',
-    imageSection: 'aspect-[5/4] w-full',
+    imageSection: 'aspect-[6/5] w-full bg-white',
     content: 'px-6 pb-7 pt-5',
     title: 'text-lg font-medium',
     learnMore:
@@ -33,7 +33,7 @@ const variantConfig = {
     delayFactor: (index: number) => index * 0.05,
     article:
       'rounded-[20px] border border-[#e2eaf3] shadow-[0_4px_16px_-8px_rgba(27,90,174,0.08)] transition-all duration-300 hover:-translate-y-[3px] hover:shadow-[0_16px_40px_-12px_rgba(27,90,174,0.15)] hover:border-[#c5d9f0]',
-    imageSection: 'aspect-[5/4] w-full',
+    imageSection: 'aspect-[6/5] w-full bg-white',
     content: 'px-5 sm:px-6 pb-6 sm:pb-7 pt-4',
     title: 'text-lg font-medium',
     learnMore:
