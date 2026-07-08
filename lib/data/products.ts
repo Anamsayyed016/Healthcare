@@ -71,6 +71,8 @@ const ITRACIENT_200_PRIMARY_IMAGE =
 const ITRACIENT_200_GALLERY_VARIANT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500116/11_dqwjs9.png';
 const LEVOCIENT_5_PRIMARY_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500119/16_uxg8np.png';
+const LEVOCIENT_5_GALLERY_VARIANT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500118/17_o6b7pb.png';
 
 /** Delivery URL with whitespace trim so packages fill the preview evenly. */
@@ -290,7 +292,7 @@ export const products: Product[] = [
       'Other allergic conditions',
     ],
     image: LEVOCIENT_5_PRIMARY_IMAGE,
-    gallery: [LEVOCIENT_5_PRIMARY_IMAGE],
+    gallery: [LEVOCIENT_5_PRIMARY_IMAGE, LEVOCIENT_5_GALLERY_VARIANT_IMAGE],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
