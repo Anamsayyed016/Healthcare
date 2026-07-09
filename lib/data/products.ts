@@ -60,6 +60,8 @@ const BONE_EFC_PACKAGING_VARIANT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500103/5_fnp2fn.png';
 const BONE_EFC_GALLERY_VARIANT_2_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500106/1_oz3p2z.png';
+const BONE_EFC_GALLERY_VARIANT_3_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783581648/hide1_qkzss8.png';
 const ITRACIENT_100_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500104/6_s6bqqi.png';
 const ITRACIENT_100_GALLERY_VARIANT_IMAGE =
@@ -132,6 +134,7 @@ export const products: Product[] = [
       BONE_EFC_PRIMARY_IMAGE,
       BONE_EFC_PACKAGING_VARIANT_IMAGE,
       BONE_EFC_GALLERY_VARIANT_2_IMAGE,
+      BONE_EFC_GALLERY_VARIANT_3_IMAGE,
     ],
     cardHighlights: ['Calcium Orotate', 'Magnesium Orotate', 'Vitamin D3'],
     description:
