@@ -6,39 +6,23 @@ on:
       - main
   workflow_dispatch:
 
-# Cancel superseded deploys — only the latest push should run.
-concurrency:
-  group: pharmefc-production-deploy
-  cancel-in-progress: true
-
 env:
-  HOST: ${{ secrets.HOST }}
-  SSH_USER: ${{ secrets.SSH_USER }}
-  SSH_PORT: ${{ secrets.SSH_PORT }}
-  SSH_KEY: ${{ secrets.SSH_KEY }}
-  SSH_KEY_B64: ${{ secrets.SSH_KEY_B64 }}
   PROD_URL: https://aioss.tech
   DEPLOY_FOLDER: /var/www/pharmefc-healthcare
   STAGING_FOLDER: /var/www/pharmefc-healthcare/staging
   BACKUP_FOLDER: /var/www/pharmefc-healthcare/backups
   RELEASES_FOLDER: /var/www/pharmefc-healthcare/releases
-  REPO_DIR: /var/www/pharmefc-healthcare/source
-  SSH_OPTS_BASE: >-
-    -o StrictHostKeyChecking=accept-new
-    -o ConnectTimeout=15
-    -o ServerAliveInterval=15
-    -o ServerAliveCountMax=120
-    -o IdentitiesOnly=yes
-    -o BatchMode=yes
 
 jobs:
-  deploy:
-    name: "VPS build & zero-downtime deploy"
+  validate_secrets:
+    name: "Validate SSH secrets"
     runs-on: ubuntu-latest
-    timeout-minutes: 30
     steps:
       - name: Validate deployment secrets
         env:
+          HOST: ${{ secrets.HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_KEY_B64: ${{ secrets.SSH_KEY_B64 }}
         run: |
@@ -49,7 +33,7 @@ jobs:
           [ -z "$SSH_PORT" ] && echo "SSH_PORT: MISSING" && MISSING=1 || echo "SSH_PORT: SET"
 
           if [ -z "$SSH_KEY_B64" ] && [ -z "$SSH_KEY" ]; then
-            echo "SSH_KEY_B64: MISSING"
+            echo "SSH_KEY: MISSING (set SSH_KEY_B64 or SSH_KEY)"
             MISSING=1
           elif [ -n "$SSH_KEY_B64" ]; then
             TMP_KEY="$(mktemp)"
@@ -70,14 +54,64 @@ jobs:
           [ "$MISSING" -eq 1 ] && exit 1
           echo "All secrets validated."
 
-      - name: Checkout deploy scripts
+  build:
+    name: "Build standalone bundle"
+    runs-on: ubuntu-latest
+    needs: validate_secrets
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
-          sparse-checkout: |
-            .github/scripts
-            scripts
-            ecosystem.config.cjs
-          sparse-checkout-cone-mode: false
+          version: 9.15.9
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Next.js standalone
+        env:
+          NODE_ENV: production
+          NEXT_TELEMETRY_DISABLED: 1
+        run: |
+          pnpm run build
+          [ -d .next/standalone ] || { echo "❌ standalone output missing"; exit 1; }
+          [ -f .next/BUILD_ID ] || { echo "❌ BUILD_ID missing"; exit 1; }
+          echo "✅ Standalone build OK"
+
+      - name: Create deployment bundle
+        run: |
+          chmod +x scripts/prepare-deploy-bundle.sh
+          scripts/prepare-deploy-bundle.sh "$GITHUB_WORKSPACE/release.tar.gz"
+
+      - name: Upload bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: pharmefc-release-bundle
+          path: release.tar.gz
+          retention-days: 1
+
+  upload:
+    name: "Upload bundle to VPS"
+    runs-on: ubuntu-latest
+    needs: build
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: pharmefc-release-bundle
 
       - name: Setup SSH
         env:
@@ -87,40 +121,89 @@ jobs:
           chmod +x .github/scripts/setup-deploy-ssh.sh
           .github/scripts/setup-deploy-ssh.sh "$HOME/.ssh/deploy_key"
 
-      - name: Upload deploy scripts to VPS
+      - name: Test SSH connection
         env:
           HOST: ${{ secrets.HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
-          SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT $SSH_OPTS_BASE"
-          ssh $SSH_OPTS "$SSH_USER@$HOST" \
-            "mkdir -p ${DEPLOY_FOLDER}/shared ${DEPLOY_FOLDER}/logs $STAGING_FOLDER $RELEASES_FOLDER $BACKUP_FOLDER $REPO_DIR"
-          scp -i "$HOME/.ssh/deploy_key" -P "$SSH_PORT" $SSH_OPTS_BASE \
-            scripts/deploy-pharmefc-zero-downtime.sh \
-            scripts/vps-build-and-deploy.sh \
-            scripts/prepare-deploy-bundle.sh \
-            ecosystem.config.cjs \
-            "$SSH_USER@$HOST:${DEPLOY_FOLDER}/shared/"
-          ssh $SSH_OPTS "$SSH_USER@$HOST" \
-            "chmod +x ${DEPLOY_FOLDER}/shared/*.sh"
-          echo "✅ Deploy scripts uploaded"
+          SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT \
+            -o StrictHostKeyChecking=accept-new \
+            -o ConnectTimeout=15 \
+            -o ServerAliveInterval=15 \
+            -o ServerAliveCountMax=40 \
+            -o IdentitiesOnly=yes \
+            -o BatchMode=yes"
+          ssh $SSH_OPTS "$SSH_USER@$HOST" "echo '✅ SSH OK — PharmEFC deploy path only'"
 
-      - name: Build on VPS and run zero-downtime deploy
+      - name: Upload to staging folder
         env:
           HOST: ${{ secrets.HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
-          SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT $SSH_OPTS_BASE"
-          echo "🚀 Building on VPS (avoids GitHub runner queue for compile step)..."
+          SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT \
+            -o StrictHostKeyChecking=accept-new \
+            -o ConnectTimeout=15 \
+            -o ServerAliveInterval=15 \
+            -o ServerAliveCountMax=40 \
+            -o IdentitiesOnly=yes \
+            -o BatchMode=yes"
+          SCP_OPTS="-i $HOME/.ssh/deploy_key -P $SSH_PORT \
+            -o StrictHostKeyChecking=accept-new \
+            -o ConnectTimeout=15 \
+            -o IdentitiesOnly=yes"
+          TIMESTAMP=$(date +%s)
+          BUNDLE_NAME="release-${TIMESTAMP}.tar.gz"
           ssh $SSH_OPTS "$SSH_USER@$HOST" \
-            "REPO_DIR='$REPO_DIR' \
+            "mkdir -p $STAGING_FOLDER $RELEASES_FOLDER $BACKUP_FOLDER ${DEPLOY_FOLDER}/logs ${DEPLOY_FOLDER}/shared"
+          rsync -avz -e "ssh $SSH_OPTS" release.tar.gz \
+            "$SSH_USER@$HOST:$STAGING_FOLDER/$BUNDLE_NAME"
+          ssh $SSH_OPTS "$SSH_USER@$HOST" "echo '$BUNDLE_NAME' > /tmp/pharmefc_bundle_name.txt"
+          chmod +x scripts/deploy-pharmefc-zero-downtime.sh
+          scp $SCP_OPTS scripts/deploy-pharmefc-zero-downtime.sh \
+            "$SSH_USER@$HOST:${DEPLOY_FOLDER}/shared/deploy-pharmefc-zero-downtime.sh"
+          echo "✅ Uploaded $BUNDLE_NAME and deploy script"
+
+  finalize:
+    name: "Zero-downtime deploy swap"
+    runs-on: ubuntu-latest
+    needs: upload
+    timeout-minutes: 15
+    steps:
+      - name: Checkout SSH helper
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/scripts
+          sparse-checkout-cone-mode: true
+
+      - name: Setup SSH
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_KEY_B64: ${{ secrets.SSH_KEY_B64 }}
+        run: |
+          chmod +x .github/scripts/setup-deploy-ssh.sh
+          .github/scripts/setup-deploy-ssh.sh "$HOME/.ssh/deploy_key"
+
+      - name: Run zero-downtime deploy on VPS
+        env:
+          HOST: ${{ secrets.HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+        run: |
+          SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT \
+            -o StrictHostKeyChecking=accept-new \
+            -o ConnectTimeout=15 \
+            -o ServerAliveInterval=15 \
+            -o ServerAliveCountMax=40 \
+            -o IdentitiesOnly=yes \
+            -o BatchMode=yes"
+          ssh $SSH_OPTS "$SSH_USER@$HOST" \
+            "BUNDLE_NAME=\$(cat /tmp/pharmefc_bundle_name.txt) \
              STAGING_FOLDER='$STAGING_FOLDER' \
              RELEASES_FOLDER='$RELEASES_FOLDER' \
              BACKUP_FOLDER='$BACKUP_FOLDER' \
-             DEPLOY_FOLDER='$DEPLOY_FOLDER' \
-             bash ${DEPLOY_FOLDER}/shared/vps-build-and-deploy.sh"
+             bash ${DEPLOY_FOLDER}/shared/deploy-pharmefc-zero-downtime.sh"
 
       - name: Verify live site
         env:
@@ -128,6 +211,9 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
-          SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT $SSH_OPTS_BASE"
+          SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT \
+            -o StrictHostKeyChecking=accept-new \
+            -o ConnectTimeout=15 \
+            -o IdentitiesOnly=yes"
           ssh $SSH_OPTS "$SSH_USER@$HOST" "curl -fsSI -H 'Host: aioss.tech' http://127.0.0.1 | head -5"
-          ssh $SSH_OPTS "$SSH_USER@$HOST" "pm2 list | grep -E 'pharmefc|naukrimili' || pm2 list"
+          ssh $SSH_OPTS "$SSH_USER@$HOST" "pm2 list | grep pharmefc || true"
