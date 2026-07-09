@@ -323,7 +323,11 @@ export const products: Product[] = [
       'Broad antifungal support',
     ],
     image: TERBICIENT_250_PRIMARY_IMAGE,
-    gallery: [TERBICIENT_250_PRIMARY_IMAGE, TERBICIENT_250_GALLERY_VARIANT_IMAGE],
+    gallery: [
+      TERBICIENT_250_PRIMARY_IMAGE,
+      TERBICIENT_250_GALLERY_VARIANT_IMAGE,
+      'https://res.cloudinary.com/wslwkiwr/image/upload/v1783590467/hide9_i79m8x.png',
+    ],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
   },
