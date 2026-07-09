@@ -6,6 +6,11 @@ on:
       - main
   workflow_dispatch:
 
+# Only one deploy at a time — cancel superseded runs to avoid concurrent swaps.
+concurrency:
+  group: pharmefc-production-deploy
+  cancel-in-progress: true
+
 env:
   PROD_URL: https://aioss.tech
   DEPLOY_FOLDER: /var/www/pharmefc-healthcare
@@ -214,6 +219,9 @@ jobs:
           SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT \
             -o StrictHostKeyChecking=accept-new \
             -o ConnectTimeout=15 \
-            -o IdentitiesOnly=yes"
+            -o ServerAliveInterval=15 \
+            -o ServerAliveCountMax=40 \
+            -o IdentitiesOnly=yes \
+            -o BatchMode=yes"
           ssh $SSH_OPTS "$SSH_USER@$HOST" "curl -fsSI -H 'Host: aioss.tech' http://127.0.0.1 | head -5"
           ssh $SSH_OPTS "$SSH_USER@$HOST" "pm2 list | grep pharmefc || true"
