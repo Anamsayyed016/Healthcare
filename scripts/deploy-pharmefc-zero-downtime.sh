@@ -38,14 +38,22 @@ echo "🧪 Staging health check on port $STAGING_PORT (production on $PROD_PORT 
 pm2 delete pharmefc-healthcare-staging 2>/dev/null || true
 PHARMEFC_RELEASE_DIR="$TEMP_DEPLOY" pm2 start "$TEMP_DEPLOY/ecosystem.config.cjs" --only pharmefc-healthcare-staging
 
+CURL_OPTS=(--connect-timeout 3 --max-time 8 -fsS)
 HEALTH_OK=0
-for i in $(seq 1 15); do
-  if curl -fsS -o /dev/null "http://127.0.0.1:${STAGING_PORT}/"; then
+for i in $(seq 1 20); do
+  if curl "${CURL_OPTS[@]}" -o /dev/null "http://127.0.0.1:${STAGING_PORT}/"; then
     HEALTH_OK=1
+    echo "   ✅ Staging healthy on attempt ${i}/20"
     break
   fi
-  echo "   Staging health attempt ${i}/15..."
-  sleep 2
+  # Fast poll early (Next.js cold start), then back off slightly
+  if [ "$i" -le 8 ]; then
+    SLEEP=1
+  else
+    SLEEP=2
+  fi
+  echo "   Staging health attempt ${i}/20 (retry in ${SLEEP}s)..."
+  sleep "$SLEEP"
 done
 
 pm2 delete pharmefc-healthcare-staging 2>/dev/null || true
@@ -84,16 +92,20 @@ PHARMEFC_RELEASE_DIR="$NEW_RELEASE" PORT="$PROD_PORT" \
   pm2 start "$NEW_RELEASE/ecosystem.config.cjs" --only pharmefc-healthcare --env production
 pm2 save
 
-sleep 2
-
 PROD_OK=0
-for i in $(seq 1 15); do
-  if curl -fsS -o /dev/null "http://127.0.0.1:${PROD_PORT}/"; then
+for i in $(seq 1 20); do
+  if curl "${CURL_OPTS[@]}" -o /dev/null "http://127.0.0.1:${PROD_PORT}/"; then
     PROD_OK=1
+    echo "   ✅ Production healthy on attempt ${i}/20"
     break
   fi
-  echo "   Production health attempt ${i}/15..."
-  sleep 2
+  if [ "$i" -le 8 ]; then
+    SLEEP=1
+  else
+    SLEEP=2
+  fi
+  echo "   Production health attempt ${i}/20 (retry in ${SLEEP}s)..."
+  sleep "$SLEEP"
 done
 
 if [ "$PROD_OK" != "1" ]; then
