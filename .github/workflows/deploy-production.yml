@@ -6,7 +6,7 @@ on:
       - main
   workflow_dispatch:
 
-# Cancel older deploys when a new push lands — avoids runner queue pile-up.
+# Cancel superseded deploys — only the latest push should run.
 concurrency:
   group: pharmefc-production-deploy
   cancel-in-progress: true
@@ -22,20 +22,20 @@ env:
   STAGING_FOLDER: /var/www/pharmefc-healthcare/staging
   BACKUP_FOLDER: /var/www/pharmefc-healthcare/backups
   RELEASES_FOLDER: /var/www/pharmefc-healthcare/releases
-  # Keep SSH sessions alive during long VPS deploy (health checks + pm2 swap).
+  REPO_DIR: /var/www/pharmefc-healthcare/source
   SSH_OPTS_BASE: >-
     -o StrictHostKeyChecking=accept-new
     -o ConnectTimeout=15
     -o ServerAliveInterval=15
-    -o ServerAliveCountMax=40
+    -o ServerAliveCountMax=120
     -o IdentitiesOnly=yes
     -o BatchMode=yes
 
 jobs:
-  build:
-    name: "Build standalone bundle"
+  deploy:
+    name: "VPS build & zero-downtime deploy"
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Validate deployment secrets
         env:
@@ -70,58 +70,14 @@ jobs:
           [ "$MISSING" -eq 1 ] && exit 1
           echo "All secrets validated."
 
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9.15.9
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build Next.js standalone
-        env:
-          NODE_ENV: production
-          NEXT_TELEMETRY_DISABLED: 1
-        run: |
-          pnpm run build
-          [ -d .next/standalone ] || { echo "❌ standalone output missing"; exit 1; }
-          [ -f .next/BUILD_ID ] || { echo "❌ BUILD_ID missing"; exit 1; }
-          echo "✅ Standalone build OK"
-
-      - name: Create deployment bundle
-        run: |
-          chmod +x scripts/prepare-deploy-bundle.sh
-          scripts/prepare-deploy-bundle.sh "$GITHUB_WORKSPACE/release.tar.gz"
-
-      - name: Upload bundle artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: pharmefc-release-bundle
-          path: release.tar.gz
-          retention-days: 1
-
-  deploy:
-    name: "Upload & zero-downtime deploy"
-    runs-on: ubuntu-latest
-    needs: build
-    timeout-minutes: 15
-    steps:
       - name: Checkout deploy scripts
         uses: actions/checkout@v4
-
-      - name: Download bundle
-        uses: actions/download-artifact@v4
         with:
-          name: pharmefc-release-bundle
+          sparse-checkout: |
+            .github/scripts
+            scripts
+            ecosystem.config.cjs
+          sparse-checkout-cone-mode: false
 
       - name: Setup SSH
         env:
@@ -131,41 +87,40 @@ jobs:
           chmod +x .github/scripts/setup-deploy-ssh.sh
           .github/scripts/setup-deploy-ssh.sh "$HOME/.ssh/deploy_key"
 
-      - name: Upload bundle to VPS
+      - name: Upload deploy scripts to VPS
         env:
           HOST: ${{ secrets.HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
           SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT $SSH_OPTS_BASE"
-          TIMESTAMP=$(date +%s)
-          BUNDLE_NAME="release-${TIMESTAMP}.tar.gz"
-          echo "📤 Uploading $BUNDLE_NAME to $HOST..."
           ssh $SSH_OPTS "$SSH_USER@$HOST" \
-            "mkdir -p $STAGING_FOLDER $RELEASES_FOLDER $BACKUP_FOLDER ${DEPLOY_FOLDER}/logs ${DEPLOY_FOLDER}/shared"
-          rsync -avz --progress -e "ssh $SSH_OPTS" release.tar.gz \
-            "$SSH_USER@$HOST:$STAGING_FOLDER/$BUNDLE_NAME"
-          ssh $SSH_OPTS "$SSH_USER@$HOST" "echo '$BUNDLE_NAME' > /tmp/pharmefc_bundle_name.txt"
-          chmod +x scripts/deploy-pharmefc-zero-downtime.sh
+            "mkdir -p ${DEPLOY_FOLDER}/shared ${DEPLOY_FOLDER}/logs $STAGING_FOLDER $RELEASES_FOLDER $BACKUP_FOLDER $REPO_DIR"
           scp -i "$HOME/.ssh/deploy_key" -P "$SSH_PORT" $SSH_OPTS_BASE \
             scripts/deploy-pharmefc-zero-downtime.sh \
-            "$SSH_USER@$HOST:${DEPLOY_FOLDER}/shared/deploy-pharmefc-zero-downtime.sh"
-          echo "✅ Uploaded $BUNDLE_NAME and deploy script"
+            scripts/vps-build-and-deploy.sh \
+            scripts/prepare-deploy-bundle.sh \
+            ecosystem.config.cjs \
+            "$SSH_USER@$HOST:${DEPLOY_FOLDER}/shared/"
+          ssh $SSH_OPTS "$SSH_USER@$HOST" \
+            "chmod +x ${DEPLOY_FOLDER}/shared/*.sh"
+          echo "✅ Deploy scripts uploaded"
 
-      - name: Run zero-downtime deploy on VPS
+      - name: Build on VPS and run zero-downtime deploy
         env:
           HOST: ${{ secrets.HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
           SSH_OPTS="-i $HOME/.ssh/deploy_key -p $SSH_PORT $SSH_OPTS_BASE"
-          echo "🚀 Starting zero-downtime deploy on VPS (same runner — no queue wait)..."
+          echo "🚀 Building on VPS (avoids GitHub runner queue for compile step)..."
           ssh $SSH_OPTS "$SSH_USER@$HOST" \
-            "BUNDLE_NAME=\$(cat /tmp/pharmefc_bundle_name.txt) \
+            "REPO_DIR='$REPO_DIR' \
              STAGING_FOLDER='$STAGING_FOLDER' \
              RELEASES_FOLDER='$RELEASES_FOLDER' \
              BACKUP_FOLDER='$BACKUP_FOLDER' \
-             bash ${DEPLOY_FOLDER}/shared/deploy-pharmefc-zero-downtime.sh"
+             DEPLOY_FOLDER='$DEPLOY_FOLDER' \
+             bash ${DEPLOY_FOLDER}/shared/vps-build-and-deploy.sh"
 
       - name: Verify live site
         env:
