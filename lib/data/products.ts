@@ -84,6 +84,8 @@ const LEVOCIENT_5_GALLERY_VARIANT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500118/17_o6b7pb.png';
 const LEVOCIENT_5_GALLERY_VARIANT_2_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500120/15_bozvam.png';
+const LEVOCIENT_5_GALLERY_VARIANT_3_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783587457/hide5_m9g667.png';
 const LULICIENT_CREAM_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500126/21_h7sps4.png';
 const LULICIENT_CREAM_GALLERY_VARIANT_IMAGE =
@@ -344,6 +346,7 @@ export const products: Product[] = [
       LEVOCIENT_5_PRIMARY_IMAGE,
       LEVOCIENT_5_GALLERY_VARIANT_IMAGE,
       LEVOCIENT_5_GALLERY_VARIANT_2_IMAGE,
+      LEVOCIENT_5_GALLERY_VARIANT_3_IMAGE,
     ],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
