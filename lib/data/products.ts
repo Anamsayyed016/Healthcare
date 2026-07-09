@@ -327,6 +327,7 @@ export const products: Product[] = [
       TERBICIENT_250_PRIMARY_IMAGE,
       TERBICIENT_250_GALLERY_VARIANT_IMAGE,
       'https://res.cloudinary.com/wslwkiwr/image/upload/v1783590467/hide9_i79m8x.png',
+      'https://res.cloudinary.com/wslwkiwr/image/upload/v1783591258/hide10_mg7uhp.png',
     ],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
