@@ -68,6 +68,8 @@ const ITRACIENT_100_GALLERY_VARIANT_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500111/7_fbervx.png';
 const ITRACIENT_100_GALLERY_VARIANT_2_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500114/12_gayhtj.png';
+const ITRACIENT_100_GALLERY_VARIANT_3_IMAGE =
+  'https://res.cloudinary.com/wslwkiwr/image/upload/v1783582673/hide2_daftxb.png';
 const ITRACIENT_200_PRIMARY_IMAGE =
   'https://res.cloudinary.com/wslwkiwr/image/upload/v1783500111/10_nwhhbq.png';
 const ITRACIENT_200_GALLERY_VARIANT_IMAGE =
@@ -226,6 +228,7 @@ export const products: Product[] = [
       ITRACIENT_100_PRIMARY_IMAGE,
       ITRACIENT_100_GALLERY_VARIANT_IMAGE,
       ITRACIENT_100_GALLERY_VARIANT_2_IMAGE,
+      ITRACIENT_100_GALLERY_VARIANT_3_IMAGE,
     ],
     manufacturing: MANUFACTURING_STATEMENT,
     qualityStandards: MANUFACTURING_STATEMENT,
