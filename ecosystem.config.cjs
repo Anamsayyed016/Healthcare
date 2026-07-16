@@ -22,6 +22,7 @@ module.exports = {
         NODE_ENV: 'production',
         PORT: process.env.PORT || '3001',
         HOSTNAME: '0.0.0.0',
+        DATABASE_URL: process.env.DATABASE_URL || '',
       },
     },
     {

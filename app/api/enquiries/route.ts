@@ -52,9 +52,12 @@ export async function POST(request: Request) {
     )
   } catch (error) {
     console.error('[api/enquiries] POST failed:', error)
-    return NextResponse.json(
-      { success: false, message: 'Unable to save enquiry. Please try again.' },
-      { status: 500 },
-    )
+    const message =
+      error instanceof Error && /P1001|P1017|ECONNREFUSED|DATABASE_URL/i.test(error.message)
+        ? 'Database connection failed. Please try again later.'
+        : error instanceof Error && /P2021|does not exist|column/i.test(error.message)
+          ? 'Database schema is not ready. Please try again later.'
+          : 'Unable to save enquiry. Please try again.'
+    return NextResponse.json({ success: false, message }, { status: 500 })
   }
 }
