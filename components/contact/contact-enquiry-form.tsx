@@ -4,6 +4,7 @@ import { FormEvent, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { services } from '@/lib/data/services'
 import { validateEnquiry } from '@/lib/validation/enquiry'
+import { buildEnquiryWhatsAppUrl } from '@/lib/whatsapp-enquiry'
 import { ToastHost, toast } from '@/components/ui/toast'
 
 type FloatingFieldProps = {
@@ -151,6 +152,13 @@ export default function ContactEnquiryForm() {
         toast(apiError, 'error')
         return
       }
+
+      const serviceLabel =
+        serviceOptions.find((opt) => opt.value === validation.data.service)?.label ??
+        validation.data.service
+
+      const whatsappUrl = buildEnquiryWhatsAppUrl(validation.data, serviceLabel)
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
 
       toast(result.message || 'Enquiry submitted successfully', 'success')
       formRef.current.reset()

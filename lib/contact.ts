@@ -21,6 +21,12 @@ export const OFFICE_ADDRESS_INLINE = [
 export const PHONE = '+91 9243018530';
 export const PHONE_HREF = 'tel:+919243018530';
 
+/**
+ * Temporary testing WhatsApp number for contact enquiry (digits only, with country code).
+ * Replace this single value with the client's number when going live.
+ */
+export const WHATSAPP_ENQUIRY_NUMBER = '918107738186';
+
 export const EMAIL = 'info@pharmefc.com';
 export const EMAIL_HREF = `mailto:${EMAIL}`;
 
