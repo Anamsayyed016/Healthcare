@@ -22,10 +22,10 @@ export const PHONE = '+91 9243018530';
 export const PHONE_HREF = 'tel:+919243018530';
 
 /**
- * Temporary testing WhatsApp number for contact enquiry (digits only, with country code).
- * Replace this single value with the client's number when going live.
+ * WhatsApp enquiry recipient (digits only, with country code).
+ * Change this single value to update the wa.me destination.
  */
-export const WHATSAPP_ENQUIRY_NUMBER = '918107738186';
+export const WHATSAPP_ENQUIRY_NUMBER = '919243018530';
 
 export const EMAIL = 'info@pharmefc.com';
 export const EMAIL_HREF = `mailto:${EMAIL}`;
