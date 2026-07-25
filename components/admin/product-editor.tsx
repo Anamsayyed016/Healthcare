@@ -1,8 +1,16 @@
 'use client'
 
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState, type ReactNode } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import {
+  ChevronDown,
+  ExternalLink,
+  Globe,
+  Package,
+  Pill,
+  Settings2,
+} from 'lucide-react'
 import { toast } from '@/components/ui/toast'
 import ImageUploader from '@/components/admin/image-uploader'
 
@@ -74,8 +82,47 @@ const empty: ProductFormState = {
   sortOrder: 0,
 }
 
+const inputClass =
+  'admin-login-input h-12 w-full rounded-xl border px-3.5 text-sm outline-none transition-shadow'
+const textareaClass =
+  'admin-login-input w-full rounded-xl border px-3.5 py-3 text-sm outline-none transition-shadow'
+const labelClass = 'mb-1.5 block text-sm font-medium text-slate-700'
+
 function linesToText(values?: string[] | null) {
   return (values || []).join('\n')
+}
+
+function SectionCard({
+  icon,
+  title,
+  description,
+  children,
+}: {
+  icon: ReactNode
+  title: string
+  description: string
+  children: ReactNode
+}) {
+  return (
+    <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_4px_20px_-8px_rgba(15,23,42,0.08)] sm:p-8">
+      <div className="mb-6 flex items-start gap-3 border-b border-slate-100 pb-5">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-slate-600">
+          {icon}
+        </div>
+        <div>
+          <h2 className="text-lg font-bold text-slate-900">{title}</h2>
+          <p className="mt-0.5 text-sm text-slate-500">{description}</p>
+        </div>
+      </div>
+      {children}
+    </section>
+  )
+}
+
+function statusBadgeClass(status: string) {
+  if (status === 'Published') return 'bg-emerald-50 text-emerald-700 ring-emerald-200'
+  if (status === 'Inactive') return 'bg-slate-100 text-slate-600 ring-slate-200'
+  return 'bg-amber-50 text-amber-700 ring-amber-200'
 }
 
 export default function ProductEditor({ productId }: { productId?: string }) {
@@ -84,6 +131,7 @@ export default function ProductEditor({ productId }: { productId?: string }) {
   const [categories, setCategories] = useState<Category[]>([])
   const [saving, setSaving] = useState(false)
   const [loading, setLoading] = useState(Boolean(productId))
+  const [advancedOpen, setAdvancedOpen] = useState(Boolean(productId))
 
   useEffect(() => {
     ;(async () => {
@@ -142,12 +190,13 @@ export default function ProductEditor({ productId }: { productId?: string }) {
     setForm((prev) => ({ ...prev, [key]: value }))
   }
 
-  const onSubmit = async (event: FormEvent) => {
-    event.preventDefault()
+  const saveProduct = async (statusOverride?: string) => {
     setSaving(true)
     try {
+      const nextStatus = statusOverride || form.status
       const payload = {
         ...form,
+        status: nextStatus,
         composition: form.composition,
         benefits: form.benefits,
         indications: form.indications,
@@ -167,8 +216,20 @@ export default function ProductEditor({ productId }: { productId?: string }) {
         toast(json.message || 'Save failed', 'error')
         return
       }
-      toast(productId ? 'Product updated' : 'Product created', 'success')
-      router.push('/admin/products')
+      setForm((prev) => ({ ...prev, status: nextStatus, slug: json.item?.slug || prev.slug }))
+      toast(
+        nextStatus === 'Published'
+          ? 'Product published'
+          : productId
+            ? 'Product updated'
+            : 'Draft saved',
+        'success',
+      )
+      if (!productId && json.item?.id) {
+        router.replace(`/admin/products/${json.item.id}`)
+        router.refresh()
+        return
+      }
       router.refresh()
     } catch {
       toast('Save failed', 'error')
@@ -177,214 +238,555 @@ export default function ProductEditor({ productId }: { productId?: string }) {
     }
   }
 
+  const onSubmit = async (event: FormEvent) => {
+    event.preventDefault()
+    await saveProduct()
+  }
+
+  const openPreview = () => {
+    if (!form.slug) {
+      toast('Add a slug (or save once) to preview on the website', 'error')
+      return
+    }
+    window.open(`/products/${form.slug}`, '_blank', 'noopener,noreferrer')
+  }
+
   if (loading) return <p className="text-sm text-slate-500">Loading product…</p>
 
-  const field = (
-    label: string,
-    key: keyof ProductFormState,
-    opts?: { textarea?: boolean; type?: string },
-  ) => (
-    <label className="block text-sm">
-      <span className="mb-1.5 block font-medium text-slate-700">{label}</span>
-      {opts?.textarea ? (
-        <textarea
-          value={String(form[key] ?? '')}
-          onChange={(e) => setField(key, e.target.value as ProductFormState[typeof key])}
-          rows={4}
-          className="w-full rounded-xl border px-3 py-2"
-        />
-      ) : (
-        <input
-          type={opts?.type || 'text'}
-          value={String(form[key] ?? '')}
-          onChange={(e) =>
-            setField(
-              key,
-              (opts?.type === 'number' ? Number(e.target.value) : e.target.value) as ProductFormState[typeof key],
-            )
-          }
-          className="w-full rounded-xl border px-3 py-2"
-        />
-      )}
-    </label>
-  )
+  const selectedCategory =
+    categories.find((c) => c.id === form.categoryId)?.name ||
+    form.categoryName ||
+    form.categoryBadge ||
+    'Uncategorized'
 
   return (
-    <form onSubmit={onSubmit} className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+    <form onSubmit={onSubmit} className="pb-28">
+      <div className="mb-8 flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold">{productId ? 'Edit product' : 'New product'}</h1>
-          <p className="text-sm text-slate-500">
-            Published products replace the static catalogue on the public site.
+          <h1 className="text-2xl font-bold text-slate-900">
+            {productId ? 'Edit product' : 'Create product'}
+          </h1>
+          <p className="mt-1 text-sm text-slate-500">
+            Fill the basics to publish quickly. Open advanced settings for full product details.
           </p>
         </div>
-        <Link href="/admin/products" className="text-sm text-slate-600">
+        <Link
+          href="/admin/products"
+          className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50"
+        >
           Back to list
         </Link>
       </div>
 
-      <div className="grid gap-4 rounded-2xl border bg-white p-5 lg:grid-cols-2">
-        {field('Product name *', 'name')}
-        {field('Brand name', 'brandName')}
-        {field('Slug', 'slug')}
-        <label className="block text-sm">
-          <span className="mb-1.5 block font-medium text-slate-700">Category</span>
-          <select
-            value={form.categoryId}
-            onChange={(e) => {
-              const cat = categories.find((c) => c.id === e.target.value)
-              setForm((prev) => ({
-                ...prev,
-                categoryId: e.target.value,
-                categoryName: cat?.name || prev.categoryName,
-              }))
-            }}
-            className="w-full rounded-xl border px-3 py-2"
+      <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_320px]">
+        <div className="space-y-8">
+          <SectionCard
+            icon={<Package size={20} />}
+            title="Basic Product Information"
+            description="Everything you need to publish a simple product."
           >
-            <option value="">Select category…</option>
-            {categories.map((c) => (
-              <option key={c.id} value={c.id}>
-                {c.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        {field('Category name (fallback)', 'categoryName')}
-        {field('Category badge', 'categoryBadge')}
-        <label className="block text-sm">
-          <span className="mb-1.5 block font-medium text-slate-700">Icon</span>
-          <select
-            value={form.icon}
-            onChange={(e) => setField('icon', e.target.value)}
-            className="w-full rounded-xl border px-3 py-2"
-          >
-            <option value="pill">pill</option>
-            <option value="tablets">tablets</option>
-            <option value="flask">flask</option>
-          </select>
-        </label>
-        <label className="block text-sm">
-          <span className="mb-1.5 block font-medium text-slate-700">Status</span>
-          <select
-            value={form.status}
-            onChange={(e) => setField('status', e.target.value)}
-            className="w-full rounded-xl border px-3 py-2"
-          >
-            <option value="Draft">Draft</option>
-            <option value="Published">Published</option>
-            <option value="Inactive">Inactive</option>
-          </select>
-        </label>
-        {field('Short description *', 'shortDescription', { textarea: true })}
-        {field('Long description', 'longDescription', { textarea: true })}
-        {field('Composition (one per line)', 'composition', { textarea: true })}
-        {field('Benefits (one per line)', 'benefits', { textarea: true })}
-        {field('Indications (one per line)', 'indications', { textarea: true })}
-        {field('Suitable for (one per line)', 'suitableFor', { textarea: true })}
-        {field('Card highlights (one per line)', 'cardHighlights', { textarea: true })}
-        {field('Pack size', 'packSize')}
-        {field('Dosage', 'dosage')}
-        {field('Storage', 'storage')}
-        {field('Prescription type', 'prescriptionType')}
-        {field('Manufacturing', 'manufacturing', { textarea: true })}
-        {field('Quality standards', 'qualityStandards', { textarea: true })}
-        {field('Related product slugs (one per line)', 'relatedSlugs', { textarea: true })}
-        {field('Brochure URL', 'brochure')}
-        {field('Meta title', 'metaTitle')}
-        {field('Meta description', 'metaDescription', { textarea: true })}
-        {field('Meta keywords', 'metaKeywords')}
-        {field('Sort order', 'sortOrder', { type: 'number' })}
-        <label className="flex items-center gap-2 text-sm font-medium">
-          <input
-            type="checkbox"
-            checked={form.featured}
-            onChange={(e) => setField('featured', e.target.checked)}
-          />
-          Featured product
-        </label>
-      </div>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <label className="sm:col-span-2">
+                <span className={labelClass}>
+                  Product Name <span className="text-[#C62828]">*</span>
+                </span>
+                <input
+                  required
+                  value={form.name}
+                  onChange={(e) => setField('name', e.target.value)}
+                  className={inputClass}
+                  placeholder="e.g. Bone EFC Tablet"
+                />
+              </label>
 
-      <div className="grid gap-4 rounded-2xl border bg-white p-5 lg:grid-cols-2">
-        <div>
-          <p className="mb-2 text-sm font-medium">Main image</p>
-          <ImageUploader
-            folder="pharmefc/products"
-            onUploaded={(url) => setField('mainImage', url)}
-          />
-          {form.mainImage && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={form.mainImage} alt="" className="mt-3 h-32 rounded-xl object-cover" />
-          )}
-          <input
-            value={form.mainImage}
-            onChange={(e) => setField('mainImage', e.target.value)}
-            placeholder="Or paste image URL"
-            className="mt-2 w-full rounded-xl border px-3 py-2 text-sm"
-          />
-        </div>
-        <div>
-          <p className="mb-2 text-sm font-medium">Gallery images</p>
-          <ImageUploader
-            folder="pharmefc/products"
-            label="Add gallery image"
-            onUploaded={(url) => setField('gallery', [...form.gallery, url])}
-          />
-          <div className="mt-3 flex flex-wrap gap-2">
-            {form.gallery.map((url, index) => (
-              <div key={`${url}-${index}`} className="relative">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={url} alt="" className="h-20 w-20 rounded-lg object-cover" />
-                <button
-                  type="button"
-                  className="absolute -right-1 -top-1 rounded-full bg-red-600 px-1.5 text-xs text-white"
-                  onClick={() =>
-                    setField(
-                      'gallery',
-                      form.gallery.filter((_, i) => i !== index),
-                    )
-                  }
+              <label>
+                <span className={labelClass}>Brand Name</span>
+                <input
+                  value={form.brandName}
+                  onChange={(e) => setField('brandName', e.target.value)}
+                  className={inputClass}
+                  placeholder="PharmEFC"
+                />
+              </label>
+
+              <label>
+                <span className={labelClass}>Category</span>
+                <select
+                  value={form.categoryId}
+                  onChange={(e) => {
+                    const cat = categories.find((c) => c.id === e.target.value)
+                    setForm((prev) => ({
+                      ...prev,
+                      categoryId: e.target.value,
+                      categoryName: cat?.name || prev.categoryName,
+                    }))
+                  }}
+                  className={inputClass}
                 >
-                  ×
-                </button>
-                <div className="mt-1 flex gap-1">
-                  <button
-                    type="button"
-                    className="text-[10px] text-slate-500"
-                    onClick={() => {
-                      if (index === 0) return
-                      const next = [...form.gallery]
-                      ;[next[index - 1], next[index]] = [next[index], next[index - 1]]
-                      setField('gallery', next)
-                    }}
-                  >
-                    ←
-                  </button>
-                  <button
-                    type="button"
-                    className="text-[10px] text-slate-500"
-                    onClick={() => {
-                      if (index >= form.gallery.length - 1) return
-                      const next = [...form.gallery]
-                      ;[next[index + 1], next[index]] = [next[index], next[index + 1]]
-                      setField('gallery', next)
-                    }}
-                  >
-                    →
-                  </button>
+                  <option value="">Select category…</option>
+                  {categories.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label>
+                <span className={labelClass}>Status</span>
+                <select
+                  value={form.status}
+                  onChange={(e) => setField('status', e.target.value)}
+                  className={inputClass}
+                >
+                  <option value="Draft">Draft</option>
+                  <option value="Published">Published</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
+              </label>
+
+              <label className="sm:col-span-2">
+                <span className={labelClass}>
+                  Short Description <span className="text-[#C62828]">*</span>
+                </span>
+                <textarea
+                  required
+                  rows={3}
+                  value={form.shortDescription}
+                  onChange={(e) => setField('shortDescription', e.target.value)}
+                  className={textareaClass}
+                  placeholder="Brief product summary shown on cards and listings"
+                />
+              </label>
+
+              <div className="sm:col-span-2">
+                <p className={labelClass}>Main Product Image</p>
+                <ImageUploader
+                  size="large"
+                  folder="pharmefc/products"
+                  label="Drag main product image here"
+                  value={form.mainImage || undefined}
+                  onUploaded={(url) => setField('mainImage', url)}
+                  onClear={() => setField('mainImage', '')}
+                />
+                <input
+                  value={form.mainImage}
+                  onChange={(e) => setField('mainImage', e.target.value)}
+                  placeholder="Or paste image URL"
+                  className={`${inputClass} mt-3`}
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <p className={labelClass}>Gallery Images</p>
+                <ImageUploader
+                  folder="pharmefc/products"
+                  label="Add gallery image"
+                  onUploaded={(url) => setField('gallery', [...form.gallery, url])}
+                />
+                {form.gallery.length > 0 && (
+                  <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                    {form.gallery.map((url, index) => (
+                      <div
+                        key={`${url}-${index}`}
+                        className="overflow-hidden rounded-xl border border-slate-200 bg-white"
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={url} alt="" className="aspect-square w-full object-cover" />
+                        <div className="flex items-center justify-between gap-1 border-t border-slate-100 px-2 py-1.5">
+                          <div className="flex gap-1">
+                            <button
+                              type="button"
+                              className="rounded px-1.5 text-xs text-slate-500 hover:bg-slate-100"
+                              onClick={() => {
+                                if (index === 0) return
+                                const next = [...form.gallery]
+                                ;[next[index - 1], next[index]] = [next[index], next[index - 1]]
+                                setField('gallery', next)
+                              }}
+                            >
+                              ←
+                            </button>
+                            <button
+                              type="button"
+                              className="rounded px-1.5 text-xs text-slate-500 hover:bg-slate-100"
+                              onClick={() => {
+                                if (index >= form.gallery.length - 1) return
+                                const next = [...form.gallery]
+                                ;[next[index + 1], next[index]] = [next[index], next[index + 1]]
+                                setField('gallery', next)
+                              }}
+                            >
+                              →
+                            </button>
+                          </div>
+                          <button
+                            type="button"
+                            className="rounded px-1.5 text-xs font-medium text-red-600 hover:bg-red-50"
+                            onClick={() =>
+                              setField(
+                                'gallery',
+                                form.gallery.filter((_, i) => i !== index),
+                              )
+                            }
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </SectionCard>
+
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_4px_20px_-8px_rgba(15,23,42,0.08)]">
+            <button
+              type="button"
+              onClick={() => setAdvancedOpen((v) => !v)}
+              className="flex w-full items-center justify-between gap-3 px-6 py-5 text-left sm:px-8"
+            >
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-600">
+                  <Settings2 size={20} />
+                </div>
+                <div>
+                  <p className="text-lg font-bold text-slate-900">Advanced Product Settings</p>
+                  <p className="text-sm text-slate-500">
+                    Details, SEO, brochure, featured, related products, and more
+                  </p>
                 </div>
               </div>
-            ))}
+              <ChevronDown
+                size={20}
+                className={`shrink-0 text-slate-400 transition-transform ${advancedOpen ? 'rotate-180' : ''}`}
+              />
+            </button>
+
+            {advancedOpen && (
+              <div className="space-y-8 border-t border-slate-100 px-6 pb-8 pt-8 sm:px-8">
+                <SectionCard
+                  icon={<Pill size={20} />}
+                  title="Product Details"
+                  description="Composition, usage guidance, and packaging information."
+                >
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <label className="sm:col-span-2">
+                      <span className={labelClass}>Composition (one per line)</span>
+                      <textarea
+                        rows={4}
+                        value={form.composition}
+                        onChange={(e) => setField('composition', e.target.value)}
+                        className={textareaClass}
+                      />
+                    </label>
+                    <label className="sm:col-span-2">
+                      <span className={labelClass}>Benefits (one per line)</span>
+                      <textarea
+                        rows={4}
+                        value={form.benefits}
+                        onChange={(e) => setField('benefits', e.target.value)}
+                        className={textareaClass}
+                      />
+                    </label>
+                    <label className="sm:col-span-2">
+                      <span className={labelClass}>Indications (one per line)</span>
+                      <textarea
+                        rows={4}
+                        value={form.indications}
+                        onChange={(e) => setField('indications', e.target.value)}
+                        className={textareaClass}
+                      />
+                    </label>
+                    <label className="sm:col-span-2">
+                      <span className={labelClass}>Suitable For (one per line)</span>
+                      <textarea
+                        rows={3}
+                        value={form.suitableFor}
+                        onChange={(e) => setField('suitableFor', e.target.value)}
+                        className={textareaClass}
+                      />
+                    </label>
+                    <label>
+                      <span className={labelClass}>Dosage</span>
+                      <input
+                        value={form.dosage}
+                        onChange={(e) => setField('dosage', e.target.value)}
+                        className={inputClass}
+                      />
+                    </label>
+                    <label>
+                      <span className={labelClass}>Storage</span>
+                      <input
+                        value={form.storage}
+                        onChange={(e) => setField('storage', e.target.value)}
+                        className={inputClass}
+                      />
+                    </label>
+                    <label>
+                      <span className={labelClass}>Pack Size</span>
+                      <input
+                        value={form.packSize}
+                        onChange={(e) => setField('packSize', e.target.value)}
+                        className={inputClass}
+                      />
+                    </label>
+                    <label>
+                      <span className={labelClass}>Prescription type</span>
+                      <input
+                        value={form.prescriptionType}
+                        onChange={(e) => setField('prescriptionType', e.target.value)}
+                        className={inputClass}
+                      />
+                    </label>
+                    <label className="sm:col-span-2">
+                      <span className={labelClass}>Manufacturing</span>
+                      <textarea
+                        rows={3}
+                        value={form.manufacturing}
+                        onChange={(e) => setField('manufacturing', e.target.value)}
+                        className={textareaClass}
+                      />
+                    </label>
+                    <label className="sm:col-span-2">
+                      <span className={labelClass}>Long description</span>
+                      <textarea
+                        rows={4}
+                        value={form.longDescription}
+                        onChange={(e) => setField('longDescription', e.target.value)}
+                        className={textareaClass}
+                      />
+                    </label>
+                    <label className="sm:col-span-2">
+                      <span className={labelClass}>Card highlights (one per line)</span>
+                      <textarea
+                        rows={3}
+                        value={form.cardHighlights}
+                        onChange={(e) => setField('cardHighlights', e.target.value)}
+                        className={textareaClass}
+                      />
+                    </label>
+                    <label className="sm:col-span-2">
+                      <span className={labelClass}>Quality standards</span>
+                      <textarea
+                        rows={3}
+                        value={form.qualityStandards}
+                        onChange={(e) => setField('qualityStandards', e.target.value)}
+                        className={textareaClass}
+                      />
+                    </label>
+                  </div>
+                </SectionCard>
+
+                <SectionCard
+                  icon={<Globe size={20} />}
+                  title="SEO"
+                  description="Search visibility and product URL slug."
+                >
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <label className="sm:col-span-2">
+                      <span className={labelClass}>Slug</span>
+                      <input
+                        value={form.slug}
+                        onChange={(e) => setField('slug', e.target.value)}
+                        className={inputClass}
+                        placeholder="auto-generated from name if empty"
+                      />
+                    </label>
+                    <label className="sm:col-span-2">
+                      <span className={labelClass}>Meta Title</span>
+                      <input
+                        value={form.metaTitle}
+                        onChange={(e) => setField('metaTitle', e.target.value)}
+                        className={inputClass}
+                      />
+                    </label>
+                    <label className="sm:col-span-2">
+                      <span className={labelClass}>Meta Description</span>
+                      <textarea
+                        rows={3}
+                        value={form.metaDescription}
+                        onChange={(e) => setField('metaDescription', e.target.value)}
+                        className={textareaClass}
+                      />
+                    </label>
+                    <label className="sm:col-span-2">
+                      <span className={labelClass}>Meta Keywords</span>
+                      <input
+                        value={form.metaKeywords}
+                        onChange={(e) => setField('metaKeywords', e.target.value)}
+                        className={inputClass}
+                      />
+                    </label>
+                  </div>
+                </SectionCard>
+
+                <SectionCard
+                  icon={<Settings2 size={20} />}
+                  title="Additional"
+                  description="Brochure, featured flag, ordering, and related products."
+                >
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <label className="sm:col-span-2">
+                      <span className={labelClass}>Brochure URL</span>
+                      <input
+                        value={form.brochure}
+                        onChange={(e) => setField('brochure', e.target.value)}
+                        className={inputClass}
+                      />
+                    </label>
+                    <label>
+                      <span className={labelClass}>Sort Order</span>
+                      <input
+                        type="number"
+                        value={form.sortOrder}
+                        onChange={(e) => setField('sortOrder', Number(e.target.value))}
+                        className={inputClass}
+                      />
+                    </label>
+                    <label>
+                      <span className={labelClass}>Icon</span>
+                      <select
+                        value={form.icon}
+                        onChange={(e) => setField('icon', e.target.value)}
+                        className={inputClass}
+                      >
+                        <option value="pill">pill</option>
+                        <option value="tablets">tablets</option>
+                        <option value="flask">flask</option>
+                      </select>
+                    </label>
+                    <label>
+                      <span className={labelClass}>Category name (fallback)</span>
+                      <input
+                        value={form.categoryName}
+                        onChange={(e) => setField('categoryName', e.target.value)}
+                        className={inputClass}
+                      />
+                    </label>
+                    <label>
+                      <span className={labelClass}>Category badge</span>
+                      <input
+                        value={form.categoryBadge}
+                        onChange={(e) => setField('categoryBadge', e.target.value)}
+                        className={inputClass}
+                      />
+                    </label>
+                    <label className="sm:col-span-2">
+                      <span className={labelClass}>Related Products (slugs, one per line)</span>
+                      <textarea
+                        rows={3}
+                        value={form.relatedSlugs}
+                        onChange={(e) => setField('relatedSlugs', e.target.value)}
+                        className={textareaClass}
+                      />
+                    </label>
+                    <label className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 sm:col-span-2">
+                      <input
+                        type="checkbox"
+                        checked={form.featured}
+                        onChange={(e) => setField('featured', e.target.checked)}
+                        className="h-4 w-4 rounded border-slate-300 text-[#C62828]"
+                      />
+                      <span className="text-sm font-medium text-slate-700">Featured Product</span>
+                    </label>
+                  </div>
+                </SectionCard>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <aside className="xl:sticky xl:top-6 xl:self-start">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_4px_20px_-8px_rgba(15,23,42,0.08)]">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+              Live preview
+            </p>
+            <div className="overflow-hidden rounded-2xl border border-[#e2eaf3] bg-white shadow-sm">
+              <div className="relative aspect-[6/5] bg-slate-50">
+                {form.mainImage ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={form.mainImage} alt="" className="h-full w-full object-contain p-4" />
+                ) : (
+                  <div className="flex h-full items-center justify-center text-sm text-slate-400">
+                    Product image
+                  </div>
+                )}
+                <span className="absolute right-3 top-3 rounded-full border border-[#E2E8F0] bg-white/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#64748B]">
+                  {selectedCategory}
+                </span>
+              </div>
+              <div className="space-y-2 px-5 pb-5 pt-4">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span
+                    className={`inline-flex rounded-full px-2.5 py-0.5 text-[11px] font-semibold ring-1 ${statusBadgeClass(form.status)}`}
+                  >
+                    {form.status}
+                  </span>
+                  {form.featured && (
+                    <span className="inline-flex rounded-full bg-blue-50 px-2.5 py-0.5 text-[11px] font-semibold text-blue-700 ring-1 ring-blue-200">
+                      Featured
+                    </span>
+                  )}
+                </div>
+                <h3 className="text-lg font-semibold text-slate-900">
+                  {form.name || 'Product name'}
+                </h3>
+                {form.brandName && (
+                  <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                    {form.brandName}
+                  </p>
+                )}
+                <p className="line-clamp-3 text-sm text-slate-500">
+                  {form.shortDescription || 'Short description will appear here…'}
+                </p>
+                {form.packSize && (
+                  <p className="text-sm font-medium text-slate-700">Pack: {form.packSize}</p>
+                )}
+              </div>
+            </div>
+            <p className="mt-3 text-xs text-slate-400">
+              Updates live as you type. Public pages use published products only.
+            </p>
+          </div>
+        </aside>
+      </div>
+
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+          <p className="text-sm text-slate-500">
+            Status:{' '}
+            <span className="font-semibold text-slate-800">{form.status}</span>
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              disabled={saving}
+              onClick={() => void saveProduct('Draft')}
+              className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-60"
+            >
+              Save Draft
+            </button>
+            <button
+              type="button"
+              onClick={openPreview}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+            >
+              <ExternalLink size={15} />
+              Preview
+            </button>
+            <button
+              type="button"
+              disabled={saving}
+              onClick={() => void saveProduct('Published')}
+              className="rounded-xl bg-[#C62828] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#B71C1C] disabled:opacity-60"
+            >
+              {saving ? 'Saving…' : 'Publish Product'}
+            </button>
           </div>
         </div>
       </div>
-
-      <button
-        type="submit"
-        disabled={saving}
-        className="rounded-xl bg-[#C62828] px-5 py-3 text-sm font-semibold text-white disabled:opacity-70"
-      >
-        {saving ? 'Saving…' : productId ? 'Update product' : 'Create product'}
-      </button>
     </form>
   )
 }
