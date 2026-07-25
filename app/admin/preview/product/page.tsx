@@ -16,7 +16,7 @@ export default function AdminProductDetailPreviewPage() {
 
   useEffect(() => {
     try {
-      const raw = sessionStorage.getItem(ADMIN_PRODUCT_PREVIEW_KEY)
+      const raw = localStorage.getItem(ADMIN_PRODUCT_PREVIEW_KEY)
       if (!raw) {
         setMissing(true)
         return

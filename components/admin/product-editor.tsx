@@ -300,7 +300,8 @@ export default function ProductEditor({ productId }: { productId?: string }) {
   const openPreview = () => {
     const previewProduct = mapAdminFormToPublicProduct(form, selectedCategory)
     try {
-      sessionStorage.setItem(ADMIN_PRODUCT_PREVIEW_KEY, JSON.stringify(previewProduct))
+      // localStorage is shared across tabs; sessionStorage is NOT (window.open = empty).
+      localStorage.setItem(ADMIN_PRODUCT_PREVIEW_KEY, JSON.stringify(previewProduct))
     } catch {
       toast('Could not open preview', 'error')
       return
