@@ -10,6 +10,7 @@ import {
   Package,
   Pill,
   Settings2,
+  Trash2,
 } from 'lucide-react'
 import { toast } from '@/components/ui/toast'
 import ImageUploader from '@/components/admin/image-uploader'
@@ -143,6 +144,8 @@ export default function ProductEditor({ productId }: { productId?: string }) {
   const [saving, setSaving] = useState(false)
   const [loading, setLoading] = useState(Boolean(productId))
   const [advancedOpen, setAdvancedOpen] = useState(Boolean(productId))
+  const [deleteOpen, setDeleteOpen] = useState(false)
+  const [deleting, setDeleting] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -241,6 +244,9 @@ export default function ProductEditor({ productId }: { productId?: string }) {
       const payload = {
         ...form,
         status: nextStatus,
+        // Explicit null so Prisma clears the column (empty string alone is easy to mishandle)
+        mainImage: form.mainImage.trim() ? form.mainImage.trim() : null,
+        gallery: form.gallery,
         composition: form.composition,
         benefits: form.benefits,
         indications: form.indications,
@@ -260,7 +266,13 @@ export default function ProductEditor({ productId }: { productId?: string }) {
         toast(json.message || 'Save failed', 'error')
         return
       }
-      setForm((prev) => ({ ...prev, status: nextStatus, slug: json.item?.slug || prev.slug }))
+      setForm((prev) => ({
+        ...prev,
+        status: nextStatus,
+        slug: json.item?.slug || prev.slug,
+        mainImage: json.item?.mainImage || '',
+        gallery: json.item?.gallery || [],
+      }))
       toast(
         nextStatus === 'Published'
           ? 'Product published'
@@ -279,6 +291,38 @@ export default function ProductEditor({ productId }: { productId?: string }) {
       toast('Save failed', 'error')
     } finally {
       setSaving(false)
+    }
+  }
+
+  const clearMainImage = () => {
+    setForm((prev) => {
+      const removed = prev.mainImage
+      return {
+        ...prev,
+        mainImage: '',
+        gallery: removed ? prev.gallery.filter((url) => url !== removed) : prev.gallery,
+      }
+    })
+  }
+
+  const deleteProduct = async () => {
+    if (!productId) return
+    setDeleting(true)
+    try {
+      const res = await fetch(`/api/admin/products/${productId}`, { method: 'DELETE' })
+      const json = await res.json()
+      if (!res.ok || !json.success) {
+        toast(json.message || 'Delete failed', 'error')
+        return
+      }
+      toast('Product deleted', 'success')
+      setDeleteOpen(false)
+      router.push('/admin/products')
+      router.refresh()
+    } catch {
+      toast('Delete failed', 'error')
+    } finally {
+      setDeleting(false)
     }
   }
 
@@ -438,7 +482,7 @@ export default function ProductEditor({ productId }: { productId?: string }) {
                   label="Drag main product image here"
                   value={form.mainImage || undefined}
                   onUploaded={(url) => setField('mainImage', url)}
-                  onClear={() => setField('mainImage', '')}
+                  onClear={clearMainImage}
                 />
                 <input
                   value={form.mainImage}
@@ -798,9 +842,20 @@ export default function ProductEditor({ productId }: { productId?: string }) {
             <span className="font-semibold text-slate-800">{form.status}</span>
           </p>
           <div className="flex flex-wrap gap-2">
+            {productId && (
+              <button
+                type="button"
+                disabled={saving || deleting}
+                onClick={() => setDeleteOpen(true)}
+                className="inline-flex items-center gap-1.5 rounded-xl border border-red-300 bg-white px-4 py-2.5 text-sm font-semibold text-red-600 hover:bg-red-50 disabled:opacity-60"
+              >
+                <Trash2 size={15} />
+                Delete
+              </button>
+            )}
             <button
               type="button"
-              disabled={saving}
+              disabled={saving || deleting}
               onClick={() => void saveProduct('Draft')}
               className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-60"
             >
@@ -816,7 +871,7 @@ export default function ProductEditor({ productId }: { productId?: string }) {
             </button>
             <button
               type="button"
-              disabled={saving}
+              disabled={saving || deleting}
               onClick={() => void saveProduct('Published')}
               className="rounded-xl bg-[#C62828] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#B71C1C] disabled:opacity-60"
             >
@@ -825,6 +880,44 @@ export default function ProductEditor({ productId }: { productId?: string }) {
           </div>
         </div>
       </div>
+
+      {deleteOpen && productId && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="delete-product-title"
+        >
+          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
+            <h2 id="delete-product-title" className="text-lg font-bold text-slate-900">
+              Delete this product?
+            </h2>
+            <p className="mt-2 text-sm text-slate-600">This action cannot be undone.</p>
+            <p className="mt-1 text-sm text-slate-500">
+              “{form.name || 'Untitled product'}” will be removed from the CMS and public catalogue.
+            </p>
+            <div className="mt-6 flex flex-wrap justify-end gap-2">
+              <button
+                type="button"
+                disabled={deleting}
+                onClick={() => setDeleteOpen(false)}
+                className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                disabled={deleting}
+                onClick={() => void deleteProduct()}
+                className="inline-flex items-center gap-1.5 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-red-700 disabled:opacity-60"
+              >
+                <Trash2 size={15} />
+                {deleting ? 'Deleting…' : 'Delete'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </form>
   )
 }

@@ -1,7 +1,9 @@
 import { NextRequest } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { getAdminSession } from '@/lib/admin/auth'
 import { jsonError, jsonOk, slugify, unauthorized } from '@/lib/admin/http'
+import { destroyCloudinaryUrls } from '@/lib/cloudinary/upload'
 
 export const runtime = 'nodejs'
 
@@ -18,6 +20,12 @@ function asStringArray(value: unknown): string[] {
       .filter(Boolean)
   }
   return []
+}
+
+function revalidateProductPages(slug?: string | null) {
+  revalidatePath('/products')
+  revalidatePath('/')
+  if (slug) revalidatePath(`/products/${slug}`)
 }
 
 export async function GET(_request: NextRequest, { params }: Params) {
@@ -44,6 +52,9 @@ export async function PATCH(request: NextRequest, { params }: Params) {
 
   try {
     const { id } = await params
+    const existing = await prisma.product.findUnique({ where: { id } })
+    if (!existing) return jsonError('Product not found', 404)
+
     const body = (await request.json()) as Record<string, unknown>
     const data: Record<string, unknown> = {}
 
@@ -78,7 +89,14 @@ export async function PATCH(request: NextRequest, { params }: Params) {
       data.qualityStandards = body.qualityStandards.trim() || null
     }
     if (body.relatedSlugs !== undefined) data.relatedSlugs = asStringArray(body.relatedSlugs)
-    if (typeof body.mainImage === 'string') data.mainImage = body.mainImage.trim() || null
+
+    // Explicit null/empty clears mainImage (must not omit the field)
+    if (body.mainImage === null) {
+      data.mainImage = null
+    } else if (typeof body.mainImage === 'string') {
+      data.mainImage = body.mainImage.trim() || null
+    }
+
     if (body.gallery !== undefined) data.gallery = asStringArray(body.gallery)
     if (typeof body.brochure === 'string') data.brochure = body.brochure.trim() || null
     if (typeof body.featured === 'boolean') data.featured = body.featured
@@ -107,7 +125,21 @@ export async function PATCH(request: NextRequest, { params }: Params) {
       data.categoryName = body.categoryName.trim()
     }
 
+    const nextMain =
+      data.mainImage !== undefined ? (data.mainImage as string | null) : existing.mainImage
+    const nextGallery =
+      data.gallery !== undefined ? (data.gallery as string[]) : existing.gallery
+    const removedUrls = [
+      ...(existing.mainImage && existing.mainImage !== nextMain ? [existing.mainImage] : []),
+      ...existing.gallery.filter((url) => !nextGallery.includes(url)),
+    ]
+    if (removedUrls.length > 0) {
+      await destroyCloudinaryUrls(removedUrls)
+    }
+
     const item = await prisma.product.update({ where: { id }, data })
+    revalidateProductPages(item.slug)
+    if (existing.slug !== item.slug) revalidateProductPages(existing.slug)
     return jsonOk({ item })
   } catch (error) {
     console.error('[admin/products PATCH]', error)
@@ -121,7 +153,12 @@ export async function DELETE(_request: NextRequest, { params }: Params) {
 
   try {
     const { id } = await params
+    const existing = await prisma.product.findUnique({ where: { id } })
+    if (!existing) return jsonError('Product not found', 404)
+
+    await destroyCloudinaryUrls([existing.mainImage, ...existing.gallery])
     await prisma.product.delete({ where: { id } })
+    revalidateProductPages(existing.slug)
     return jsonOk({ message: 'Deleted' })
   } catch (error) {
     console.error('[admin/products DELETE]', error)

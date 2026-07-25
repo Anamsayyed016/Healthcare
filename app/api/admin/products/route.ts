@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { getAdminSession } from '@/lib/admin/auth'
 import { jsonCreated, jsonError, jsonOk, slugify, unauthorized } from '@/lib/admin/http'
@@ -112,6 +113,10 @@ export async function POST(request: NextRequest) {
         sortOrder: Number.isFinite(Number(body.sortOrder)) ? Number(body.sortOrder) : 0,
       },
     })
+
+    revalidatePath('/products')
+    revalidatePath('/')
+    if (status === 'Published') revalidatePath(`/products/${item.slug}`)
 
     return jsonCreated({ item })
   } catch (error) {

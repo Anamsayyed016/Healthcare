@@ -20,14 +20,14 @@ function toIcon(value: string | null | undefined): ProductIcon {
 /** Map a DB product row to the public Product shape used by existing UI. */
 export function mapDbProductToPublic(row: DbProduct): Product {
   const gallery = row.gallery?.length ? row.gallery : undefined
-  const main = row.mainImage || gallery?.[0] || undefined
   return {
     slug: row.slug,
     name: row.name,
     category: row.categoryName,
     categoryBadge: row.categoryBadge || undefined,
     icon: toIcon(row.icon),
-    image: main,
+    // Only mainImage — do not silently revive cleared main from gallery
+    image: row.mainImage || undefined,
     gallery,
     brochure: row.brochure || undefined,
     description: row.shortDescription,

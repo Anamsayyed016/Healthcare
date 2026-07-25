@@ -125,3 +125,31 @@ export async function destroyCloudinaryAsset(publicId: string) {
   ensureCloudinaryConfig()
   await cloudinary.uploader.destroy(publicId)
 }
+
+/** Best-effort public_id from a delivery URL (ignores transforms / version). */
+export function cloudinaryPublicIdFromUrl(url: string): string | null {
+  if (!url.includes('res.cloudinary.com') || !url.includes('/upload/')) return null
+  const afterUpload = url.split('/upload/')[1]
+  if (!afterUpload) return null
+  const segments = afterUpload.split('/').filter((s) => s && !s.includes(',') && !/^v\d+$/.test(s))
+  if (segments.length === 0) return null
+  return segments.join('/').replace(/\.[a-zA-Z0-9]+$/, '') || null
+}
+
+/** Destroy one or more Cloudinary image URLs; never throws to callers. */
+export async function destroyCloudinaryUrls(urls: (string | null | undefined)[]) {
+  const ids = Array.from(
+    new Set(
+      urls
+        .map((u) => (u ? cloudinaryPublicIdFromUrl(u) : null))
+        .filter((id): id is string => Boolean(id)),
+    ),
+  )
+  for (const publicId of ids) {
+    try {
+      await destroyCloudinaryAsset(publicId)
+    } catch (error) {
+      console.error('[cloudinary destroy]', publicId, error)
+    }
+  }
+}
