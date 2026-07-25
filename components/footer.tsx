@@ -14,7 +14,8 @@ import {
   WEBSITE_DISPLAY,
   BUSINESS_HOURS,
 } from '@/lib/contact';
-import { products } from '@/lib/data/products';
+import { products as staticProducts } from '@/lib/data/products';
+import type { Product } from '@/lib/data/products';
 import { services } from '@/lib/data/services';
 import Logo from '@/components/logo';
 
@@ -24,7 +25,8 @@ const socialLinks = [
   { Icon: MessageCircle, href: EMAIL_HREF, label: 'Email' },
 ];
 
-export default function Footer() {
+export default function Footer({ products: productsProp }: { products?: Product[] }) {
+  const products = productsProp?.length ? productsProp : staticProducts;
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },

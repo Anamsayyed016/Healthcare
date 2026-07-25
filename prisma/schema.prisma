@@ -27,3 +27,98 @@ model Enquiry {
 
   @@map("enquiries")
 }
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String   @default("ADMIN")
+  status       String   @default("ACTIVE")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  status      String    @default("Active")
+  sortOrder   Int       @default(0)
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("categories")
+}
+
+model Product {
+  id               String    @id @default(cuid())
+  name             String
+  brandName        String?
+  slug             String    @unique
+  categoryId       String?
+  category         Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryName     String
+  categoryBadge    String?
+  icon             String    @default("pill")
+  shortDescription String
+  longDescription  String?
+  composition      String[]  @default([])
+  benefits         String[]  @default([])
+  indications      String[]  @default([])
+  suitableFor      String[]  @default([])
+  cardHighlights   String[]  @default([])
+  packSize         String?
+  dosage           String?
+  storage          String?
+  prescriptionType String?
+  manufacturing    String?
+  qualityStandards String?
+  relatedSlugs     String[]  @default([])
+  mainImage        String?
+  gallery          String[]  @default([])
+  brochure         String?
+  featured         Boolean   @default(false)
+  status           String    @default("Draft")
+  metaTitle        String?
+  metaDescription  String?
+  metaKeywords     String?
+  sortOrder        Int       @default(0)
+  viewCount        Int       @default(0)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@map("products")
+}
+
+/// Singleton-style site settings (always use the first / only row).
+model SiteSettings {
+  id                String   @id @default(cuid())
+  companyName       String
+  logoUrl           String?
+  faviconUrl        String?
+  addressLine1      String?
+  addressLine2      String?
+  addressLine3      String?
+  email             String?
+  phone             String?
+  whatsappNumber    String?
+  mapEmbedUrl       String?
+  mapLinkUrl        String?
+  facebookUrl       String?
+  linkedinUrl       String?
+  instagramUrl      String?
+  twitterUrl        String?
+  footerText        String?
+  businessHoursDays String?
+  businessHoursTime String?
+  websiteUrl        String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("site_settings")
+}

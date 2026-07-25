@@ -3,10 +3,21 @@
 import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X } from 'lucide-react';
-import { products, productCategories } from '@/lib/data/products';
+import type { Product } from '@/lib/data/products';
+import { products as staticProducts, productCategories as staticCategories } from '@/lib/data/products';
 import CatalogueProductCard from '@/components/products/catalogue-product-card';
 
-export default function ProductsCatalogue() {
+type Props = {
+  products?: Product[];
+  categories?: string[];
+};
+
+export default function ProductsCatalogue({
+  products: productsProp,
+  categories: categoriesProp,
+}: Props) {
+  const products = productsProp?.length ? productsProp : staticProducts;
+  const productCategories = categoriesProp?.length ? categoriesProp : staticCategories;
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('All');
 
@@ -20,7 +31,7 @@ export default function ProductsCatalogue() {
         product.category.toLowerCase().includes(query);
       return matchesCategory && matchesSearch;
     });
-  }, [search, category]);
+  }, [products, search, category]);
 
   const hasActiveFilters = category !== 'All' || search.trim().length > 0;
 

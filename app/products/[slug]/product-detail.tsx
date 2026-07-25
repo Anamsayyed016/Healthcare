@@ -25,8 +25,14 @@ import {
 } from '@/lib/data/products';
 import { iconColor, ICON_GLASS_MD } from '@/lib/icons';
 
-export default function ProductDetailContent({ product }: { product: Product }) {
-  const related = getRelatedProducts(product.slug, 4);
+export default function ProductDetailContent({
+  product,
+  relatedProducts,
+}: {
+  product: Product;
+  relatedProducts?: Product[];
+}) {
+  const related = relatedProducts ?? getRelatedProducts(product.slug, 4);
   const categoryBadge = getCategoryBadge(product);
   const brochureUrl = getProductBrochure(product);
 
