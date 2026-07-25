@@ -546,3 +546,56 @@
     @apply h-1.5 w-1.5 shrink-0 rounded-full bg-[#1b5aae];
   }
 }
+
+/* Admin login inputs — force readable text even under OS dark / browser autofill */
+.admin-login-input {
+  color: #111827;
+  caret-color: #111827;
+  background-color: #ffffff;
+  border-color: #d1d5db;
+  color-scheme: light;
+}
+
+.admin-login-input::placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+
+.admin-login-input:focus {
+  border-color: #c62828;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.15);
+}
+
+.admin-login-input::selection {
+  background-color: #bfdbfe;
+  color: #111827;
+}
+
+.admin-login-input::-moz-selection {
+  background-color: #bfdbfe;
+  color: #111827;
+}
+
+.admin-login-input:-webkit-autofill,
+.admin-login-input:-webkit-autofill:hover,
+.admin-login-input:-webkit-autofill:focus,
+.admin-login-input:-webkit-autofill:active {
+  -webkit-text-fill-color: #111827 !important;
+  caret-color: #111827;
+  border-color: #d1d5db;
+  /* Keep white fill; delay transition defeats yellow autofill flash */
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  box-shadow: 0 0 0 1000px #ffffff inset !important;
+  transition: background-color 99999s ease-in-out 0s;
+}
+
+.admin-login-input:-webkit-autofill:focus {
+  border-color: #c62828;
+  -webkit-box-shadow:
+    0 0 0 1000px #ffffff inset,
+    0 0 0 3px rgba(198, 40, 40, 0.15) !important;
+  box-shadow:
+    0 0 0 1000px #ffffff inset,
+    0 0 0 3px rgba(198, 40, 40, 0.15) !important;
+}

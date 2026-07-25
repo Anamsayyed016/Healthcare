@@ -63,9 +63,11 @@ export default function AdminLoginClient() {
               id="email"
               type="email"
               required
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-[#C62828]"
+              placeholder="admin@example.com"
+              className="admin-login-input w-full rounded-xl border px-3 py-2.5 text-sm"
             />
           </div>
           <div>
@@ -77,15 +79,17 @@ export default function AdminLoginClient() {
                 id="password"
                 type={showPassword ? 'text' : 'password'}
                 required
+                autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-xl border border-slate-200 px-3 py-2.5 pr-11 text-sm outline-none focus:border-[#C62828]"
+                placeholder="Enter your password"
+                className="admin-login-input w-full rounded-xl border px-3 py-2.5 pr-11 text-sm"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword((v) => !v)}
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                className="absolute right-3 top-1/2 z-10 -translate-y-1/2 text-slate-400 hover:text-slate-600"
               >
                 {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
               </button>
