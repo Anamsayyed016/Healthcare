@@ -38,6 +38,10 @@ export async function POST(request: NextRequest) {
       return jsonError('Account is not active', 403)
     }
 
+    if (user.role.toUpperCase() !== 'ADMIN') {
+      return jsonError('Admin access only', 403)
+    }
+
     const valid = await verifyPassword(password, user.passwordHash)
     if (!valid) {
       return jsonError('Invalid email or password', 401)
@@ -62,6 +66,21 @@ export async function POST(request: NextRequest) {
     })
   } catch (error) {
     console.error('[admin/auth/login]', error)
+    const message = error instanceof Error ? error.message : ''
+    if (message.includes('ADMIN_SESSION_SECRET')) {
+      return jsonError('Server auth is not configured', 503)
+    }
+    // Prisma known codes — do not leak schema details to clients
+    const code =
+      error && typeof error === 'object' && 'code' in error
+        ? String((error as { code?: string }).code)
+        : ''
+    if (code === 'P2021' || code === 'P2022') {
+      return jsonError('Admin database is not ready', 503)
+    }
+    if (code === 'P1001' || code === 'P1000') {
+      return jsonError('Database unavailable', 503)
+    }
     return jsonError('Login failed', 500)
   }
 }

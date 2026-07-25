@@ -13,7 +13,53 @@ export type AdminSessionPayload = {
   role: string
 }
 
+/**
+ * Standalone/PM2 often does not inject env vars. Mirror lib/prisma.ts:
+ * load ADMIN_SESSION_SECRET from the release .env when missing.
+ * Uses require() so Edge middleware (which imports verifySessionToken) never
+ * statically bundles Node `fs`.
+ */
+function ensureAdminSessionSecret() {
+  if (process.env.ADMIN_SESSION_SECRET && process.env.ADMIN_SESSION_SECRET.length >= 16) {
+    return
+  }
+
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { existsSync, readFileSync } = require('fs') as typeof import('fs')
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { resolve } = require('path') as typeof import('path')
+
+    for (const file of ['.env', '.env.production']) {
+      const path = resolve(process.cwd(), file)
+      if (!existsSync(path)) continue
+      const text = readFileSync(path, 'utf8')
+      for (const line of text.split('\n')) {
+        const trimmed = line.trim()
+        if (!trimmed || trimmed.startsWith('#')) continue
+        const eq = trimmed.indexOf('=')
+        if (eq === -1) continue
+        const key = trimmed.slice(0, eq).trim()
+        let value = trimmed.slice(eq + 1).trim()
+        if (
+          (value.startsWith('"') && value.endsWith('"')) ||
+          (value.startsWith("'") && value.endsWith("'"))
+        ) {
+          value = value.slice(1, -1)
+        }
+        if (key === 'ADMIN_SESSION_SECRET' && value.length >= 16) {
+          process.env.ADMIN_SESSION_SECRET = value
+          return
+        }
+      }
+    }
+  } catch {
+    // Edge / restricted runtimes — rely on process.env only
+  }
+}
+
 function getSecretKey() {
+  ensureAdminSessionSecret()
   const secret = process.env.ADMIN_SESSION_SECRET
   if (!secret || secret.length < 16) {
     return null

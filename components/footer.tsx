@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Mail, MapPin, Globe, Clock, Share2, MessageCircle, Users, Phone } from 'lucide-react';
+import { Mail, MapPin, Globe, Clock, Share2, MessageCircle, Users, Phone, Lock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import {
   COMPANY_NAME,
@@ -173,12 +173,19 @@ export default function Footer({ products: productsProp }: { products?: Product[
           <p>
             &copy; {new Date().getFullYear()} {COMPANY_NAME}. All rights reserved.
           </p>
-          <div className="flex gap-6 mt-4 md:mt-0">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-4 md:mt-0 text-xs sm:text-sm">
             {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((link) => (
               <Link key={link} href="#" className="hover:text-white transition-colors">
                 {link}
               </Link>
             ))}
+            <Link
+              href="/admin/login"
+              className="inline-flex items-center gap-1.5 text-slate-500 hover:text-slate-300 underline-offset-2 hover:underline transition-colors cursor-pointer"
+            >
+              <Lock size={12} aria-hidden />
+              Admin Login
+            </Link>
           </div>
         </motion.div>
       </div>

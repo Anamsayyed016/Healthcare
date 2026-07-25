@@ -23,6 +23,7 @@ module.exports = {
         PORT: process.env.PORT || '3001',
         HOSTNAME: '0.0.0.0',
         DATABASE_URL: process.env.DATABASE_URL || '',
+        ADMIN_SESSION_SECRET: process.env.ADMIN_SESSION_SECRET || '',
       },
     },
     {
