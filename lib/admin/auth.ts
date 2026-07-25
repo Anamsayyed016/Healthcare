@@ -1,60 +1,52 @@
-import { SignJWT, jwtVerify } from 'jose'
+import { SignJWT } from 'jose'
 import { cookies } from 'next/headers'
 import bcrypt from 'bcryptjs'
+import { existsSync, readFileSync } from 'fs'
+import { resolve } from 'path'
 import type { NextRequest } from 'next/server'
+import {
+  ADMIN_SESSION_COOKIE,
+  verifySessionToken,
+  type AdminSessionPayload,
+} from '@/lib/admin/session'
 
-export const ADMIN_SESSION_COOKIE = 'pharmefc_admin_session'
+export { ADMIN_SESSION_COOKIE, verifySessionToken }
+export type { AdminSessionPayload }
+
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 7 // 7 days
-
-export type AdminSessionPayload = {
-  sub: string
-  email: string
-  name: string
-  role: string
-}
 
 /**
  * Standalone/PM2 often does not inject env vars. Mirror lib/prisma.ts:
  * load ADMIN_SESSION_SECRET from the release .env when missing.
- * Uses require() so Edge middleware (which imports verifySessionToken) never
- * statically bundles Node `fs`.
+ * Node-only — must not be imported by Edge middleware.
  */
 function ensureAdminSessionSecret() {
   if (process.env.ADMIN_SESSION_SECRET && process.env.ADMIN_SESSION_SECRET.length >= 16) {
     return
   }
 
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { existsSync, readFileSync } = require('fs') as typeof import('fs')
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { resolve } = require('path') as typeof import('path')
-
-    for (const file of ['.env', '.env.production']) {
-      const path = resolve(process.cwd(), file)
-      if (!existsSync(path)) continue
-      const text = readFileSync(path, 'utf8')
-      for (const line of text.split('\n')) {
-        const trimmed = line.trim()
-        if (!trimmed || trimmed.startsWith('#')) continue
-        const eq = trimmed.indexOf('=')
-        if (eq === -1) continue
-        const key = trimmed.slice(0, eq).trim()
-        let value = trimmed.slice(eq + 1).trim()
-        if (
-          (value.startsWith('"') && value.endsWith('"')) ||
-          (value.startsWith("'") && value.endsWith("'"))
-        ) {
-          value = value.slice(1, -1)
-        }
-        if (key === 'ADMIN_SESSION_SECRET' && value.length >= 16) {
-          process.env.ADMIN_SESSION_SECRET = value
-          return
-        }
+  for (const file of ['.env', '.env.production']) {
+    const path = resolve(/*turbopackIgnore: true*/ process.cwd(), file)
+    if (!existsSync(path)) continue
+    const text = readFileSync(path, 'utf8')
+    for (const line of text.split('\n')) {
+      const trimmed = line.trim()
+      if (!trimmed || trimmed.startsWith('#')) continue
+      const eq = trimmed.indexOf('=')
+      if (eq === -1) continue
+      const key = trimmed.slice(0, eq).trim()
+      let value = trimmed.slice(eq + 1).trim()
+      if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+      ) {
+        value = value.slice(1, -1)
+      }
+      if (key === 'ADMIN_SESSION_SECRET' && value.length >= 16) {
+        process.env.ADMIN_SESSION_SECRET = value
+        return
       }
     }
-  } catch {
-    // Edge / restricted runtimes — rely on process.env only
   }
 }
 
@@ -96,23 +88,6 @@ export async function createSessionToken(payload: AdminSessionPayload) {
     .sign(requireSecretKey())
 }
 
-export async function verifySessionToken(token: string): Promise<AdminSessionPayload | null> {
-  try {
-    const key = getSecretKey()
-    if (!key) return null
-    const { payload } = await jwtVerify(token, key)
-    if (!payload.sub || typeof payload.email !== 'string') return null
-    return {
-      sub: payload.sub,
-      email: payload.email,
-      name: typeof payload.name === 'string' ? payload.name : 'Admin',
-      role: typeof payload.role === 'string' ? payload.role : 'Admin',
-    }
-  } catch {
-    return null
-  }
-}
-
 export async function setAdminSessionCookie(token: string) {
   const jar = await cookies()
   jar.set(ADMIN_SESSION_COOKIE, token, {
@@ -130,6 +105,7 @@ export async function clearAdminSessionCookie() {
 }
 
 export async function getAdminSession(): Promise<AdminSessionPayload | null> {
+  ensureAdminSessionSecret()
   const jar = await cookies()
   const token = jar.get(ADMIN_SESSION_COOKIE)?.value
   if (!token) return null
