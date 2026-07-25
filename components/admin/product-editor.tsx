@@ -13,6 +13,11 @@ import {
 } from 'lucide-react'
 import { toast } from '@/components/ui/toast'
 import ImageUploader from '@/components/admin/image-uploader'
+import CatalogueProductCard from '@/components/products/catalogue-product-card'
+import {
+  ADMIN_PRODUCT_PREVIEW_KEY,
+  mapAdminFormToPublicProduct,
+} from '@/lib/admin/map-product-form'
 
 type Category = { id: string; name: string; status: string }
 
@@ -125,25 +130,60 @@ function statusBadgeClass(status: string) {
   return 'bg-amber-50 text-amber-700 ring-amber-200'
 }
 
+function isActiveCategory(status: string) {
+  return status.trim().toLowerCase() === 'active'
+}
+
 export default function ProductEditor({ productId }: { productId?: string }) {
   const router = useRouter()
   const [form, setForm] = useState<ProductFormState>(empty)
   const [categories, setCategories] = useState<Category[]>([])
+  const [categoriesLoading, setCategoriesLoading] = useState(true)
+  const [categoriesError, setCategoriesError] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
   const [loading, setLoading] = useState(Boolean(productId))
   const [advancedOpen, setAdvancedOpen] = useState(Boolean(productId))
 
   useEffect(() => {
+    let cancelled = false
+
     ;(async () => {
-      const catRes = await fetch('/api/admin/categories')
-      const catJson = await catRes.json()
-      if (catRes.ok && catJson.success) {
-        setCategories(catJson.items.filter((c: Category) => c.status === 'Active'))
+      setCategoriesLoading(true)
+      setCategoriesError(null)
+      try {
+        const catRes = await fetch('/api/admin/categories')
+        const catJson = await catRes.json().catch(() => ({}))
+        if (!catRes.ok || !catJson.success) {
+          if (!cancelled) {
+            setCategories([])
+            setCategoriesError(catJson.message || 'Failed to load categories')
+            toast(catJson.message || 'Failed to load categories', 'error')
+          }
+        } else {
+          const items = Array.isArray(catJson.items) ? (catJson.items as Category[]) : []
+          // Prefer Active, but never hide all rows if status casing differs.
+          const active = items.filter((c) => isActiveCategory(c.status))
+          if (!cancelled) {
+            setCategories(active.length > 0 ? active : items)
+            if (items.length === 0) {
+              setCategoriesError('No categories yet — create one under Categories.')
+            }
+          }
+        }
+      } catch {
+        if (!cancelled) {
+          setCategories([])
+          setCategoriesError('Failed to load categories')
+          toast('Failed to load categories', 'error')
+        }
+      } finally {
+        if (!cancelled) setCategoriesLoading(false)
       }
 
       if (!productId) return
       const res = await fetch(`/api/admin/products/${productId}`)
       const json = await res.json()
+      if (cancelled) return
       if (!res.ok || !json.success) {
         toast(json.message || 'Failed to load product', 'error')
         setLoading(false)
@@ -184,6 +224,10 @@ export default function ProductEditor({ productId }: { productId?: string }) {
       })
       setLoading(false)
     })()
+
+    return () => {
+      cancelled = true
+    }
   }, [productId])
 
   const setField = <K extends keyof ProductFormState>(key: K, value: ProductFormState[K]) => {
@@ -243,14 +287,6 @@ export default function ProductEditor({ productId }: { productId?: string }) {
     await saveProduct()
   }
 
-  const openPreview = () => {
-    if (!form.slug) {
-      toast('Add a slug (or save once) to preview on the website', 'error')
-      return
-    }
-    window.open(`/products/${form.slug}`, '_blank', 'noopener,noreferrer')
-  }
-
   if (loading) return <p className="text-sm text-slate-500">Loading product…</p>
 
   const selectedCategory =
@@ -258,6 +294,19 @@ export default function ProductEditor({ productId }: { productId?: string }) {
     form.categoryName ||
     form.categoryBadge ||
     'Uncategorized'
+
+  const livePreviewProduct = mapAdminFormToPublicProduct(form, selectedCategory)
+
+  const openPreview = () => {
+    const previewProduct = mapAdminFormToPublicProduct(form, selectedCategory)
+    try {
+      sessionStorage.setItem(ADMIN_PRODUCT_PREVIEW_KEY, JSON.stringify(previewProduct))
+    } catch {
+      toast('Could not open preview', 'error')
+      return
+    }
+    window.open('/admin/preview/product', '_blank', 'noopener,noreferrer')
+  }
 
   return (
     <form onSubmit={onSubmit} className="pb-28">
@@ -313,23 +362,44 @@ export default function ProductEditor({ productId }: { productId?: string }) {
                 <span className={labelClass}>Category</span>
                 <select
                   value={form.categoryId}
+                  disabled={categoriesLoading}
                   onChange={(e) => {
                     const cat = categories.find((c) => c.id === e.target.value)
                     setForm((prev) => ({
                       ...prev,
                       categoryId: e.target.value,
                       categoryName: cat?.name || prev.categoryName,
+                      categoryBadge: cat?.name || prev.categoryBadge,
                     }))
                   }}
                   className={inputClass}
                 >
-                  <option value="">Select category…</option>
+                  <option value="">
+                    {categoriesLoading ? 'Loading categories…' : 'Select category…'}
+                  </option>
                   {categories.map((c) => (
                     <option key={c.id} value={c.id}>
                       {c.name}
+                      {!isActiveCategory(c.status) ? ' (Inactive)' : ''}
                     </option>
                   ))}
                 </select>
+                {categoriesError && (
+                  <p className="mt-1.5 text-xs text-amber-700">
+                    {categoriesError}{' '}
+                    <Link href="/admin/categories" className="font-semibold underline">
+                      Manage categories
+                    </Link>
+                  </p>
+                )}
+                {!categoriesLoading && !categoriesError && categories.length === 0 && (
+                  <p className="mt-1.5 text-xs text-slate-500">
+                    No categories in the database yet.{' '}
+                    <Link href="/admin/categories" className="font-semibold text-[#C62828] underline">
+                      Create a category
+                    </Link>
+                  </p>
+                )}
               </label>
 
               <label>
@@ -700,54 +770,21 @@ export default function ProductEditor({ productId }: { productId?: string }) {
 
         <aside className="xl:sticky xl:top-6 xl:self-start">
           <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_4px_20px_-8px_rgba(15,23,42,0.08)]">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
-              Live preview
-            </p>
-            <div className="overflow-hidden rounded-2xl border border-[#e2eaf3] bg-white shadow-sm">
-              <div className="relative aspect-[6/5] bg-slate-50">
-                {form.mainImage ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={form.mainImage} alt="" className="h-full w-full object-contain p-4" />
-                ) : (
-                  <div className="flex h-full items-center justify-center text-sm text-slate-400">
-                    Product image
-                  </div>
-                )}
-                <span className="absolute right-3 top-3 rounded-full border border-[#E2E8F0] bg-white/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#64748B]">
-                  {selectedCategory}
-                </span>
-              </div>
-              <div className="space-y-2 px-5 pb-5 pt-4">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span
-                    className={`inline-flex rounded-full px-2.5 py-0.5 text-[11px] font-semibold ring-1 ${statusBadgeClass(form.status)}`}
-                  >
-                    {form.status}
-                  </span>
-                  {form.featured && (
-                    <span className="inline-flex rounded-full bg-blue-50 px-2.5 py-0.5 text-[11px] font-semibold text-blue-700 ring-1 ring-blue-200">
-                      Featured
-                    </span>
-                  )}
-                </div>
-                <h3 className="text-lg font-semibold text-slate-900">
-                  {form.name || 'Product name'}
-                </h3>
-                {form.brandName && (
-                  <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
-                    {form.brandName}
-                  </p>
-                )}
-                <p className="line-clamp-3 text-sm text-slate-500">
-                  {form.shortDescription || 'Short description will appear here…'}
-                </p>
-                {form.packSize && (
-                  <p className="text-sm font-medium text-slate-700">Pack: {form.packSize}</p>
-                )}
-              </div>
+            <div className="mb-4 flex items-center justify-between gap-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                Live preview
+              </p>
+              <span
+                className={`inline-flex rounded-full px-2.5 py-0.5 text-[11px] font-semibold ring-1 ${statusBadgeClass(form.status)}`}
+              >
+                {form.status}
+              </span>
+            </div>
+            <div className="pointer-events-none origin-top scale-[0.92] sm:scale-100">
+              <CatalogueProductCard product={livePreviewProduct} index={0} />
             </div>
             <p className="mt-3 text-xs text-slate-400">
-              Updates live as you type. Public pages use published products only.
+              Uses the same product card as /products. Updates as you type or upload images.
             </p>
           </div>
         </aside>
