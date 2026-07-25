@@ -45,8 +45,11 @@ export default function AdminProductsPage() {
     void load()
   }, [])
 
-  const remove = async (id: string) => {
-    if (!confirm('Delete this product?')) return
+  const remove = async (id: string, name: string) => {
+    const ok = window.confirm(
+      `Delete “${name}” permanently?\n\nThis removes it from the CMS catalogue. This cannot be undone.`,
+    )
+    if (!ok) return
     const res = await fetch(`/api/admin/products/${id}`, { method: 'DELETE' })
     const json = await res.json()
     if (!res.ok || !json.success) {
@@ -54,7 +57,7 @@ export default function AdminProductsPage() {
       return
     }
     toast('Product deleted', 'success')
-    void load()
+    setItems((prev) => prev.filter((item) => item.id !== id))
   }
 
   const duplicate = async (id: string) => {
@@ -187,7 +190,11 @@ export default function AdminProductsPage() {
                     <button type="button" onClick={() => duplicate(item.id)} className="text-slate-600">
                       Duplicate
                     </button>
-                    <button type="button" onClick={() => remove(item.id)} className="text-red-600">
+                    <button
+                      type="button"
+                      onClick={() => remove(item.id, item.name)}
+                      className="text-red-600"
+                    >
                       Delete
                     </button>
                   </div>
@@ -197,8 +204,8 @@ export default function AdminProductsPage() {
             {!loading && items.length === 0 && (
               <tr>
                 <td colSpan={4} className="px-4 py-6 text-slate-500">
-                  No products in database. Public site still uses static catalogue until you publish
-                  products here.
+                  No CMS products yet. The public site still shows the static catalogue; published
+                  CMS products will overlay matching slugs and add new ones.
                 </td>
               </tr>
             )}
