@@ -77,6 +77,15 @@ export default function Footer({ products: productsProp }: { products?: Product[
                   </Link>
                 </li>
               ))}
+              <li className="border-t border-white/10 pt-3">
+                <Link
+                  href="/admin/login"
+                  className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-[#4F9DF8]"
+                >
+                  <Lock size={13} aria-hidden />
+                  Admin Login
+                </Link>
+              </li>
             </ul>
           </motion.div>
 
@@ -179,13 +188,6 @@ export default function Footer({ products: productsProp }: { products?: Product[
                 {link}
               </Link>
             ))}
-            <Link
-              href="/admin/login"
-              className="inline-flex items-center gap-1.5 text-slate-500 hover:text-slate-300 underline-offset-2 hover:underline transition-colors cursor-pointer"
-            >
-              <Lock size={12} aria-hidden />
-              Admin Login
-            </Link>
           </div>
         </motion.div>
       </div>

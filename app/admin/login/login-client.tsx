@@ -1,8 +1,9 @@
 'use client'
 
 import { FormEvent, useState } from 'react'
+import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Eye, EyeOff } from 'lucide-react'
+import { ArrowLeft, Eye, EyeOff } from 'lucide-react'
 import { ToastHost, toast } from '@/components/ui/toast'
 
 export default function AdminLoginClient() {
@@ -39,9 +40,16 @@ export default function AdminLoginClient() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#F7F8FA] px-4">
+    <div className="flex min-h-screen items-center justify-center bg-[#F7F8FA] px-4 py-10 sm:py-16">
       <ToastHost />
-      <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+      <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <Link
+          href="/"
+          className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition-colors hover:text-[#C62828]"
+        >
+          <ArrowLeft size={16} aria-hidden />
+          Back to Website
+        </Link>
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C62828]">PharmEFC</p>
         <h1 className="mt-2 text-2xl font-bold text-slate-900">Admin Login</h1>
         <p className="mt-1 text-sm text-slate-500">Secure access to the PharmEFC CMS</p>
